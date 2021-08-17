@@ -167,7 +167,7 @@ public class Wikipedia {
         // locator uses the fact that subtitle is under the title
         element = driver.findElement(By.xpath("//following-sibling::strong"));
         assertTrue(element.isDisplayed());
-        assertEquals("האנציקלופדיה החופשית", element.getText());
+        assertEquals("The Free Encyclopedia", element.getText());
         assertEquals("center", element.getCssValue("text-align"));
     }
 
@@ -183,7 +183,7 @@ public class Wikipedia {
         // check the presence of 10 languages
         List<WebElement> languagesElements = driver.findElements(By.cssSelector(".central-featured > *"));
         assertEquals(10, driver.findElements(By.cssSelector(".central-featured > *")).size());
-        List<String> languagesNames = new LinkedList<>(Arrays.asList("日本語", "Deutsch", "Français", "Italiano", "עברית", "English", "Español", "Русский", "中文", "Português"));
+        List<String> languagesNames = new LinkedList<>(Arrays.asList("日本語", "Deutsch", "Français", "Italiano", "Polski", "English", "Español", "Русский", "中文", "Português"));
         int countRight = 0, countLeft = 0;
         for (WebElement langElement : languagesElements) {
             if (langElement.getLocation().getX() > element.getLocation().getX())
@@ -224,8 +224,7 @@ public class Wikipedia {
     public void SK_4_Tamar() {
         WebDriverWait wait = new WebDriverWait(driver, 2000);
         driver.get("https://www.wikipedia.org/");
-        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='לקרוא את ויקיפדיה בשפה שלך']")));
-        //element = driver.findElement(By.xpath("//*[text()='לקרוא את ויקיפדיה בשפה שלך']"));
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='Read Wikipedia in your language']")));
         assertTrue(driver.findElement(By.className("svg-arrow-down-blue")).isDisplayed()); // arrow
         element.click();
 
@@ -243,8 +242,8 @@ public class Wikipedia {
         driver.get("https://www.wikipedia.org/");
         By locator = By.className("footer-sidebar-content");
         assertTrue(driver.findElement(locator).isDisplayed());
-        String expectedDescriptionText = "ויקיפדיה מתארחת בקרן ויקימדיה, מוסד ללא כוונת רווח שמארח עוד מספר מיזמים.\n" +
-                "אתם יכולים לתמוך בעבודה שלנו בתרומה.";
+        String expectedDescriptionText = "Wikipedia is hosted by the Wikimedia Foundation, a non-profit organization that also hosts a range of other projects.\n" +
+                "You can support our work with a donation.";
         assertEquals(expectedDescriptionText, driver.findElement(locator).getText());
     }
 
@@ -274,18 +273,18 @@ public class Wikipedia {
         List<WebElement> projects = driver.findElements(By.className("other-project"));
         assertEquals(12, projects.size());
         List<String> expectedProjectsDescription = new LinkedList<>(Arrays.asList(
-                "ויקישיתוף - תמונות לשימוש חופשי ועוד",
-                "ויקימסע - מדריך הטיולים החופשי",
-                "ויקימילון - המילון החופשי",
-                "ויקיספר - ספרי לימוד חופשיים",
-                "ויקיחדשות - מקור החדשות החופשי",
-                "ויקינתונים - מסד ידע חופשי",
-                "ויקיברסיטה - חומרי לימוד חופשיים",
-                "ויקיציטוט - מאגר הציטוטים החופשי",
-                "מדיה־ויקי - יישום ויקי חופשי ופתוח",
-                "ויקיטקסט - מאגר הטקסטים החופשי",
-                "ויקימינים - מדריך מינים חופשי",
-                "מטא־ויקי - תיאום ותיעוד קהילתי"));
+                "Commons - Freely usable photos & more",
+                "Wikibooks - Free textbooks",
+                "Wikiversity - Free course materials",
+                "Wikisource - Free library",
+                "Wikivoyage - Free travel guide",
+                "Wikinews - Free news source",
+                "Wikiquote - Free quote compendium",
+                "Wikispecies - Free species directory",
+                "Wiktionary - Free dictionary",
+                "Wikidata - Free knowledge base",
+                "MediaWiki - Free & open wiki application",
+                "Meta-Wiki - Community coordination & documentation"));
         List<String> actualProjectsDescription = new LinkedList<>();
         for (WebElement p : projects) {
             String text = p.getText().replace("\n", " - ");
@@ -303,13 +302,13 @@ public class Wikipedia {
         driver.get("https://www.wikipedia.org/");
         element = driver.findElement(By.cssSelector("[data-jsl10n='license']"));
         assertTrue(element.findElement(By.xpath("//./a")).isDisplayed());
-        assertEquals("הדף הזה זמין לפי תנאי רישיון קריאייטיב קומנז–ייחוס–שיתוף זהה", element.getText());
+        assertEquals("This page is available under the Creative Commons Attribution-ShareAlike License", element.getText());
         element = driver.findElement(By.cssSelector("[data-jsl10n='terms']"));
         assertTrue(element.findElement(By.xpath("//./a")).isDisplayed());
-        assertEquals("תנאי שימוש", element.getText());
+        assertEquals("Terms of Use", element.getText());
         element = driver.findElement(By.cssSelector("[data-jsl10n='privacy-policy']"));
         assertTrue(element.findElement(By.xpath("//./a")).isDisplayed());
-        assertEquals("מדיניות פרטיות", element.getText());
+        assertEquals("Privacy Policy", element.getText());
     }
 
     /**
@@ -364,7 +363,7 @@ public class Wikipedia {
             put("Romani", "Sherutni patrin");
         }};
 
-        By buttonLocator = By.xpath("//*[text()='לקרוא את ויקיפדיה בשפה שלך']");
+        By buttonLocator = By.xpath("//*[text()='Read Wikipedia in your language']");
         Actions actions = new Actions(driver);
 
         languagesInfo.forEach((language, expectedMainPageText) -> {
