@@ -3,34 +3,43 @@ package websites;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebElement;
-import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
 public class Wikipedia {
 
     ChromeDriver driver;
+    WebElement element;
 
-    @BeforeTest
+    @Before
     public void initDriver() {
+        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
     }
 
+    @After
+    public void tearDown() {
+        // Quit the driver
+        driver.quit();
+    }
     //        WebDriverWait wait = new WebDriverWait(driver, 10);
 //        WebElement el = wait.until(presenceOfElementLocated(By.xpath("//span[text()='Languages']")));
 //        driver.findElement(By.xpath("//span[text()='Languages']"));
@@ -142,6 +151,342 @@ public class Wikipedia {
             Assert.assertEquals(lang.getAttribute("title"), langEntry.getValue().get(0));
             driver.findElement(By.xpath("//a[text()='{" + langEntry.getValue().get(1) + "']"));
         }
+    }
+
+    /**
+     * SK_1
+     * Tamar
+     */
+    @Test
+    public void SK_1_Tamar() {
+        driver.get("https://www.wikipedia.org/");
+        element = driver.findElement(By.className("central-textlogo__image"));
+        assertTrue(element.isDisplayed());
+        assertEquals("Wikipedia", element.getText());
+        assertEquals("center", element.getCssValue("text-align"));
+        // locator uses the fact that subtitle is under the title
+        element = driver.findElement(By.xpath("//following-sibling::strong"));
+        assertTrue(element.isDisplayed());
+        assertEquals("האנציקלופדיה החופשית", element.getText());
+        assertEquals("center", element.getCssValue("text-align"));
+    }
+
+    /**
+     * SK_2
+     * Tamar
+     */
+    @Test
+    public void SK_2_Tamar() {
+        driver.get("https://www.wikipedia.org/");
+        assertTrue(driver.findElement(By.className("central-featured-logo")).isDisplayed());
+        element = driver.findElement(By.className("central-featured-logo"));
+        // check the presence of 10 languages
+        List<WebElement> languagesElements = driver.findElements(By.cssSelector(".central-featured > *"));
+        assertEquals(10, driver.findElements(By.cssSelector(".central-featured > *")).size());
+        List<String> languagesNames = new LinkedList<>(Arrays.asList("日本語", "Deutsch", "Français", "Italiano", "עברית", "English", "Español", "Русский", "中文", "Português"));
+        int countRight = 0, countLeft = 0;
+        for (WebElement langElement : languagesElements) {
+            if (langElement.getLocation().getX() > element.getLocation().getX())
+                countRight++;
+            else
+                countLeft++;
+            String currentLanguage = langElement.findElement(By.xpath(".//strong")).getText();
+            languagesNames.remove(currentLanguage);
+            assertTrue(langElement.findElement(By.xpath(".//small")).isDisplayed()); // number of articles id displayed
+        }
+        assertEquals(5, countRight);
+        assertEquals(5, countLeft);
+        assertEquals(0, languagesNames.size());
+    }
+
+    /**
+     * SK_3
+     * Tamar
+     */
+    @Test
+    public void SK_3_Tamar() {
+        driver.get("https://www.wikipedia.org/");
+        assertTrue(driver.findElement(By.id("searchInput")).isDisplayed());
+        assertTrue(driver.findElement(By.cssSelector("[for='searchLanguage']")).isDisplayed());
+        By buttonLocator = By.cssSelector("[data-jsl10n='search-input-button']");
+        assertTrue(driver.findElement(buttonLocator).isDisplayed());
+        assertEquals("rgba(51, 102, 204, 1)",
+                driver.findElement(buttonLocator).findElement(By.xpath("..")).getCssValue("background-color"));
+        driver.findElement(By.id("searchLanguage")).click();
+        assertTrue(driver.findElement(By.xpath("//option[text()='Polski']")).isDisplayed());
+    }
+
+    /**
+     * SK_4
+     * Tamar
+     */
+    @Test
+    public void SK_4_Tamar() {
+        WebDriverWait wait = new WebDriverWait(driver, 2000);
+        driver.get("https://www.wikipedia.org/");
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='לקרוא את ויקיפדיה בשפה שלך']")));
+        //element = driver.findElement(By.xpath("//*[text()='לקרוא את ויקיפדיה בשפה שלך']"));
+        assertTrue(driver.findElement(By.className("svg-arrow-down-blue")).isDisplayed()); // arrow
+        element.click();
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("lang-list-content")));
+        List<WebElement> headers = driver.findElements(By.cssSelector(".lang-list-content > h2"));
+        assertEquals(5, headers.size()); //5 categories
+    }
+
+    /**
+     * SK_5
+     * Tamar
+     */
+    @Test
+    public void SK_5_Tamar() {
+        driver.get("https://www.wikipedia.org/");
+        By locator = By.className("footer-sidebar-content");
+        assertTrue(driver.findElement(locator).isDisplayed());
+        String expectedDescriptionText = "ויקיפדיה מתארחת בקרן ויקימדיה, מוסד ללא כוונת רווח שמארח עוד מספר מיזמים.\n" +
+                "אתם יכולים לתמוך בעבודה שלנו בתרומה.";
+        assertEquals(expectedDescriptionText, driver.findElement(locator).getText());
+    }
+
+    /**
+     * SK_6
+     * Tamar
+     */
+    @Test
+    public void SK_6_Tamar() {
+        driver.get("https://www.wikipedia.org/");
+        WebDriverWait wait = new WebDriverWait(driver, 2000);
+        element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-jsl10n='portal.app-links.description']")));
+        assertTrue(element.isDisplayed());
+        assertTrue(driver.findElement(By.cssSelector("[data-jsl10n='portal.app-links.google-store']")).isDisplayed());
+        assertTrue(driver.findElement(By.cssSelector("[data-jsl10n='portal.app-links.apple-store']")).isDisplayed());
+    }
+
+    /**
+     * SK_7
+     * Tamar
+     */
+    @org.junit.Test
+    public void SK_7_Tamar() {
+        driver.get("https://www.wikipedia.org/");
+        WebDriverWait wait = new WebDriverWait(driver, 2000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("other-project")));
+        List<WebElement> projects = driver.findElements(By.className("other-project"));
+        assertEquals(12, projects.size());
+        List<String> expectedProjectsDescription = new LinkedList<>(Arrays.asList(
+                "ויקישיתוף - תמונות לשימוש חופשי ועוד",
+                "ויקימסע - מדריך הטיולים החופשי",
+                "ויקימילון - המילון החופשי",
+                "ויקיספר - ספרי לימוד חופשיים",
+                "ויקיחדשות - מקור החדשות החופשי",
+                "ויקינתונים - מסד ידע חופשי",
+                "ויקיברסיטה - חומרי לימוד חופשיים",
+                "ויקיציטוט - מאגר הציטוטים החופשי",
+                "מדיה־ויקי - יישום ויקי חופשי ופתוח",
+                "ויקיטקסט - מאגר הטקסטים החופשי",
+                "ויקימינים - מדריך מינים חופשי",
+                "מטא־ויקי - תיאום ותיעוד קהילתי"));
+        List<String> actualProjectsDescription = new LinkedList<>();
+        for (WebElement p : projects) {
+            String text = p.getText().replace("\n", " - ");
+            actualProjectsDescription.add(text);
+        }
+        assertEquals(expectedProjectsDescription, actualProjectsDescription);
+    }
+
+    /**
+     * SK_8
+     * Tamar
+     */
+    @Test
+    public void SK_8_Tamar() {
+        driver.get("https://www.wikipedia.org/");
+        element = driver.findElement(By.cssSelector("[data-jsl10n='license']"));
+        assertTrue(element.findElement(By.xpath("//./a")).isDisplayed());
+        assertEquals("הדף הזה זמין לפי תנאי רישיון קריאייטיב קומנז–ייחוס–שיתוף זהה", element.getText());
+        element = driver.findElement(By.cssSelector("[data-jsl10n='terms']"));
+        assertTrue(element.findElement(By.xpath("//./a")).isDisplayed());
+        assertEquals("תנאי שימוש", element.getText());
+        element = driver.findElement(By.cssSelector("[data-jsl10n='privacy-policy']"));
+        assertTrue(element.findElement(By.xpath("//./a")).isDisplayed());
+        assertEquals("מדיניות פרטיות", element.getText());
+    }
+
+    /**
+     * SK_9
+     * Tamar
+     */
+    @Test
+    public void SK_9_Tamar() {
+        driver.get("https://www.wikipedia.org/");
+        assertTrue(driver.findElement(By.className("central-textlogo__image")).isDisplayed());
+        assertTrue(driver.findElement(By.className("central-featured-logo")).isDisplayed());
+        assertTrue(driver.findElement(By.className("footer")).isDisplayed());
+    }
+
+    /**
+     * SK_10
+     * Tamar
+     */
+    @Test
+    public void SK_10_Tamar() {
+        Map<String, List<String>> languagesInfo = new HashMap<String, List<String>>() {{
+            put("English", new ArrayList<>(Arrays.asList("English — Wikipedia — The Free Encyclopedia", "Main page")));
+            put("Español", new ArrayList<>(Arrays.asList("Español — Wikipedia — La enciclopedia libre", "Portada")));
+            put("Русский", new ArrayList<>(Arrays.asList("Russkiy — Википедия — Свободная энциклопедия", "Заглавная страница")));
+            put("中文", new ArrayList<>(Arrays.asList("Zhōngwén — 維基百科 — 自由的百科全書", "首页")));
+            put("Português", new ArrayList<>(Arrays.asList("Português — Wikipédia — A enciclopédia livre", "Página principal")));
+            put("日本語", new ArrayList<>(Arrays.asList("Nihongo — ウィキペディア — フリー百科事典", "メインページ")));
+            put("Deutsch", new ArrayList<>(Arrays.asList("Deutsch — Wikipedia — Die freie Enzyklopädie", "Hauptseite")));
+        }};
+        languagesInfo.forEach((lang, expectedStrings) -> {
+            driver.get("https://www.wikipedia.org/");
+            element = driver.findElement(By.xpath("//strong[text()='" + lang + "']/.."));
+            Actions actions = new Actions(driver);
+            actions.moveByOffset(0, 0).moveToElement(element).perform();
+            assertEquals(expectedStrings.get(0), element.getAttribute("title"));
+            element.click();
+            assertEquals(expectedStrings.get(1), driver.findElement(By.id("n-mainpage-description")).getText());
+        });
+    }
+
+    /**
+     * SK_11
+     * Tamar
+     */
+    @Test
+    public void SK_11_Tamar() {
+        Map<String, String> languagesInfo = new HashMap<String, String>() {{
+            put("Polski", "Strona główna");
+            put("Dansk", "Forside");
+            put("Scots", "Main page");
+            put("Akan", "Main page");
+            put("Romani", "Sherutni patrin");
+        }};
+
+        By buttonLocator = By.xpath("//*[text()='לקרוא את ויקיפדיה בשפה שלך']");
+        Actions actions = new Actions(driver);
+
+        languagesInfo.forEach((language, expectedMainPageText) -> {
+            driver.get("https://www.wikipedia.org/");
+            assertTrue(driver.findElement(By.className("central-textlogo__image")).isDisplayed());
+            assertTrue(driver.findElement(By.className("central-featured-logo")).isDisplayed());
+            assertTrue(driver.findElement(By.className("footer")).isDisplayed());
+
+            assertTrue(driver.findElement(buttonLocator).isDisplayed());
+            assertTrue(driver.findElement(buttonLocator).isEnabled());
+            actions.moveByOffset(0, 0).moveToElement(driver.findElement(buttonLocator)).click().perform();
+            WebDriverWait wait1 = new WebDriverWait(driver, 2000);
+            wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("js-lang-lists")));
+            By locator = By.xpath("//a[text()='" + language + "']");
+            wait1.until(ExpectedConditions.visibilityOfElementLocated(locator));
+            element = wait1.until(ExpectedConditions.elementToBeClickable(locator));
+            element.click();
+
+            By mainPageLocator = By.id("n-mainpage-description");
+            if (language.equals("Dansk"))
+                mainPageLocator = By.id("n-mainpage");
+            element = wait1.until(ExpectedConditions.presenceOfElementLocated(mainPageLocator));
+            assertEquals(expectedMainPageText, element.getText());
+        });
+    }
+
+    /**
+     * SK_12
+     * Tamar
+     */
+    @Test
+    public void SK_12_Tamar() {
+        driver.get("https://en.wikipedia.org/wiki/Main_Page");
+        assertTrue(driver.findElement(By.id("mw-head")).isDisplayed());
+        assertTrue(driver.findElement(By.id("mw-panel")).isDisplayed());
+        assertTrue(driver.findElement(By.id("bodyContent")).isDisplayed());
+    }
+
+    /**
+     * SK_13
+     * Tamar
+     */
+    @Test
+    public void SK_13_Tamar() {
+        driver.get("https://en.wikipedia.org/wiki/Main_Page");
+        assertTrue(driver.findElement(By.className("mw-wiki-logo")).isDisplayed()); // logo
+        List<WebElement> categoriesElements = driver.findElements(By.xpath("//*[@id='mw-panel']/nav/h3"));
+        List<String> expectedCategoriesNames = new LinkedList<>(Arrays.asList("Contribute", "Tools", "Print/export", "In other projects", "Languages"));
+        List<String> actualCategoriesNames = new LinkedList<>();
+        for (WebElement element : categoriesElements) {
+            String categoryName = element.getText();
+            if (!categoryName.equals(""))
+                actualCategoriesNames.add(categoryName);
+        }
+        assertEquals(expectedCategoriesNames, actualCategoriesNames);
+    }
+
+    /**
+     * SK_14
+     * Tamar
+     */
+    @Test
+    public void SK_14_Tamar() {
+        driver.get("https://en.wikipedia.org/wiki/Main_Page");
+        assertTrue(driver.findElement(By.id("pt-anonuserpage")).isDisplayed()); // info if the user is logged in or not
+        List<WebElement> linkElements = driver.findElements(By.xpath("//*[@id='p-personal']//*[@class='vector-menu-content-list']/li/a"));
+        List<String> expectedLinkNames = new LinkedList<>(Arrays.asList("Talk", "Contributions", "Create account", "Log in"));
+        List<String> actualLinkNames = new LinkedList<>();
+        for (WebElement element : linkElements) {
+            actualLinkNames.add(element.getText());
+        }
+        assertEquals(expectedLinkNames, actualLinkNames);
+
+        List<WebElement> tabsElements = driver.findElements(By.xpath("//*[@id='p-namespaces']//*[@class='vector-menu-content-list']/li/a"));
+        tabsElements.addAll(driver.findElements(By.xpath("//*[@id='p-views']//*[@class='vector-menu-content-list']/li/a")));
+        List<String> expectedTabsNames = new LinkedList<>(Arrays.asList("Main Page", "Talk", "Read", "View source", "View history"));
+        List<String> actualTabsNames = new LinkedList<>();
+        for (WebElement element : tabsElements) {
+            actualTabsNames.add(element.getText());
+        }
+        assertEquals(expectedTabsNames, actualTabsNames);
+        assertTrue(driver.findElement(By.id("searchInput")).isDisplayed()); // search bar
+    }
+
+    /**
+     * SK_15
+     * Tamar
+     */
+    @Test
+    public void SK_15_Tamar() {
+        driver.get("https://en.wikipedia.org/wiki/Main_Page");
+        assertTrue(driver.findElement(By.id("mp-welcomecount")).isDisplayed()); // welcome area
+        assertTrue(driver.findElement(By.id("mp-free")).isDisplayed()); // description
+        By portalsLocator = By.id("mp-portals");
+        assertTrue(driver.findElement(portalsLocator).isDisplayed()); // portals
+        element = driver.findElement(portalsLocator);
+        List<WebElement> linkElements = element.findElements(By.xpath(".//li/a"));
+        List<String> expectedLinkNames = new LinkedList<>(Arrays.asList(
+                "The arts", "Biography", "Geography", "History", "Mathematics", "Science", "Society", "Technology", "All portals"));
+        List<String> actualLinkNames = new LinkedList<>();
+        for (WebElement element : linkElements) {
+            actualLinkNames.add(element.getText());
+        }
+        assertEquals(expectedLinkNames, actualLinkNames);
+    }
+
+    /**
+     * SK_16
+     * Tamar
+     */
+    @Test
+    public void SK_16_Tamar() {
+        driver.get("https://en.wikipedia.org/wiki/Main_Page");
+        List<WebElement> headerElements = driver.findElements(By.className("mw-headline"));
+        List<String> expectedHeaders = new LinkedList<>(Arrays.asList(
+                "From today's featured article", "In the news", "Did you know ...", "On this day", "From today's featured list",
+                "Today's featured picture", "Other areas of Wikipedia", "Wikipedia's sister projects", "Wikipedia languages"));
+        List<String> actualHeaders = new LinkedList<>();
+        for (WebElement element : headerElements) {
+            actualHeaders.add(element.getText());
+        }
+        assertTrue(actualHeaders.containsAll(expectedHeaders));
     }
 
 }
