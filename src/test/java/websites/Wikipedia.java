@@ -14,7 +14,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -54,8 +53,8 @@ public class Wikipedia {
         String path = "https://www.wikipedia.org/";
         driver.get(path);
         String logoText = driver.findElement(By.className("central-textlogo-wrapper")).getText();
-        Assert.assertTrue(logoText.contains("Wikipedia"));
-        Assert.assertTrue(logoText.contains("The Free Encyclopedia"));
+        assertTrue(logoText.contains("Wikipedia"));
+        assertTrue(logoText.contains("The Free Encyclopedia"));
         String[] languagesArray = {"English",
                 "日本語",
                 "Español",
@@ -67,21 +66,21 @@ public class Wikipedia {
                 "Português",
                 "Polski"};
         Set<String> languagesList = ImmutableSet.copyOf(languagesArray);
-        List<String> languages = driver.findElementsByClassName("central-featured-lang").stream().map(language ->
+        Set<String> languages = driver.findElementsByClassName("central-featured-lang").stream().map(language ->
                         ((RemoteWebElement) language).findElementsByXPath(".//*")
                                 .stream()
                                 .filter(b -> b.getTagName()
                                         .equals("strong")).findFirst().get().getText()
                 )
-                .collect(Collectors.toList());
-        Assert.assertEquals(languagesList, languages);
+                .collect(Collectors.toSet());
+        assertEquals(languagesList, languages);
 
         WebElement searchInput = driver.findElement(By.id("search-input"));
-        Assert.assertEquals(searchInput.findElement(By.id("searchLanguage")).getTagName(), "select");
+        assertEquals(searchInput.findElement(By.id("searchLanguage")).getTagName(), "select");
         List<String> searchLanguage = ((RemoteWebElement) searchInput.findElement(By.id("searchLanguage")))
                 .findElementsByXPath(".//*")
                 .stream().map(WebElement::getText).collect(Collectors.toList());
-        Assert.assertTrue(searchLanguage.contains("Polski"));
+        assertTrue(searchLanguage.contains("Polski"));
         driver.findElement(By.xpath("//span[text()='Read Wikipedia in your language ']")).click();
         WebDriverWait wait = new WebDriverWait(driver, 10);
         Thread.sleep(3000);
@@ -90,7 +89,7 @@ public class Wikipedia {
                 .findElementsByClassName("bookshelf").stream().map(headline ->
                         headline.findElement(By.tagName("bdi")).getText()
                 ).collect(Collectors.toList());
-        Assert.assertTrue(headlines.stream().allMatch(numberOfArticles -> numberOfArticles.contains("00")));
+        assertTrue(headlines.stream().allMatch(numberOfArticles -> numberOfArticles.contains("00")));
 
         driver.findElement(By.xpath("//span[text()='Apple App Store']"));
         driver.findElement(By.xpath("//span[text()='Google Play Store']"));
@@ -115,7 +114,7 @@ public class Wikipedia {
         List<String> otherProjectDescriptions = otherProjects.findElements(By.className("other-project-text")).stream().map(project ->
                 ((RemoteWebElement) project).findElementsByXPath(".//*").stream().map(WebElement::getText)
                         .collect(Collectors.joining(" - "))).map(projectDescription -> "- " + projectDescription).collect(Collectors.toList());
-        Assert.assertTrue(otherProjectDescriptions.containsAll(projectNamesList));
+        assertTrue(otherProjectDescriptions.containsAll(projectNamesList));
     }
 
     /**
@@ -129,10 +128,10 @@ public class Wikipedia {
         List<WebElement> languages = driver.findElements(By.className("central-featured-lang"));
         Optional<WebElement> english = languages.stream().filter(language -> language.getAttribute("lang").equals("en")).findFirst();
         assert english.isPresent();
-        Assert.assertEquals(english.get().getAttribute("title"), "English — Wikipedia — The Free Encyclopedia");
+        assertEquals(english.get().getAttribute("title"), "English — Wikipedia — The Free Encyclopedia");
         english.get().findElement(By.tagName("a")).click();
         Thread.sleep(3000);
-        Assert.assertEquals(driver.getCurrentUrl(), "https://en.wikipedia.org/wiki/Main_Page");
+        assertEquals(driver.getCurrentUrl(), "https://en.wikipedia.org/wiki/Main_Page");
         driver.findElement(By.xpath("//a[text()='Main page']"));
 
         Map<String, List<String>> languagesWithExpectedResults = ImmutableMap.<String, List<String>>builder()
@@ -148,7 +147,7 @@ public class Wikipedia {
         for (Map.Entry<String, List<String>> langEntry : languagesWithExpectedResults.entrySet()) {
             driver.get(path);
             lang = languages.stream().filter(language -> language.getAttribute("lang").equals(langEntry.getKey())).findFirst().get();
-            Assert.assertEquals(lang.getAttribute("title"), langEntry.getValue().get(0));
+            assertEquals(lang.getAttribute("title"), langEntry.getValue().get(0));
             driver.findElement(By.xpath("//a[text()='{" + langEntry.getValue().get(1) + "']"));
         }
     }
