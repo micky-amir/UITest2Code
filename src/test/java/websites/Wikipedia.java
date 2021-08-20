@@ -39,9 +39,6 @@ public class Wikipedia {
         // Quit the driver
         driver.quit();
     }
-    //        WebDriverWait wait = new WebDriverWait(driver, 10);
-//        WebElement el = wait.until(presenceOfElementLocated(By.xpath("//span[text()='Languages']")));
-//        driver.findElement(By.xpath("//span[text()='Languages']"));
 
 
     /**
@@ -49,12 +46,23 @@ public class Wikipedia {
      * Amir
      */
     @Test
-    public void SK_1() throws InterruptedException {
+    public void SK_1_Amir() {
         String path = "https://www.wikipedia.org/";
         driver.get(path);
         String logoText = driver.findElement(By.className("central-textlogo-wrapper")).getText();
         assertTrue(logoText.contains("Wikipedia"));
         assertTrue(logoText.contains("The Free Encyclopedia"));
+    }
+
+    /**
+     * SK_2
+     * Amir
+     */
+    @Test
+    public void SK_2_Amir() {
+        String path = "https://www.wikipedia.org/";
+        driver.get(path);
+
         String[] languagesArray = {"English",
                 "日本語",
                 "Español",
@@ -74,6 +82,16 @@ public class Wikipedia {
                 )
                 .collect(Collectors.toSet());
         assertEquals(languagesList, languages);
+    }
+
+    /**
+     * SK_3
+     * Amir
+     */
+    @Test
+    public void SK_3_Amir() {
+        String path = "https://www.wikipedia.org/";
+        driver.get(path);
 
         WebElement searchInput = driver.findElement(By.id("search-input"));
         assertEquals(searchInput.findElement(By.id("searchLanguage")).getTagName(), "select");
@@ -81,6 +99,17 @@ public class Wikipedia {
                 .findElementsByXPath(".//*")
                 .stream().map(WebElement::getText).collect(Collectors.toList());
         assertTrue(searchLanguage.contains("Polski"));
+    }
+
+    /**
+     * SK_4
+     * Amir
+     */
+    @Test
+    public void SK_4_Amir() throws InterruptedException {
+        String path = "https://www.wikipedia.org/";
+        driver.get(path);
+
         driver.findElement(By.xpath("//span[text()='Read Wikipedia in your language ']")).click();
         WebDriverWait wait = new WebDriverWait(driver, 10);
         Thread.sleep(3000);
@@ -90,10 +119,26 @@ public class Wikipedia {
                         headline.findElement(By.tagName("bdi")).getText()
                 ).collect(Collectors.toList());
         assertTrue(headlines.stream().allMatch(numberOfArticles -> numberOfArticles.contains("00")));
+    }
+
+    /**
+     * SK_6
+     * Amir
+     */
+    @Test
+    public void SK_6_Amir() {
+        String path = "https://www.wikipedia.org/";
+        driver.get(path);
 
         driver.findElement(By.xpath("//span[text()='Apple App Store']"));
         driver.findElement(By.xpath("//span[text()='Google Play Store']"));
-
+    }
+    /**
+     * SK_7
+     * Amir
+     */
+    @Test
+    public void SK_7_Amir() {
 
         String[] projectNames = {
                 "- Commons - Freely usable photos & more",
@@ -112,17 +157,21 @@ public class Wikipedia {
 
         WebElement otherProjects = driver.findElementByClassName("other-projects");
         List<String> otherProjectDescriptions = otherProjects.findElements(By.className("other-project-text")).stream().map(project ->
-                ((RemoteWebElement) project).findElementsByXPath(".//*").stream().map(WebElement::getText)
-                        .collect(Collectors.joining(" - "))).map(projectDescription -> "- " + projectDescription).collect(Collectors.toList());
+                ((RemoteWebElement) project).findElementsByXPath(".//*")
+                        .stream()
+                        .map(WebElement::getText)
+                        .collect(Collectors.joining(" - ")))
+                .map(projectDescription -> "- " + projectDescription)
+                .collect(Collectors.toList());
         assertTrue(otherProjectDescriptions.containsAll(projectNamesList));
     }
 
     /**
-     * SK_2
+     * SK_9
      * Amir
      */
     @Test
-    public void SK_2() throws InterruptedException {
+    public void SK_9_Amir() throws InterruptedException {
         String path = "https://www.wikipedia.org/";
         driver.get(path);
         List<WebElement> languages = driver.findElements(By.className("central-featured-lang"));
