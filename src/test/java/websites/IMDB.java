@@ -2,6 +2,7 @@ package websites;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -359,7 +360,7 @@ public class IMDB {
         driver.get("https://www.imdb.com/");
         driver.findElement(By.xpath("//*[text()='Sign In']")).click();
         assertTrue(driver.findElements(By.className("list-group")).size() > 1);
-        driver.findElement(By.xpath("//*[text()='Sign in with IMDb']")).click();
+        driver.findElement(By.xpath("//*[text()[contains(.,'Sign in with')]]")).click();
         driver.findElement(By.id("ap_email")).sendKeys("tamar.gur@outlook.co.il");
         driver.findElement(By.id("ap_password")).sendKeys("imdbtest");
         driver.findElement(By.id("signInSubmit")).click();
@@ -390,4 +391,88 @@ public class IMDB {
             assertTrue((Integer.parseInt(currentText.replaceAll(",", "")) <= (Integer.parseInt(previousText.replaceAll(",", "")))));
         }
     }
+
+
+    /**
+     * SK_1
+     * Amir
+     */
+    @Test
+    public void SK_1_Amir() {
+        String path = "https://www.imdb.com/";
+        WebDriverWait wait = new WebDriverWait(driver, 1000);
+
+        driver.get(path);
+        driver.findElement(By.className("imdb-header__signin-text")).click();
+        WebElement signInDiv = driver.findElement(By.id("signin-options"));
+        List<WebElement> signInOptions = signInDiv.findElements(By.className("list-group-item"));
+        Assert.assertTrue(signInOptions.size() > 1);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[text()='Create a New Account']"))).click();
+
+        String userName = "some name";
+        driver.findElement(By.id("ap_customer_name")).sendKeys(userName);
+        driver.findElement(By.id("ap_email")).sendKeys("some@email.com");
+        driver.findElement(By.id("ap_password")).sendKeys("Password1");
+        driver.findElement(By.id("ap_password_check")).sendKeys("Password1");
+        driver.findElement(By.xpath("//input[@type='submit']")).click();
+
+        String userNameFromPage = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("navbar__user-name"))).getText();
+        Assert.assertEquals(userNameFromPage, userName);
+    }
+
+    /**
+     * SK_2
+     * Amir
+     */
+    @Test
+    public void SK_2_Amir() {
+        String path = "https://www.imdb.com/";
+        WebDriverWait wait = new WebDriverWait(driver, 1000);
+
+        driver.get(path);
+        driver.findElement(By.className("imdb-header__signin-text")).click();
+        WebElement signInDiv = driver.findElement(By.id("signin-options"));
+        List<WebElement> signInOptions = signInDiv.findElements(By.className("list-group-item"));
+        Assert.assertTrue(signInOptions.size() > 1);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[text()='Sign in with IMDb']"))).click();
+        String userName = "some name";
+        driver.findElement(By.id("ap_email")).sendKeys("some@email.com");
+        driver.findElement(By.id("ap_password")).sendKeys("Password1");
+        driver.findElement(By.id("signInSubmit")).click();
+        String userNameFromPage = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("navbar__user-name"))).getText();
+        Assert.assertEquals(userNameFromPage, userName);
+    }
+
+    /**
+     * SK_3
+     * Amir
+     */
+    @Test
+    public void SK_3_Amir() {
+        String path = "https://www.imdb.com/";
+        WebDriverWait wait = new WebDriverWait(driver, 1000);
+        driver.get(path);
+        driver.findElement(By.className("imdb-header__signin-text")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[text()='Sign in with IMDb']"))).click();
+        driver.findElement(By.id("ap_email")).sendKeys("amirbenami21@gmail.com");
+        driver.findElement(By.id("ap_password")).sendKeys("nba12345");
+        driver.findElement(By.id("signInSubmit")).click();
+        WebElement featureTodaySection = driver.findElement(By.xpath("//*[text()='Featured today']/../.."));
+        driver.switchTo().frame(featureTodaySection);
+        featureTodaySection.findElement(By.xpath("//span[text()='Photos']"));
+        featureTodaySection.findElement(By.className("ipc-media__img"));
+        driver.switchTo().defaultContent();
+        WebElement whatToSee = driver.findElement(By.xpath("//*[text()='What to watch']/../../.."));
+        Assert.assertTrue(whatToSee.findElements(By.className("ipc-media__img")).size() > 1);
+
+        driver.switchTo().frame(whatToSee.findElement(By.xpath("//span[text()='Cruella']/../..")));
+        WebElement watchlistButton = driver.findElement(By.xpath("//*[text()='Watchlist']/.."));
+        driver.switchTo().frame(watchlistButton);
+        Assert.assertTrue(driver.findElement(By.className("ipc-icon--add")).isDisplayed());
+        watchlistButton.click();
+        Assert.assertTrue(driver.findElement(By.className("ipc-icon--done")).isDisplayed());
+        driver.switchTo().defaultContent();
+    }
+
+
 }
