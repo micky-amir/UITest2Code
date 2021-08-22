@@ -12,6 +12,11 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -364,14 +369,13 @@ public class IMDB {
      * SK_15
      * Tamar
      * HTML refer to SK_2, SK_10
-     * not done
      */
     @Test
     public void SK_15_Tamar() {
         driver.get("https://www.imdb.com/");
         driver.findElement(By.xpath("//*[text()='Sign In']")).click();
         assertTrue(driver.findElements(By.className("list-group")).size() > 1);
-        driver.findElement(By.xpath("//*[text()[contains(.,'Sign in with')]]")).click();
+        driver.findElement(By.xpath("//*[text()='Sign in with IMDb']")).click();
         driver.findElement(By.id("ap_email")).sendKeys("tamar.gur@outlook.co.il");
         driver.findElement(By.id("ap_password")).sendKeys("imdbtest");
         driver.findElement(By.id("signInSubmit")).click();
@@ -383,26 +387,111 @@ public class IMDB {
 
         element = driver.findElement(By.xpath("//a[text()='The Godfather']/../following-sibling::*[@class='ratingColumn']/*"));
         element.click();
-        WebDriverWait wait = new WebDriverWait(driver, 10000);
-        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[@class='popover']/ol/li[4]")));
-        //actions.moveByOffset(0, 0).click(element).perform();
-        //element.findElement(By.xpath(".//*[text()='4']")).click();
-        element.findElement(By.xpath("//*[@id=\"main\"]/div/span/div/div/div[3]/table/tbody/tr[2]/td[4]/div/div[1]/div/ol/li[4]")).click();
+        element.findElement(By.xpath("//a[text()='The Godfather']/../following-sibling::*[@class='ratingColumn']/descendant::li[4]")).click();
 
         element = driver.findElement(By.id("lister-sort-by-options"));
         element.click();
-        element.findElement(By.xpath(".//*[@value='nv:descending']")).click();
+        element.findElement(By.xpath(".//*[@value='ur:descending']")).click();
 
-        List<WebElement> itemsElements = driver.findElements(By.cssSelector(".lister-list .ratingColumn.imdbRating > strong"));
+        List<WebElement> itemsElements = driver.findElements(By.cssSelector(".lister-list .ratingColumn .rating"));
         for (int i = 1; i < itemsElements.size(); i++) {
-            String currentText = itemsElements.get(i).getAttribute("title");
-            currentText = currentText.substring(currentText.indexOf("on ") + 3, currentText.indexOf(" user"));
-            String previousText = itemsElements.get(i).getAttribute("title");
-            previousText = previousText.substring(previousText.indexOf("on ") + 3, previousText.indexOf(" user"));
-            assertTrue((Integer.parseInt(currentText.replaceAll(",", "")) <= (Integer.parseInt(previousText.replaceAll(",", "")))));
+            String currentText = itemsElements.get(i).getText();
+            if (currentText.equals("")) {
+                currentText = "0";
+            }
+            String previousText = itemsElements.get(i).getText();
+            if (previousText.equals("")) {
+                previousText = "0";
+            }
+            assertTrue((Integer.parseInt(currentText) <= (Integer.parseInt(previousText))));
         }
     }
 
+    /**
+     * SK_16
+     * Tamar
+     * HTML refer to SK_10
+     */
+    @Test
+    public void SK_16_Tamar() {
+        driver.get("https://www.imdb.com/");
+        driver.findElement(By.id("imdbHeader-navDrawerOpen--desktop")).click();
+        element = driver.findElement(By.xpath("//*[text()='Top Rated Movies']"));
+        Actions actions = new Actions(driver);
+        actions.moveByOffset(0, 0).click(element).perform();
+
+        driver.findElement(By.cssSelector(".dropdown.share-widget")).click();
+        element = driver.findElement(By.xpath("//*[@class='share-widget-copy-icon']/.."));
+        actions.moveToElement(element).perform();
+        assertEquals("Click to copy", element.getAttribute("title"));
+        element.click();
+        try {
+            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+            Object copiedData = clipboard.getData(DataFlavor.stringFlavor);
+            assertEquals("https://www.imdb.com/chart/top/", copiedData.toString());
+        } catch (IOException | UnsupportedFlavorException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * SK_17
+     * Tamar
+     * HTML refer to SK_10
+     */
+    @Test
+    public void SK_17_Tamar() {
+        driver.get("https://www.imdb.com/");
+        driver.findElement(By.id("imdbHeader-navDrawerOpen--desktop")).click();
+        element = driver.findElement(By.xpath("//*[text()='Top Rated Movies']"));
+        Actions actions = new Actions(driver);
+        actions.moveByOffset(0, 0).click(element).perform();
+        List<WebElement> elements = driver.findElements(By.cssSelector(".lister-list > tr"));
+        assertEquals(250, elements.size());
+        for (WebElement element : elements) {
+            assertTrue(element.isDisplayed());
+        }
+    }
+    /**
+     * SK_18
+     * Tamar
+     * HTML refer to SK_4, SK_18
+     */
+    @Test
+    public void SK_18_Tamar() {
+        driver.get("https://www.imdb.com/");
+        element = driver.findElement(By.cssSelector(".imdb-header-search__input"));
+        element.sendKeys("Virgin River");
+        element.submit();
+
+        assertEquals("Titles", driver.findElement(By.className("findSectionHeader")).getText());
+        List<WebElement> resultsElements = driver.findElements(By.className("result_text"));
+        for (WebElement element : resultsElements) {
+            String elementText = element.getText().toLowerCase(Locale.ROOT);
+            assertTrue(elementText.contains("virgin") || elementText.contains("river"));
+        }
+    }
+    /**
+     * SK_19
+     * Tamar
+     * HTML refer to SK_4, SK_19
+     */
+    @Test
+    public void SK_19_Tamar() {
+        driver.get("https://www.imdb.com/");
+        driver.findElement(By.xpath("//*[text()='All']")).click();
+        driver.findElement(By.xpath("//*[@role='menuitem']//*[text()='Advanced Search']/..")).click();
+
+        assertEquals("Advanced Search", driver.findElement(By.cssSelector("#header > h1")).getText());
+        List<WebElement> optionsElements = driver.findElements(By.className("article"));
+        assertEquals(4, optionsElements.size());
+        List<String> expectedText = new LinkedList<>(Arrays.asList("Advanced Title Search", "Advanced Name Search", "Search Collaborations", "Search Within a Topic"));
+        for (int i = 0; i < optionsElements.size() - 1; i++) {
+            assertEquals(expectedText.get(i), optionsElements.get(i).findElement(By.xpath(".//a")).getText());
+        }
+        assertEquals(expectedText.get(3), optionsElements.get(3).findElement(By.tagName("h4")).getText());
+    }
 
     /**
      * SK_1
