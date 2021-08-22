@@ -222,6 +222,7 @@ public class Wikipedia {
     /**
      * SK_2
      * Tamar
+     * HTML refer to SK_1
      */
     @Test
     public void SK_2_Tamar() {
@@ -250,6 +251,7 @@ public class Wikipedia {
     /**
      * SK_3
      * Tamar
+     * HTML refer to SK_1
      */
     @Test
     public void SK_3_Tamar() {
@@ -267,6 +269,7 @@ public class Wikipedia {
     /**
      * SK_4
      * Tamar
+     * HTML refer to SK_1
      */
     @Test
     public void SK_4_Tamar() {
@@ -284,6 +287,7 @@ public class Wikipedia {
     /**
      * SK_5
      * Tamar
+     * HTML refer to SK_1
      */
     @Test
     public void SK_5_Tamar() {
@@ -298,6 +302,7 @@ public class Wikipedia {
     /**
      * SK_6
      * Tamar
+     * HTML refer to SK_1
      */
     @Test
     public void SK_6_Tamar() {
@@ -312,8 +317,9 @@ public class Wikipedia {
     /**
      * SK_7
      * Tamar
+     * HTML refer to SK_1
      */
-    @org.junit.Test
+    @Test
     public void SK_7_Tamar() {
         driver.get("https://www.wikipedia.org/");
         WebDriverWait wait = new WebDriverWait(driver, 2000);
@@ -344,6 +350,7 @@ public class Wikipedia {
     /**
      * SK_8
      * Tamar
+     * HTML refer to SK_1
      */
     @Test
     public void SK_8_Tamar() {
@@ -362,6 +369,7 @@ public class Wikipedia {
     /**
      * SK_9
      * Tamar
+     * HTML refer to SK_1
      */
     @Test
     public void SK_9_Tamar() {
@@ -374,6 +382,7 @@ public class Wikipedia {
     /**
      * SK_10
      * Tamar
+     * HTML refer to SK_1, SK_10
      */
     @Test
     public void SK_10_Tamar() {
@@ -400,6 +409,7 @@ public class Wikipedia {
     /**
      * SK_11
      * Tamar
+     * HTML refer to SK_1, SK_11
      */
     @Test
     public void SK_11_Tamar() {
@@ -453,6 +463,7 @@ public class Wikipedia {
     /**
      * SK_13
      * Tamar
+     * HTML refer to SK_12
      */
     @Test
     public void SK_13_Tamar() {
@@ -472,6 +483,7 @@ public class Wikipedia {
     /**
      * SK_14
      * Tamar
+     * HTML refer to SK_12
      */
     @Test
     public void SK_14_Tamar() {
@@ -499,6 +511,7 @@ public class Wikipedia {
     /**
      * SK_15
      * Tamar
+     * HTML refer to SK_12
      */
     @Test
     public void SK_15_Tamar() {
@@ -521,6 +534,7 @@ public class Wikipedia {
     /**
      * SK_16
      * Tamar
+     * HTML refer to SK_12
      */
     @Test
     public void SK_16_Tamar() {
