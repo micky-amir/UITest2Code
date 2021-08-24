@@ -22,8 +22,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 
 public class IMDB {
@@ -251,7 +250,6 @@ public class IMDB {
     /**
      * SK_10
      * Tamar
-     * HTML refer to SK_12, SK_10
      */
     @Test
     public void SK_10_Tamar() {
@@ -453,6 +451,7 @@ public class IMDB {
             assertTrue(element.isDisplayed());
         }
     }
+
     /**
      * SK_18
      * Tamar
@@ -472,6 +471,7 @@ public class IMDB {
             assertTrue(elementText.contains("virgin") || elementText.contains("river"));
         }
     }
+
     /**
      * SK_19
      * Tamar
@@ -491,6 +491,168 @@ public class IMDB {
             assertEquals(expectedText.get(i), optionsElements.get(i).findElement(By.xpath(".//a")).getText());
         }
         assertEquals(expectedText.get(3), optionsElements.get(3).findElement(By.tagName("h4")).getText());
+    }
+
+    /**
+     * SK_20
+     * Tamar
+     * HTML refer to SK_4
+     */
+    @Test
+    public void SK_20_Tamar() {
+        driver.get("https://www.imdb.com/");
+        driver.findElement(By.id("imdbHeader-navDrawerOpen--desktop")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 100);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[title='Close Navigation Drawer']")));
+        driver.findElement(By.cssSelector("[data-testid='panel-header'] > a")).click();
+        assertTrue(driver.findElement(By.cssSelector("[aria-label='Home']")).isDisplayed());
+        assertFalse(driver.findElement(By.cssSelector("[title='Close Navigation Drawer']")).isDisplayed());
+    }
+
+    /**
+     * SK_21
+     * Tamar
+     * HTML refer to SK_4
+     */
+    @Test
+    public void SK_21_Tamar() throws InterruptedException {
+        driver.get("https://www.imdb.com/");
+        for (int i = 0; i < 13; i++) {
+            element = driver.findElement(By.cssSelector(".swiper-slide.swiper-slide-active img"));
+            assertNotEquals("", element.getAttribute("alt"));
+            assertNotEquals("", element.getAttribute("src"));
+            element.findElement(By.xpath("//*[@aria-label='Next slide']")).click();
+            Thread.sleep(200);
+        }
+        for (int i = 0; i < 13; i++) {
+            element = driver.findElement(By.cssSelector(".swiper-slide.swiper-slide-active img"));
+            assertNotEquals("", element.getAttribute("alt"));
+            assertNotEquals("", element.getAttribute("src"));
+            element.findElement(By.xpath("//*[@aria-label='Previous slide']")).click();
+            Thread.sleep(200);
+        }
+    }
+
+    /**
+     * SK_22
+     * Tamar
+     * HTML refer to SK_2
+     */
+    @Test
+    public void SK_22_Tamar() {
+        driver.get("https://www.imdb.com/");
+        driver.findElement(By.xpath("//*[text()='Sign In']")).click();
+        assertTrue(driver.findElements(By.className("list-group")).size() > 1);
+        driver.findElement(By.xpath("//*[text()='Sign in with IMDb']")).click();
+        driver.findElement(By.id("ap_email")).sendKeys("tamar.gur@outlook.co.il");
+        driver.findElement(By.id("ap_password")).sendKeys("imdbtest");
+        driver.findElement(By.id("signInSubmit")).click();
+
+        driver.findElement(By.xpath("//*[@title='Toggle Acount Menu']/..")).click();
+        element = driver.findElement(By.id("navUserMenu-contents"));
+        assertEquals("visible", element.getCssValue("visibility"));
+        List<WebElement> menuItems = element.findElements(By.tagName("a"));
+        List<String> expectedItemsText = new LinkedList<>(Arrays.asList("Your activity", "Your watchlist", "Your ratings", "Your lists", "Account settings", "Sign out"));
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        for (int i = 1; i < menuItems.size(); i++) { // i=0 is the username
+            wait.until(ExpectedConditions.elementToBeClickable(menuItems.get(i)));
+            assertEquals(expectedItemsText.get(i - 1), menuItems.get(i).getText());
+        }
+    }
+
+    /**
+     * SK_23
+     * Tamar
+     * HTML refer to SK_4
+     */
+    @Test
+    public void SK_23_Tamar() {
+        driver.get("https://www.imdb.com/");
+        element = driver.findElement(By.cssSelector(".swiper-slide.swiper-slide-active"));
+        assertTrue(element.isDisplayed());
+        assertFalse(element.findElement(By.cssSelector("[class^='SlideCaption__WithPeekCaptionHeadingText']")).getText().isEmpty());
+        element = element.findElement(By.cssSelector("[class^='SlideCaption__WithPeekRuntimeText']"));
+        String time = element.getText();
+        int timeStringLength = time.length();
+        assertTrue(timeStringLength > 3 && timeStringLength < 6); // 4 or 5
+        assertEquals(timeStringLength - 3, time.indexOf(":")); // 4 or 5
+    }
+
+    /**
+     * SK_24
+     * Tamar
+     * HTML refer to SK_4, SK_24
+     */
+    @Test
+    public void SK_24_Tamar() throws InterruptedException {
+        driver.get("https://www.imdb.com/");
+        element = driver.findElement(By.xpath("//*[text()='Featured today']/../.."));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        element = element.findElement(By.cssSelector(".ipc-lockup-overlay__content"));
+        assertTrue(element.isDisplayed());
+        assertEquals("List", element.getText());
+        element.click();
+        Thread.sleep(200);
+        assertTrue(driver.findElement(By.cssSelector("[data-testid='media-viewer']")).isDisplayed());
+        element = driver.findElement(By.cssSelector("[aria-label='gallery']"));
+        assertTrue(element.isDisplayed());
+        element.click();
+        assertTrue(driver.findElement(By.className("media_index_thumb_list")).isDisplayed());
+    }
+
+    /**
+     * SK_25
+     * Tamar
+     * HTML refer to SK_4, SK_25
+     */
+    @Test
+    public void SK_25_Tamar() {
+        driver.get("https://www.imdb.com/");
+        driver.findElement(By.id("imdbHeader-navDrawerOpen--desktop")).click();
+        assertTrue(driver.findElements(By.cssSelector("[data-testid='nav-link-category']")).size() > 1);
+        element = driver.findElement(By.xpath("//*[text()='Release Calendar']"));
+        Actions actions = new Actions(driver);
+        actions.moveByOffset(0, 0).click(element).perform();
+        assertEquals("Upcoming Releases for United States", driver.findElement(By.tagName("h1")).getText());
+    }
+
+    /**
+     * SK_26
+     * Tamar
+     * HTML refer to SK_4, SK_26
+     */
+    @Test
+    public void SK_26_Tamar() {
+        driver.get("https://www.imdb.com/");
+        driver.findElement(By.id("imdbHeader-navDrawerOpen--desktop")).click();
+        assertTrue(driver.findElements(By.cssSelector("[data-testid='nav-link-category']")).size() > 1);
+        element = driver.findElement(By.xpath("//*[text()='DVD & Blu-ray Releases']"));
+        Actions actions = new Actions(driver);
+        actions.moveByOffset(0, 0).click(element).perform();
+        assertEquals("New and Upcoming VOD, DVD, and Blu-ray Releases", driver.findElement(By.tagName("h1")).getText());
+    }
+
+    /**
+     * SK_27
+     * Tamar
+     * HTML refer to SK_2
+     */
+    @Test
+    public void SK_27_Tamar() {
+        driver.get("https://www.imdb.com/");
+        driver.findElement(By.xpath("//*[text()='Sign In']")).click();
+        assertTrue(driver.findElements(By.className("list-group")).size() > 1);
+        driver.findElement(By.xpath("//*[text()='Sign in with IMDb']")).click();
+        driver.findElement(By.id("ap_email")).sendKeys("tamar.gur@outlook.co.il");
+        driver.findElement(By.id("ap_password")).sendKeys("imdbtest");
+        driver.findElement(By.id("signInSubmit")).click();
+
+        driver.findElement(By.xpath("//*[@title='Toggle Acount Menu']/..")).click();
+        assertEquals("visible", driver.findElement(By.cssSelector("[data-menu-id='navUserMenu']")).getCssValue("visibility"));
+        driver.findElement(By.xpath("//span[text()='Your activity']/..")).click();
+        assertTrue(driver.findElement(By.id("avatar-frame")).isDisplayed());
+        assertEquals("Profile Checklist", driver.findElement(By.cssSelector("#profile-checklist > h3")).getText());
     }
 
     /**
