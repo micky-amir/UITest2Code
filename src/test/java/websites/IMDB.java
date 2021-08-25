@@ -17,10 +17,8 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.*;
 import java.util.List;
-import java.util.Locale;
 
 import static org.junit.Assert.*;
 
@@ -653,6 +651,115 @@ public class IMDB {
         driver.findElement(By.xpath("//span[text()='Your activity']/..")).click();
         assertTrue(driver.findElement(By.id("avatar-frame")).isDisplayed());
         assertEquals("Profile Checklist", driver.findElement(By.cssSelector("#profile-checklist > h3")).getText());
+    }
+
+    /**
+     * SK_28
+     * Tamar
+     * HTML refer to SK_4, SK_28
+     */
+    @Test
+    public void SK_28_Tamar() {
+        driver.get("https://www.imdb.com/");
+        element = driver.findElement(By.cssSelector("[title='Facebook']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).click(element).perform();
+        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        WebDriverWait wait = new WebDriverWait(driver, 100);
+        wait.until(ExpectedConditions.attributeToBe(By.tagName("html"), "id", "facebook"));
+        assertEquals("IMDb", driver.findElement(By.tagName("h1")).getText());
+    }
+
+    /**
+     * SK_29
+     * Tamar
+     * HTML refer to SK_4, SK_29
+     */
+    @Test
+    public void SK_29_Tamar() {
+        driver.get("https://www.imdb.com/");
+        element = driver.findElement(By.cssSelector("[title='Twitter']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).click(element).perform();
+        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        WebDriverWait wait = new WebDriverWait(driver, 100);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(text(), 'Twitter, Inc.')]")));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[@href='/IMDb/header_photo']")));
+    }
+
+    /**
+     * SK_30
+     * Tamar
+     * HTML refer to SK_4, SK_30
+     */
+    @Test
+    public void SK_30_Tamar() {
+        driver.get("https://www.imdb.com/");
+        element = driver.findElement(By.cssSelector("[title='Twitch']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).click(element).perform();
+        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        WebDriverWait wait = new WebDriverWait(driver, 100);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@aria-label='Twitch Home']")));
+        assertEquals("IMDb", driver.findElement(By.tagName("h1")).getText());
+    }
+
+    /**
+     * SK_31
+     * Tamar
+     * HTML refer to SK_4, SK_31
+     */
+    @Test
+    public void SK_31_Tamar() {
+        driver.get("https://www.imdb.com/");
+        element = driver.findElement(By.cssSelector("[title='Instagram']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).click(element).perform();
+        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        WebDriverWait wait = new WebDriverWait(driver, 100);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//img[@alt='Instagram']")));
+        assertEquals("imdb", driver.findElement(By.tagName("h2")).getText());
+    }
+
+    /**
+     * SK_32
+     * Tamar
+     * HTML refer to SK_4, SK_32
+     */
+    @Test
+    public void SK_32_Tamar() {
+        driver.get("https://www.imdb.com/");
+        element = driver.findElement(By.cssSelector("[title='YouTube']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).click(element).perform();
+        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        WebDriverWait wait = new WebDriverWait(driver, 100);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("yt-icon")));
+        assertEquals("IMDb", driver.findElement(By.cssSelector(".style-scope.ytd-channel-name")).getText());
+    }
+
+    /**
+     * SK_33
+     * Tamar
+     * HTML refer to SK_2, SK_33
+     */
+    @Test
+    public void SK_33_Tamar() {
+        driver.get("https://www.imdb.com/");
+        driver.findElement(By.xpath("//*[text()='Sign In']")).click();
+        assertTrue(driver.findElements(By.className("list-group")).size() > 1);
+        driver.findElement(By.xpath("//*[text()='Sign in with IMDb']")).click();
+        driver.findElement(By.id("ap_email")).sendKeys("tamar.gur@outlook.co.il");
+        driver.findElement(By.id("ap_password")).sendKeys("imdbtest");
+        driver.findElement(By.id("signInSubmit")).click();
+
+        driver.findElement(By.cssSelector("[aria-label='Go To IMDbPro'] > div")).click();
+        assertEquals("Log in With Amazon", driver.findElement(By.tagName("h1")).getText());
     }
 
     /**
