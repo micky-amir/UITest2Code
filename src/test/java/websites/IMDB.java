@@ -9,7 +9,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -634,7 +633,7 @@ public class IMDB {
     /**
      * SK_27
      * Tamar
-     * HTML refer to SK_2
+     * HTML refer to SK_2, SK_27
      */
     @Test
     public void SK_27_Tamar() {
@@ -949,9 +948,180 @@ public class IMDB {
     }
 
     /**
-     * SK_1
-     * Amir
+     * SK_40
+     * Tamar
+     * HTML refer to SK_2, SK_40
      */
+    @Test
+    public void SK_40_Tamar() {
+        driver.get("https://www.imdb.com/");
+        driver.findElement(By.xpath("//*[text()='Sign In']")).click();
+        assertTrue(driver.findElements(By.className("list-group")).size() > 1);
+        driver.findElement(By.xpath("//*[text()='Sign in with IMDb']")).click();
+        driver.findElement(By.id("ap_email")).sendKeys("tamar.gur@outlook.co.il");
+        driver.findElement(By.id("ap_password")).sendKeys("imdbtest");
+        driver.findElement(By.id("signInSubmit")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".imdb-header__watchlist-button-count")));
+        driver.findElement(By.cssSelector(".imdb-header__watchlist-button > a")).click();
+        assertEquals("Your Watchlist", driver.findElement(By.tagName("h1")).getText());
+        String details = driver.findElement(By.className("lister-details")).getText();
+        assertNotEquals("0", details.substring(0, details.indexOf(" ")));
+        driver.findElement(By.cssSelector("[title='Edit']")).click();
+        driver.findElement(By.id("list-settings")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("privacy-toggle-switch")));
+        if (!driver.findElement(By.cssSelector(".privacy-overview.text-muted")).getText().equals("private")) {
+            driver.findElement(By.className("label")).click();
+        }
+        driver.findElement(By.cssSelector("#list-settings-content [value='SAVE']")).click();
+        driver.findElement(By.xpath("//button[text()='Done']")).click();
+        assertEquals("PRIVATE", driver.findElement(By.cssSelector(".lister-privacy")).getText());
+    }
+
+    /**
+     * SK_41
+     * Tamar
+     * HTML refer to SK_2, SK_40
+     */
+    @Test
+    public void SK_41_Tamar() {
+        driver.get("https://www.imdb.com/");
+        driver.findElement(By.xpath("//*[text()='Sign In']")).click();
+        assertTrue(driver.findElements(By.className("list-group")).size() > 1);
+        driver.findElement(By.xpath("//*[text()='Sign in with IMDb']")).click();
+        driver.findElement(By.id("ap_email")).sendKeys("tamar.gur@outlook.co.il");
+        driver.findElement(By.id("ap_password")).sendKeys("imdbtest");
+        driver.findElement(By.id("signInSubmit")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".imdb-header__watchlist-button-count")));
+        driver.findElement(By.cssSelector(".imdb-header__watchlist-button > a")).click();
+        assertEquals("Your Watchlist", driver.findElement(By.tagName("h1")).getText());
+        assertFalse(driver.findElement(By.cssSelector("#social-sharing-widget button")).isEnabled());
+    }
+
+    /**
+     * SK_42
+     * Tamar
+     * HTML refer to SK_2, SK_27
+     */
+    @Test
+    public void SK_42_Tamar() {
+        driver.get("https://www.imdb.com/");
+        driver.findElement(By.xpath("//*[text()='Sign In']")).click();
+        assertTrue(driver.findElements(By.className("list-group")).size() > 1);
+        driver.findElement(By.xpath("//*[text()='Sign in with IMDb']")).click();
+        driver.findElement(By.id("ap_email")).sendKeys("tamar.gur@outlook.co.il");
+        driver.findElement(By.id("ap_password")).sendKeys("imdbtest");
+        driver.findElement(By.id("signInSubmit")).click();
+
+        driver.findElement(By.xpath("//*[@title='Toggle Acount Menu']/..")).click();
+        driver.findElement(By.xpath("//*[@id='navUserMenu-contents']//a/*[text()='Your activity']/..")).click();
+        assertTrue(driver.findElement(By.cssSelector(".user-profile.own-profile")).isDisplayed());
+        driver.findElement(By.cssSelector("a[aria-label='Home']")).click();
+        assertTrue(driver.findElement(By.className("swiper-wrapper")).isDisplayed());
+    }
+
+    /**
+     * SK_44
+     * Tamar
+     * HTML refer to SK_2
+     */
+    @Test
+    public void SK_44_Tamar() {
+        driver.get("https://www.imdb.com/");
+        driver.findElement(By.xpath("//*[text()='Sign In']")).click();
+        assertTrue(driver.findElements(By.className("list-group")).size() > 1);
+        driver.findElement(By.xpath("//*[text()='Sign in with IMDb']")).click();
+        driver.findElement(By.id("ap_email")).sendKeys("tamar.gur@outlook.co.il");
+        driver.findElement(By.id("ap_password")).sendKeys("imdbtest");
+        driver.findElement(By.id("signInSubmit")).click();
+
+        driver.findElement(By.xpath("//*[@title='Toggle Acount Menu']/..")).click();
+        driver.findElement(By.xpath("//*[@id='navUserMenu-contents']//a/*[text()='Sign out']/..")).click();
+        assertEquals("Sign In", driver.findElement(By.cssSelector(".imdb-header__signin-text")).getText());
+    }
+
+    /**
+     * SK_45
+     * Tamar
+     * HTML refer to SK_4
+     */
+    @Test
+    public void SK_45_Tamar() throws InterruptedException {
+        driver.get("https://www.imdb.com/");
+        for (int i = 0; i < 13; i++) {
+            String nextUpName = driver.findElement(By.xpath("//*[@class='editorial-slots']/descendant::span[contains(@class, 'AutorotatePeekstyle__EditorialSlotTitle')][3]")).getText();
+            driver.findElement(By.xpath("//*[@aria-label='Next slide']")).click();
+            Thread.sleep(500);
+            element = driver.findElement(By.cssSelector(".swiper-slide-active [class*=SlideCaption__WithPeekCaptionHeadingText]"));
+            String currentName = element.getText();
+            assertEquals(currentName, nextUpName);
+        }
+    }
+
+    /**
+     * SK_46
+     * Tamar
+     * HTML refer to SK_2, SK_40
+     */
+    @Test
+    public void SK_46_Tamar() {
+        driver.get("https://www.imdb.com/");
+        driver.findElement(By.xpath("//*[text()='Sign In']")).click();
+        assertTrue(driver.findElements(By.className("list-group")).size() > 1);
+        driver.findElement(By.xpath("//*[text()='Sign in with IMDb']")).click();
+        driver.findElement(By.id("ap_email")).sendKeys("tamar.gur@outlook.co.il");
+        driver.findElement(By.id("ap_password")).sendKeys("imdbtest");
+        driver.findElement(By.id("signInSubmit")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".imdb-header__watchlist-button-count")));
+        driver.findElement(By.cssSelector(".imdb-header__watchlist-button > a")).click();
+        assertEquals("Your Watchlist", driver.findElement(By.tagName("h1")).getText());
+        driver.findElement(By.id("lister-sort-by-options")).click();
+        driver.findElement(By.xpath("//option[text()='IMDb Rating']")).click();
+        driver.findElement(By.id("lister-sort-by-options")).click();
+
+        List<WebElement> metascoresElements = driver.findElements(By.className("ratings-imdb-rating"));
+        for (int i = 1; i < metascoresElements.size(); i++) {
+            String previousScore = metascoresElements.get(i-1).getText();
+            String currentScore = metascoresElements.get(i).getText();
+            assertTrue(Double.parseDouble(previousScore) >= Double.parseDouble(currentScore));
+        }
+    }
+
+    /**
+     * SK_47
+     * Tamar
+     * HTML refer to SK_2
+     */
+    @Test
+    public void SK_47_Tamar() {
+        driver.get("https://www.imdb.com/");
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='Cruella']/../preceding-sibling::*/*[contains(@class, 'ipc-watchlist-ribbon')]"))).click();
+        assertEquals("Sign in", driver.findElement(By.tagName("h1")).getText());
+    }
+
+    /**
+     * SK_48
+     * Tamar
+     * HTML refer to SK_2
+     */
+    @Test
+    public void SK_48_Tamar() {
+        driver.get("https://www.imdb.com/");
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='Cruella']/../preceding-sibling::*[contains(@class, 'ipc-poster-card__rating-star-group')]/button"))).click();
+        assertEquals("Sign in", driver.findElement(By.tagName("h1")).getText());
+    }
+
+        /**
+         * SK_1
+         * Amir
+         */
     @Test
     public void SK_1_Amir() {
         String path = "https://www.imdb.com/";
