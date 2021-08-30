@@ -5,9 +5,9 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -1024,6 +1024,26 @@ public class IMDB {
     }
 
     /**
+     * SK_43
+     * Tamar
+     * HTML refer to SK_4
+     */
+    @Test
+    public void SK_43_Tamar() throws InterruptedException {
+        WebDriverManager.edgedriver().setup();
+        EdgeDriver driver2 = new EdgeDriver();
+        driver2.manage().window().maximize();
+        driver2.get("https://www.imdb.com/");
+
+        String currentName = driver2.findElement(By.cssSelector(".swiper-slide-active [class*=SlideCaption__WithPeekCaptionHeadingText]")).getText();
+        driver2.findElement(By.xpath("//*[@aria-label='Next slide']")).click();
+        Thread.sleep(500);
+        String nextName = driver2.findElement(By.cssSelector(".swiper-slide-active [class*=SlideCaption__WithPeekCaptionHeadingText]")).getText();
+        assertNotEquals(currentName, nextName);
+        driver2.quit();
+    }
+
+    /**
      * SK_44
      * Tamar
      * HTML refer to SK_2
@@ -1086,7 +1106,7 @@ public class IMDB {
 
         List<WebElement> metascoresElements = driver.findElements(By.className("ratings-imdb-rating"));
         for (int i = 1; i < metascoresElements.size(); i++) {
-            String previousScore = metascoresElements.get(i-1).getText();
+            String previousScore = metascoresElements.get(i - 1).getText();
             String currentScore = metascoresElements.get(i).getText();
             assertTrue(Double.parseDouble(previousScore) >= Double.parseDouble(currentScore));
         }
@@ -1118,10 +1138,140 @@ public class IMDB {
         assertEquals("Sign in", driver.findElement(By.tagName("h1")).getText());
     }
 
-        /**
-         * SK_1
-         * Amir
-         */
+    /**
+     * SK_49
+     * Tamar
+     * HTML refer to SK_1
+     */
+    @Test
+    public void SK_49_Tamar() {
+        driver.get("https://www.imdb.com/");
+        driver.findElement(By.xpath("//*[text()='Sign In']")).click();
+        assertTrue(driver.findElements(By.className("list-group")).size() > 1);
+        By createAccountLocator = By.xpath("//a[text()='Create a New Account']");
+        assertTrue(driver.findElement(createAccountLocator).isDisplayed());
+        driver.findElement(createAccountLocator).click();
+        driver.findElement(By.id("ap_customer_name")).sendKeys("username");
+        driver.findElement(By.id("ap_email")).sendKeys("weenakhalid@gmail.com");
+        driver.findElement(By.id("ap_password")).sendKeys("password");
+        driver.findElement(By.id("ap_password_check")).sendKeys("password");
+        driver.findElement(By.id("continue")).click();
+        WebElement alertElement = driver.findElement(By.id("auth-warning-message-box"));
+        assertEquals("Important Message!\n" +
+                        "You indicated you're a new customer, but an account already exists with the email address weenakhalid@gmail.com.",
+                alertElement.getText());
+    }
+
+    /**
+     * SK_50
+     * Tamar
+     * HTML refer to SK_2
+     */
+    @Test
+    public void SK_50_Tamar() {
+        driver.get("https://www.imdb.com/");
+        driver.findElement(By.xpath("//*[text()='Sign In']")).click();
+        assertTrue(driver.findElements(By.className("list-group")).size() > 1);
+        driver.findElement(By.xpath("//*[text()='Sign in with IMDb']")).click();
+        driver.findElement(By.id("ap_email")).sendKeys("tamar.gur@outlook.co.il");
+        driver.findElement(By.id("ap_password")).sendKeys("imdbtest");
+        driver.findElement(By.id("signInSubmit")).click();
+
+        ((JavascriptExecutor) driver).executeScript("window.open()");
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+
+        driver.get("https://www.imdb.com/");
+        driver.findElement(By.xpath("//*[@title='Toggle Acount Menu']/..")).click();
+        driver.findElement(By.xpath("//*[@id='navUserMenu-contents']//a/*[text()='Sign out']/..")).click();
+        assertEquals("Sign In", driver.findElement(By.cssSelector(".imdb-header__signin-text")).getText());
+
+        driver.switchTo().window(tabs.get(0));
+        driver.navigate().refresh();
+        assertEquals("Sign In", driver.findElement(By.cssSelector(".imdb-header__signin-text")).getText());
+    }
+
+    /**
+     * SK_51
+     * Tamar
+     * HTML refer to SK_2, SK_40
+     */
+    @Test
+    public void SK_51_Tamar() {
+        driver.get("https://www.imdb.com/");
+        driver.findElement(By.xpath("//*[text()='Sign In']")).click();
+        assertTrue(driver.findElements(By.className("list-group")).size() > 1);
+        driver.findElement(By.xpath("//*[text()='Sign in with IMDb']")).click();
+        driver.findElement(By.id("ap_email")).sendKeys("tamar.gur@outlook.co.il");
+        driver.findElement(By.id("ap_password")).sendKeys("imdbtest");
+        driver.findElement(By.id("signInSubmit")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".imdb-header__watchlist-button-count")));
+        driver.findElement(By.cssSelector(".imdb-header__watchlist-button > a")).click();
+        assertEquals("Your Watchlist", driver.findElement(By.tagName("h1")).getText());
+        assertTrue(driver.findElements(By.className("lister-item")).size() > 0);
+        driver.findElement(By.cssSelector("a[aria-label='Home']")).click();
+        assertTrue(driver.findElement(By.className("swiper-wrapper")).isDisplayed());
+    }
+
+    /**
+     * SK_52
+     * Tamar
+     * HTML refer to SK_2, SK_52
+     */
+    @Test
+    public void SK_52_Tamar() {
+        driver.get("https://www.imdb.com/");
+        driver.findElement(By.xpath("//*[text()='Sign In']")).click();
+        assertTrue(driver.findElements(By.className("list-group")).size() > 1);
+        driver.findElement(By.xpath("//*[text()='Sign in with IMDb']")).click();
+        driver.findElement(By.id("ap_email")).sendKeys("tamar.gur@outlook.co.il");
+        driver.findElement(By.id("ap_password")).sendKeys("imdbtest");
+        driver.findElement(By.id("signInSubmit")).click();
+
+        driver.findElement(By.xpath("//*[@title='Toggle Acount Menu']/..")).click();
+        driver.findElement(By.xpath("//*[@id='navUserMenu-contents']//a/*[text()='Your ratings']/..")).click();
+        assertEquals("Your Ratings", driver.findElement(By.tagName("h1")).getText());
+        driver.findElement(By.cssSelector("a[aria-label='Home']")).click();
+        assertTrue(driver.findElement(By.className("swiper-wrapper")).isDisplayed());
+    }
+
+    /**
+     * SK_53
+     * Tamar
+     * HTML refer to SK_2, SK_52
+     */
+    @Test
+    public void SK_53_Tamar() {
+        driver.get("https://www.imdb.com/");
+        driver.findElement(By.xpath("//*[text()='Sign In']")).click();
+        assertTrue(driver.findElements(By.className("list-group")).size() > 1);
+        driver.findElement(By.xpath("//*[text()='Sign in with IMDb']")).click();
+        driver.findElement(By.id("ap_email")).sendKeys("tamar.gur@outlook.co.il");
+        driver.findElement(By.id("ap_password")).sendKeys("imdbtest");
+        driver.findElement(By.id("signInSubmit")).click();
+
+        driver.findElement(By.xpath("//*[@title='Toggle Acount Menu']/..")).click();
+        driver.findElement(By.xpath("//*[@id='navUserMenu-contents']//a/*[text()='Your ratings']/..")).click();
+        assertEquals("Your Ratings", driver.findElement(By.tagName("h1")).getText());
+        driver.findElement(By.className("share_url_link")).click();
+        assertEquals("inline-block", driver.findElement(By.cssSelector("[name='share-link']")).getCssValue("display"));
+        Actions actions = new Actions(driver);
+        actions.keyDown(Keys.CONTROL).sendKeys("c").keyUp(Keys.CONTROL).perform();
+        try {
+            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+            Object copiedData = clipboard.getData(DataFlavor.stringFlavor);
+            assertTrue(copiedData.toString().startsWith("https://www.imdb.com/user/") && copiedData.toString().endsWith("/ratings"));
+        } catch (IOException | UnsupportedFlavorException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * SK_1
+     * Amir
+     */
     @Test
     public void SK_1_Amir() {
         String path = "https://www.imdb.com/";
