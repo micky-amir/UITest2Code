@@ -45,7 +45,7 @@ public class Amazon {
         Actions actions = new Actions(driver);
         WebDriverWait wait = new WebDriverWait(driver, 10);
         element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
-        actions.moveToElement(element).perform();
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
         assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='Español - ES']"))).click();
         assertEquals("Carrito", driver.findElement(By.id("nav-cart-text-container")).getText());
@@ -62,7 +62,7 @@ public class Amazon {
         Actions actions = new Actions(driver);
         WebDriverWait wait = new WebDriverWait(driver, 10);
         element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
-        actions.moveToElement(element).perform();
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
         assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
 
@@ -81,7 +81,7 @@ public class Amazon {
         Actions actions = new Actions(driver);
         WebDriverWait wait = new WebDriverWait(driver, 10);
         element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
-        actions.moveToElement(element).perform();
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
         assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
 
@@ -107,7 +107,7 @@ public class Amazon {
         Actions actions = new Actions(driver);
         WebDriverWait wait = new WebDriverWait(driver, 10);
         element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
-        actions.moveToElement(element).perform();
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
         assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
 
@@ -150,7 +150,7 @@ public class Amazon {
         Actions actions = new Actions(driver);
         WebDriverWait wait = new WebDriverWait(driver, 10);
         element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
-        actions.moveToElement(element).perform();
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
         assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
 
@@ -171,7 +171,7 @@ public class Amazon {
         Actions actions = new Actions(driver);
         WebDriverWait wait = new WebDriverWait(driver, 10);
         element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
-        actions.moveToElement(element).perform();
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
 
         element = driver.findElement(By.id("main-content"));
@@ -198,7 +198,7 @@ public class Amazon {
         Actions actions = new Actions(driver);
         WebDriverWait wait = new WebDriverWait(driver, 10);
         element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
-        actions.moveToElement(element).perform();
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
         assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
 
@@ -217,5 +217,81 @@ public class Amazon {
         for (WebElement result : searchResults) {
             assertTrue(result.getText().toLowerCase(Locale.ROOT).contains("color"));
         }
+    }
+
+    /**
+     * SK_9
+     * Tamar
+     * HTML refer to SK_1
+     */
+    @Test
+    public void SK_9_Tamar() {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+
+        driver.findElement(By.id("nav-global-location-slot")).click();
+        assertNotEquals("none", driver.findElement(By.id("a-popover-3")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("a-dropdown-container"))).click();
+        driver.findElement(By.xpath("//a[text()='United Kingdom']")).click();
+        wait.until(ExpectedConditions.textToBe(By.id("GLUXCountryValue"), "United Kingdom"));
+        driver.findElement(By.xpath("//button[@name='glowDoneButton']")).click();
+        wait.until(ExpectedConditions.textToBe(By.id("nav-global-location-slot"), "Deliver to\nUnited Kingdom"));
+    }
+
+    /**
+     * SK_10
+     * Tamar
+     * HTML refer to SK_1
+     */
+    @Test
+    public void SK_10_Tamar() {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+
+        driver.findElement(By.id("nav-global-location-slot")).click();
+        assertNotEquals("none", driver.findElement(By.id("a-popover-3")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("GLUXZipUpdateInput"))).sendKeys("32958");
+
+        driver.findElement(By.cssSelector("#GLUXZipUpdate .a-button-input")).click();
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(By.id("GLUXHiddenSuccessSelectedAddressPlaceholder"), "")));
+        assertEquals("32958", driver.findElement(By.id("GLUXHiddenSuccessSelectedAddressPlaceholder")).getText());
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".a-popover-footer > .a-button"))).click();
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(By.id("nav-global-location-slot"), "Deliver to\nIsrael")));
+        assertTrue(driver.findElement(By.id("nav-global-location-slot")).getText().contains("Sebastian 32958"));
+    }
+
+    /**
+     * SK_11
+     * Tamar
+     * HTML refer to SK_1, SK_11
+     */
+    @Test
+    public void SK_11_Tamar() {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+        assertEquals("Cart", driver.findElement(By.id("nav-cart-text-container")).getText());
+
+        driver.findElement(By.id("nav-hamburger-menu")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("hmenu-content")));
+        element = driver.findElement(By.xpath("//div[text()='Amazon Music']/.."));
+        actions.moveToElement(element).click(element).perform();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='Amazon Music HD']"))).click();
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#katana-unrec-5 h1")));
+        assertTrue(element.getText().contains("AMAZON MUSIC HD"));
     }
 }
