@@ -512,8 +512,107 @@ public class Amazon {
         element.submit();
         List<WebElement> prices = driver.findElements(By.className("a-price-symbol"));
         for (WebElement element : prices) {
-            if(!driver.findElement(By.xpath(".//ancestor::li")).isDisplayed())
+            if (!driver.findElement(By.xpath(".//ancestor::li")).isDisplayed())
                 assertEquals("ILS", element.getText());
         }
+    }
+
+    /**
+     * SK_19
+     * Tamar
+     * HTML refer to SK_1, SK_4, SK_15, SK_16
+     */
+    @Test
+    public void SK_19_Tamar() {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+
+        element = driver.findElement(By.id("twotabsearchtextbox"));
+        element.sendKeys("watch");
+        element.submit();
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-cel-widget='search_result_3'] a.a-text-normal")));
+        element.click();
+        driver.findElement(By.id("add-to-cart-button")).click();
+        driver.findElement(By.id("nav-cart")).click();
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".sc-product-link .a-truncate-cut")));
+        String itemName = element.getText();
+        driver.findElement(By.cssSelector("[value='Delete']")).click();
+        assertFalse(driver.findElement(By.cssSelector(".sc-product-link .a-truncate-cut")).isDisplayed());
+        assertFalse(driver.findElement(By.cssSelector(".sc-product-link .a-truncate-cut")).isDisplayed() && driver.findElement(By.cssSelector(".sc-product-link .a-truncate-cut")).getText().equals(itemName));
+    }
+
+    /**
+     * SK_20
+     * Tamar
+     * HTML refer to SK_1, SK_4, SK_15, SK_16
+     */
+    @Test
+    public void SK_20_Tamar() throws InterruptedException {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+
+        element = driver.findElement(By.id("twotabsearchtextbox"));
+        element.sendKeys("watch");
+        element.submit();
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-cel-widget='search_result_2'] a.a-text-normal")));
+        element.click();
+        driver.findElement(By.id("add-to-cart-button")).click();
+        driver.findElement(By.id("nav-cart")).click();
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".sc-product-link .a-truncate-cut")));
+        String itemName = element.getText().replaceAll(" - ", "-");
+        driver.findElement(By.cssSelector("[value='Compare with similar items']")).click();
+        element = driver.findElement(By.cssSelector(".a-popover"));
+        assertNotEquals("none", element.getCssValue("display"));
+        Thread.sleep(1000);
+        assertEquals("Compare with similar items", element.findElement(By.tagName("h1")).getText());
+        String presentedName = element.findElement(By.cssSelector(".comparable_item_scroller0 .a-size-base.a-link-normal")).getText()
+                .replace("...", "").replaceAll(" - ", "-");
+        assertTrue(itemName.contains(presentedName) || presentedName.contains(itemName));
+        assertEquals(driver.findElement(By.cssSelector(".sc-product-price")).getText(), element.findElement(By.cssSelector(".a-color-price")).getText());
+        assertTrue(element.findElements(By.tagName("img")).size() > 1);
+    }
+
+    /**
+     * SK_20
+     * Tamar
+     * HTML refer to SK_1, SK_4, SK_15, SK_16
+     */
+    @Test
+    public void SK_21_Tamar() throws InterruptedException {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+
+        element = driver.findElement(By.id("twotabsearchtextbox"));
+        element.sendKeys("watch");
+        element.submit();
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-cel-widget='search_result_2'] a.a-text-normal")));
+        element.click();
+        driver.findElement(By.id("add-to-cart-button")).click();
+        driver.findElement(By.id("nav-cart")).click();
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".sc-product-link .a-truncate-cut")));
+        String itemName = element.getText();
+        driver.findElement(By.cssSelector("[value='Save for later']")).click();
+        Thread.sleep(1000);
+        assertFalse(driver.findElements(By.cssSelector("#activeCartViewForm .a-truncate-cut")).size() > 0
+                && driver.findElement(By.cssSelector("#activeCartViewForm .sc-product-link .a-truncate-cut")).getText().equals(itemName));
+        assertEquals(itemName, driver.findElement(By.cssSelector("#sc-saved-cart-items .a-truncate-full")).getText());
     }
 }
