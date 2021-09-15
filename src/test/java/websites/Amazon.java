@@ -615,4 +615,143 @@ public class Amazon {
                 && driver.findElement(By.cssSelector("#activeCartViewForm .sc-product-link .a-truncate-cut")).getText().equals(itemName));
         assertEquals(itemName, driver.findElement(By.cssSelector("#sc-saved-cart-items .a-truncate-full")).getText());
     }
+
+    /**
+     * SK_22
+     * Tamar
+     * HTML refer to SK_1, SK_22
+     */
+    @Test
+    public void SK_22_Tamar() {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+        assertEquals("Cart", driver.findElement(By.id("nav-cart-text-container")).getText());
+
+        driver.findElement(By.id("nav-hamburger-menu")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("hmenu-content")));
+        element = driver.findElement(By.xpath("//div[text()='Electronics']/.."));
+        actions.moveToElement(element).click(element).perform();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='Accessories & Supplies']"))).click();
+        assertTrue(driver.findElement(By.cssSelector("[data-component-type='s-result-info-bar']")).isDisplayed());
+        assertEquals("Accessories & Supplies", driver.findElement(By.cssSelector("#searchDropdownBox [selected]")).getText());
+    }
+
+    /**
+     * SK_23
+     * Tamar
+     * HTML refer to SK_1, SK_23
+     */
+    @Test
+    public void SK_23_Tamar() {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+        assertEquals("Cart", driver.findElement(By.id("nav-cart-text-container")).getText());
+
+        driver.findElement(By.id("nav-hamburger-menu")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("hmenu-content")));
+        element = driver.findElement(By.xpath("//div[text()='Gift Cards']/.."));
+        actions.moveToElement(element).click(element).perform();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='All gift cards']"))).click();
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("h1")));
+        assertEquals("Gift Cards", element.getText());
+        driver.findElement(By.xpath("//img[@alt='Birthday Gift Cards']/..")).click();
+        assertEquals("Birthday Gift Cards Header",
+                driver.findElement(By.cssSelector(".a-container img")).getAttribute("alt"));
+    }
+
+    /**
+     * SK_24
+     * Tamar
+     * HTML refer to SK_1, SK_24
+     */
+    @Test
+    public void SK_24_Tamar() {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+        assertEquals("Cart", driver.findElement(By.id("nav-cart-text-container")).getText());
+
+        driver.findElement(By.id("nav-hamburger-menu")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("hmenu-content")));
+        element = driver.findElement(By.xpath("//div[text()='Amazon Live']/.."));
+        actions.moveToElement(element).click(element).perform();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='Live']"))).click();
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-id='pageHeaderLogo'] > img")));
+        assertEquals("Amazon Live logo", element.getAttribute("alt"));
+        assertTrue(driver.findElement(By.cssSelector("[aria-label='Video Player']")).isDisplayed());
+    }
+
+    /**
+     * SK_25
+     * Tamar
+     * HTML refer to SK_1, SK_25
+     */
+    @Test
+    public void SK_25_Tamar() {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+        assertEquals("Cart", driver.findElement(By.id("nav-cart-text-container")).getText());
+
+        driver.findElement(By.id("nav-hamburger-menu")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("hmenu-content")));
+        element = driver.findElement(By.xpath("//li/a[text()='Customer Service']"));
+        actions.moveToElement(element).click(element).perform();
+        List<WebElement> cardElements = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(".a-box-inner h3")));
+        List<String> expectedTitles = new LinkedList<>(Arrays.asList("Your Orders", "Returns & Refunds",
+                "Get Product Help", "Digital Services and Device Support", "Manage Prime", "Payments & Gift Cards",
+                "Your Account", "Amazon and COVID-19", "Safe Online Shopping"));
+        List<String> actualTitles = new LinkedList<>();
+        for (WebElement element : cardElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        assertEquals("Search the help library", driver.findElement(By.cssSelector("#help-search-label .a-text-bold")).getText());
+        assertTrue(driver.findElement(By.id("helpsearch")).isDisplayed());
+        assertEquals("Browse Help Topics", driver.findElement(By.cssSelector(".help-content h1")).getText());
+    }
+
+    /**
+     * SK_26
+     * Tamar
+     * HTML refer to SK_1, SK_25, SK_26
+     */
+    @Test
+    public void SK_26_Tamar() {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+        assertEquals("Cart", driver.findElement(By.id("nav-cart-text-container")).getText());
+
+        driver.findElement(By.xpath("//a[(text()='Customer Service')]")).click();
+        element = driver.findElement(By.id("helpsearch"));
+        element.sendKeys("menu");
+        List<WebElement> suggestions = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("#help_srch_sggst > *")));
+        assertEquals("menu", suggestions.get(0).getText());
+        assertEquals("menu button", suggestions.get(1).getText());
+        element.submit();
+        assertTrue(driver.findElement(By.cssSelector("#search-help p")).getText().contains("search results for menu"));
+    }
 }
