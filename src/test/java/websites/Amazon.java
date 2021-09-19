@@ -754,4 +754,153 @@ public class Amazon {
         element.submit();
         assertTrue(driver.findElement(By.cssSelector("#search-help p")).getText().contains("search results for menu"));
     }
+
+    /**
+     * SK_27
+     * Tamar
+     * HTML refer to SK_1, SK_4, SK_15
+     */
+    @Test
+    public void SK_27_Tamar() {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+
+        element = driver.findElement(By.id("twotabsearchtextbox"));
+        element.sendKeys("watch");
+        element.submit();
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-cel-widget='search_result_3'] a.a-text-normal")));
+        String itemName = element.getText();
+        element.click();
+        assertEquals(itemName, driver.findElement(By.id("productTitle")).getText());
+        element = driver.findElement(By.id("acrCustomerReviewLink"));
+        element.click();
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.cssSelector("#reviewsMedley h2"))));
+        assertEquals(driver.findElement(By.id("acrPopover")).getAttribute("title").replace(" stars", ""), driver.findElement(By.xpath("//*[@data-hook='rating-out-of-text']")).getText());
+        assertEquals(element.getText(), driver.findElement(By.xpath("//*[@data-hook='total-review-count']")).getText().replace("global ", ""));
+        assertTrue(driver.findElement(By.cssSelector("[data-hook='review']")).isDisplayed());
+    }
+
+    /**
+     * SK_28
+     * Tamar
+     * HTML refer to SK_1, SK_4, SK_15
+     */
+    @Test
+    public void SK_28_Tamar() {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+
+        element = driver.findElement(By.id("twotabsearchtextbox"));
+        element.sendKeys("watch");
+        element.submit();
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-cel-widget='search_result_3'] a.a-text-normal")));
+        String itemName = element.getText();
+        element.click();
+        assertEquals(itemName, driver.findElement(By.id("productTitle")).getText());
+        element = driver.findElement(By.id("askATFLink"));
+        element.click();
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , wait.until(ExpectedConditions.presenceOfElementLocated(By.className("askInlineWidget")))));
+        String moreAnswers = driver.findElement(By.cssSelector(".askTopQandALoadMoreQuestions")).getText();
+        int numberOfMoreAnswers = Integer.parseInt(moreAnswers.substring(moreAnswers.indexOf("(") + 1, moreAnswers.lastIndexOf(")")));
+        int numberOfPresentedAnswers = driver.findElements(By.cssSelector(".askTeaserQuestions > *")).size();
+        assertEquals(Integer.parseInt(element.getText().split(" ")[0]), numberOfMoreAnswers + numberOfPresentedAnswers);
+        assertTrue(numberOfMoreAnswers > 0);
+    }
+
+    /**
+     * SK_29
+     * Tamar
+     * HTML refer to SK_1, SK_4, SK_15
+     */
+    @Test
+    public void SK_29_Tamar() {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+
+        element = driver.findElement(By.id("twotabsearchtextbox"));
+        element.sendKeys("watch");
+        element.submit();
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-cel-widget='search_result_3'] a.a-text-normal")));
+        String itemName = element.getText();
+        element.click();
+        assertEquals(itemName, driver.findElement(By.id("productTitle")).getText());
+        element = driver.findElement(By.cssSelector(".twisterSwatchWrapper"));
+        element.click();
+        wait.until(ExpectedConditions.textToBe(By.cssSelector("#variation_color_name .selection"), element.findElement(By.tagName("img")).getAttribute("alt")));
+    }
+
+    /**
+     * SK_30
+     * Tamar
+     * HTML refer to SK_1, SK_4, SK_15
+     */
+    @Test
+    public void SK_30_Tamar() {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+
+        element = driver.findElement(By.id("twotabsearchtextbox"));
+        element.sendKeys("watch");
+        element.submit();
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-cel-widget='search_result_3'] a.a-text-normal")));
+        String itemName = element.getText();
+        element.click();
+        assertEquals(itemName, driver.findElement(By.id("productTitle")).getText());
+        element = driver.findElement(By.xpath("//h2[contains(text(), 'Have a question?')]"));
+        actions.moveToElement(element).perform();
+        element = driver.findElement(By.cssSelector("[aria-labelledby='askDPSearchPromptLabel']"));
+        element.sendKeys("size");
+
+        List<WebElement> answersElement = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
+                By.cssSelector(".askSearchResultsActive  [data-ask-selector].a-section")));
+        for (WebElement element : answersElement) {
+            assertTrue(element.getText().contains("size"));
+        }
+    }
 }
