@@ -903,4 +903,143 @@ public class Amazon {
             assertTrue(element.getText().contains("size"));
         }
     }
+
+    /**
+     * SK_31
+     * Tamar
+     * HTML refer to SK_1, SK_4, SK_15, SK_16
+     */
+    @Test
+    public void SK_31_Tamar() {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+
+        element = driver.findElement(By.id("twotabsearchtextbox"));
+        element.sendKeys("watch");
+        element.submit();
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-cel-widget='search_result_4'] a.a-text-normal")));
+        String itemName = element.getText();
+        element.click();
+        assertEquals(itemName, driver.findElement(By.id("productTitle")).getText());
+        driver.findElement(By.className("a-dropdown-container")).click();
+        assertEquals("true", driver.findElement(By.cssSelector(("[name='quantity']"))).getAttribute("aria-pressed"));
+        List<WebElement> options = driver.findElements(By.cssSelector("[name='quantity'] option"));
+        for (int i = 1; i <= options.size(); i++) {
+            assertEquals(i, Integer.parseInt(options.get(i - 1).getText()));
+        }
+        driver.findElement(By.xpath("//option[@value='2']")).click();
+        assertEquals("Qty:2", driver.findElement(By.cssSelector("[data-action='a-dropdown-button']")).getText());
+        driver.findElement(By.id("add-to-cart-button")).click();
+        String sideDataEncodedOffering = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-encoded-offering]"))).getAttribute("data-encoded-offering");
+        driver.findElement(By.id("nav-cart")).click();
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".sc-product-link .a-truncate-cut")));
+        assertEquals(sideDataEncodedOffering, driver.findElement(By.cssSelector("[data-encoded-offering]")).getAttribute("data-encoded-offering"));
+        assertEquals("2", element.findElement(By.xpath(".//ancestor::ul[contains(@class, 'sc-info-block')]/following-sibling::*/descendant::*[@class='a-dropdown-prompt']")).getText());
+    }
+
+    /**
+     * SK_32
+     * Tamar
+     * HTML refer to SK_1, SK_4, SK_15
+     */
+    @Test
+    public void SK_32_Tamar() {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+
+        element = driver.findElement(By.id("twotabsearchtextbox"));
+        element.sendKeys("watch");
+        element.submit();
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-cel-widget='search_result_3'] a.a-text-normal")));
+        String itemName = element.getText();
+        element.click();
+        assertEquals(itemName, driver.findElement(By.id("productTitle")).getText());
+
+        driver.findElement(By.id("nav-global-location-slot")).click();
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("a-popover-4")));
+        assertNotEquals("none", element.getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//select[@id='GLUXCountryList']/.."))).click();
+        driver.findElement(By.xpath("//a[text()='United Kingdom']")).click();
+        wait.until(ExpectedConditions.textToBe(By.id("GLUXCountryValue"), "United Kingdom"));
+        driver.findElement(By.xpath("//button[@name='glowDoneButton']")).click();
+        wait.until(ExpectedConditions.textToBe(By.id("nav-global-location-slot"), "Deliver to\nUnited Kingdom"));
+        assertTrue(driver.findElement(By.id("ourprice_shippingmessage")).getText().contains("United Kingdom"));
+    }
+
+    /**
+     * SK_33
+     * Tamar
+     * HTML refer to SK_1, SK_33
+     */
+    @Test
+    public void SK_33_Tamar() {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+
+        element = driver.findElement(By.id("navFooter"));
+        actions.moveToElement(element).perform();
+        driver.findElement(By.xpath("//a[text()='Careers']")).click();
+        assertEquals("Find jobs", driver.findElement(By.tagName("h1")).getText());
+        assertTrue(driver.findElement(By.cssSelector("[data-react-class='SearchInput']")).isDisplayed());
+        assertTrue(driver.findElement(By.cssSelector("[aria-label='Apply now']")).isEnabled());
+
+        assertTrue(driver.findElement(By.className("selected-employee-profile")).isDisplayed());
+        assertTrue(driver.findElement(By.className("name")).isDisplayed());
+        assertTrue(driver.findElement(By.cssSelector(".selected-employee-profile img")).isDisplayed());
+    }
+
+    /**
+     * SK_34
+     * Tamar
+     * HTML refer to SK_1, SK_34
+     */
+    @Test
+    public void SK_34_Tamar() {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+
+        driver.findElement(By.xpath("//a[(text()='Sell')]")).click();
+
+        assertEquals("Sell on Amazon", driver.findElement(By.cssSelector(".sticks-top h2")).getText());
+        assertEquals("Introduction to ecommerce selling", driver.findElement(By.xpath("(//h2)[2]")).getText());
+        element = driver.findElement(By.xpath("(//h2)[2]/../../descendant::h3"));
+        actions.moveToElement(element).perform();
+        element = driver.findElement(By.xpath("((//h2)[2]/../../descendant::h3)[8]"));
+        actions.moveToElement(element).perform();
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(By.xpath("((//h2)[2]/../../descendant::h3)[8]"), "")));
+        List<WebElement> titlesElements = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("(//h2)[2]/../../descendant::h3")));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("What is ecommerce?", "Build a business",
+                "Ecommerce fulfillment", "Inventory management", "What is dropshipping?", "Create an Amazon storefront",
+                "Sell books on Amazon", "Seller University"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titlesElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        assertTrue(driver.findElement(By.xpath("//h3[text()='Start selling today']")).isDisplayed());
+    }
 }
+
