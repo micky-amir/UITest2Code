@@ -1316,7 +1316,6 @@ public class Amazon {
      * SK_43
      * Tamar
      * HTML refer to SK_1, SK_4
-     * not finished
      */
     @Test
     public void SK_43_Tamar() {
@@ -1339,15 +1338,175 @@ public class Amazon {
         driver.findElement(By.xpath("//*[contains(text(), 'Go')]/preceding-sibling::input[@type='submit']")).click();
 
         List<WebElement> priceElements = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("a-price-whole")));
-        for (int i = 0; i < 5; i++) { // checking the first ones only
+        for (int i = 1; i < 10; i++) { // checking the first ones only.
+            double dOGPrice = 0;
+            if (priceElements.get(i).findElements(By.xpath(".//ancestor::*[@class='a-price']/following-sibling::*")).size() > 0) {
+                String originalPrice = priceElements.get(i).findElement(By.xpath(".//ancestor::*[@class='a-price']/following-sibling::*/*[@aria-hidden='true']"))
+                        .getText();
+                if (!originalPrice.isEmpty()) {
+                    originalPrice = originalPrice.substring(1);
+                    dOGPrice = Double.parseDouble(originalPrice);
+                }
+            }
             String currentPrice = priceElements.get(i).getText() + "." +
                     priceElements.get(i).findElement(By.xpath(".//following-sibling::*[@class='a-price-fraction']")).getText();
             double price = Double.parseDouble(currentPrice);
-            // if price is not in the range- check price before discount
-
-            assertTrue("price: " + currentPrice,
-                    price >= 50.0 && price <= 100.0);
+            assertTrue(i + " price: " + currentPrice + ", og price: " + dOGPrice,
+                    price >= 50.0 && price <= 100.0 || dOGPrice >= 50.0 && dOGPrice <= 100.0);
         }
     }
+
+    /**
+     * SK_44
+     * Tamar
+     * HTML refer to SK_1, SK_4
+     */
+    @Test
+    public void SK_44_Tamar() {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+
+        element = driver.findElement(By.id("twotabsearchtextbox"));
+        element.sendKeys("watch");
+        element.submit();
+        String searchWord = driver.findElement(By.cssSelector(".a-color-state.a-text-bold")).getText();
+        assertEquals("watch", searchWord.replaceAll("\"", ""));
+
+        driver.findElement(By.xpath("//*[@aria-label='4 Stars & Up']/..")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@aria-label='4 Stars & Up']//span[contains(@class, 'a-text-bold') and text()='& Up']")));
+        driver.findElement(By.xpath("//*[text()='Apple']/..")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@class, 'a-text-bold') and text()='Apple']")));
+
+        List<WebElement> reviewsElements = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("[aria-label$='out of 5 stars']")));
+        for (WebElement review : reviewsElements) {
+            String currentReview = review.getAttribute("aria-label");
+            assertTrue(Double.parseDouble(currentReview.substring(0, currentReview.indexOf(" "))) >= 4.0);
+        }
+        List<WebElement> searchResults = driver.findElements(By.xpath
+                ("//*[contains(@data-cel-widget, 'MAIN-SEARCH_RESULTS')]/descendant::a/span[contains(@class, 'a-text-normal')]"));
+        for (WebElement result : searchResults) {
+            assertTrue(result.getText().contains("Apple"));
+        }
+    }
+
+    /**
+     * SK_45
+     * Tamar
+     * HTML refer to SK_4, SK_45
+     */
+    @Test
+    public void SK_45_Tamar() {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+
+        element = driver.findElement(By.id("twotabsearchtextbox"));
+        element.sendKeys("watch");
+        wait.until(ExpectedConditions.attributeContains(By.id("nav-flyout-searchAjax"), "style", "display: block"));
+        List<WebElement> suggestionsElements = driver.findElements(By.cssSelector("#suggestions > .s-suggestion"));
+        for (WebElement result : suggestionsElements) {
+            assertTrue(result.getText().contains("watch"));
+        }
+        String selectedSuggestion = suggestionsElements.get(3).getText();
+        suggestionsElements.get(3).click();
+        String searchWord = driver.findElement(By.cssSelector(".a-color-state.a-text-bold")).getText();
+        assertEquals(selectedSuggestion, searchWord.replaceAll("\"", ""));
+    }
+
+    /**
+     * SK_46
+     * Tamar
+     * HTML refer to SK_4, SK_45
+     */
+    @Test
+    public void SK_46_Tamar() {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+
+        element = driver.findElement(By.id("twotabsearchtextbox"));
+        element.sendKeys("watch");
+        wait.until(ExpectedConditions.attributeContains(By.id("nav-flyout-searchAjax"), "style", "display: block"));
+        List<WebElement> suggestionsElements = driver.findElements(By.cssSelector("#suggestions > .s-suggestion"));
+        for (WebElement result : suggestionsElements) {
+            assertTrue(result.getText().contains("watch"));
+        }
+        assertEquals("by price", driver.findElement(By.cssSelector(".discover-tr span")).getText());
+        List<WebElement> priceSuggestionsElements = driver.findElements(By.cssSelector(".discover-tr-carousel-container  a"));
+        Set<WebElement> set = new HashSet<>(priceSuggestionsElements);
+        assertEquals(set.size(), priceSuggestionsElements.size());
+
+        String priceSelectedSuggestion = priceSuggestionsElements.get(2).getText();
+        double minLimit = Double.parseDouble(priceSelectedSuggestion.substring(1, priceSelectedSuggestion.indexOf(' ')));
+        double maxLimit = Double.parseDouble(priceSelectedSuggestion.substring(priceSelectedSuggestion.lastIndexOf('$') + 1));
+        priceSuggestionsElements.get(2).click();
+        assertEquals(priceSelectedSuggestion, driver.findElement(By.cssSelector("#priceRefinements a > .a-text-bold")).getText());
+
+        List<WebElement> priceElements = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("a-price-whole")));
+        for (int i = 1; i < 10; i++) { // checking the first ones only.
+            double dOGPrice = 0;
+            if (priceElements.get(i).findElements(By.xpath(".//ancestor::*[@class='a-price']/following-sibling::*")).size() > 0) {
+                String originalPrice = priceElements.get(i).findElement(By.xpath(".//ancestor::*[@class='a-price']/following-sibling::*/*[@aria-hidden='true']"))
+                        .getText();
+                if (!originalPrice.isEmpty()) {
+                    originalPrice = originalPrice.substring(1);
+                    dOGPrice = Double.parseDouble(originalPrice);
+                }
+            }
+            String currentPrice = priceElements.get(i).getText() + "." +
+                    priceElements.get(i).findElement(By.xpath(".//following-sibling::*[@class='a-price-fraction']")).getText();
+            double price = Double.parseDouble(currentPrice);
+            assertTrue(i + " price: " + currentPrice + ", og price: " + dOGPrice,
+                    price >= minLimit && price <= maxLimit || dOGPrice >= minLimit && dOGPrice <= maxLimit);
+        }
+    }
+
+    /**
+     * SK_47
+     * Tamar
+     * HTML refer to SK_1, SK_4, SK_15, SK_16
+     */
+    @Test
+    public void SK_47_Tamar() {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+
+        String[] itemsNames = new String[2];
+        for (int i = 0; i < 2; i++) {
+            element = driver.findElement(By.id("twotabsearchtextbox"));
+            element.sendKeys("watch");
+            element.submit();
+            element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-cel-widget='search_result_" + (i + 2) + "'] a.a-text-normal")));
+            itemsNames[i] = element.getText();
+            element.click();
+            assertEquals(itemsNames[i], driver.findElement(By.id("productTitle")).getText());
+            driver.findElement(By.id("add-to-cart-button")).click();
+        }
+        driver.findElement(By.id("nav-cart")).click();
+
+        for (int i = 0; i < 2; i++) {
+            element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-item-count='" + (i + 1) + "'] .sc-product-link .a-truncate-cut")));
+            assertTrue(itemsNames[1-i].contains(element.getText()) || element.getText().contains(itemsNames[1-i]));
+        }
+    }
+
 }
 
