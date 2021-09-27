@@ -1504,9 +1504,83 @@ public class Amazon {
 
         for (int i = 0; i < 2; i++) {
             element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-item-count='" + (i + 1) + "'] .sc-product-link .a-truncate-cut")));
-            assertTrue(itemsNames[1-i].contains(element.getText()) || element.getText().contains(itemsNames[1-i]));
+            assertTrue(itemsNames[1 - i].contains(element.getText()) || element.getText().contains(itemsNames[1 - i]));
         }
     }
 
+    /**
+     * SK_48
+     * Tamar
+     * HTML refer to SK_1, SK_48
+     */
+    @Test
+    public void SK_48_Tamar() {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+
+        element = driver.findElement(By.id("nav-link-accountList"));
+        actions.moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-accountList")).getCssValue("display"));
+        assertTrue(driver.findElement(By.id("nav-flyout-ya-signin")).isDisplayed());
+        List<WebElement> titlesElements = driver.findElements(By.className("nav-title"));
+        assertEquals("Your Lists", titlesElements.get(0).getText());
+        assertEquals("Your Account", titlesElements.get(1).getText());
+        for (WebElement element : titlesElements) {
+            assertTrue(element.findElements(By.xpath(".//../a")).size() > 1);
+        }
+
+        driver.findElement(By.xpath("//*[text()='AmazonSmile Charity Lists']/..")).click();
+        assertTrue(driver.findElement(By.cssSelector("[alt='AmazonSmile logo']")).isDisplayed());
+        assertEquals("Charity Lists", driver.findElement(By.tagName("h1")).getText());
+        assertTrue(driver.findElement(By.className("donate-amount")).isDisplayed());
+        List<WebElement> buttons = driver.findElements(By.xpath("//a/*[contains(text(),'Get started')]"));
+        assertEquals(2, buttons.size());
+        buttons.get(0).click();
+        assertEquals("You shop. Amazon gives.", driver.findElement(By.tagName("h1")).getText());
+        assertEquals("Email or mobile phone number", driver.findElement(By.className("a-form-label")).getText());
+    }
+
+    /**
+     * SK_49
+     * Tamar
+     * HTML refer to SK_1, SK_49
+     */
+    @Test
+    public void SK_49_Tamar() {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+
+        element = driver.findElement(By.id("nav-link-accountList"));
+        actions.moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-accountList")).getCssValue("display"));
+        assertTrue(driver.findElement(By.id("nav-flyout-ya-signin")).isDisplayed());
+        List<WebElement> titlesElements = driver.findElements(By.className("nav-title"));
+        assertEquals("Your Lists", titlesElements.get(0).getText());
+        assertEquals("Your Account", titlesElements.get(1).getText());
+        for (WebElement element : titlesElements) {
+            assertTrue(element.findElements(By.xpath(".//../a")).size() > 1);
+        }
+
+        driver.findElement(By.xpath("//*[text()='Music Library']/..")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[alt='Amazon Music']")));
+        assertTrue(driver.findElement(By.cssSelector("[title='Sign in button']")).isDisplayed());
+        assertTrue(driver.findElement(By.id("navbarSearchInput")).isDisplayed());
+        assertTrue(driver.findElements(By.tagName("music-vertical-item")).size() > 3);
+        driver.findElement(By.cssSelector("[icon-name='play']")).click();
+        assertTrue(driver.findElement(By.id("dialog")).isDisplayed());
+        assertEquals("Sign In for Free Streaming Music", driver.findElement(By.tagName("h1")).getText());
+        driver.findElement(By.cssSelector("[icon-name='cancel']")).click();
+        assertEquals(0, driver.findElements(By.id("dialog")).size());
+    }
 }
 
