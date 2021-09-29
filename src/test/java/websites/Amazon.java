@@ -1582,5 +1582,145 @@ public class Amazon {
         driver.findElement(By.cssSelector("[icon-name='cancel']")).click();
         assertEquals(0, driver.findElements(By.id("dialog")).size());
     }
+
+    /**
+     * SK_50
+     * Tamar
+     * HTML refer to SK_1, SK_4, SK_15, SK_50
+     */
+    @Test
+    public void SK_50_Tamar() {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+
+        element = driver.findElement(By.id("twotabsearchtextbox"));
+        element.sendKeys("watch");
+        element.submit();
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-cel-widget='search_result_4'] a.a-text-normal")));
+        String itemName = element.getText();
+        element.click();
+        assertEquals(itemName, driver.findElement(By.id("productTitle")).getText());
+
+        element = driver.findElement(By.id("nav-link-accountList"));
+        actions.moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-accountList")).getCssValue("display"));
+        driver.findElement(By.xpath("//*[text()='Browsing History']/..")).click();
+        assertEquals("Browsing history", driver.findElement(By.tagName("h1")).getText());
+        assertTrue(driver.findElement(By.cssSelector("[title='" + itemName + "']")).isDisplayed());
+    }
+
+    /**
+     * SK_51
+     * Tamar
+     * HTML refer to SK_1, SK_4, SK_15, SK_51
+     */
+    @Test
+    public void SK_51_Tamar() {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+
+        element = driver.findElement(By.id("twotabsearchtextbox"));
+        element.sendKeys("watch");
+        element.submit();
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-cel-widget='search_result_4'] a.a-text-normal")));
+        String itemName = element.getText();
+        element.click();
+        assertEquals(itemName, driver.findElement(By.id("productTitle")).getText());
+
+        element = driver.findElement(By.id("nav-link-accountList"));
+        actions.moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-accountList")).getCssValue("display"));
+        driver.findElement(By.xpath("//*[text()='Browsing History']/..")).click();
+        assertEquals("Browsing history", driver.findElement(By.tagName("h1")).getText());
+        element = driver.findElement(By.cssSelector("[title='" + itemName + "']"));
+        element.findElement(By.xpath(".//ancestor::*[@data-type='ViewedItems']/descendant::*[contains(@class, 'ybh-remove')]//input")).click();
+        wait.until(ExpectedConditions.not(ExpectedConditions.attributeContains(
+                element.findElement(By.xpath(".//ancestor::*[@data-type='ViewedItems']/*[contains(@class, 'removed')]")),
+                "class", "hidden")));
+    }
+
+    /**
+     * SK_52
+     * Tamar
+     * HTML refer to SK_1, SK_4, SK_15, SK_50
+     */
+    @Test
+    public void SK_52_Tamar() {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+
+        element = driver.findElement(By.id("twotabsearchtextbox"));
+        element.sendKeys("watch");
+        element.submit();
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-cel-widget='search_result_4'] a.a-text-normal")));
+        String itemName = element.getText();
+        element.click();
+        assertEquals(itemName, driver.findElement(By.id("productTitle")).getText());
+
+        element = driver.findElement(By.id("nav-link-accountList"));
+        actions.moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-accountList")).getCssValue("display"));
+        driver.findElement(By.xpath("//*[text()='Browsing History']/..")).click();
+        assertEquals("Browsing history", driver.findElement(By.tagName("h1")).getText());
+        driver.findElement(By.xpath("//*[contains(text(), 'Manage history')]")).click();
+        assertNotEquals("none", driver.findElement(By.cssSelector("[aria-expanded]")).getCssValue("display"));
+        driver.findElement(By.cssSelector("[aria-labelledby='btn_clear-announce']")).click();
+        assertNotEquals("none", driver.findElement(By.id("a-popover-3")).getCssValue("display"));
+        element = driver.findElement(By.cssSelector("[data-action='delete-all'] > *"));
+        actions.moveByOffset(0, 0).moveToElement(element).click(element).perform();
+        wait.until(ExpectedConditions.not(ExpectedConditions.attributeContains(By.id("a-popover-3"), "style", "visibility: visible")));
+        assertNotEquals("none", driver.findElement(By.id("no_items_message")).getCssValue("display"));
+    }
+
+    /**
+     * SK_53
+     * Tamar
+     * HTML refer to SK_1, SK_4, SK_15, SK_16
+     */
+    @Test
+    public void SK_53_Tamar() {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+
+        element = driver.findElement(By.id("twotabsearchtextbox"));
+        element.sendKeys("watch");
+        element.submit();
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-cel-widget='search_result_2'] a.a-text-normal")));
+        String itemName = element.getText();
+        element.click();
+        assertEquals(itemName, driver.findElement(By.id("productTitle")).getText());
+        driver.findElement(By.id("add-to-cart-button")).click();
+        driver.findElement(By.id("nav-cart")).click();
+
+        assertTrue(driver.findElement(By.id("cart-recs-carousel")).isDisplayed());
+        String title = driver.findElement(By.tagName("h2")).getText();
+        assertTrue("Customers who bought items in your cart also bought".equals(title) ||
+                (title.contains("Customers who shopped for") && title.contains("also shopped for:")));
+        assertTrue(driver.findElements(By.cssSelector("#cart-recs-carousel .a-carousel-card")).size() > 1);
+    }
 }
 
