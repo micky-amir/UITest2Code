@@ -1722,5 +1722,94 @@ public class Amazon {
                 (title.contains("Customers who shopped for") && title.contains("also shopped for:")));
         assertTrue(driver.findElements(By.cssSelector("#cart-recs-carousel .a-carousel-card")).size() > 1);
     }
+
+    /**
+     * SK_54
+     * Tamar
+     * HTML refer to SK_1, SK_12
+     */
+    @Test
+    public void SK_54_Tamar() {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+
+        element = driver.findElement(By.id("nav-link-accountList"));
+        actions.moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-accountList")).getCssValue("display"));
+        assertTrue(driver.findElement(By.id("nav-flyout-ya-signin")).isDisplayed());
+        List<WebElement> titlesElements = driver.findElements(By.className("nav-title"));
+        assertEquals("Your Lists", titlesElements.get(0).getText());
+        assertEquals("Your Account", titlesElements.get(1).getText());
+        for (WebElement element : titlesElements) {
+            assertTrue(element.findElements(By.xpath(".//../a")).size() > 1);
+        }
+
+        driver.findElement(By.id("nav-flyout-ya-signin")).click();
+        assertEquals("Sign-In", driver.findElement(By.tagName("h1")).getText());
+        driver.findElement(By.className("a-link-nav-icon")).click();
+        assertTrue(driver.findElement(By.id("gw-desktop-herotator")).isDisplayed());
+    }
+
+    /**
+     * SK_55
+     * Tamar
+     * HTML refer to SK_1, SK_2
+     */
+    @Test
+    public void SK_55_Tamar() {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+
+        driver.findElement(By.xpath("//a[contains(text(),'Deals')]")).click();
+        assertEquals("Deals and Promotions", driver.findElement(By.tagName("h1")).getText());
+
+        driver.findElement(By.id("nav-logo-sprites")).click();
+        assertTrue(driver.findElement(By.id("gw-desktop-herotator")).isDisplayed());
+    }
+
+    /**
+     * SK_56
+     * Tamar
+     * HTML refer to SK_1, SK_35, SK_56
+     */
+    @Test
+    public void SK_56_Tamar() {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[(text()='Registry')]"))).click();
+
+        assertEquals("Find a registry or gift list", driver.findElement(By.cssSelector(".gr-find-stripe__header")).getText());
+        assertTrue(driver.findElement(By.cssSelector("[placeholder='Search by Registrant name']")).isDisplayed());
+        assertTrue(driver.findElement(By.cssSelector("[data-action='a-dropdown-select']")).isDisplayed());
+        assertTrue(driver.findElement(By.xpath("//button[@aria-label='Search']")).isDisplayed());
+
+        driver.findElement(By.cssSelector("[placeholder='Search by Registrant name']")).sendKeys("Ali");
+        driver.findElement(By.cssSelector("[data-a-class='gr-find-stripe__type']")).click();
+        wait.until(ExpectedConditions.attributeToBe(By.cssSelector("[data-action='a-dropdown-select']"), "aria-pressed", "true"));
+        driver.findElement(By.xpath("//option[contains(text(), 'Birthday Gift List')]")).click();
+        driver.findElement(By.xpath("//button[@aria-label='Search']")).click();
+
+        wait.until(ExpectedConditions.textToBe(By.id("gr-search-result-title-id"), "Search results for \"Ali\""));
+        List<WebElement> nameElements = driver.findElements(By.cssSelector("#search-result-container .gr-search-registry-name"));
+        for (WebElement name : nameElements) {
+            assertTrue(name.getText().toLowerCase(Locale.ROOT).contains("ali"));
+        }
+    }
 }
 
