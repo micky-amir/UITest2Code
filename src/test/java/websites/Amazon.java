@@ -1811,5 +1811,154 @@ public class Amazon {
             assertTrue(name.getText().toLowerCase(Locale.ROOT).contains("ali"));
         }
     }
-}
 
+    /**
+     * SK_57
+     * Tamar
+     * HTML refer to SK_1, SK_35, SK_56
+     */
+    @Test
+    public void SK_57_Tamar() throws InterruptedException {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[(text()='Registry')]"))).click();
+
+        assertEquals("Find a registry or gift list", driver.findElement(By.cssSelector(".gr-find-stripe__header")).getText());
+        assertTrue(driver.findElement(By.cssSelector("[placeholder='Search by Registrant name']")).isDisplayed());
+        assertTrue(driver.findElement(By.cssSelector("[data-action='a-dropdown-select']")).isDisplayed());
+        assertTrue(driver.findElement(By.xpath("//button[@aria-label='Search']")).isDisplayed());
+
+        driver.findElement(By.cssSelector("[placeholder='Search by Registrant name']")).sendKeys("Ali");
+        driver.findElement(By.cssSelector("[data-a-class='gr-find-stripe__type']")).click();
+        wait.until(ExpectedConditions.attributeToBe(By.cssSelector("[data-action='a-dropdown-select']"), "aria-pressed", "true"));
+        driver.findElement(By.xpath("//option[contains(text(), 'Birthday Gift List')]")).click();
+        driver.findElement(By.xpath("//button[@aria-label='Search']")).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".gr-search-criteria-location-drop-down > *"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[text()='California']"))).click();
+        driver.findElement(By.cssSelector("[data-action='grSearchButton'] [type='submit']")).click();
+
+        Thread.sleep(1000);
+        List<WebElement> locationElements = driver.findElements(By.cssSelector("#search-result-container .gr-search-registry-event-location"));
+        for (WebElement location : locationElements) {
+            assertEquals("CA", location.getText());
+        }
+    }
+
+    /**
+     * SK_58
+     * Tamar
+     * HTML refer to SK_1, SK_35, SK_56
+     */
+    @Test
+    public void SK_58_Tamar() throws InterruptedException {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[(text()='Registry')]"))).click();
+
+        assertEquals("Find a registry or gift list", driver.findElement(By.cssSelector(".gr-find-stripe__header")).getText());
+        assertTrue(driver.findElement(By.cssSelector("[placeholder='Search by Registrant name']")).isDisplayed());
+        assertTrue(driver.findElement(By.cssSelector("[data-action='a-dropdown-select']")).isDisplayed());
+        assertTrue(driver.findElement(By.xpath("//button[@aria-label='Search']")).isDisplayed());
+
+        driver.findElement(By.cssSelector("[placeholder='Search by Registrant name']")).sendKeys("Ali");
+        driver.findElement(By.cssSelector("[data-a-class='gr-find-stripe__type']")).click();
+        wait.until(ExpectedConditions.attributeToBe(By.cssSelector("[data-action='a-dropdown-select']"), "aria-pressed", "true"));
+        driver.findElement(By.xpath("//option[contains(text(), 'Birthday Gift List')]")).click();
+        driver.findElement(By.xpath("//button[@aria-label='Search']")).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".gr-search-month-drop-down-wrapper > *"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[text()='January']"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".gr-search-year-drop-down-wrapper > *"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[text()='2020']"))).click();
+        driver.findElement(By.cssSelector("[data-action='grSearchButton'] [type='submit']")).click();
+
+        Thread.sleep(1000);
+        List<WebElement> nameElements = driver.findElements(By.cssSelector("#search-result-container .gr-search-registry-name"));
+        for (WebElement name : nameElements) {
+            assertTrue(name.getText().toLowerCase(Locale.ROOT).contains("ali"));
+        }
+
+        List<WebElement> dateElements = driver.findElements(By.cssSelector("#search-result-container .gr-search-registry-date"));
+        for (WebElement date : dateElements) {
+            String dateText = date.getText();
+            String year = dateText.substring(dateText.indexOf(",") + 1);
+            assertTrue(Integer.parseInt(year) >= 2020);
+        }
+    }
+
+    /**
+     * SK_59
+     * Tamar
+     * HTML refer to SK_1, SK_35, SK_56. SK_59
+     */
+    @Test
+    public void SK_59_Tamar() {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[(text()='Registry')]"))).click();
+
+        assertEquals("Find a registry or gift list", driver.findElement(By.cssSelector(".gr-find-stripe__header")).getText());
+        assertTrue(driver.findElement(By.cssSelector("[placeholder='Search by Registrant name']")).isDisplayed());
+        assertTrue(driver.findElement(By.cssSelector("[data-action='a-dropdown-select']")).isDisplayed());
+        assertTrue(driver.findElement(By.xpath("//button[@aria-label='Search']")).isDisplayed());
+
+        driver.findElement(By.cssSelector("[placeholder='Search by Registrant name']")).sendKeys("Ali");
+        driver.findElement(By.cssSelector("[data-a-class='gr-find-stripe__type']")).click();
+        wait.until(ExpectedConditions.attributeToBe(By.cssSelector("[data-action='a-dropdown-select']"), "aria-pressed", "true"));
+        driver.findElement(By.xpath("//option[contains(text(), 'Birthday Gift List')]")).click();
+        driver.findElement(By.xpath("//button[@aria-label='Search']")).click();
+
+        wait.until(ExpectedConditions.textToBe(By.id("gr-search-result-title-id"), "Search results for \"Ali\""));
+        List<WebElement> nameElements = driver.findElements(By.cssSelector("#search-result-container .gr-search-registry-name"));
+        for (WebElement name : nameElements) {
+            assertTrue(name.getText().toLowerCase(Locale.ROOT).contains("ali"));
+        }
+
+        element = driver.findElements(By.cssSelector("#search-result-container .gr-search-registry-title > a")).get(2);
+        String listName = element.getText();
+        element.click();
+        assertEquals(listName, driver.findElement(By.className("gr-guest-summary-registry-name")).getText());
+        assertTrue(driver.findElements(By.className("gr-product-tile")).size() > 0);
+    }
+
+    /**
+     * SK_60
+     * Tamar
+     * HTML refer to SK_1, SK_12, SK_35, SK_60
+     */
+    @Test
+    public void SK_60_Tamar() {
+        driver.get("https://www.amazon.com/");
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("icp-nav-flyout")));
+        actions.moveByOffset(0, 0).moveToElement(element).perform();
+        assertNotEquals("none", driver.findElement(By.id("nav-flyout-icp")).getCssValue("display"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English - EN']/.."))).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[(text()='Registry')]"))).click();
+        driver.findElement(By.className("gr-registry-types__card")).click();
+        assertEquals("Amazon Wedding", driver.findElement(By.xpath("//img/parent::a")).getAttribute("aria-label"));
+        driver.findElement(By.xpath("//a[contains(text(), 'Create your registry')]")).click();
+        assertEquals("Sign-In", driver.findElement(By.tagName("h1")).getText());
+    }
+}
