@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body lang="en" style="">
+<div class="print-only"><strong style="font-size:23px">Customize - definition of customize by The Free Dictionary</strong> <div style="text-align:right">https://www.thefreedictionary.com/customize</div><a href="/_/hp/Controls/printer-friendly.aspx?653" style="display:none" rel="nofollow">Printer Friendly</a><hr></div>
+<div class="wrapper">
+  <div id="w1" class="w1"><div class="w2">
+    <header id="header">
+      <div class="header-top">
+        <div class="logo-holder">
+          <strong class="i logo"><a href="https://www.thefreedictionary.com">Dictionary, Encyclopedia and Thesaurus - The Free Dictionary</a></strong>
+          <span class="note"><span id="ps">12,973,699,712</span> visitors served</span>
+        </div>
+        <div class="open-close">
+          <a class="opener" onclick="showPopup(event,'w1','menu-active', 'w1Slider')"><span class="i icon-search">Search / </span><span class="icon-hamburger"><span>Page tools</span></span></a>
+          <div id="w1Slider" class="slide">
+            <form class="search-form" method="get" action="//www.thefreedictionary.com/_/search.aspx"><input name="tab" type="hidden" value="1" onsubmit="alert('Page is not yet loaded, please wait');return false">
+              <fieldset>
+                <div class="row" id="f1_SearchBy" style="visibility:hidden">
+                  <ul class="radio-list">
+                    <li><input type="radio" name="SearchBy" id="f1_tfd" value="0" onclick="ById('f1_TFDBy').style.visibility='';lib.hide('lstScr');lib.show('lstTFD')" checked=""><label for="f1_tfd">TheFreeDictionary</label></li>
+
+                    <li class="mobile-hidden" style="visibility:hidden"><input type="radio" name="SearchBy" id="f1_google" value="4" onclick="ById('f1_TFDBy').style.visibility='hidden'"><label for="f1_google">Google</label></li>
+                  </ul>
+                  <a title="Help" href="//www.thefreedictionary.com/_/help/help1.htm" class="mobile-hidden link">?</a>
+                </div>
+                <div class="row">
+                  <input type="search" autocomplete="off" placeholder="Search..." value="customize" onclick="SAYT.Suggest(this,event)" onkeyup="saveCaret(this);SAYT.Suggest(this,event)" onmouseup="saveCaret(this)" onfocus="this.select()" id="f1Word" name="Word">
+                  <a onclick="ToggleKeyboard()" class="i keyboard-link mobile-hidden">Keyboard</a>
+                  <input type="submit" value="Search">
+                </div>
+                <div id="keyboard" style="position:absolute;display:none"></div>
+                <div class="row" id="f1_TFDBy">
+                  <ul class="radio-list" id="lstTFD">
+                    <li><input type="radio" name="TFDBy" id="f1_tfd_word" value="0" checked=""><label for="f1_tfd_word">Word / Article</label></li>
+                    <li><input type="radio" name="TFDBy" id="f1_tfd_start" value="1"><label for="f1_tfd_start">Starts with</label></li>
+                    <li><input type="radio" name="TFDBy" id="f1_tfd_end" value="2"><label for="f1_tfd_end">Ends with</label></li>
+                    <li><input type="radio" name="TFDBy" id="f1_tfd_text" value="3"><label for="f1_tfd_text">Text</label></li>
+                  </ul>
+
+                </div>
+              </fieldset>
+            </form>
+            <div class="slide-block mobile-visible">
+              <ul class="text-size">
+                <li class="size03"><a onclick="ChangeTextSize(11)">A</a></li>
+                <li class="size02"><a onclick="ChangeTextSize(13)">A</a></li>
+                <li class="size01"><a onclick="ChangeTextSize(15)">A</a></li>
+                <li><a onclick="ChangeTextSize(17)">A</a></li>
+              </ul>
+              <div class="language-block">
+                <span class="title">Language:</span>
+                <div class="select-holder">
+                  <select onchange="document.location='//'+this.options[this.selectedIndex].value+'.'+info.Domain">
+                    <option value="www" selected="">English</option><option value="es">Español</option><option value="de">Deutsch</option><option value="fr">Français</option><option value="it">Italiano</option><option value="ar">العربية</option><option value="zh">中文简体</option><option value="pl">Polski</option><option value="pt">Português</option><option value="nl">Nederlands</option><option value="no">Norsk</option><option value="el">Ελληνική</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="he">אנגלית</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="share-block mobile-visible">
+              <span class="fb-share" style="float:left"><a class="i" onclick="social.facebook(1)">Share on Facebook</a></span>
+              <span class="twitter"><a class="i" onclick="social.twitter(1)">Twitter</a></span>
+            </div>
+            <div class="slide-box mobile-visible">
+              <a href="http://up.thefreedictionary.com/trc.ashx?sender=farlex&amp;info=download" class="download-link">Get our app</a>
+            </div>
+            <div id="accopy" class="mobile-visible"></div>
+
+            <section class="widget mobile-visible" id="secFlashcardsMob" style="display:none">
+              <div class="heading-block">
+                <strong class="title">Flashcards</strong>
+                <a href="//www.thefreedictionary.com/_/help/help2.htm#flashcards" class="link">?</a>
+              </div>
+              <div class="holder">
+                <div id="flashcardContMob"></div>
+              </div>
+            </section>
+            <section id="secBookmarksMob" class="widget mobile-visible" style="display:none">
+              <div class="heading-block">
+                <strong class="title">My bookmarks</strong>
+                <a href="//www.thefreedictionary.com/_/help/help2.htm#22115" class="link">?</a>
+              </div>
+              <div class="holder" id="wordlist-content">
+                <a style="display:none" id="wlAddMob" onclick="fc.bookmarks.add(this)"><span class="plus">+&nbsp;</span>Add current page to bookmarks</a>
+                <div id="wordListMob"></div>
+              </div>
+            </section>
+            <script>if(info.isLogin){ById('secFlashcardsMob').style.display='';waiting('flashcardContMob');ById('secBookmarksMob').style.display='';waiting('wordListMob')}</script>
+
+          </div>
+        </div>
+        <div id="headerBlock">
+          <a class="i icon-notif" href="/_/archive.htm" style="background-position: -137px 0px; font-size: 11px; text-indent: 16px;">9</a>
+          <div id="loginBlock">
+            <a href="https://secure.thefreedictionary.com/Registration.aspx?returnTo=https%3a%2f%2fwww.thefreedictionary.com%2fcustomize" id="regButton" class="reg-button br60">Register</a>
+            <a href="https://secure.thefreedictionary.com/Login.aspx?returnTo=https%3a%2f%2fwww.thefreedictionary.com%2fcustomize" class="login-button">Log in</a>
+            <div class="social-login" style="margin-top:5px">
+              <span class="soc-log-msg">Sign up with one click:</span><ul class="social-networks"><li class="facebook"><a href="https://secure.thefreedictionary.com/ExtLogin/FacebookLogin.aspx?returnTo=https%3a%2f%2fwww.thefreedictionary.com%2fcustomize" rel="nofollow">Facebook</a></li><li class="twitter"><a href="https://secure.thefreedictionary.com/Login.aspx?twitter&amp;returnTo=https%3a%2f%2fwww.thefreedictionary.com%2fcustomize" rel="nofollow">Twitter</a></li><li class="googleplus"><a href="https://secure.thefreedictionary.com/ExtLogin/GoogleSignIn.ashx?returnTo=https%3a%2f%2fwww.thefreedictionary.com%2fcustomize">Google</a></li></ul>
+            </div>
+          </div>
+          <script>window.loginBlockHtml=ById('loginBlock').innerHTML;if(info.isLogin){waiting('loginBlock');ById('header').className='auth'}</script>
+
+          <div class="share-block mobile-hidden">
+            <span class="fb-share"><a class="i" onclick="social.facebook(1)">Share on Facebook</a></span>
+          </div>
+        </div>
+        <a href="http://up.thefreedictionary.com/trc.ashx?sender=farlex&amp;info=download" style="z-index:100" class="download-link mobile-visible">Get<br>our app</a>
+      </div>
+      <div class="header-bottom">
+
+        <nav id="nav">
+          <ul>
+            <li class="active available"><div><span class="cell">Dictionary</span></div></li><li class="available"><a title="customize in Thesaurus" href="//www.freethesaurus.com/customize"><span class="cell">Thesaurus</span></a></li><li><a title="not available" rel="nofollow" onclick="location='//medical-dictionary.thefreedictionary.com/'+'customize'"><span class="cell">Medical<br>Dictionary</span></a></li><li><a title="not available" rel="nofollow" onclick="location='//legal-dictionary.thefreedictionary.com/'+'customize'"><span class="cell">Legal<br>Dictionary</span></a></li><li class="available"><a title="customize in financial dictionary" href="//financial-dictionary.thefreedictionary.com/customize"><span class="cell">Financial<br>Dictionary</span></a></li><li><a title="not available" rel="nofollow" onclick="location='//acronyms.thefreedictionary.com/'+'customize'"><span class="cell">Acronyms</span></a></li><li><a title="not available" rel="nofollow" onclick="location='//idioms.thefreedictionary.com/'+'customize'"><span class="cell">Idioms</span></a></li><li><a title="not available" rel="nofollow" onclick="location='//encyclopedia2.thefreedictionary.com/'+'customize'"><span class="cell">Encyclopedia</span></a></li><li><a title="not available" rel="nofollow" onclick="location='//encyclopedia.thefreedictionary.com/'+'customize'"><span class="cell">Wikipedia<br>Encyclopedia</span></a></li>
+          </ul>
+        </nav>
+        <div id="popupBox" class="popup-box">
+          <a class="i popup-opener" onclick="showPopup(event,'popupBox','open-close-active')">Tools</a>
+          <div class="popup-slide">
+            <div class="popup-holder">
+              <ul class="text-size">
+                <li class="size03"><a onclick="ChangeTextSize(11)">A</a></li>
+                <li class="size02"><a onclick="ChangeTextSize(13)">A</a></li>
+                <li class="size01"><a onclick="ChangeTextSize(15)">A</a></li>
+                <li><a onclick="ChangeTextSize(17)">A</a></li>
+              </ul>
+              <div class="language-block">
+                <span class="title">Language:</span>
+                <div class="select-holder">
+                  <select onchange="document.location='//'+this.options[this.selectedIndex].value+'.'+info.Domain">
+                    <option value="www" selected="">English</option><option value="es">Español</option><option value="de">Deutsch</option><option value="fr">Français</option><option value="it">Italiano</option><option value="ar">العربية</option><option value="zh">中文简体</option><option value="pl">Polski</option><option value="pt">Português</option><option value="nl">Nederlands</option><option value="no">Norsk</option><option value="el">Ελληνική</option><option value="ru">Русский</option><option value="tr">Türkçe</option><option value="he">אנגלית</option>
+                  </select>
+                </div>
+              </div>
+              <div class="popup-block">
+                <strong class="title">Mobile Apps:</strong>
+                <ul class="logos-list">
+                  <li class="apple"><a title="iPhone/iPad app" class="i" href="http://up.thefreedictionary.com/trc.ashx?target=iOSFREE&amp;sender=farlex&amp;info=download">apple</a></li>
+                  <li class="android"><a title="Android app" class="i" href="http://up.thefreedictionary.com/trc.ashx?target=android-web-googleplay-free&amp;sender=farlex&amp;info=download">android</a></li>
+                </ul>
+              </div>
+              <div class="popup-block">
+                <strong class="title">For surfers:</strong>
+                <ul class="links-list">
+                  <li><a href="//www.thefreedictionary.com/download.htm">Free toolbar &amp; extensions</a></li>
+                  <li><a href="//www.thefreedictionary.com/Word-of-the-Day.htm">Word of the Day</a></li>
+                  <script>document.write(bm)</script>
+                  <li><a href="//www.thefreedictionary.com/help.htm">Help</a></li>
+                </ul>
+              </div>
+              <div class="popup-block">
+                <strong class="title">For webmasters:</strong>
+                <ul class="links-list">
+                  <li><a href="https://www.thefreedictionary.com/lookup.htm#sitecontent">Free content</a></li>
+                  <li><a href="https://www.thefreedictionary.com/lookup.htm#link">Linking</a></li>
+                  <li><a href="https://www.thefreedictionary.com/lookup.htm#searchbox">Lookup box</a></li>
+                </ul>
+              </div>
+              <a id="popupBoxClose" class="popup-opener style01" onclick="showPopup(event,'popupBox','open-close-active')">Close</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main id="main" role="main">
+
+      <div class="main-holder">
+        <div id="content" class="ut">
+          <div class="content-holder">
+            <div class="ut" id="ut1"></div>
+            <h1>customize</h1><span class="snd2" data-snd="en/US/df/dfdgsssdsysgshslyjd3gh"><span title="US" class="i snd-icon-US" onclick="snd.play('//img2.tfd.com/pron/mp3/en/US/df/dfdgsssdsysgshslyjd3gh.mp3')"></span> </span><span class="snd2" data-snd="en/UK/df/dfdgsssdsysgshslyjd3gh"><span title="UK" class="i snd-icon-UK" onclick="snd.play('//img2.tfd.com/pron/mp3/en/UK/df/dfdgsssdsysgshslyjd3gh.mp3')"></span> </span> <br>Also found in: <a href="//www.freethesaurus.com/customize">Thesaurus</a>, <a href="//financial-dictionary.thefreedictionary.com/customize">Financial</a>.
+            <div id="MainTxt">
+
+
+              <div id="Definition"><section data-src="hm"><h2>cus·tom·ize</h2> <span class="snd" data-snd="C0824700"><span title="" class="i snd-icon-plain" onclick="snd.play('//img.tfd.com/hm/mp3/C0824700.mp3')"></span> </span>&nbsp;<span class="pron" onclick="pron_key()">(kŭs′tə-mīz′)</span><div class="pseg"><i><span class="hvr">tr.v.</span></i> <b><span class="hvr">cus·tom·ized</span></b>, <b><span class="hvr">cus·tom·iz·ing</span></b>, <b><span class="hvr">cus·tom·iz·es</span></b> <div class="ds-single"> To  <span class="hvr">make</span>  or  <span class="hvr">alter</span>  to  <span class="hvr">individual</span>  or  <span class="hvr">personal</span>  <span class="hvr">specifications:</span> <span class="illustration"><span class="hvr">customize</span> a <span class="hvr">van.</span></span></div></div><hr align="left" class="hmshort"><div class="runseg"><b><span class="hvr">cus′tom·i·za′tion</span></b> <span class="pron" onclick="pron_key()">(-ĭ-zā′shən)</span><i> n.</i></div><div class="runseg"><b><span class="hvr">cus′tom·iz′er</span></b><i> n.</i></div><div class="cprh"><span class="i A cpr"></span><span class="hvr">American</span> <span class="hvr">Heritage®</span> <span class="hvr">Dictionary</span> of <span class="hvr">the</span> <span class="hvr">English</span> <span class="hvr">Language,</span> <span class="hvr">Fifth</span> <span class="hvr">Edition.</span> <span class="hvr">Copyright</span> © <span class="hvr">2016</span> by <span class="hvr">Houghton</span> <span class="hvr">Mifflin</span> <span class="hvr">Harcourt</span> <span class="hvr">Publishing</span> <span class="hvr">Company.</span> <span class="hvr">Published</span> by <span class="hvr">Houghton</span> <span class="hvr">Mifflin</span> <span class="hvr">Harcourt</span> <span class="hvr">Publishing</span> <span class="hvr">Company.</span> <span class="hvr">All</span> <span class="hvr">rights</span> <span class="hvr">reserved.</span></div></section><section data-src="hc_dict"><h2>customize</h2> (<span onclick="pron_key(1)" class="pron">ˈkʌstəˌmaɪz</span>) <i>or</i> <h2>customise</h2><div><i>vb</i><div class="ds-list"> (<i>tr</i>) to <span class="hvr">modify</span> <span class="hvr">(something)</span> <span class="hvr">according</span> to a <span class="hvr">customer's</span> <span class="hvr">individual</span> <span class="hvr">requirements</span></div></div><div class="runseg"> <b><span class="hvr">ˌcustomiˈzation</span></b>, <b><span class="hvr">ˌcustomiˈsation</span></b> <i>n</i></div><div class="cprh"><span class="i A cpr"></span><span class="hvr">Collins</span> <span class="hvr">English</span> <span class="hvr">Dictionary</span> – <span class="hvr">Complete</span> <span class="hvr">and</span> <span class="hvr">Unabridged,</span> <span class="hvr">12th</span> <span class="hvr">Edition</span> <span class="hvr">2014</span> © <span class="hvr">HarperCollins</span> <span class="hvr">Publishers</span> <span class="hvr">1991,</span> <span class="hvr">1994,</span> <span class="hvr">1998,</span> <span class="hvr">2000,</span> <span class="hvr">2003,</span> <span class="hvr">2006,</span> <span class="hvr">2007,</span> <span class="hvr">2009,</span> <span class="hvr">2011,</span> <span class="hvr">2014</span></div></section><section data-src="rHouse"><h2>cus•tom•ize</h2> <span onclick="pron_key(1)" class="pron"> (ˈkʌs təˌmaɪz) </span> <br> <br> <i><span class="hvr">v.t.</span> </i> <b><span class="hvr">-ized,</span> <span class="hvr">-iz•ing.</span></b> <div class="ds-single"> to  <span class="hvr">modify,</span>  <span class="hvr">make,</span>  or  <span class="hvr">build</span>  <span class="hvr">according</span>  to  <span class="hvr">individual</span>  <span class="hvr">specifications</span>  or  <span class="hvr">preference.</span> </div> <div class="etyseg"><span class="hvr">[1930–35,</span> <i><span class="hvr">Amer.</span></i>]</div> <div class="runseg"> <b><span class="hvr">cus`tom•i•za′tion,</span></b> <i>n. </i> </div> <div class="runseg"> <b><span class="hvr">cus′tom•iz`er,</span></b> <i>n. </i> </div> <div class="cprh"><span class="i A cpr"></span><span class="hvr">Random</span> <span class="hvr">House</span> <span class="hvr">Kernerman</span> <span class="hvr">Webster's</span> <span class="hvr">College</span> <span class="hvr">Dictionary,</span> © <span class="hvr">2010</span> K <span class="hvr">Dictionaries</span> <span class="hvr">Ltd.</span> <span class="hvr">Copyright</span> <span class="hvr">2005,</span> <span class="hvr">1997,</span> <span class="hvr">1991</span> by <span class="hvr">Random</span> <span class="hvr">House,</span> <span class="hvr">Inc.</span> <span class="hvr">All</span> <span class="hvr">rights</span> <span class="hvr">reserved.</span></div></section><section data-src="hcVerbTblEn"><h2>customize</h2><br><b><span class="hvr">Past</span> <span class="hvr">participle:</span> </b><span class="hvr">customized</span><br><b><span class="hvr">Gerund:</span> </b><span class="hvr">customizing</span><br><br><select class="verbtables" onchange="SelectVT(this)"><option value="1_1"><span class="hvr">Imperative</span></option><option value="1_2"><span class="hvr">Present</span></option><option value="1_3"><span class="hvr">Preterite</span></option><option value="1_4"><span class="hvr">Present</span> <span class="hvr">Continuous</span></option><option value="1_5"><span class="hvr">Present</span> <span class="hvr">Perfect</span></option><option value="1_6"><span class="hvr">Past</span> <span class="hvr">Continuous</span></option><option value="1_7"><span class="hvr">Past</span> <span class="hvr">Perfect</span></option><option value="1_8"><span class="hvr">Future</span></option><option value="1_9"><span class="hvr">Future</span> <span class="hvr">Perfect</span></option><option value="1_10"><span class="hvr">Future</span> <span class="hvr">Continuous</span></option><option value="1_11"><span class="hvr">Present</span> <span class="hvr">Perfect</span> <span class="hvr">Continuous</span></option><option value="1_12"><span class="hvr">Future</span> <span class="hvr">Perfect</span> <span class="hvr">Continuous</span></option><option value="1_13"><span class="hvr">Past</span> <span class="hvr">Perfect</span> <span class="hvr">Continuous</span></option><option value="1_14"><span class="hvr">Conditional</span></option><option value="1_15"><span class="hvr">Past</span> <span class="hvr">Conditional</span></option></select><table class="prettytable" id="VerbTableN1_1"><tbody><tr><th><span class="hvr">Imperative</span></th></tr><tr><td><span class="hvr">customize</span></td></tr><tr><td><span class="hvr">customize</span></td></tr></tbody></table><table class="prettytable hiddenStructure" id="VerbTableN1_2"><tbody><tr><th><span class="hvr">Present</span></th></tr><tr><td>I <span class="hvr">customize</span></td></tr><tr><td><span class="hvr">you</span> <span class="hvr">customize</span></td></tr><tr><td><span class="hvr">he/she/it</span> <span class="hvr">customizes</span></td></tr><tr><td>we <span class="hvr">customize</span></td></tr><tr><td><span class="hvr">you</span> <span class="hvr">customize</span></td></tr><tr><td><span class="hvr">they</span> <span class="hvr">customize</span></td></tr></tbody></table><table class="prettytable hiddenStructure" id="VerbTableN1_3"><tbody><tr><th><span class="hvr">Preterite</span></th></tr><tr><td>I <span class="hvr">customized</span></td></tr><tr><td><span class="hvr">you</span> <span class="hvr">customized</span></td></tr><tr><td><span class="hvr">he/she/it</span> <span class="hvr">customized</span></td></tr><tr><td>we <span class="hvr">customized</span></td></tr><tr><td><span class="hvr">you</span> <span class="hvr">customized</span></td></tr><tr><td><span class="hvr">they</span> <span class="hvr">customized</span></td></tr></tbody></table><table class="prettytable hiddenStructure" id="VerbTableN1_4"><tbody><tr><th><span class="hvr">Present</span> <span class="hvr">Continuous</span></th></tr><tr><td>I am <span class="hvr">customizing</span></td></tr><tr><td><span class="hvr">you</span> <span class="hvr">are</span> <span class="hvr">customizing</span></td></tr><tr><td><span class="hvr">he/she/it</span> is <span class="hvr">customizing</span></td></tr><tr><td>we <span class="hvr">are</span> <span class="hvr">customizing</span></td></tr><tr><td><span class="hvr">you</span> <span class="hvr">are</span> <span class="hvr">customizing</span></td></tr><tr><td><span class="hvr">they</span> <span class="hvr">are</span> <span class="hvr">customizing</span></td></tr></tbody></table><table class="prettytable hiddenStructure" id="VerbTableN1_5"><tbody><tr><th><span class="hvr">Present</span> <span class="hvr">Perfect</span></th></tr><tr><td>I <span class="hvr">have</span> <span class="hvr">customized</span></td></tr><tr><td><span class="hvr">you</span> <span class="hvr">have</span> <span class="hvr">customized</span></td></tr><tr><td><span class="hvr">he/she/it</span> <span class="hvr">has</span> <span class="hvr">customized</span></td></tr><tr><td>we <span class="hvr">have</span> <span class="hvr">customized</span></td></tr><tr><td><span class="hvr">you</span> <span class="hvr">have</span> <span class="hvr">customized</span></td></tr><tr><td><span class="hvr">they</span> <span class="hvr">have</span> <span class="hvr">customized</span></td></tr></tbody></table><table class="prettytable hiddenStructure" id="VerbTableN1_6"><tbody><tr><th><span class="hvr">Past</span> <span class="hvr">Continuous</span></th></tr><tr><td>I <span class="hvr">was</span> <span class="hvr">customizing</span></td></tr><tr><td><span class="hvr">you</span> <span class="hvr">were</span> <span class="hvr">customizing</span></td></tr><tr><td><span class="hvr">he/she/it</span> <span class="hvr">was</span> <span class="hvr">customizing</span></td></tr><tr><td>we <span class="hvr">were</span> <span class="hvr">customizing</span></td></tr><tr><td><span class="hvr">you</span> <span class="hvr">were</span> <span class="hvr">customizing</span></td></tr><tr><td><span class="hvr">they</span> <span class="hvr">were</span> <span class="hvr">customizing</span></td></tr></tbody></table><table class="prettytable hiddenStructure" id="VerbTableN1_7"><tbody><tr><th><span class="hvr">Past</span> <span class="hvr">Perfect</span></th></tr><tr><td>I <span class="hvr">had</span> <span class="hvr">customized</span></td></tr><tr><td><span class="hvr">you</span> <span class="hvr">had</span> <span class="hvr">customized</span></td></tr><tr><td><span class="hvr">he/she/it</span> <span class="hvr">had</span> <span class="hvr">customized</span></td></tr><tr><td>we <span class="hvr">had</span> <span class="hvr">customized</span></td></tr><tr><td><span class="hvr">you</span> <span class="hvr">had</span> <span class="hvr">customized</span></td></tr><tr><td><span class="hvr">they</span> <span class="hvr">had</span> <span class="hvr">customized</span></td></tr></tbody></table><table class="prettytable hiddenStructure" id="VerbTableN1_8"><tbody><tr><th><span class="hvr">Future</span></th></tr><tr><td>I <span class="hvr">will</span> <span class="hvr">customize</span></td></tr><tr><td><span class="hvr">you</span> <span class="hvr">will</span> <span class="hvr">customize</span></td></tr><tr><td><span class="hvr">he/she/it</span> <span class="hvr">will</span> <span class="hvr">customize</span></td></tr><tr><td>we <span class="hvr">will</span> <span class="hvr">customize</span></td></tr><tr><td><span class="hvr">you</span> <span class="hvr">will</span> <span class="hvr">customize</span></td></tr><tr><td><span class="hvr">they</span> <span class="hvr">will</span> <span class="hvr">customize</span></td></tr></tbody></table><table class="prettytable hiddenStructure" id="VerbTableN1_9"><tbody><tr><th><span class="hvr">Future</span> <span class="hvr">Perfect</span></th></tr><tr><td>I <span class="hvr">will</span> <span class="hvr">have</span> <span class="hvr">customized</span></td></tr><tr><td><span class="hvr">you</span> <span class="hvr">will</span> <span class="hvr">have</span> <span class="hvr">customized</span></td></tr><tr><td><span class="hvr">he/she/it</span> <span class="hvr">will</span> <span class="hvr">have</span> <span class="hvr">customized</span></td></tr><tr><td>we <span class="hvr">will</span> <span class="hvr">have</span> <span class="hvr">customized</span></td></tr><tr><td><span class="hvr">you</span> <span class="hvr">will</span> <span class="hvr">have</span> <span class="hvr">customized</span></td></tr><tr><td><span class="hvr">they</span> <span class="hvr">will</span> <span class="hvr">have</span> <span class="hvr">customized</span></td></tr></tbody></table><table class="prettytable hiddenStructure" id="VerbTableN1_10"><tbody><tr><th><span class="hvr">Future</span> <span class="hvr">Continuous</span></th></tr><tr><td>I <span class="hvr">will</span> be <span class="hvr">customizing</span></td></tr><tr><td><span class="hvr">you</span> <span class="hvr">will</span> be <span class="hvr">customizing</span></td></tr><tr><td><span class="hvr">he/she/it</span> <span class="hvr">will</span> be <span class="hvr">customizing</span></td></tr><tr><td>we <span class="hvr">will</span> be <span class="hvr">customizing</span></td></tr><tr><td><span class="hvr">you</span> <span class="hvr">will</span> be <span class="hvr">customizing</span></td></tr><tr><td><span class="hvr">they</span> <span class="hvr">will</span> be <span class="hvr">customizing</span></td></tr></tbody></table><table class="prettytable hiddenStructure" id="VerbTableN1_11"><tbody><tr><th><span class="hvr">Present</span> <span class="hvr">Perfect</span> <span class="hvr">Continuous</span></th></tr><tr><td>I <span class="hvr">have</span> <span class="hvr">been</span> <span class="hvr">customizing</span></td></tr><tr><td><span class="hvr">you</span> <span class="hvr">have</span> <span class="hvr">been</span> <span class="hvr">customizing</span></td></tr><tr><td><span class="hvr">he/she/it</span> <span class="hvr">has</span> <span class="hvr">been</span> <span class="hvr">customizing</span></td></tr><tr><td>we <span class="hvr">have</span> <span class="hvr">been</span> <span class="hvr">customizing</span></td></tr><tr><td><span class="hvr">you</span> <span class="hvr">have</span> <span class="hvr">been</span> <span class="hvr">customizing</span></td></tr><tr><td><span class="hvr">they</span> <span class="hvr">have</span> <span class="hvr">been</span> <span class="hvr">customizing</span></td></tr></tbody></table><table class="prettytable hiddenStructure" id="VerbTableN1_12"><tbody><tr><th><span class="hvr">Future</span> <span class="hvr">Perfect</span> <span class="hvr">Continuous</span></th></tr><tr><td>I <span class="hvr">will</span> <span class="hvr">have</span> <span class="hvr">been</span> <span class="hvr">customizing</span></td></tr><tr><td><span class="hvr">you</span> <span class="hvr">will</span> <span class="hvr">have</span> <span class="hvr">been</span> <span class="hvr">customizing</span></td></tr><tr><td><span class="hvr">he/she/it</span> <span class="hvr">will</span> <span class="hvr">have</span> <span class="hvr">been</span> <span class="hvr">customizing</span></td></tr><tr><td>we <span class="hvr">will</span> <span class="hvr">have</span> <span class="hvr">been</span> <span class="hvr">customizing</span></td></tr><tr><td><span class="hvr">you</span> <span class="hvr">will</span> <span class="hvr">have</span> <span class="hvr">been</span> <span class="hvr">customizing</span></td></tr><tr><td><span class="hvr">they</span> <span class="hvr">will</span> <span class="hvr">have</span> <span class="hvr">been</span> <span class="hvr">customizing</span></td></tr></tbody></table><table class="prettytable hiddenStructure" id="VerbTableN1_13"><tbody><tr><th><span class="hvr">Past</span> <span class="hvr">Perfect</span> <span class="hvr">Continuous</span></th></tr><tr><td>I <span class="hvr">had</span> <span class="hvr">been</span> <span class="hvr">customizing</span></td></tr><tr><td><span class="hvr">you</span> <span class="hvr">had</span> <span class="hvr">been</span> <span class="hvr">customizing</span></td></tr><tr><td><span class="hvr">he/she/it</span> <span class="hvr">had</span> <span class="hvr">been</span> <span class="hvr">customizing</span></td></tr><tr><td>we <span class="hvr">had</span> <span class="hvr">been</span> <span class="hvr">customizing</span></td></tr><tr><td><span class="hvr">you</span> <span class="hvr">had</span> <span class="hvr">been</span> <span class="hvr">customizing</span></td></tr><tr><td><span class="hvr">they</span> <span class="hvr">had</span> <span class="hvr">been</span> <span class="hvr">customizing</span></td></tr></tbody></table><table class="prettytable hiddenStructure" id="VerbTableN1_14"><tbody><tr><th><span class="hvr">Conditional</span></th></tr><tr><td>I <span class="hvr">would</span> <span class="hvr">customize</span></td></tr><tr><td><span class="hvr">you</span> <span class="hvr">would</span> <span class="hvr">customize</span></td></tr><tr><td><span class="hvr">he/she/it</span> <span class="hvr">would</span> <span class="hvr">customize</span></td></tr><tr><td>we <span class="hvr">would</span> <span class="hvr">customize</span></td></tr><tr><td><span class="hvr">you</span> <span class="hvr">would</span> <span class="hvr">customize</span></td></tr><tr><td><span class="hvr">they</span> <span class="hvr">would</span> <span class="hvr">customize</span></td></tr></tbody></table><table class="prettytable hiddenStructure" id="VerbTableN1_15"><tbody><tr><th><span class="hvr">Past</span> <span class="hvr">Conditional</span></th></tr><tr><td>I <span class="hvr">would</span> <span class="hvr">have</span> <span class="hvr">customized</span></td></tr><tr><td><span class="hvr">you</span> <span class="hvr">would</span> <span class="hvr">have</span> <span class="hvr">customized</span></td></tr><tr><td><span class="hvr">he/she/it</span> <span class="hvr">would</span> <span class="hvr">have</span> <span class="hvr">customized</span></td></tr><tr><td>we <span class="hvr">would</span> <span class="hvr">have</span> <span class="hvr">customized</span></td></tr><tr><td><span class="hvr">you</span> <span class="hvr">would</span> <span class="hvr">have</span> <span class="hvr">customized</span></td></tr><tr><td><span class="hvr">they</span> <span class="hvr">would</span> <span class="hvr">have</span> <span class="hvr">customized</span></td></tr></tbody></table><div class="cprh"><span class="i A cpr"></span><span class="hvr">Collins</span> <span class="hvr">English</span> <span class="hvr">Verb</span> <span class="hvr">Tables</span> © <span class="hvr">HarperCollins</span> <span class="hvr">Publishers</span> <span class="hvr">2011</span></div></section></div>
+              <div id="Thesaurus"><div id="ThesaurusHead"><span id="ThesaurusTitle">Thesaurus</span><span id="ThesaurusLegend"><span class="Ant"><span class="hvr">Antonyms</span></span><span class="Rel"><span class="hvr">Related</span> <span class="hvr">Words</span></span><span class="Syn"><span class="hvr">Synonyms</span></span><span class="label"><b><span class="hvr">Legend:</span></b></span></span></div><div id="ThesaurusInner"><div style="padding:5px;background:#DADAF7;font-size:16px;line-height:25px"><span><span class="hvr">Switch</span> to <a href="//www.freethesaurus.com/customize"> new thesaurus </a></span></div><section data-src="wn"><table id="wn"><tbody><tr><td style="vertical-align:top"><b><span class="hvr">Verb</span></b></td><td style="vertical-align:top"><b>1.</b></td><td><b><span class="hvr">customize</span></b> -  <span class="hvr">make</span>  to  <span class="hvr">specifications;</span>  "I  <span class="hvr">had</span>  <span class="hvr">this</span>  <span class="hvr">desk</span>  <span class="hvr">custom-made</span>  <span class="hvr">for</span>  <span class="hvr">me"</span><div class="Syn"><a href="customise">customise</a>, <a href="custom-make">custom-make</a>, <a href="tailor-make">tailor-make</a></div><div class="Rel"><a href="produce">produce</a>, <a href="create">create</a>, <a href="make">make</a> -  <span class="hvr">create</span>  or  <span class="hvr">manufacture</span>  a  <span class="hvr">man-made</span>  <span class="hvr">product;</span>  <span class="hvr">"We</span>  <span class="hvr">produce</span>  <span class="hvr">more</span>  <span class="hvr">cars</span>  <span class="hvr">than</span>  we  <span class="hvr">can</span>  <span class="hvr">sell";</span>  <span class="hvr">"The</span>  <span class="hvr">company</span>  <span class="hvr">has</span>  <span class="hvr">been</span>  <span class="hvr">making</span>  <span class="hvr">toys</span>  <span class="hvr">for</span>  <span class="hvr">two</span>  <span class="hvr">centuries"</span></div></td></tr><tr><td style="vertical-align:top"></td><td style="vertical-align:top"><b>2.</b></td><td><b><span class="hvr">customize</span></b> -  <span class="hvr">make</span>  <span class="hvr">according</span>  to  <span class="hvr">requirements;</span>  <span class="hvr">"customize</span>  a  <span class="hvr">car"</span><div class="Syn"><a href="customise">customise</a></div><div class="Rel"><a href="alter">alter</a>, <a href="change">change</a>, <a href="modify">modify</a> -  <span class="hvr">cause</span>  to  <span class="hvr">change;</span>  <span class="hvr">make</span>  <span class="hvr">different;</span>  <span class="hvr">cause</span>  a  <span class="hvr">transformation;</span>  <span class="hvr">"The</span>  <span class="hvr">advent</span>  of  <span class="hvr">the</span>  <span class="hvr">automobile</span>  <span class="hvr">may</span>  <span class="hvr">have</span>  <span class="hvr">altered</span>  <span class="hvr">the</span>  <span class="hvr">growth</span>  <span class="hvr">pattern</span>  of  <span class="hvr">the</span>  <span class="hvr">city";</span>  <span class="hvr">"The</span>  <span class="hvr">discussion</span>  <span class="hvr">has</span>  <span class="hvr">changed</span>  my  <span class="hvr">thinking</span>  <span class="hvr">about</span>  <span class="hvr">the</span>  <span class="hvr">issue"</span></div><div class="Rel"><a href="build">build</a>, <a href="construct">construct</a>, <a href="make">make</a> -  <span class="hvr">make</span>  by  <span class="hvr">combining</span>  <span class="hvr">materials</span>  <span class="hvr">and</span>  <span class="hvr">parts;</span>  <span class="hvr">"this</span>  <span class="hvr">little</span>  <span class="hvr">pig</span>  <span class="hvr">made</span>  <span class="hvr">his</span>  <span class="hvr">house</span>  <span class="hvr">out</span>  of  <span class="hvr">straw";</span>  <span class="hvr">"Some</span>  <span class="hvr">eccentric</span>  <span class="hvr">constructed</span>  an  <span class="hvr">electric</span>  <span class="hvr">brassiere</span>  <span class="hvr">warmer"</span></div></td></tr></tbody></table><div class="cprh"><span class="i A cpr"></span><span class="hvr">Based</span> on <span class="hvr">WordNet</span> <span class="hvr">3.0,</span> <span class="hvr">Farlex</span> <span class="hvr">clipart</span> <span class="hvr">collection.</span> © <span class="hvr">2003-2012</span> <span class="hvr">Princeton</span> <span class="hvr">University,</span> <span class="hvr">Farlex</span> <span class="hvr">Inc.</span></div></section></div></div>
+              <div id="Translations"><div id="TranslationsHead"><span id="TranslationsTitle">Translations</span><span id="LangBar"><span id="DropDownHolder"><span id="LangDropdown" style="display:none" onmousemove="lngbar.ClearTM()" onscroll="lngbar.ClearTMonScroll()" onmouseout="lngbar.tm=setTimeout('lngbar.LangHide()',400)"><a onclick="javascript:lngbar.LangChange('et');return false;" href="#"><div class="lcd"><span class="fl_et"></span>Estonian / eesti keel</div></a><a onclick="javascript:lngbar.LangChange('fr');return false;" href="#"><div class="lcd"><span class="fl_fr"></span>French / Français</div></a><a onclick="javascript:lngbar.LangChange('de');return false;" href="#"><div class="lcd"><span class="fl_de"></span>German / Deutsch</div></a><a onclick="javascript:lngbar.LangChange('it');return false;" href="#"><div class="lcd"><span class="fl_it"></span>Italian / Italiano</div></a><a onclick="javascript:lngbar.LangChange('es');return false;" href="#"><div class="lcd"><span class="fl_es"></span>Spanish / Español</div></a></span><div id="selectedLang" class="lcd" onmouseover="lngbar.LangReveal()" onmouseout="if(lngbar.tm)clearTimeout(lngbar.tm);lngbar.tm=setTimeout('lngbar.LangHide()',800)"><div><span class="fl_es"></span>Spanish / Español</div></div></span><span class="label">Select a language:</span></span></div><div id="translbody" data-lang="etfritesde"><section class="simpleTrans"><div lang="et" style="display: none;"><b class="trans">kohandama</b></div><div lang="fr" style="display: none;"><a class="trans" href="//fr.thefreedictionary.com/customiser">customiser</a><a class="trans" href="//fr.thefreedictionary.com/personnaliser">personnaliser</a></div><div lang="it" style="display: none;"><b class="trans">customizzare</b></div></section><section lang="es" data-src="hc_En_Es" style="display: block;"><div lang="En"><h2>customize</h2> <span class="pron0x">[ˈkʌstəmaɪz]</span> <i>VT</i> [+ <i>car</i>] → <span lang="es"><a href="//es.thefreedictionary.com/adaptar">adaptar</a> al <a href="//es.thefreedictionary.com/gusto">gusto</a> <a href="//es.thefreedictionary.com/del">del</a> <a href="//es.thefreedictionary.com/cliente">cliente</a>, <a href="//es.thefreedictionary.com/adaptar">adaptar</a> por <a href="//es.thefreedictionary.com/encargo">encargo</a> <a href="//es.thefreedictionary.com/del">del</a> <a href="//es.thefreedictionary.com/cliente">cliente</a></span>; [+ <i>product</i>] → <span lang="es"><a href="//es.thefreedictionary.com/personalizar">personalizar</a></span><br><span class="illustration">customized software</span> → <span lang="es"><a href="//es.thefreedictionary.com/software">software</a> <i>m</i> a <a href="//es.thefreedictionary.com/medida">medida</a> <a href="//es.thefreedictionary.com/del">del</a> <a href="//es.thefreedictionary.com/usuario">usuario</a></span></div><div class="cprh"><span class="i A cpr"></span>Collins Spanish Dictionary - Complete and Unabridged 8th Edition 2005 © William Collins Sons &amp; Co. Ltd. 1971, 1988 © HarperCollins Publishers 1992, 1993, 1996, 1997, 2000, 2003, 2005</div></section><section lang="fr" data-src="hc_En_Fr" style="display: none;"><div lang="En"><h2>customize</h2> <span class="pron0x">[ˈkʌstəmaɪz]</span> <b>customise</b> <i>(British)</i> <i>vt</i> [+ <i>product, software</i>] → <span lang="fr"><a href="//fr.thefreedictionary.com/personnaliser">personnaliser</a></span>; [+ <i>car, clothes</i>] → <span lang="fr"><a href="//fr.thefreedictionary.com/personnaliser">personnaliser</a></span></div><div class="cprh"><span class="i A cpr"></span>Collins English/French Electronic Resource. © HarperCollins Publishers 2005</div></section><section lang="de" data-src="hc_En_De" style="display: none;"><div lang="En"><h2>customize</h2> <div class="ds-list"><i>vt car etc</i> → <span lang="de"><a href="//de.thefreedictionary.com/individuell">individuell</a> <a href="//de.thefreedictionary.com/aufmachen">aufmachen</a></span>; (Comput) → <span lang="de"><a href="//de.thefreedictionary.com/anpassen">anpassen</a></span></div></div><div class="cprh"><span class="i A cpr"></span>Collins German Dictionary – Complete and Unabridged 7th Edition 2005. © William Collins Sons &amp; Co. Ltd. 1980 © HarperCollins Publishers 1991, 1997, 1999, 2004, 2005, 2007</div></section></div></div>
+
+            </div>
+
+            <aside style="margin-top:1rem">
+
+              <br><br>
+              Want to thank TFD for its existence? <a href="mailto:?subject=TheFreeDictionary&amp;body=">Tell a friend about us</a>, add a link to this page, or visit <a href="https://www.thefreedictionary.com/lookup.htm">the webmaster's page for free fun content</a>.
+              <br><br>
+              Link to this page: <input type="text" style="direction:ltr" readonly="readonly" value="<a href=&quot;https://www.thefreedictionary.com/customize&quot;>customize</a>" onclick="this.focus();this.select()"><br><br>
+              <div class="share-block">
+                <ul class="social-networks">
+                  <li class="facebook"><a onclick="social.facebook()">Facebook</a></li>
+                  <li class="twitter"><a onclick="social.twitter()">Twitter</a></li>
+                </ul>
+              </div>
+
+            </aside>
+            <div class="ut" id="ut5"></div>
+          </div>
+        </div>
+        <aside id="sidebar">
+
+          <div class="feedback"><a onclick="social.feedback()">Feedback</a></div>
+          <a id="thes_link" class="i" title="Thesaurus" style="background-position: -295px -69px; width: 41px; height: 15px; margin-right: 10px; display: inline-block;" onclick="location=nav.loc+'#Thesaurus'"></a>
+          <a id="trans_link" class="i" title="Translations" style="background-position: -342px -69px; width: 41px; height: 15px; display: inline-block;" onclick="location=nav.loc+'#Translations'"></a>
+          <div class="ut" id="ut2"></div>
+          <section class="widget" id="secLoginToAccess">
+            <div class="heading-block">
+              <strong class="title">Flashcards &amp; Bookmarks</strong>
+              <a href="//www.thefreedictionary.com/_/help/help2.htm#22115" class="link">?</a>
+            </div>
+            <div class="holder">Please <a href="https://secure.thefreedictionary.com/Login.aspx?returnTo=https%3a%2f%2fwww.thefreedictionary.com%2fcustomize">log in</a> or <a href="https://secure.thefreedictionary.com/Registration.aspx?returnTo=https%3a%2f%2fwww.thefreedictionary.com%2fcustomize">register</a> to use Flashcards and Bookmarks. You can also log in with <ul class="social-networks"><li class="facebook"><a href="https://secure.thefreedictionary.com/ExtLogin/FacebookLogin.aspx?returnTo=https%3a%2f%2fwww.thefreedictionary.com%2fcustomize" rel="nofollow">Facebook</a></li><li class="twitter"><a href="https://secure.thefreedictionary.com/Login.aspx?twitter&amp;returnTo=https%3a%2f%2fwww.thefreedictionary.com%2fcustomize" rel="nofollow">Twitter</a></li><li class="googleplus"><a href="https://secure.thefreedictionary.com/ExtLogin/GoogleSignIn.ashx?returnTo=https%3a%2f%2fwww.thefreedictionary.com%2fcustomize">Google</a></li></ul></div>
+          </section>
+          <section class="widget" id="secFlashcards" style="display:none">
+            <div class="heading-block">
+              <strong class="title">Flashcards</strong>
+              <a href="//www.thefreedictionary.com/_/help/help2.htm#flashcards" class="link">?</a>
+            </div>
+            <div class="holder">
+              <div id="flashcardCont" style="min-height:74px"></div>
+              <script>if(info.isLogin){ById('secLoginToAccess').style.display='none';ById('secFlashcards').style.display='';waiting('flashcardCont')}</script>
+            </div>
+          </section>
+          <section id="secBookmarks" class="widget ut" style="display:none">
+            <div class="heading-block">
+              <strong class="title">My bookmarks</strong>
+              <a href="//www.thefreedictionary.com/_/help/help2.htm#22115" class="link">?</a>
+            </div>
+            <div class="holder" id="wordlist-content">
+              <a id="wlExcel" class="i" href="//secure.thefreedictionary.com/api/wordList.ashx?excel=1" title="Export to Excel"></a>
+              <a style="display:none" id="wlAdd" onclick="fc.bookmarks.add(this)"><span class="plus">+&nbsp;</span>Add current page to bookmarks</a>
+              <div id="word_list"></div>
+              <script>if (info.isLogin) {ById('secLoginToAccess').style.display='none';ById('secBookmarks').style.display='';ById('secFlashcards').style.display='';waiting('word_list');waiting('flashcardCont');}</script>
+            </div>
+          </section>
+          <div class="ut sticky" id="ut3"></div>
+        </aside>
+      </div>
+
+      <div id="browsers">
+
+        <div class="block width34">
+          <div class="heading-block">
+            <strong class="title">Mentioned in</strong>
+            <a href="//www.thefreedictionary.com/_/help/help3.htm#324" class="link">?</a>
+          </div>
+          <div class="list-holder height240">
+            <ul><li><a href="adapt">adapt</a></li><li><a href="adjust">adjust</a></li><li><a href="build">build</a></li><li><a href="chopper">chopper</a></li><li><a href="choppers">choppers</a></li><li><a href="compounding+pharmacy">compounding pharmacy</a></li><li><a href="construct">construct</a></li><li><a href="convert">convert</a></li><li><a href="create">create</a></li><li><a href="custom">custom</a></li><li><a href="custom-built">custom-built</a></li><li><a href="customise">customise</a></li><li><a href="customized">customized</a></li><li><a href="customizer">customizer</a></li><li><a href="custom-made">custom-made</a></li><li><a href="custom-make">custom-make</a></li><li><a href="double">double</a></li><li><a href="double+up">double up</a></li><li><a href="doubled">doubled</a></li></ul>
+          </div>
+        </div>
+
+        <div class="block width61">
+          <div class="heading-block">
+
+            <strong class="title">References in periodicals archive</strong>
+            <a href="//www.thefreedictionary.com/_/help/help3.htm#325" class="link">?</a>
+          </div>
+          <div class="list-holder height240">
+            <div class="lit">It also provides a wide range of calendar printing services in the form of booklet calendars, square calendars, tent calendars, calendar designing, custom-sized calendars and practically everything a business needs to <span class="highlight">customize</span> a calendar.<div class="lit_links"><a href="https://www.thefreelibrary.com/Calendar+Printing+4u+Celebrates+10+Years+of+Success+and+Innovation-a0545565690">Calendar Printing 4u Celebrates 10 Years of Success and Innovation</a></div></div><div class="lit">The initiative aims to provide citizens a platform to <span class="highlight">customize</span> their number plates in a legal manner.<div class="lit_links"><a href="https://www.thefreelibrary.com/Customised+number+plates+within+a+fortnight-a0537573956">Customised number plates within a fortnight</a></div></div><div class="lit">Haihaisoft releases new Xvast browser for Windows, and <span class="highlight">customize</span> Xvast browser service.<div class="lit_links"><a href="https://www.thefreelibrary.com/Haihaisoft+releases+new+Xvast+browser+and+customize+Xvast+browser...-a0469510676">Haihaisoft releases new Xvast browser and customize Xvast browser service</a></div></div><div class="lit">Watch a step-by-step tutorial or read instructions for how to <span class="highlight">customize</span> an issuer homepage; the process is simple and takes just minutes.<div class="lit_links"><a href="https://www.thefreelibrary.com/Customize+the+presentation+of+information+about+your+municipal...-a0468141149">Customize the presentation of information about your municipal securities on EMMA</a></div></div><div class="lit">The "Auris Char's <span class="highlight">Customize</span>" was developed based on Char Aznable, an iconic antagonist in the Gundam series, Toyota Marketing Japan Corp.<div class="lit_links"><a href="https://www.thefreelibrary.com/Toyota+to+sell+Gundam-themed+Auris+saloon-a0340798033">Toyota to sell Gundam-themed Auris saloon</a></div></div><div class="lit">Gardosi, "Should we <span class="highlight">customize</span> fetal growth standards?" Fetal Diagnosis and Therapy, vol.<div class="lit_links"><a href="https://www.thefreelibrary.com/Intrauterine+growth+restriction%3A+effects+of+physiological+fetal+growth...-a0378369512">Intrauterine growth restriction: effects of physiological fetal growth determinants on diagnosis</a></div></div><div class="lit">"You can <span class="highlight">customize</span> [the fund] to your plan's needs and match it to your employee demographics," says Mary Beth Glotzbach, Morningstar senior vice president, noting that this may also allow a sponsor to add asset classes that are restricted in an off-the-shelf fund.<div class="lit_links"><a href="https://www.thefreelibrary.com/The+TDF+Alternative-a0303281901">The TDF Alternative</a></div></div><div class="lit">The objective is to provide Mahindra customers the chance to <span class="highlight">customize</span> their wheels on new as well as old sets all across the country.<div class="lit_links"><a href="https://www.thefreelibrary.com/Customised+vehicle+is+the+latest+offering+from+Mahindra+%26+Mahindra-a0235526550">Customised vehicle is the latest offering from Mahindra &amp; Mahindra</a></div></div><div class="lit">Central Jersey Federal Credit Union has signed on to use Dynamic Marketing Systems Micro Merchant software to develop, <span class="highlight">customize</span> and print marketing materials in-house.<div class="lit_links"><a href="https://www.thefreelibrary.com/Central+Jersey+uses+DMS-a0198414438">Central Jersey uses DMS</a></div></div><div class="lit">The new center will allow users to <span class="highlight">customize</span> FAS-FAX reports by specific titles and conduct side-by-side analyses, save and print several ABC reports at once, and create trending reports with the Audience-FAX trending tool.<div class="lit_links"><a href="https://www.thefreelibrary.com/ABC+to+Re-launch+its+Data+Center%2C+Improve+Search-a0179984981">ABC to Re-launch its Data Center, Improve Search</a></div></div><div class="lit">In a time when consumers can <span class="highlight">customize</span> just about any product to their liking, whether it's encrusting their cell phones with stones or protecting their iPods from scratches with a choice color cover, the Web, too, can be customized.<div class="lit_links"><a href="https://www.thefreelibrary.com/Widgets+create+customization-a0164587338">Widgets create customization</a></div></div><div class="lit">Eddie Tapp's PHOTOSHOP WORKFLOW SETUPS (05961201686, $29.99) offers all the basics on how to <span class="highlight">customize</span> Photoshop for digital photography, using its powerful features to not only manipulate photo quality, but to <span class="highlight">customize</span> the program itself.<div class="lit_links"><a href="https://www.thefreelibrary.com/O%27Reilly-a0157592160">O'Reilly</a></div></div><div data-periodicals="0"><a style="margin-top:12px;float:right" rel="nofollow" href="https://www.thefreelibrary.com/_/search/Search.aspx?By=0&amp;SearchBy=0&amp;q=customize"><b>More results ►</b></a></div>
+          </div>
+        </div>
+        <br>
+        <div class="block width34">
+          <div class="heading-block">
+            <strong class="title">Dictionary browser</strong>
+            <a href="//www.thefreedictionary.com/_/help/help3.htm#326" class="link">?</a>
+          </div>
+          <div class="list-holder height240">
+            <ul><li>▲</li><li><a href="custom+car">custom car</a></li><li><a href="custom+house">custom house</a></li><li><a href="Custom+of+merchants">Custom of merchants</a></li><li><a href="customable">customable</a></li><li><a href="Customableness">Customableness</a></li><li><a href="Customably">Customably</a></li><li><a href="customarily">customarily</a></li><li><a href="customariness">customariness</a></li><li><a href="customary">customary</a></li><li><a href="custom-build">custom-build</a></li><li><a href="custom-built">custom-built</a></li><li><a href="customed">customed</a></li><li><a href="customer">customer</a></li><li><a href="customer+agent">customer agent</a></li><li><a href="customer+profile">customer profile</a></li><li><a href="customer+relationship+management">customer relationship management</a></li><li><a href="customer+ship">customer ship</a></li><li><a href="customer+wait+time">customer wait time</a></li><li><a href="customer-facing">customer-facing</a></li><li><a href="customer%27s+broker">customer's broker</a></li><li><a href="customer%27s+man">customer's man</a></li><li><a href="custom-fitted">custom-fitted</a></li><li><a href="customhouse">customhouse</a></li><li><a href="Customhouse+broker">Customhouse broker</a></li><li><a href="customise">customise</a></li><li class="current">customize</li><li><a href="customized">customized</a></li><li><a href="customizer">customizer</a></li><li><a href="custom-made">custom-made</a></li><li><a href="custom-make">custom-make</a></li><li><a href="customs">customs</a></li><li><a href="Customs+%26+immigration">Customs &amp; immigration</a></li><li><a href="Customs+and+Excise">Customs and Excise</a></li><li><a href="Customs+and+passport+control">Customs and passport control</a></li><li><a href="customs+bond">customs bond</a></li><li><a href="Customs+Bureau">Customs Bureau</a></li><li><a href="customs+control">customs control</a></li><li><a href="customs+duty">customs duty</a></li><li><a href="customs+house">customs house</a></li><li><a href="customs+officer">customs officer</a></li><li><a href="Customs+Over-The-Horizon+Enforcement+Network">Customs Over-The-Horizon Enforcement Network</a></li><li><a href="Customs+Service">Customs Service</a></li><li><a href="customs+union">customs union</a></li><li><a href="customshouse">customshouse</a></li><li><a href="custom-tailor">custom-tailor</a></li><li><a href="custos">custos</a></li><li><a href="Custos+rotulorum">Custos rotulorum</a></li><li><a href="custrel">custrel</a></li><li><a href="custumal">custumal</a></li><li><a href="custumary">custumary</a></li><li><a href="cusum">cusum</a></li><li>▼</li></ul>
+          </div>
+        </div>
+
+        <div class="block width61">
+          <div class="heading-block">
+            <strong class="title">Full browser</strong>
+            <a href="//www.thefreedictionary.com/_/help/help3.htm#327" class="link">?</a>
+          </div>
+          <div class="list-holder height240">
+            <ul><li>▲</li><li><a class="tab2048" href="//www.freethesaurus.com/Customisation">Customisation</a></li>
+              <li><a class="tab1" href="//www.thefreedictionary.com/Customisation">Customisation</a></li>
+              <li><a class="tab2048" href="//www.freethesaurus.com/customise">customise</a></li>
+              <li><a class="tab1" href="//www.thefreedictionary.com/customise">customise</a></li>
+              <li><a class="tab2048" href="//www.freethesaurus.com/customised">customised</a></li>
+              <li><a class="tab1" href="//www.thefreedictionary.com/customised">customised</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customised+Personal+Training+Programmes">Customised Personal Training Programmes</a></li>
+              <li><a class="tab4" href="//medical-dictionary.thefreedictionary.com/customised+therapy">customised therapy</a></li>
+              <li><a class="tab1" href="//www.thefreedictionary.com/customiser">customiser</a></li>
+              <li><a class="tab2048" href="//www.freethesaurus.com/customises">customises</a></li>
+              <li><a class="tab1" href="//www.thefreedictionary.com/customises">customises</a></li>
+              <li><a class="tab2048" href="//www.freethesaurus.com/customising">customising</a></li>
+              <li><a class="tab1" href="//www.thefreedictionary.com/customising">customising</a></li>
+              <li><a class="tab8" href="//encyclopedia2.thefreedictionary.com/customizability">customizability</a></li>
+              <li><a class="tab2048" href="//www.freethesaurus.com/customizable">customizable</a></li>
+              <li><a class="tab1" href="//www.thefreedictionary.com/customizable">customizable</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customizable+Auto-negotiation+Advertisements">Customizable Auto-negotiation Advertisements</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customizable+card+game">Customizable card game</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customizable+Control+Processor">Customizable Control Processor</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customizable+Electronic+Laboratory+Online">Customizable Electronic Laboratory Online</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customizable+Link+Budget+Tool">Customizable Link Budget Tool</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customizable+Long+Instruction+Word">Customizable Long Instruction Word</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customizable+Unified+Search+Index+via+Radio+Buttons">Customizable Unified Search Index via Radio Buttons</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customizable+Utilitarian+RSS">Customizable Utilitarian RSS</a></li>
+              <li><a class="tab8" href="//encyclopedia2.thefreedictionary.com/customization">customization</a></li>
+              <li><a class="tab256" href="//financial-dictionary.thefreedictionary.com/customization">customization</a></li>
+              <li><a class="tab2048" href="//www.freethesaurus.com/customization">customization</a></li>
+              <li><a class="tab1" href="//www.thefreedictionary.com/customization">customization</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customization+Input+File">Customization Input File</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customization+Metadata+Manager">Customization Metadata Manager</a></li>
+              <li class="current"><span class="tab1">customize</span></li><li><a class="tab32" href="//acronyms.thefreedictionary.com/Customize+Look+and+Feel">Customize Look and Feel</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customize+Playstation+Portable">Customize Playstation Portable</a></li>
+              <li><a class="tab1" href="customized">customized</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customized+Application+for+Mobile+Networks+Enhanced+Logic">Customized Application for Mobile Networks Enhanced Logic</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customized+Applications+for+Mobile+Network+Enhanced+Logic">Customized Applications for Mobile Network Enhanced Logic</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customized+Aspheric+Treatment+Zone">Customized Aspheric Treatment Zone</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customized+Attribute+Object+Class">Customized Attribute Object Class</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customized+Auto+Credit+Services%2c+Inc.">Customized Auto Credit Services, Inc.</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customized+Auto+Registration+System">Customized Auto Registration System</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customized+Basic+Input+Output+System">Customized Basic Input Output System</a></li>
+              <li><a class="tab256" href="//financial-dictionary.thefreedictionary.com/Customized+Benchmark">Customized Benchmark</a></li>
+              <li><a class="tab256" href="//financial-dictionary.thefreedictionary.com/Customized+benchmarks">Customized benchmarks</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customized+Billing+Systems+Development">Customized Billing Systems Development</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customized+Business+%26+Technical+Information">Customized Business &amp; Technical Information</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customized+Business+and+Industry+Training+Services">Customized Business and Industry Training Services</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customized+Community+Transportation">Customized Community Transportation</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customized+Computer+Accounting+Systems">Customized Computer Accounting Systems</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customized+Computer+Software+Systems">Customized Computer Software Systems</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customized+Digital+Line+Equipment">Customized Digital Line Equipment</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customized+Education+Kit">Customized Education Kit</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customized+Fund+Investment+Group">Customized Fund Investment Group</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customized+High+Fat+Diet">Customized High Fat Diet</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customized+High+Protein+Diet">Customized High Protein Diet</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customized+Http">Customized Http</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customized+Information+System">Customized Information System</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customized+Installation+Package">Customized Installation Package</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customized+Job+Skills+Training">Customized Job Skills Training</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customized+Job+Training">Customized Job Training</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customized+Language+Skills+Training">Customized Language Skills Training</a></li>
+              <li><a class="tab32" href="//acronyms.thefreedictionary.com/Customized+Large+User+Bill">Customized Large User Bill</a></li>
+              <li>▼</li></ul>
+
+          </div>
+        </div>
+
+      </div>
+      <div class="ut" id="ut6"></div>
+
+      <div id="fixedBlock" class="fixed-block sticky">
+        <div class="box">
+          <ul class="social-networks style02">
+            <li class="facebook"><a onclick="social.facebook()">Facebook Share</a></li>
+            <li class="twitter"><a onclick="social.twitter(0)">Twitter</a></li>
+          </ul>
+          <a onclick="location='/_/cite.aspx?url='+encodeURIComponent(nav.loc)+'&amp;word='+encodeURIComponent(info.word)+'&amp;sources='+sources" class="i" style="width:42px;height:22px;background-position:0 -37px;margin:5px 0 15px 0;cursor:pointer">CITE</a>
+        </div>
+        <div class="open-box">
+          <div class="holder">
+            <strong class="title">Site:</strong>
+            <span class="title">Follow:</span>
+            <ul class="social-networks">
+              <li class="facebook"><a title="Follow on Facebook" href="https://www.facebook.com/pages/TheFreeDictionary/340660446629">Facebook</a></li>
+              <li class="twitter"><a title="Follow on Twitter" href="https://twitter.com/farlex">Twitter</a></li>
+              <li class="rss"><a title="Follow with RSS" href="http://www.thefreedictionary.com/_/WoD/rss.aspx">Rss</a></li>
+              <li class="mail-us"><a title="Daily Newsletter" href="//www.thefreedictionary.com/Word-of-the-Day.htm">Mail</a></li>
+            </ul>
+            <span class="title">Share:</span>
+            <ul class="social-networks">
+              <li class="facebook"><a title="Share on Facebook" onclick="social.facebook(1)">Facebook</a></li>
+              <li class="twitter"><a title="Share on Twitter" onclick="social.twitter(1)">Twitter</a></li>
+              <li class="linkedin"><a title="Share on LinkedIn" onclick="social.linkedin()">LinkedIn</a></li>
+              <li class="mail"><a title="E-mail" onclick="social.email()">Mail</a></li>
+            </ul>
+          </div>
+        </div>
+        <a class="block-opener" onclick="showPopup(event,'fixedBlock','open-close-active')">Open / Close</a>
+      </div>
+
+    </main>
+
+    <div id="footer">
+      <aside class="footer-top">
+        <div class="heading">
+          <strong class="title">More from </strong><strong class="i logo footer-logo"><a href="/">Dictionary, Thesaurus, and Translations</a></strong>
+        </div>
+        <div class="footer-block mobile-hidden">
+          <strong class="title">Mobile Apps</strong>
+          <ul class="logos-list">
+            <li class="apple"><a title="iPhone/iPad app" class="i" href="http://up.thefreedictionary.com/trc.ashx?target=iOSFREE&amp;sender=farlex&amp;info=download">Apple</a></li>
+            <li class="android"><a title="Android app" class="i" href="http://up.thefreedictionary.com/trc.ashx?target=android-web-googleplay-free&amp;sender=farlex&amp;info=download">Android</a></li>
+            <li class="kindle"><a title="Kindle app" class="i" href="http://up.thefreedictionary.com/trc.ashx?target=android-web-amazon-free&amp;sender=farlex&amp;info=download">Kindle</a></li>
+            <li class="windows"><a title="Windows app" class="i" href="http://up.thefreedictionary.com/trc.ashx?target=w8&amp;sender=farlex&amp;info=download">Windows</a></li>
+            <li class="winphone"><a title="Windows phone app" class="i" href="http://up.thefreedictionary.com/trc.ashx?target=winphone&amp;sender=farlex&amp;info=download">Windows Phone</a></li>
+          </ul>
+        </div>
+        <div class="footer-block">
+          <strong class="title">Free Tools</strong>
+          <div class="holder">
+            <div class="holder-list">
+              <strong class="list-title">For surfers:</strong>
+              <ul class="links-list">
+                <li><a href="//www.thefreedictionary.com/download.htm">Free toolbar &amp; extensions</a></li>
+                <li><a href="//www.thefreedictionary.com/Word-of-the-Day.htm">Word of the Day</a></li>
+                <script>document.write(bm)</script>
+                <li><a href="//www.thefreedictionary.com/help.htm">Help</a></li>
+              </ul>
+            </div>
+            <div class="holder-list">
+              <strong class="list-title">For webmasters:</strong>
+              <ul class="links-list">
+                <li><a href="https://www.thefreedictionary.com/lookup.htm#sitecontent">Free content</a></li>
+                <li><a href="https://www.thefreedictionary.com/lookup.htm#link">Linking</a></li>
+                <li><a href="https://www.thefreedictionary.com/lookup.htm#searchbox">Lookup box</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </aside>
+      <footer class="footer-bottom">
+        <div class="nav-holder">
+          <ul class="footer-nav">
+            <li style="display:none" id="userConsentPlaceholder"></li>
+            <li><a href="//www.thefreedictionary.com/about.htm">Terms of Use</a></li>
+            <li><a href="//www.thefreedictionary.com/privacy-policy.htm">Privacy policy</a></li>
+            <li><a onclick="social.feedback()">Feedback</a></li>
+            <li><a href="//www.thefreedictionary.com/advertise-with-us.htm">Advertise with Us</a></li>
+          </ul>
+          <strong class="copyright">Copyright © 2003-2021 <a href="http://www.farlex.com">Farlex, Inc</a></strong>
+        </div>
+        <strong class="title">Disclaimer</strong>
+        <p>All content on this website, including dictionary, thesaurus, literature, geography, and other reference data is for informational purposes only. This information should not be considered complete, up to date, and is not intended to be used in place of a visit, consultation, or advice of a legal, medical, or any other professional.</p>
+      </footer>
+    </div>
+  </div></div>
+</div>
+<div class="afs_ads">&nbsp;</div><div class="TopBannerAd">&nbsp;</div>
+<script src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script src="//img.tfd.com/ads.js"></script>
+
+<script>if(window.lib&&window.lib.delayedFunctions)window.lib.delayedExec();window.completed=1;
+
+	function warn(){if(window.noCookieConsent) return;var e = document.createElement('div');e.innerHTML = "<div style='padding:10px 10px;font-size:1.3rem;color:#777'><h1 style='font-size:1.8rem;color:#2484c6'>Thank you for using The Free Dictionary!</h1><br> To stay free, we rely on revenue from ads. If you'd like to experience the site without ads, please consider supporting us by purchasing our <a href='https://secure.thefreedictionary.com/premium/subscribe'>premium ad-free subscription</a>.</div>";
+		var m=ById('header');m.parentElement.insertBefore(e, m);function d(l,i,w){var a=document.createElement('section'),w=ById(w);if(!w) return;a.innerHTML='<div><div><a rel=nofollow href="'+l+'"><img src="//img.tfd.com/wn/'+i+'"></a></div></div>';w.parentElement.insertBefore(a, w);w.style.display='none'}
+		d(abu+'a', 'dvpjwukbtwqxzxhzsoqjkbqzlydger79',info.a+1);d(abu+'b','dvpjwukbtwqxzxhzsoqjkbqzlydger32',info.a+2);d(abu+'b','dvpjwukbtwqxzxhzsoqjkbqzlydger32',info.a+3);window.warn=null
+	};
+	if(!/premium/.test(document.cookie)&&document.querySelectorAll('div.' + info.a).length&&!/bot|crawl|spider|http/i.test(navigator.userAgent))window.adc=setTimeout(warn,5000);
+	setTimeout(function(){var a=ById(info.a+'1');if(a&&a.scrollHeight==0&&window.warn)warn()},10000);
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create','UA-5484856-1',{'sampleRate':1});ga('send','pageview');
+</script>
+
+
+<script>mendeleyWebImporter = {
+  downloadPdfs(t,e) { return this._call('downloadPdfs', [t,e]); },
+  open() { return this._call('open', []); },
+  setLoginToken(t) { return this._call('setLoginToken', [t]); },
+  _call(methodName, methodArgs) {
+    const id = Math.random();
+    window.postMessage({ id, token: '0.816417110011971', methodName, methodArgs }, 'https://www.thefreedictionary.com');
+    return new Promise(resolve => {
+      const listener = window.addEventListener('message', event => {
+        const data = event.data;
+        if (typeof data !== 'object' || !('result' in data) || data.id !== id) return;
+        window.removeEventListener('message', listener);
+        resolve(data.result);
+      });
+    });
+  }
+};</script></body>
+</html>
