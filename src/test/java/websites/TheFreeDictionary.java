@@ -12,9 +12,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
@@ -266,6 +265,94 @@ public class TheFreeDictionary {
         driver.findElement(By.cssSelector("[type='submit']")).click();
         assertTrue(driver.findElement(By.cssSelector("[name='googleSearchFrame']")).isDisplayed());
         assertTrue(driver.findElement(By.cssSelector("[name='googleSearchFrame']")).getAttribute("src").contains("Clogged"));
-
     }
+
+    /**
+     * SK_10
+     * Tamar
+     * HTML refers to SK_1, SK_10
+     */
+    @Test
+    public void SK_10_Tamar() {
+        driver.get("https://www.thefreedictionary.com/");
+        assertTrue(driver.findElement(By.cssSelector(".logo > a")).getText().contains("The Free Dictionary"));
+        driver.findElement(By.xpath("//a[text()='Medical Dictionary']")).click();
+        assertEquals("Medical Dictionary", driver.findElement(By.tagName("h1")).getText());
+        driver.findElement(By.cssSelector("[type='search']")).sendKeys("anasthesia");
+        driver.findElement(By.cssSelector("[type='search']")).submit();
+        List<WebElement> definitions = driver.findElements(By.className("runseg"));
+        assertEquals("1. lack of feeling or sensation.", definitions.get(0).getText());
+        assertTrue(definitions.get(1).getText().contains(
+                "2. artificially induced loss of ability to feel pain, " +
+                        "done to permit the performance of surgery or other painful procedures. " +
+                        "It may be produced by a number of agents (anesthetics) capable of bringing about partial " +
+                        "or complete loss of sensation.(See accompanying table.)"));
+        assertEquals("1. Total or partial loss of sensation, especially tactile sensibility, induced by disease," +
+                        " injury, acupuncture, or an anesthetic, such as chloroform or nitrous oxide.",
+                driver.findElement(By.cssSelector("[data-src='hm_med'] .ds-list")).getText());
+    }
+
+    /**
+     * SK_11
+     * Tamar
+     * HTML refers to SK_1, SK_11
+     */
+    @Test
+    public void SK_11_Tamar() {
+        driver.get("https://www.thefreedictionary.com/");
+        assertTrue(driver.findElement(By.cssSelector(".logo > a")).getText().contains("The Free Dictionary"));
+        driver.findElement(By.id("f1_tfd")).click();
+        driver.findElement(By.id("f1_tfd_text")).click();
+        driver.findElement(By.cssSelector("[type='search']")).sendKeys("Pakistan");
+        driver.findElement(By.cssSelector("[type='submit']")).click();
+        assertEquals("Words with Pakistan in definition:", driver.findElement(By.tagName("h2")).getText());
+    }
+
+    /**
+     * SK_12
+     * Tamar
+     * HTML refers to SK_1
+     */
+    @Test
+    public void SK_12_Tamar() {
+        driver.get("https://www.thefreedictionary.com/");
+        assertTrue(driver.findElement(By.cssSelector(".logo > a")).getText().contains("The Free Dictionary"));
+        String text = driver.findElement(By.xpath("//*[@class='hpCont']/preceding-sibling::div[1]")).getText();
+
+        LocalDate currentDate = LocalDate.now();
+        String month = currentDate.getMonth().toString().toLowerCase();
+        String monthFormat = month.substring(0, 1).toUpperCase() + month.substring(1);
+        String dayOfTheWeek = currentDate.getDayOfWeek().toString().toLowerCase(Locale.ROOT);
+        String dOTWFormat = dayOfTheWeek.substring(0, 1).toUpperCase() + dayOfTheWeek.substring(1);
+        String todayDate = dOTWFormat + ", " + monthFormat + " " + currentDate.getDayOfMonth() + ", " + currentDate.getYear();
+        assertTrue(text.contains(todayDate));
+    }
+
+    /**
+     * SK_13
+     * Tamar
+     * HTML refers to SK_1
+     */
+    @Test
+    public void SK_13_Tamar() {
+        driver.get("https://www.thefreedictionary.com/");
+        assertTrue(driver.findElement(By.cssSelector(".logo > a")).getText().contains("The Free Dictionary"));
+        Actions actions = new Actions(driver);
+        List<String> textSections = new ArrayList<>(Arrays.asList("Customize Your Homepage", "English Language Forum", "Word of the Day"));
+        for (int i = 0; i < textSections.size(); i++) {
+            element = driver.findElement(By.xpath("//h2[text()='" + textSections.get(i) + "']"));
+            assertTrue(element.isDisplayed());
+            actions.moveToElement(element).perform();
+            assertEquals("move", element.getCssValue("cursor"));
+            By dragContainerLocator = By.id("DragContainer");
+            String originalDragValue = driver.findElement(dragContainerLocator).getCssValue("top") + " " +
+                    driver.findElement(dragContainerLocator).getCssValue("left");
+            actions.clickAndHold(element).moveToElement(driver.findElement(By.xpath("//h2[text()='" +
+                    textSections.get((textSections.size() - i) % (textSections.size()-1)) + "']"))).release().perform();
+            String afterDragValue = driver.findElement(dragContainerLocator).getCssValue("top") + " " +
+                    driver.findElement(dragContainerLocator).getCssValue("left");
+            assertNotEquals(originalDragValue, afterDragValue);
+        }
+    }
+
 }
