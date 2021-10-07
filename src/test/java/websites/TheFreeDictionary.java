@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -348,11 +349,115 @@ public class TheFreeDictionary {
             String originalDragValue = driver.findElement(dragContainerLocator).getCssValue("top") + " " +
                     driver.findElement(dragContainerLocator).getCssValue("left");
             actions.clickAndHold(element).moveToElement(driver.findElement(By.xpath("//h2[text()='" +
-                    textSections.get((textSections.size() - i) % (textSections.size()-1)) + "']"))).release().perform();
+                    textSections.get((textSections.size() - i) % (textSections.size() - 1)) + "']"))).release().perform();
             String afterDragValue = driver.findElement(dragContainerLocator).getCssValue("top") + " " +
                     driver.findElement(dragContainerLocator).getCssValue("left");
             assertNotEquals(originalDragValue, afterDragValue);
         }
     }
 
+    /**
+     * SK_14
+     * Tamar
+     * HTML refers to SK_1, SK_14
+     */
+    @Test
+    public void SK_14_Tamar() {
+        driver.get("https://www.thefreedictionary.com/");
+        assertTrue(driver.findElement(By.cssSelector(".logo > a")).getText().contains("The Free Dictionary"));
+        driver.findElement(By.id("f1_tfd")).click();
+        driver.findElement(By.id("f1_tfd_end")).click();
+        driver.findElement(By.cssSelector("[type='search']")).sendKeys("Pakistan");
+        driver.findElement(By.cssSelector("[type='submit']")).click();
+        assertEquals("Words ending with Pakistan:", driver.findElement(By.tagName("h2")).getText());
+        List<WebElement> suggestionElements = driver.findElements(By.cssSelector(".suggestions a"));
+        for (WebElement element : suggestionElements) {
+            assertTrue(element.getText().endsWith("Pakistan"));
+        }
+    }
+
+    /**
+     * SK_15
+     * Tamar
+     * HTML refers to SK_1, SK_14
+     */
+    @Test
+    public void SK_15_Tamar() {
+        driver.get("https://www.thefreedictionary.com/");
+        assertTrue(driver.findElement(By.cssSelector(".logo > a")).getText().contains("The Free Dictionary"));
+        driver.findElement(By.id("f1_tfd")).click();
+        driver.findElement(By.id("f1_tfd_end")).click();
+        driver.findElement(By.cssSelector("[type='search']")).sendKeys("Pakistan");
+        driver.findElement(By.cssSelector("[type='submit']")).click();
+        assertEquals("Words ending with Pakistan:", driver.findElement(By.tagName("h2")).getText());
+        driver.findElement(By.cssSelector(".logo > a")).click();
+        assertTrue(driver.findElement(By.xpath("//h2[text()='Customize Your Homepage']")).isDisplayed());
+    }
+
+    /**
+     * SK_16
+     * Tamar
+     * HTML refers to SK_1, SK_16
+     */
+    @Test
+    public void SK_16_Tamar() {
+        driver.get("https://www.thefreedictionary.com/");
+        assertTrue(driver.findElement(By.cssSelector(".logo > a")).getText().contains("The Free Dictionary"));
+        driver.findElement(By.xpath("//a[text()='Idioms']")).click();
+        assertEquals("Idiom of the Day", driver.findElement(By.tagName("h2")).getText());
+        element = driver.findElement(By.cssSelector(".videoWrap iframe"));
+        assertTrue(element.getAttribute("src").contains("youtube"));
+        driver.switchTo().frame(element);
+        driver.findElement(By.cssSelector(".ytp-large-play-button")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(By.className("ytp-time-current"), "0:00")));
+    }
+
+    /**
+     * SK_17
+     * Tamar
+     * HTML refers to SK_1, SK_17
+     */
+    @Test
+    public void SK_17_Tamar() {
+        driver.get("https://www.thefreedictionary.com/");
+        assertTrue(driver.findElement(By.cssSelector(".logo > a")).getText().contains("The Free Dictionary"));
+        driver.findElement(By.cssSelector("[type='search']")).sendKeys("=");
+        driver.findElement(By.cssSelector("[type='search']")).submit();
+        assertEquals("=", driver.findElement(By.tagName("h1")).getText());
+        assertTrue(driver.findElement(By.className("content-holder")).getText().contains("Also found in: Dictionary.\n=\nequals"));
+    }
+
+    /**
+     * SK_18
+     * Tamar
+     * HTML refers to SK_1, SK_18
+     */
+    @Test
+    public void SK_18_Tamar() {
+        driver.get("https://www.thefreedictionary.com/");
+        assertTrue(driver.findElement(By.cssSelector(".logo > a")).getText().contains("The Free Dictionary"));
+        driver.findElement(By.cssSelector("[type='search']")).sendKeys("pool");
+        driver.findElement(By.cssSelector("[type='submit']")).click();
+        assertEquals("pool", driver.findElement(By.tagName("h1")).getText());
+        driver.findElement(By.cssSelector("[title='pool in Idioms']")).click();
+        assertTrue(driver.findElement(By.xpath("//*[text()='Idioms']/../..")).getAttribute("class").contains("active"));
+        assertEquals("pool", driver.findElement(By.tagName("h1")).getText());
+    }
+
+    /**
+     * SK_19
+     * Tamar
+     * HTML refers to SK_1
+     */
+    @Test
+    public void SK_19_Tamar() {
+        WebDriverManager.edgedriver().setup();
+        EdgeDriver driver2 = new EdgeDriver();
+        driver2.manage().window().maximize();
+        driver2.get("https://www.thefreedictionary.com/");
+        assertTrue(driver2.findElement(By.cssSelector(".logo > a")).getText().contains("The Free Dictionary"));
+        assertEquals(25, driver2.findElements(By.cssSelector("#Content_CA_WI_0_DataZone a")).size());
+        driver2.quit();
+    }
 }
