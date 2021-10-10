@@ -2,21 +2,14 @@ package websites;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.awt.*;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.UnsupportedFlavorException;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -58,6 +51,7 @@ public class Thesaurus {
             assertTrue(driver.findElement(By.cssSelector("[name='" + name + "']")).isDisplayed());
         }
     }
+
     /**
      * SK_2
      * Tamar
@@ -74,6 +68,44 @@ public class Thesaurus {
         LocalDate currentDate = LocalDate.now();
         String expectedDate = currentDate.format(DateTimeFormatter.ofPattern("MMM dd, yyyy", Locale.ENGLISH)).toUpperCase();
         assertEquals(expectedDate, date);
+    }
+
+    /**
+     * SK_3
+     * Tamar
+     * HTML Refers to SK_1
+     */
+    @Test
+    public void SK_3_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//h2[text()='BROWSE THESAURUS.COM']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        List<WebElement> elementsList = element.findElements(By.xpath(".//ancestor::section/descendant::ul[@data-linkid]/li/a"));
+        for (int i = 0; i < elementsList.size(); i++) {
+            String expected = (char) (i + 64) + String.valueOf((char) (i + 96));
+            if (i == 0)
+                expected = "#";
+            assertEquals(expected, elementsList.get(i).getText());
+        }
+    }
+
+    /**
+     * SK_4
+     * Tamar
+     * HTML Refers to SK_1, SK_4
+     */
+    @Test
+    public void SK_4_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//h2[text()='BROWSE THESAURUS.COM']/ancestor::section"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        element.findElement(By.xpath(".//descendant::a[text()='#']")).click();
+        assertTrue(driver.findElement(By.tagName("h1")).getText().contains("NUMERALS & DIACRITICS"));
+        driver.findElement(By.xpath("//a[text()='0']")).click();
+        assertEquals("0", driver.findElement(By.tagName("h1")).getText());
+        assertEquals("0", driver.findElement(By.cssSelector("[type='search']")).getAttribute("value"));
     }
 
     /**
