@@ -10,7 +10,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import javax.swing.text.html.HTML;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -318,6 +317,228 @@ public class Thesaurus {
                 wait.until(ExpectedConditions.presenceOfElementLocated(
                         By.cssSelector("[data-testid='word-grid-section-heading']"))).getText());
         assertTrue(driver.findElement(By.cssSelector("#meanings [data-testid='word-grid-container'] li")).isDisplayed());
+    }
+
+    /**
+     * SK_15
+     * Tamar
+     * HTML Refers to SK_1, SK_14
+     */
+    @Test
+    public void SK_15_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        driver.findElement(By.id("searchbar_input")).sendKeys("acrobat");
+        driver.findElement(By.id("search-submit")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        assertEquals("SYNONYMS FOR acrobat",
+                wait.until(ExpectedConditions.presenceOfElementLocated(
+                        By.cssSelector("[data-testid='word-grid-section-heading']"))).getText());
+        assertTrue(driver.findElement(By.cssSelector("#meanings [data-testid='word-grid-container'] li")).isDisplayed());
+        element = driver.findElement(By.cssSelector("[aria-label='play pronunciation']"));
+        element.click();
+        assertTrue(element.findElement(By.xpath("./..")).isSelected());
+    }
+
+    /**
+     * SK_16
+     * Tamar
+     * HTML Refers to SK_1, SK_14
+     */
+    @Test
+    public void SK_16_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        driver.findElement(By.id("searchbar_input")).sendKeys("acrobat");
+        driver.findElement(By.id("search-submit")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        assertEquals("SYNONYMS FOR acrobat",
+                wait.until(ExpectedConditions.presenceOfElementLocated(
+                        By.cssSelector("[data-testid='word-grid-section-heading']"))).getText());
+        assertTrue(driver.findElement(By.cssSelector("#meanings [data-testid='word-grid-container'] li")).isDisplayed());
+        driver.findElement(By.cssSelector("[aria-label='save word']")).click();
+        assertTrue(driver.findElement(By.cssSelector("[aria-label='sign up']")).isDisplayed());
+    }
+
+    /**
+     * SK_17
+     * Tamar
+     * HTML Refers to SK_1, SK_17
+     */
+    @Test
+    public void SK_17_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.id("active-synonyms"));
+        element.click();
+        element.findElement(By.xpath("//*[text()='DEFINITIONS']")).click();
+        assertTrue(driver.findElement(By.id("active-definitions")).isDisplayed());
+        driver.findElement(By.id("searchbar_input")).sendKeys("acrobat");
+        driver.findElement(By.id("search-submit")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.attributeContains(By.id("dictionary-nav-tab"), "class", "header-tab-active"));
+        assertEquals("a skilled performer of gymnastic feats, as walking on a tightrope or swinging on a trapeze.",
+                driver.findElement(By.cssSelector("[value='1']")).getText());
+    }
+
+    /**
+     * SK_18
+     * Tamar
+     * HTML Refers to SK_1, SK_14, SK_17
+     */
+    @Test
+    public void SK_18_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.id("active-synonyms"));
+        element.click();
+        element.findElement(By.xpath("//*[text()='DEFINITIONS']")).click();
+        assertTrue(driver.findElement(By.id("active-definitions")).isDisplayed());
+        driver.findElement(By.id("searchbar_input")).sendKeys("acrobat");
+        driver.findElement(By.id("search-submit")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.attributeContains(By.id("dictionary-nav-tab"), "class", "header-tab-active"));
+        assertEquals("a skilled performer of gymnastic feats, as walking on a tightrope or swinging on a trapeze.",
+                driver.findElement(By.cssSelector("[value='1']")).getText());
+
+        driver.findElement(By.xpath("//*[contains(text(), 'See')]")).click();
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        wait.until(ExpectedConditions.attributeContains(By.id("thesaurus-nav-tab"), "class", "header-tab-active"));
+        List<WebElement> synonymsElements = driver.findElements(By.cssSelector("#meanings [data-testid='word-grid-container'] a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("clown", "dancer", "gymnast", "performer", "tumbler"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : synonymsElements) {
+            if (element.getCssValue("background-color").equals("rgba(244, 71, 37, 1)"))
+                actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+    }
+
+    /**
+     * SK_19
+     * Tamar
+     * HTML Refers to SK_1, SK_19
+     */
+    @Test
+    public void SK_19_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.tagName("footer"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        element.findElement(By.id("facebook")).click();
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+
+        WebDriverWait wait = new WebDriverWait(driver, 100);
+        wait.until(ExpectedConditions.attributeToBe(By.tagName("html"), "id", "facebook"));
+        assertEquals("Thesaurus.com", driver.findElement(By.tagName("h1")).getText());
+        assertEquals("@thesauruscom", driver.findElement(By.cssSelector("a[data-hover]")).getText());
+    }
+
+    /**
+     * SK_20
+     * Tamar
+     * HTML Refers to SK_1, SK_20
+     */
+    @Test
+    public void SK_20_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.tagName("footer"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        element.findElement(By.id("twitter")).click();
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+
+        WebDriverWait wait = new WebDriverWait(driver, 100);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(text(), 'Twitter, Inc.')]")));
+        assertEquals("Thesaurus.com\n@thesauruscom",
+                driver.findElement(By.cssSelector("[data-testid='UserName']")).getText());
+    }
+
+    /**
+     * SK_21
+     * Tamar
+     * HTML Refers to SK_1, SK_21
+     */
+    @Test
+    public void SK_21_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.tagName("footer"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        element.findElement(By.id("instagram")).click();
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+
+        WebDriverWait wait = new WebDriverWait(driver, 100);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//img[@alt='Instagram']")));
+        assertEquals("Thesaurus.com", driver.findElement(By.tagName("h1")).getText());
+    }
+
+    /**
+     * SK_22
+     * Tamar
+     * HTML Refers to SK_1, SK_22
+     */
+    @Test
+    public void SK_22_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.tagName("footer"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        element.findElement(By.id("pinterest")).click();
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+
+        WebDriverWait wait = new WebDriverWait(driver, 100);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h2"), "Pinterest"));
+        assertEquals("Thesaurus.com", driver.findElement(By.tagName("h1")).getText());
+    }
+
+    /**
+     * SK_23
+     * Tamar
+     * HTML Refers to SK_23
+     */
+    @Test
+    public void SK_23_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.tagName("footer"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        WebElement inputElement = element.findElement(By.tagName("input"));
+        assertEquals("Enter your email", inputElement.getAttribute("aria-label"));
+        inputElement.sendKeys("testmanqa1@gmail.com");
+        assertEquals("Valid email address", driver.findElement(By.cssSelector("[opacity='1']")).getText());
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        actions.moveToElement(element.findElement(By.tagName("button"))).click().perform();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        assertEquals("You've been subscribed. New words are on the way!",
+                wait.until(ExpectedConditions.presenceOfNestedElementLocatedBy(element,
+                        By.xpath("//*[contains(text(), 'subscribed')]"))).getText());
+    }
+
+    /**
+     * SK_24
+     * Tamar
+     * HTML Refers to SK_23
+     */
+    @Test
+    public void SK_24_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.tagName("footer"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        WebElement inputElement = element.findElement(By.tagName("input"));
+        assertEquals("Enter your email", inputElement.getAttribute("aria-label"));
+        inputElement.sendKeys("abcd123");
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        actions.moveToElement(element.findElement(By.tagName("button"))).click().perform();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        assertEquals("Uh oh! We spotted an email error. Please re-enter!",
+                wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[opacity='1']"))).getText());
     }
 
     /**
