@@ -6,10 +6,16 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -320,26 +326,6 @@ public class Thesaurus {
     }
 
     /**
-     * SK_15
-     * Tamar
-     * HTML Refers to SK_1, SK_14
-     */
-    @Test
-    public void SK_15_Tamar() {
-        driver.get("https://www.thesaurus.com/");
-        driver.findElement(By.id("searchbar_input")).sendKeys("acrobat");
-        driver.findElement(By.id("search-submit")).click();
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        assertEquals("SYNONYMS FOR acrobat",
-                wait.until(ExpectedConditions.presenceOfElementLocated(
-                        By.cssSelector("[data-testid='word-grid-section-heading']"))).getText());
-        assertTrue(driver.findElement(By.cssSelector("#meanings [data-testid='word-grid-container'] li")).isDisplayed());
-        element = driver.findElement(By.cssSelector("[aria-label='play pronunciation']"));
-        element.click();
-        assertTrue(element.findElement(By.xpath("./..")).isSelected());
-    }
-
-    /**
      * SK_16
      * Tamar
      * HTML Refers to SK_1, SK_14
@@ -539,6 +525,233 @@ public class Thesaurus {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         assertEquals("Uh oh! We spotted an email error. Please re-enter!",
                 wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[opacity='1']"))).getText());
+    }
+
+    /**
+     * SK_25
+     * Tamar
+     * HTML Refers to SK_1, SK_25
+     */
+    @Test
+    public void SK_25_Tamar() {
+        WebDriverManager.edgedriver().setup();
+        EdgeDriver driver2 = new EdgeDriver();
+        driver2.manage().window().maximize();
+        driver2.get("https://www.thesaurus.com/");
+        WebDriverWait wait = new WebDriverWait(driver2, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[aria-label='Sign up for an account']"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[aria-label='sign up']")));
+        assertEquals("https://www.dictionary.com/sign-up?redirect=https://www.thesaurus.com/", driver2.getCurrentUrl());
+        driver2.findElement(By.cssSelector("[name='firstName']")).sendKeys("test");
+        driver2.findElement(By.cssSelector("[name='lastName']")).sendKeys("1");
+        driver2.findElement(By.cssSelector("[name='email']")).sendKeys("tamar.gur@outlook.co.il");
+        driver2.findElement(By.cssSelector("[name='password']")).sendKeys("Test123!");
+        driver2.findElement(By.cssSelector("[aria-label='sign up']")).click();
+        wait.until(ExpectedConditions.attributeContains(By.id("thesaurus-nav-tab"), "class", "header-tab-active"));
+        driver2.findElement(By.xpath("//*[@data-account-icon-signedin]/..")).click();
+        assertNotEquals("none", driver2.findElement(By.cssSelector("[data-access-menu]")).getCssValue("display"));
+        assertEquals("tamar.gur@outlook.co.il", driver2.findElement(By.cssSelector("[data-email-display]")).getText());
+        driver2.quit();
+    }
+
+    /**
+     * SK_26
+     * Tamar
+     * HTML Refers to SK_1, SK_26
+     */
+    @Test
+    public void SK_26_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[aria-label='Sign up for an account']"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[text()='Log In']"))).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h3"), "Welcome Back"));
+        driver.findElement(By.cssSelector("[name='email']")).sendKeys("tamar.gur@outlook.co.il");
+        driver.findElement(By.cssSelector("[name='password']")).sendKeys("Test123!");
+        driver.findElement(By.xpath("//button[text()='Log In']")).click();
+        wait.until(ExpectedConditions.attributeContains(By.id("thesaurus-nav-tab"), "class", "header-tab-active"));
+
+        driver.findElement(By.id("searchbar_input")).sendKeys("people");
+        driver.findElement(By.id("search-submit")).click();
+        assertEquals("SYNONYMS FOR people",
+                wait.until(ExpectedConditions.presenceOfElementLocated(
+                        By.cssSelector("[data-testid='word-grid-section-heading']"))).getText());
+        assertTrue(driver.findElement(By.cssSelector("#meanings [data-testid='word-grid-container'] li")).isDisplayed());
+
+        element = wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector("[aria-label='save word']"))));
+        element.click();
+        wait.until(ExpectedConditions.attributeToBe(element, "aria-label", "delete word"));
+        assertEquals("rgba(255, 182, 0, 1)", element.findElement(By.xpath("./*")).getCssValue("color"));
+        driver.findElement(By.xpath("//*[@data-account-icon-signedin]/..")).click();
+        driver.findElement(By.xpath("//*[@data-access-menu]//a[text()='Word Lists']")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='Favorites']"))).click();
+        assertTrue(driver.findElement(By.xpath("//*[@data-testid='word-wrapper']/*[text()='people']")).isDisplayed());
+    }
+
+    /**
+     * SK_27
+     * Tamar
+     * HTML Refers to SK_1, SK_26, SK_27
+     */
+    @Test
+    public void SK_27_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[aria-label='Sign up for an account']"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[text()='Log In']"))).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h3"), "Welcome Back"));
+        driver.findElement(By.cssSelector("[name='email']")).sendKeys("tamar.gur@outlook.co.il");
+        driver.findElement(By.cssSelector("[name='password']")).sendKeys("Test123!");
+        driver.findElement(By.xpath("//button[text()='Log In']")).click();
+        wait.until(ExpectedConditions.attributeContains(By.id("thesaurus-nav-tab"), "class", "header-tab-active"));
+
+        driver.findElement(By.id("searchbar_input")).sendKeys("acrobat");
+        driver.findElement(By.id("search-submit")).click();
+        assertEquals("SYNONYMS FOR acrobat",
+                wait.until(ExpectedConditions.presenceOfElementLocated(
+                        By.cssSelector("[data-testid='word-grid-section-heading']"))).getText());
+        assertTrue(driver.findElement(By.cssSelector("#meanings [data-testid='word-grid-container'] li")).isDisplayed());
+
+        element = wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.cssSelector("[aria-label='save word']"))));
+        element.click();
+        wait.until(ExpectedConditions.attributeToBe(element, "aria-label", "delete word"));
+        assertEquals("rgba(255, 182, 0, 1)", element.findElement(By.xpath("./*")).getCssValue("color"));
+        driver.findElement(By.xpath("//*[@data-account-icon-signedin]/..")).click();
+        driver.findElement(By.xpath("//*[@data-access-menu]//a[text()='Word Lists']")).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "My Lists"));
+        driver.findElement(By.xpath("//button[text()='New List']")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h3[text()='Create a new list']")));
+        driver.findElement(By.cssSelector("[name='listName']")).sendKeys("test");
+        driver.findElement(By.xpath("//*[text()='Select a Category']")).click();
+        driver.findElement(By.xpath("//*[text()='General']")).click();
+        driver.findElement(By.cssSelector("[name='listDescription']")).sendKeys("...");
+        Actions actions = new Actions(driver);
+        element = driver.findElements(By.cssSelector("input[type='checkbox']")).get(1);
+        actions.moveToElement(element).click(element).perform();
+        driver.findElement(By.cssSelector("[data-testid='CreateListCTA']")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='test']")));
+    }
+
+    /**
+     * SK_28
+     * Tamar
+     * HTML Refers to SK_1, SK_25, SK_28
+     */
+    @Test
+    public void SK_28_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[aria-label='Sign up for an account']"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[text()='Log In']"))).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h3"), "Welcome Back"));
+        driver.findElement(By.cssSelector("[name='email']")).sendKeys("tamar.gur@outlook.co.il");
+        driver.findElement(By.cssSelector("[name='password']")).sendKeys("Test123!");
+        driver.findElement(By.xpath("//button[text()='Log In']")).click();
+        wait.until(ExpectedConditions.attributeContains(By.id("thesaurus-nav-tab"), "class", "header-tab-active"));
+
+        driver.findElement(By.xpath("//*[@data-account-icon-signedin]/..")).click();
+        driver.findElement(By.xpath("//*[@data-access-menu]//a[text()='Word Lists']")).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "My Lists"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[aria-label='kebab menu']"))).click();
+        List<WebElement> menuButtonElements = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
+                By.cssSelector(".floating-nav-enter-done > button")));
+        List<String> expectedTitles = new ArrayList<>(
+                Arrays.asList("Launch Flashcards", "Take a Multiple Choice Quiz", "Take a Spelling Quiz",
+                        "Edit List Details", "Copy Link", "Delete List"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : menuButtonElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        menuButtonElements.get(3).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h3[text()='Edit list details']")));
+        driver.findElement(By.xpath("//*[@for='listCategory']/../*[@tabindex]")).click();
+        driver.findElement(By.xpath("//*[text()='Fun']")).click();
+        driver.findElement(By.xpath("//button[text()='Save Changes']")).click();
+    }
+
+    /**
+     * SK_29
+     * Tamar
+     * HTML Refers to SK_1, SK_25, SK_28
+     */
+    @Test
+    public void SK_29_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[aria-label='Sign up for an account']"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[text()='Log In']"))).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h3"), "Welcome Back"));
+        driver.findElement(By.cssSelector("[name='email']")).sendKeys("tamar.gur@outlook.co.il");
+        driver.findElement(By.cssSelector("[name='password']")).sendKeys("Test123!");
+        driver.findElement(By.xpath("//button[text()='Log In']")).click();
+        wait.until(ExpectedConditions.attributeContains(By.id("thesaurus-nav-tab"), "class", "header-tab-active"));
+
+        driver.findElement(By.xpath("//*[@data-account-icon-signedin]/..")).click();
+        driver.findElement(By.xpath("//*[@data-access-menu]//a[text()='Word Lists']")).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "My Lists"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[aria-label='kebab menu']"))).click();
+        List<WebElement> menuButtonElements = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
+                By.cssSelector(".floating-nav-enter-done > button")));
+        List<String> expectedTitles = new ArrayList<>(
+                Arrays.asList("Launch Flashcards", "Take a Multiple Choice Quiz", "Take a Spelling Quiz",
+                        "Edit List Details", "Copy Link", "Delete List"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : menuButtonElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        menuButtonElements.get(4).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='Link Copied!']")));
+        try {
+            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+            Object copiedData = clipboard.getData(DataFlavor.stringFlavor);
+            driver.get(copiedData.toString());
+            assertEquals("https://www.dictionary.com/learn/word-lists/general/JyYBLjenBKE", driver.getCurrentUrl());
+        } catch (IOException | UnsupportedFlavorException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * SK_30
+     * Tamar
+     * HTML Refers to SK_1, SK_25, SK_28, SK_30
+     */
+    @Test
+    public void SK_30_Tamar() throws InterruptedException {
+        driver.get("https://www.thesaurus.com/");
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[aria-label='Sign up for an account']"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[text()='Log In']"))).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h3"), "Welcome Back"));
+        driver.findElement(By.cssSelector("[name='email']")).sendKeys("tamar.gur@outlook.co.il");
+        driver.findElement(By.cssSelector("[name='password']")).sendKeys("Test123!");
+        driver.findElement(By.xpath("//button[text()='Log In']")).click();
+        wait.until(ExpectedConditions.attributeContains(By.id("thesaurus-nav-tab"), "class", "header-tab-active"));
+
+        driver.findElement(By.xpath("//*[@data-account-icon-signedin]/..")).click();
+        driver.findElement(By.xpath("//*[@data-access-menu]//a[text()='Word Lists']")).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "My Lists"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[aria-label='kebab menu']"))).click();
+        List<WebElement> menuButtonElements = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
+                By.cssSelector(".floating-nav-enter-done > button")));
+        List<String> expectedTitles = new ArrayList<>(
+                Arrays.asList("Launch Flashcards", "Take a Multiple Choice Quiz", "Take a Spelling Quiz",
+                        "Edit List Details", "Copy Link", "Delete List"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : menuButtonElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        menuButtonElements.get(5).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h3[text()='Delete List']")));
+        assertTrue(driver.findElement(By.xpath("//button[@type='submit' and text()='Keep List']")).isDisplayed());
+        element = driver.findElement(By.xpath("//button[@type='submit' and text()='Delete List']"));
+        assertTrue(element.isDisplayed());
+        element.click();
+        Thread.sleep(2000);
+        assertEquals(0, driver.findElements(By.xpath("//*[text()='test']")).size());
     }
 
     /**
