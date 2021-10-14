@@ -755,6 +755,151 @@ public class Thesaurus {
     }
 
     /**
+     * SK_31
+     * Tamar
+     * HTML Refers to SK_1, SK_25, SK_26, SK_31
+     */
+    @Test
+    public void SK_31_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[aria-label='Sign up for an account']"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[text()='Log In']"))).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h3"), "Welcome Back"));
+        driver.findElement(By.cssSelector("[name='email']")).sendKeys("tamar.gur@outlook.co.il");
+        driver.findElement(By.cssSelector("[name='password']")).sendKeys("Test123!");
+        driver.findElement(By.xpath("//button[text()='Log In']")).click();
+        wait.until(ExpectedConditions.attributeContains(By.id("thesaurus-nav-tab"), "class", "header-tab-active"));
+
+        driver.findElement(By.xpath("//*[@data-account-icon-signedin]/..")).click();
+        assertNotEquals("none", driver.findElement(By.cssSelector("[data-access-menu]")).getCssValue("display"));
+        List<WebElement> optionElements = driver.findElements(By.cssSelector("[data-access-menu] ul a"));
+        List<String> expectedTitles = new ArrayList<>(
+                Arrays.asList("Word Lists", "Account Settings", "Subscriptions", "Help Center"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : optionElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        assertEquals("Sign Out", driver.findElement(By.cssSelector("[data-access-menu] ul button")).getText());
+
+        optionElements.get(1).click();
+        driver.findElement(By.xpath("//*[@name='firstName']//following-sibling::button")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h3[text()='Update Your Name']")));
+        element = driver.findElement(By.cssSelector("[name='newFirstName']"));
+        assertTrue(element.isDisplayed());
+        element.sendKeys("Alwana");
+        element = driver.findElement(By.cssSelector("[name='newLastName']"));
+        assertTrue(element.isDisplayed());
+        element.sendKeys("1");
+        driver.findElement(By.xpath("//*[text()='Update your name']")).click();
+        assertEquals("Alwana", driver.findElement(By.cssSelector("[name='firstName']")).getAttribute("value"));
+    }
+
+    /**
+     * SK_32
+     * Tamar
+     * HTML Refers to SK_1, SK_32
+     */
+    @Test
+    public void SK_32_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        assertTrue(driver.findElement(By.id("active-synonyms")).isDisplayed());
+        driver.findElement(By.id("search-submit")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        assertEquals("SYNONYMS FOR search",
+                wait.until(ExpectedConditions.presenceOfElementLocated(
+                        By.cssSelector("[data-testid='word-grid-section-heading']"))).getText());
+    }
+
+    /**
+     * SK_33
+     * Tamar
+     * HTML Refers to SK_1, SK_33
+     */
+    @Test
+    public void SK_33_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        assertTrue(driver.findElement(By.id("active-synonyms")).isDisplayed());
+        driver.findElement(By.id("searchbar_input")).sendKeys("golf");
+        driver.findElement(By.id("search-submit")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        assertEquals("SYNONYMS FOR golf",
+                wait.until(ExpectedConditions.presenceOfElementLocated(
+                        By.cssSelector("[data-testid='word-grid-section-heading']"))).getText());
+        assertEquals("Thesaurus / golf", driver.findElement(By.cssSelector("[data-testid='breadcrumbs']")).getText());
+    }
+
+    /**
+     * SK_34
+     * Tamar
+     * HTML Refers to SK_1, SK_25, SK_26, SK_34
+     */
+    @Test
+    public void SK_34_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[aria-label='Sign up for an account']"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[text()='Log In']"))).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h3"), "Welcome Back"));
+        driver.findElement(By.cssSelector("[name='email']")).sendKeys("tamar.gur@outlook.co.il");
+        driver.findElement(By.cssSelector("[name='password']")).sendKeys("Test123!");
+        driver.findElement(By.xpath("//button[text()='Log In']")).click();
+        wait.until(ExpectedConditions.attributeContains(By.id("thesaurus-nav-tab"), "class", "header-tab-active"));
+
+        driver.findElement(By.xpath("//*[@data-account-icon-signedin]/..")).click();
+        assertNotEquals("none", driver.findElement(By.cssSelector("[data-access-menu]")).getCssValue("display"));
+        List<WebElement> optionElements = driver.findElements(By.cssSelector("[data-access-menu] ul a"));
+        List<String> expectedTitles = new ArrayList<>(
+                Arrays.asList("Word Lists", "Account Settings", "Subscriptions", "Help Center"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : optionElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        assertEquals("Sign Out", driver.findElement(By.cssSelector("[data-access-menu] ul button")).getText());
+
+        optionElements.get(1).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[text()='DELETE ACCOUNT']"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h3[text()='DELETE ACCOUNT']")));
+        assertTrue(driver.findElement(By.xpath("//button[text()='KEEP ACCOUNT']")).isDisplayed());
+        element = driver.findElement(By.xpath("//button[text()='DELETE ACCOUNT']"));
+        assertTrue(element.isDisplayed());
+        element.click();
+    }
+
+    /**
+     * SK_35
+     * Tamar
+     * HTML Refers to SK_1, SK_35
+     */
+    @Test
+    public void SK_35_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        assertTrue(driver.findElement(By.id("active-synonyms")).isDisplayed());
+        driver.findElement(By.id("searchbar_input")).sendKeys("gather");
+        driver.findElement(By.id("search-submit")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        assertEquals("SYNONYMS FOR gather",
+                wait.until(ExpectedConditions.presenceOfElementLocated(
+                        By.cssSelector("[data-testid='word-grid-section-heading']"))).getText());
+        assertTrue(driver.findElement(By.tagName("nav")).isDisplayed());
+        assertEquals("DICTIONARY.COM", driver.findElement(By.id("dictionary-nav-tab")).getText());
+        assertEquals("THESAURUS.COM", driver.findElement(By.id("thesaurus-nav-tab")).getText());
+        List<WebElement> navTitleElements = driver.findElements(
+                By.cssSelector("[aria-label='Site Navigation'] ul > li[data-current-active] > button"));
+        List<String> expectedTitles = new ArrayList<>(
+                Arrays.asList("MEANINGS", "GAMES", "LEARN", "WRITING", "WORD OF THE DAY"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : navTitleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        driver.findElement(By.id("thesaurus-nav-tab")).click();
+        assertTrue(driver.findElement(By.cssSelector("[data-testid='synonym-of-the-day']")).isDisplayed());
+    }
+
+    /**
      * SK_1
      * Abhijit
      * Html refer to SK_1
