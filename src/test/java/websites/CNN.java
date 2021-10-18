@@ -325,4 +325,40 @@ public class CNN {
         action.moveToElement(element).click().perform();
         wait.until(ExpectedConditions.attributeToBe(element, "data-zjs-btn-status", "not_subscribed"));
     }
+    
+    /**
+     * CNN29
+     * Mika
+     * HTML refer to CNN25 - home_page.html, log_in_page.html, CNN26, CNN28 - settings_page
+     */
+    @Test
+    public void CNN29_Mika()
+    {
+        driver.get("https://edition.cnn.com/");
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+
+        driver.findElements(By.className("user-icon")).get(0).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("*[aria-label='Email address']")))
+                .sendKeys("qa.tries.123@gmail.com");
+        driver.findElement(By.cssSelector("*[aria-label='Password']"))
+                .sendKeys("qa@123456789");
+        driver.findElement(By.xpath("//button[text()=\"Log in\"]")).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("account-icon-button"))).click();
+        driver.findElement(By.name("userSettings")).click();
+
+        wait.until(ExpectedConditions.elementToBeClickable
+                (By.cssSelector("*[data-zjs-traits-component_type='displayname_info']"))).click();
+        //I didn't manage to find a way to get to that element using the words in the description,
+        //cause there's another element which is almost the same.
+        element = driver.findElement(By.xpath("//*[@aria-label=\"Display name\"]"));
+        Assert.assertTrue(element.isEnabled());
+        element.clear();
+        element.sendKeys("name");
+        driver.findElement(By.xpath("//button[text()=\"Save\"]")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated
+                (By.xpath("//*[@data-zjs-traits-component_type='displayname_info' and text()='Edit']")));
+    }
 }
