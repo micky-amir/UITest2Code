@@ -521,7 +521,8 @@ public class CNN {
      * HTML refer to CNN25
      */
     @Test
-    public void CNN25_Mika() {
+    public void CNN25_Mika()
+    {
         driver.get("https://edition.cnn.com/");
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -531,8 +532,10 @@ public class CNN {
         wait.until(ExpectedConditions.presenceOfElementLocated
                 (By.cssSelector("*[data-zjs-component_id='signup_link']"))).click();
 
-        Assert.assertTrue(driver.findElement(By.xpath("//button[contains(text(),\"Create account\")]"))
+        assertTrue(driver.findElement(By.xpath("//button[contains(text(),\"Create account\")]"))
                 .isDisplayed());
+        //Assert.assertTrue(driver.findElement(By.xpath("//button[contains(text(),\"Create account\")]"))
+        //        .isDisplayed());
     }
 
     /**
@@ -541,7 +544,8 @@ public class CNN {
      * HTML refer to CNN25 and CNN26
      */
     @Test
-    public void CNN26_Mika() {
+    public void CNN26_Mika()
+    {
         driver.get("https://edition.cnn.com/");
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -584,7 +588,8 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html, log_in_page.html
      */
     @Test
-    public void CNN27_Mika() {
+    public void CNN27_Mika()
+    {
         driver.get("https://edition.cnn.com/");
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -606,7 +611,8 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html, log_in_page.html, CNN26, CNN28
      */
     @Test
-    public void CNN28_Mika() {
+    public void CNN28_Mika()
+    {
         driver.get("https://edition.cnn.com/");
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -635,14 +641,15 @@ public class CNN {
         action.moveToElement(element).click().perform();
         wait.until(ExpectedConditions.attributeToBe(element, "data-zjs-btn-status", "not_subscribed"));
     }
-
+    
     /**
      * CNN29
      * Mika
      * HTML refer to CNN25 - home_page.html, log_in_page.html, CNN26, CNN28 - settings_page
      */
     @Test
-    public void CNN29_Mika() {
+    public void CNN29_Mika()
+    {
         driver.get("https://edition.cnn.com/");
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -670,14 +677,15 @@ public class CNN {
         wait.until(ExpectedConditions.presenceOfElementLocated
                 (By.xpath("//*[@data-zjs-traits-component_type='displayname_info' and text()='Edit']")));
     }
-
-    /**
+    
+   /**
      * CNN30
      * Mika
      * HTML refer to CNN25 - home_page.html, log_in_page.html, CNN26, CNN28 - settings_page.html, CNN30
      */
     @Test
-    public void CNN30_Mika() {
+    public void CNN30_Mika()
+    {
         driver.get("https://edition.cnn.com/");
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -707,7 +715,8 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html, log_in_page.html, CNN26, CNN28 - settings_page.html, CNN30
      */
     @Test
-    public void CNN31_Mika() {
+    public void CNN31_Mika()
+    {
         driver.get("https://edition.cnn.com/");
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -740,7 +749,8 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html, log_in_page.html, CNN26, CNN28 - settings_page.html, CNN30
      */
     @Test
-    public void CNN32_Mika() {
+    public void CNN32_Mika()
+    {
         String emailAddress = "qa.tries.123@gmail.com";
         String password = "qa@123456789";
 
@@ -787,7 +797,8 @@ public class CNN {
      * HTML refer to CNN25, CNN26, CNN28 - settings_page.html, CNN30
      */
     @Test
-    public void CNN33_Mika() {
+    public void CNN33_Mika()
+    {
         String emailAddress = "qa.tries.123@gmail.com";
         String password = "qa@123456789";
 
@@ -840,7 +851,8 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html, log_in_page.html, CNN26
      */
     @Test
-    public void CNN34_Mika() {
+    public void CNN34_Mika()
+    {
         String emailAddress = "qa.tries.123@gmail.com";
         String password = "qa@123456789";
 
