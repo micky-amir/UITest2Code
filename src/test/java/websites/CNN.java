@@ -361,4 +361,203 @@ public class CNN {
         wait.until(ExpectedConditions.presenceOfElementLocated
                 (By.xpath("//*[@data-zjs-traits-component_type='displayname_info' and text()='Edit']")));
     }
+    
+   /**
+     * CNN30
+     * Mika
+     * HTML refer to CNN25 - home_page.html, log_in_page.html, CNN26, CNN28 - settings_page.html, CNN30
+     */
+    @Test
+    public void CNN30_Mika()
+    {
+        driver.get("https://edition.cnn.com/");
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        driver.findElements(By.className("user-icon")).get(0).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("*[aria-label='Email address']")))
+                .sendKeys("qa.tries.123@gmail.com");
+        driver.findElement(By.cssSelector("*[aria-label='Password']"))
+                .sendKeys("qa@123456789");
+        driver.findElement(By.xpath("//button[text()=\"Log in\"]")).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("account-icon-button"))).click();
+        driver.findElement(By.name("userSettings")).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("settings-header")));
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        element = driver.findElement(By.xpath("//*[starts-with(@class, 'deleteAccountButton')]"));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        driver.findElement(By.id("delete-account--nevermind-btn")).click();
+    }
+
+    /**
+     * CNN31
+     * Mika
+     * HTML refer to CNN25 - home_page.html, log_in_page.html, CNN26, CNN28 - settings_page.html, CNN30
+     */
+    @Test
+    public void CNN31_Mika()
+    {
+        driver.get("https://edition.cnn.com/");
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        driver.findElements(By.className("user-icon")).get(0).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("*[aria-label='Email address']")))
+                .sendKeys("qa.tries.123@gmail.com");
+        driver.findElement(By.cssSelector("*[aria-label='Password']"))
+                .sendKeys("qa@123456789");
+        driver.findElement(By.xpath("//button[text()=\"Log in\"]")).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("account-icon-button"))).click();
+        driver.findElement(By.name("userSettings")).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("settings-header")));
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        element = driver.findElement(By.xpath("//*[starts-with(@class, 'deleteAccountButton')]"));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        driver.findElement(By.id("delete-account--delete-btn")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated
+                (By.xpath("//*[text()=\"Your CNN account has been deleted\"]")));
+        wait.until(ExpectedConditions.urlToBe("https://edition.cnn.com/"));
+    }
+
+    /**
+     * CNN32
+     * Mika
+     * HTML refer to CNN25 - home_page.html, log_in_page.html, CNN26, CNN28 - settings_page.html, CNN30
+     */
+    @Test
+    public void CNN32_Mika()
+    {
+        String emailAddress = "qa.tries.123@gmail.com";
+        String password = "qa@123456789";
+
+        driver.get("https://edition.cnn.com/");
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        driver.findElements(By.className("user-icon")).get(0).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("*[aria-label='Email address']")))
+                .sendKeys(emailAddress);
+        driver.findElement(By.cssSelector("*[aria-label='Password']"))
+                .sendKeys(password);
+        driver.findElement(By.xpath("//button[text()=\"Log in\"]")).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("account-icon-button"))).click();
+        driver.findElement(By.name("userSettings")).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("settings-header")));
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        element = driver.findElement(By.xpath("//*[starts-with(@class, 'deleteAccountButton')]"));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        driver.findElement(By.id("delete-account--delete-btn")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated
+                (By.xpath("//*[text()=\"Your CNN account has been deleted\"]")));
+        wait.until(ExpectedConditions.urlToBe("https://edition.cnn.com/"));
+
+        driver.findElements(By.className("user-icon")).get(0).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("*[aria-label='Email address']")))
+                .sendKeys(emailAddress);
+        driver.findElement(By.cssSelector("*[aria-label='Password']"))
+                .sendKeys(password);
+        driver.findElement(By.xpath("//button[text()=\"Log in\"]")).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated
+                (By.xpath("//*[text()=\"You have entered an invalid username or password\"]")));
+    }
+
+    /**
+     * CNN33
+     * Mika
+     * HTML refer to CNN25, CNN26, CNN28 - settings_page.html, CNN30
+     */
+    @Test
+    public void CNN33_Mika()
+    {
+        String emailAddress = "qa.tries.123@gmail.com";
+        String password = "qa@123456789";
+
+        driver.get("https://edition.cnn.com/");
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        driver.findElements(By.className("user-icon")).get(0).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("*[aria-label='Email address']")))
+                .sendKeys(emailAddress);
+        driver.findElement(By.cssSelector("*[aria-label='Password']"))
+                .sendKeys(password);
+        driver.findElement(By.xpath("//button[text()=\"Log in\"]")).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("account-icon-button"))).click();
+        driver.findElement(By.name("userSettings")).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("settings-header")));
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        element = driver.findElement(By.xpath("//*[starts-with(@class, 'deleteAccountButton')]"));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        driver.findElement(By.id("delete-account--delete-btn")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated
+                (By.xpath("//*[text()=\"Your CNN account has been deleted\"]")));
+        wait.until(ExpectedConditions.urlToBe("https://edition.cnn.com/"));
+
+        driver.findElements(By.className("user-icon")).get(0).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated
+                (By.cssSelector("*[data-zjs-component_id='signup_link']"))).click();
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated
+                (By.cssSelector("*[aria-label='Email Address']")));
+        element.sendKeys(emailAddress);
+        element.sendKeys("\t");
+        element = driver.findElement(By.cssSelector("*[aria-label='Password']"));
+        element.sendKeys(password);
+        driver.findElement(By.xpath("//button[contains(text(),\"Create account\")]")).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("account-icon-button"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.name("userSettings")));
+        Assert.assertTrue(driver.findElement(By.name("userLogout")).isDisplayed());
+    }
+
+    /**
+     * CNN34
+     * Mika
+     * HTML refer to CNN25 - home_page.html, log_in_page.html, CNN26
+     */
+    @Test
+    public void CNN34_Mika()
+    {
+        String emailAddress = "qa.tries.123@gmail.com";
+        String password = "qa@123456789";
+
+        driver.get("https://edition.cnn.com/");
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+
+        driver.findElements(By.className("user-icon")).get(0).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("*[aria-label='Email address']")))
+                .sendKeys(emailAddress);
+        driver.findElement(By.cssSelector("*[aria-label='Password']"))
+                .sendKeys(password);
+        driver.findElement(By.xpath("//button[text()=\"Log in\"]")).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("account-icon-button"))).click();
+        driver.findElement(By.name("userLogout")).click();
+
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy
+                (By.className("user-icon"))).get(0).click();
+
+        wait.until(ExpectedConditions.urlToBe("https://edition.cnn.com/account/log-in"));
+    }
 }
