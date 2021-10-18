@@ -199,4 +199,130 @@ public class CNN {
         countriesElements.get(0).click();
         assertEquals(countryName, driver.findElement(By.tagName("h1")).getText());
     }
+    
+    
+    /**
+     * CNN25
+     * Mika
+     * HTML refer to CNN25
+     */
+    @Test
+    public void CNN25_Mika()
+    {
+        driver.get("https://edition.cnn.com/");
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+
+        driver.findElements(By.className("user-icon")).get(0).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated
+                (By.cssSelector("*[data-zjs-component_id='signup_link']"))).click();
+
+        Assert.assertTrue(driver.findElement(By.xpath("//button[contains(text(),\"Create account\")]"))
+                .isDisplayed());
+    }
+
+    /**
+     * CNN26
+     * Mika
+     * HTML refer to CNN25 and CNN26
+     */
+    @Test
+    public void CNN26_Mika()
+    {
+        driver.get("https://edition.cnn.com/");
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+
+        driver.findElements(By.className("user-icon")).get(0).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated
+                (By.cssSelector("*[data-zjs-component_id='signup_link']"))).click();
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated
+                (By.cssSelector("*[aria-label='Email Address']")));
+        element.sendKeys("abc@xyz");
+        element.sendKeys("\t");
+        Assert.assertTrue(driver.findElement(By.xpath("//*[text()=\"Please enter a valid email address\"]"))
+                .isDisplayed());
+        element.clear();
+        element.sendKeys("yourname@domain.com");
+        //There's a need to delete this user or change the email before running the test again.
+        element.sendKeys("\t");
+
+        element = driver.findElement(By.cssSelector("*[aria-label='Password']"));
+        element.sendKeys("admintst");
+        Assert.assertTrue(driver.findElement(By.xpath("//*[text()=\"Please enter a valid password\"]"))
+                .isDisplayed());
+        Assert.assertTrue(driver.findElement(By.className("formfield-text__validation-list"))
+                .isDisplayed()); //I didn't manage to find a way to get to that element using the words in the description.
+        element.clear();
+        element.sendKeys("user@1234567");
+
+        driver.findElement(By.xpath("//button[contains(text(),\"Create account\")]")).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("account-icon-button"))).click();
+        Assert.assertTrue(driver.findElement(By.name("userSettings")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.name("userLogout")).isDisplayed());
+    }
+
+    /**
+     * CNN27
+     * Mika
+     * HTML refer to CNN25 - home_page.html, log_in_page.html
+     */
+    @Test
+    public void CNN27_Mika()
+    {
+        driver.get("https://edition.cnn.com/");
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+
+        driver.findElements(By.className("user-icon")).get(0).click();
+
+        driver.findElement(By.cssSelector("*[aria-label='Email address']"))
+                .sendKeys("qa.tries.123@gmail.com");
+        driver.findElement(By.cssSelector("*[aria-label='Password']"))
+                .sendKeys("qa@123456789");
+        driver.findElement(By.xpath("//button[text()=\"Log in\"]")).click();
+
+        wait.until(ExpectedConditions.urlToBe("https://edition.cnn.com/"));
+    }
+
+    /**
+     * CNN28
+     * Mika
+     * HTML refer to CNN25 - home_page.html, log_in_page.html, CNN26, CNN28
+     */
+    @Test
+    public void CNN28_Mika()
+    {
+        driver.get("https://edition.cnn.com/");
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        Actions action = new Actions(driver);
+
+        driver.findElements(By.className("user-icon")).get(0).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("*[aria-label='Email address']")))
+                .sendKeys("qa.tries.123@gmail.com");
+        driver.findElement(By.cssSelector("*[aria-label='Password']"))
+                .sendKeys("qa@123456789");
+        driver.findElement(By.xpath("//button[text()=\"Log in\"]")).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("account-icon-button"))).click();
+        driver.findElement(By.name("userSettings")).click();
+
+        action.moveByOffset(0, 30).perform();
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("Browse all newsletters")));
+        action.moveToElement(element).click().perform();
+
+        action.moveByOffset(0, 20).perform();
+        element = wait.until(ExpectedConditions.presenceOfElementLocated
+                (By.xpath("//button[@title=\"Subscribe to Breaking News\"]")));
+        action.moveToElement(element).click().perform();
+        wait.until(ExpectedConditions.attributeToBe(element, "data-zjs-btn-status", "subscribed"));
+        action.moveToElement(element).click().perform();
+        wait.until(ExpectedConditions.attributeToBe(element, "data-zjs-btn-status", "not_subscribed"));
+    }
 }
