@@ -515,7 +515,7 @@ public class CNN {
     }
 
 
-    /**
+   /**
      * CNN25
      * Mika
      * HTML refer to CNN25
@@ -534,8 +534,6 @@ public class CNN {
 
         assertTrue(driver.findElement(By.xpath("//button[contains(text(),\"Create account\")]"))
                 .isDisplayed());
-        //Assert.assertTrue(driver.findElement(By.xpath("//button[contains(text(),\"Create account\")]"))
-        //        .isDisplayed());
     }
 
     /**
@@ -559,7 +557,7 @@ public class CNN {
                 (By.cssSelector("*[aria-label='Email Address']")));
         element.sendKeys("abc@xyz");
         element.sendKeys("\t");
-        Assert.assertTrue(driver.findElement(By.xpath("//*[text()=\"Please enter a valid email address\"]"))
+        assertTrue(driver.findElement(By.xpath("//*[text()=\"Please enter a valid email address\"]"))
                 .isDisplayed());
         element.clear();
         element.sendKeys("yourname@domain.com");
@@ -568,9 +566,9 @@ public class CNN {
 
         element = driver.findElement(By.cssSelector("*[aria-label='Password']"));
         element.sendKeys("admintst");
-        Assert.assertTrue(driver.findElement(By.xpath("//*[text()=\"Please enter a valid password\"]"))
+        assertTrue(driver.findElement(By.xpath("//*[text()=\"Please enter a valid password\"]"))
                 .isDisplayed());
-        Assert.assertTrue(driver.findElement(By.className("formfield-text__validation-list"))
+        assertTrue(driver.findElement(By.className("formfield-text__validation-list"))
                 .isDisplayed()); //I didn't manage to find a way to get to that element using the words in the description.
         element.clear();
         element.sendKeys("user@1234567");
@@ -578,8 +576,8 @@ public class CNN {
         driver.findElement(By.xpath("//button[contains(text(),\"Create account\")]")).click();
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("account-icon-button"))).click();
-        Assert.assertTrue(driver.findElement(By.name("userSettings")).isDisplayed());
-        Assert.assertTrue(driver.findElement(By.name("userLogout")).isDisplayed());
+        assertTrue(driver.findElement(By.name("userSettings")).isDisplayed());
+        assertTrue(driver.findElement(By.name("userLogout")).isDisplayed());
     }
 
     /**
@@ -641,11 +639,11 @@ public class CNN {
         action.moveToElement(element).click().perform();
         wait.until(ExpectedConditions.attributeToBe(element, "data-zjs-btn-status", "not_subscribed"));
     }
-    
+
     /**
      * CNN29
      * Mika
-     * HTML refer to CNN25 - home_page.html, log_in_page.html, CNN26, CNN28 - settings_page
+     * HTML refer to CNN25 - home_page.html, log_in_page.html, CNN26, CNN28 - settings_page.html
      */
     @Test
     public void CNN29_Mika()
@@ -670,15 +668,15 @@ public class CNN {
         //I didn't manage to find a way to get to that element using the words in the description,
         //cause there's another element which is almost the same.
         element = driver.findElement(By.xpath("//*[@aria-label=\"Display name\"]"));
-        Assert.assertTrue(element.isEnabled());
+        assertTrue(element.isEnabled());
         element.clear();
         element.sendKeys("name");
         driver.findElement(By.xpath("//button[text()=\"Save\"]")).click();
         wait.until(ExpectedConditions.presenceOfElementLocated
                 (By.xpath("//*[@data-zjs-traits-component_type='displayname_info' and text()='Edit']")));
     }
-    
-   /**
+
+    /**
      * CNN30
      * Mika
      * HTML refer to CNN25 - home_page.html, log_in_page.html, CNN26, CNN28 - settings_page.html, CNN30
@@ -842,7 +840,7 @@ public class CNN {
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("account-icon-button"))).click();
         wait.until(ExpectedConditions.presenceOfElementLocated(By.name("userSettings")));
-        Assert.assertTrue(driver.findElement(By.name("userLogout")).isDisplayed());
+        assertTrue(driver.findElement(By.name("userLogout")).isDisplayed());
     }
 
     /**
