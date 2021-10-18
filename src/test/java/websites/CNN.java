@@ -199,7 +199,319 @@ public class CNN {
         countriesElements.get(0).click();
         assertEquals(countryName, driver.findElement(By.tagName("h1")).getText());
     }
-    
+        /**
+     * CNN06
+     * Tamar
+     * HTML refer to CNN01, CNN04, CNN05, CNN06
+     */
+    @Test
+    public void CNN06_Tamar() {
+        driver.get("https://edition.cnn.com/");
+        assertTrue(driver.getTitle().contains("World News"));
+        driver.findElement(By.cssSelector("a[name='travel']")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("Header__logoTravel")));
+        List<WebElement> optionElements = driver.findElements(By.cssSelector(".Header__section"));
+        List<String> expectedTitles = new ArrayList<>(
+                Arrays.asList("DESTINATIONS", "FOOD & DRINK", "NEWS", "STAY", "VIDEO"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : optionElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        optionElements.get(0).click();
+        wait.until(ExpectedConditions.textToBe(By.className("Breadcrumb__label"), "DESTINATIONS"));
+        List<WebElement> countriesElements = driver.findElements(By.className("Destinations__link"));
+        for (int i = 1; i < countriesElements.size(); i++) {
+            assertTrue(countriesElements.get(i - 1).getText().compareTo(countriesElements.get(i).getText()) < 0);
+        }
+        driver.findElement(By.className("Header__search")).click();
+        element = driver.findElement(By.cssSelector("[type='search']"));
+        element.sendKeys("Greece");
+
+        List<WebElement> articleElements = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
+                (By.className("CardBasic__title"))));
+        for (WebElement element : articleElements) {
+            assertTrue(element.getText().contains("Greece") ||
+                    element.getAttribute("href").contains("greece"));
+        }
+        driver.navigate().back();
+        driver.navigate().refresh();
+        wait.until(ExpectedConditions.textToBe(By.className("Breadcrumb__label"), "DESTINATIONS"));
+        countriesElements.clear();
+        countriesElements = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy((
+                By.className("Destinations__link"))));
+        for (int i = 1; i < countriesElements.size(); i++) {
+            assertTrue(countriesElements.get(i - 1).getText().compareTo(countriesElements.get(i).getText()) < 0);
+        }
+    }
+
+    /**
+     * CNN07
+     * Tamar
+     * HTML refer to CNN01, CNN04, CNN07
+     */
+    @Test
+    public void CNN07_Tamar() {
+        driver.get("https://edition.cnn.com/");
+        assertTrue(driver.getTitle().contains("World News"));
+        driver.findElement(By.cssSelector("a[name='travel']")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("Header__logoTravel")));
+        List<WebElement> optionElements = driver.findElements(By.cssSelector(".Header__section"));
+        List<String> expectedTitles = new ArrayList<>(
+                Arrays.asList("DESTINATIONS", "FOOD & DRINK", "NEWS", "STAY", "VIDEO"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : optionElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        optionElements.get(4).click();
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("VideoHub__ctaWrapper")));
+        assertEquals("Watch now", element.getText());
+        element.click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".Article__zone")));
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(
+                By.cssSelector(".pui_control-bar_playback-time > span"), "0:00")));
+        element = driver.findElement(By.className("sound-full-icon"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).moveToElement(driver.findElement(By.cssSelector("[aria-label='Volume bar']"))).click().perform();
+        assertNotEquals("left: 100%;", driver.findElement(By.cssSelector("[aria-label='Volume bar']")).getAttribute("style"));
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".pui_control-bar_fullscreen-toggle")));
+        element.click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("windowCollapseIconTitle")));
+        element.click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("windowExpandIconTitle")));
+    }
+
+    /**
+     * CNN08
+     * Tamar
+     * HTML refer to CNN01, CNN04, CNN07
+     */
+    @Test
+    public void CNN08_Tamar() {
+        driver.get("https://edition.cnn.com/");
+        assertTrue(driver.getTitle().contains("World News"));
+        driver.findElement(By.cssSelector("a[name='travel']")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("Header__logoTravel")));
+        List<WebElement> optionElements = driver.findElements(By.cssSelector(".Header__section"));
+        List<String> expectedTitles = new ArrayList<>(
+                Arrays.asList("DESTINATIONS", "FOOD & DRINK", "NEWS", "STAY", "VIDEO"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : optionElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        optionElements.get(4).click();
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("VideoHub__ctaWrapper")));
+        assertEquals("Watch now", element.getText());
+        element.click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".Article__zone")));
+        By locator = By.cssSelector(".pui_control-bar_playback-time > span");
+        Actions actions = new Actions(driver);
+        actions.moveToElement(driver.findElement(By.className("VideoPlayer__videoPlayer"))).perform();
+        wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(locator, "")));
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(locator, "0:00")));
+        element = driver.findElement(locator);
+        String videoName = driver.findElement(By.cssSelector(".pui_metadata_title")).getText();
+        String videoLength = driver.findElement(By.cssSelector(".pui_control-bar_playback-time > :nth-child(3)")).getText();
+        while (!element.getText().equals(videoLength)) {
+            element = driver.findElement(locator);
+        }
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(By.cssSelector(".pui_metadata_title"), videoName)));
+    }
+
+    /**
+     * CNN09
+     * Tamar
+     * HTML refer to CNN01, CNN04, CNN07
+     */
+    @Test
+    public void CNN09_Tamar() throws InterruptedException {
+        driver.get("https://edition.cnn.com/");
+        assertTrue(driver.getTitle().contains("World News"));
+        driver.findElement(By.cssSelector("a[name='travel']")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("Header__logoTravel")));
+        List<WebElement> optionElements = driver.findElements(By.cssSelector(".Header__section"));
+        List<String> expectedTitles = new ArrayList<>(
+                Arrays.asList("DESTINATIONS", "FOOD & DRINK", "NEWS", "STAY", "VIDEO"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : optionElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        optionElements.get(4).click();
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("VideoHub__ctaWrapper")));
+        assertEquals("Watch now", element.getText());
+        Actions actions = new Actions(driver);
+        element = driver.findElement(By.xpath("//*[text()='Latest Videos on ']"));
+        actions.moveToElement(element).perform();
+        List<WebElement> videoRowsElements = driver.findElements(By.className("VideosFilters__row"));
+        assertEquals(5, videoRowsElements.size());
+        for (WebElement row : videoRowsElements) {
+            assertEquals(4, row.findElements(By.className("LayoutGrid__card")).size());
+        }
+        for (int i = 0; i < 4; i++) {
+            element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".VideosFilters__showMore")));
+            actions.moveToElement(element).click(element).perform();
+            Thread.sleep(1000);
+            assertEquals(20 * (i + 2), driver.findElements(By.className("LayoutGrid__card")).size());
+        }
+        assertEquals(0, driver.findElements(By.cssSelector(".VideosFilters__showMore")).size());
+    }
+
+    /**
+     * CNN10
+     * Tamar
+     * HTML refer to CNN01, CNN04, CNN10
+     */
+    @Test
+    public void CNN10_Tamar() {
+        driver.get("https://edition.cnn.com/");
+        assertTrue(driver.getTitle().contains("World News"));
+        driver.findElement(By.cssSelector("a[name='world']")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "World"));
+        element = driver.findElement(By.cssSelector("[data-zone-label='Featured sections']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        element = driver.findElement(By.cssSelector("[data-analytics='Climate in crisis_list-hierarchical-small-horizontal_article_']"));
+        element.findElement(By.tagName("img")).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("health-logo-icon")));
+        List<WebElement> optionElements = driver.findElements(By.cssSelector("nav a[data-analytics='header_top-nav']"));
+        List<String> expectedTitles = new ArrayList<>(
+                Arrays.asList("Life, But Better", "Fitness", "Food", "Sleep", "Mindfulness", "Relationships"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : optionElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+
+        for (int i = 1; i < expectedTitles.size(); i++) {
+            String xpathLocator = "//nav//a[text()='" + expectedTitles.get(i) + "']";
+            driver.findElement(By.xpath(xpathLocator)).click();
+            wait.until(ExpectedConditions.attributeToBe(By.xpath(xpathLocator + "/.."), "data-selected", "selected"));
+            assertTrue(driver.findElement(By.tagName("article")).isDisplayed());
+        }
+    }
+
+    /**
+     * CNN11
+     * Tamar
+     * HTML refer to CNN01, CNN04, CNN10, CNN11
+     */
+    @Test
+    public void CNN11_Tamar() {
+        driver.get("https://edition.cnn.com/");
+        assertTrue(driver.getTitle().contains("World News"));
+        driver.findElement(By.cssSelector("a[name='world']")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "World"));
+        element = driver.findElement(By.cssSelector("[data-zone-label='Featured sections']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        element = driver.findElement(By.cssSelector("[data-analytics='Climate in crisis_list-hierarchical-small-horizontal_article_']"));
+        element.findElement(By.tagName("img")).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("health-logo-icon")));
+        List<WebElement> optionElements = driver.findElements(By.cssSelector("nav a[data-analytics='header_top-nav']"));
+        List<String> expectedTitles = new ArrayList<>(
+                Arrays.asList("Life, But Better", "Fitness", "Food", "Sleep", "Mindfulness", "Relationships"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : optionElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        optionElements.get(0).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("strong"), "Life, But Better"));
+        assertTrue(driver.findElement(By.xpath("//*[text()=\"I'd like a personalized recommendation\"]")).isDisplayed());
+        element = driver.findElement(By.xpath("//*[text()=\"I'll pick one myself\"]"));
+        assertTrue(element.isDisplayed());
+        element.click();
+
+        List<WebElement> titleElements = driver.findElements(By.xpath("//*[@id='close']/../..//a"));
+        expectedTitles.remove(0);
+        expectedTitles.set(0, "Food");
+        expectedTitles.set(1, "Fitness");
+        actualTitles.clear();
+        for (WebElement element : titleElements) {
+            assertEquals("visible", element.getCssValue("visibility"));
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        assertTrue(driver.findElement(By.xpath("//*[text()='Actually, maybe I do need help deciding']")).isDisplayed());
+        titleElements.get(2).click();
+
+        wait.until(ExpectedConditions.attributeToBe(By.xpath("//nav//a[text()='Sleep']/.."), "data-selected", "selected"));
+        assertTrue(driver.findElement(By.tagName("article")).isDisplayed());
+    }
+
+    /**
+     * CNN12
+     * Tamar
+     * HTML refer to CNN01, CNN04, CNN10, CNN11
+     */
+    @Test
+    public void CNN12_Tamar() throws InterruptedException {
+        driver.get("https://edition.cnn.com/");
+        assertTrue(driver.getTitle().contains("World News"));
+        driver.findElement(By.cssSelector("a[name='world']")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "World"));
+        element = driver.findElement(By.cssSelector("[data-zone-label='Featured sections']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        element = driver.findElement(By.cssSelector("[data-analytics='Climate in crisis_list-hierarchical-small-horizontal_article_']"));
+        element.findElement(By.tagName("img")).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("health-logo-icon")));
+        List<WebElement> optionElements = driver.findElements(By.cssSelector("nav a[data-analytics='header_top-nav']"));
+        List<String> expectedTitles = new ArrayList<>(
+                Arrays.asList("Life, But Better", "Fitness", "Food", "Sleep", "Mindfulness", "Relationships"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : optionElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        optionElements.get(0).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("strong"), "Life, But Better"));
+        element = driver.findElement(By.xpath("//*[text()=\"I'd like a personalized recommendation\"]"));
+        assertTrue(element.isDisplayed());
+        assertTrue(driver.findElement(By.xpath("//*[text()=\"I'll pick one myself\"]")).isDisplayed());
+        element.click();
+
+        assertTrue(driver.findElement(By.xpath("//*[text()='How are you doing today?']")).isDisplayed());
+        assertTrue(driver.findElements(By.cssSelector(".uppercase p")).size() > 1);
+        driver.findElement(By.xpath("//*[text()='I have energy']")).click();
+        driver.findElement(By.xpath("//*[text()='Next']")).click();
+        assertTrue(driver.findElement(By.xpath("//*[text()='What areas are you interested to learn more about?']")).isDisplayed());
+        List<String> clickOnStrings = new ArrayList<>(Arrays.asList(
+                "Actualizing goals", "Nutrition", "Rest", "Wellness products", "Meal planning"));
+        for (String text : clickOnStrings) {
+            driver.findElement(By.xpath("//*[text()='" + text + "']")).click();
+        }
+        assertTrue(driver.findElement(By.xpath("//*[text()='" + clickOnStrings.get(0) + "']/../..")).getAttribute("class").contains("disabled"));
+        driver.findElement(By.xpath("//*[text()=\"That’s it!\"]")).click();
+        assertTrue(driver.findElement(By.xpath("//*[text()='Could you rank these?']")).isDisplayed());
+        assertTrue(driver.findElements(By.className("smooth-dnd-draggable-wrapper")).size() > 1);
+
+        element = driver.findElement(By.cssSelector(".smooth-dnd-draggable-wrapper:nth-child(5)"));
+        actions.clickAndHold(element).perform();
+        Thread.sleep(500);
+        actions.release(driver.findElement(By.className("smooth-dnd-draggable-wrapper"))).perform();
+        driver.findElement(By.xpath("//*[text()='Next']")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(text(), 'recommend')]")));
+        element = driver.findElement(By.xpath("//*[contains(text(), 'No thanks! Take me to')]"));
+        String category = element.findElement(By.xpath("./strong")).getText();
+        element.click();
+        wait.until(ExpectedConditions.attributeToBe(By.xpath("//nav//a[text()='" + category + "']/.."), "data-selected", "selected"));
+        assertTrue(driver.findElement(By.tagName("article")).isDisplayed());
+    }
     
     /**
      * CNN25
