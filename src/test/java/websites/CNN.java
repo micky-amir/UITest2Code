@@ -514,15 +514,134 @@ public class CNN {
         assertTrue(driver.findElement(By.tagName("article")).isDisplayed());
     }
 
+    /**
+     * CNN13
+     * Tamar
+     * HTML refer to CNN01, CNN04, CNN13
+     */
+    @Test
+    public void CNN13_Tamar() {
+        driver.get("https://edition.cnn.com/");
+        assertTrue(driver.getTitle().contains("World News"));
+        driver.findElement(By.cssSelector("a[name='world']")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "World"));
+        element = driver.findElement(By.cssSelector("[data-zone-label='Featured sections']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        element = driver.findElement(By.cssSelector("[data-analytics='Style_list-hierarchical-xs_article_']"));
+        element.findElement(By.tagName("img")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("Logo__style")));
+        driver.findElement(By.className("Header__burger")).click();
+        List<WebElement> menuElements = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("Menu__link")));
+        List<String> expectedTitles = new ArrayList<>(
+                Arrays.asList("Arts", "Design", "Fashion", "Architecture", "Luxury", "Beauty", "Video"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : menuElements) {
+            actualTitles.add(element.getText());
+            actions.moveToElement(element).perform();
+            wait.until(ExpectedConditions.attributeContains(By.className("Menu__background"),
+                    "class", "Menu__" + element.getText().toLowerCase(Locale.ROOT)));
+        }
+        assertEquals(expectedTitles, actualTitles);
 
-   /**
+        menuElements.get(0).click();
+        assertEquals("Arts", driver.findElement(By.tagName("h1")).getText());
+    }
+
+    /**
+     * CNN14
+     * Tamar
+     * HTML refer to CNN01, CNN04, CNN13, CNN14
+     */
+    @Test
+    public void CNN14_Tamar() {
+        driver.get("https://edition.cnn.com/");
+        assertTrue(driver.getTitle().contains("World News"));
+        driver.findElement(By.cssSelector("a[name='world']")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "World"));
+        element = driver.findElement(By.cssSelector("[data-zone-label='Featured sections']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        element = driver.findElement(By.cssSelector("[data-analytics='Style_list-hierarchical-xs_article_']"));
+        element.findElement(By.tagName("img")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("Logo__style")));
+        driver.findElement(By.className("Header__burger")).click();
+        List<WebElement> menuElements = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("Menu__link")));
+        List<String> expectedTitles = new ArrayList<>(
+                Arrays.asList("Arts", "Design", "Fashion", "Architecture", "Luxury", "Beauty", "Video"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : menuElements) {
+            actualTitles.add(element.getText());
+            actions.moveToElement(element).perform();
+            wait.until(ExpectedConditions.attributeContains(By.className("Menu__background"),
+                    "class", "Menu__" + element.getText().toLowerCase(Locale.ROOT)));
+        }
+        assertEquals(expectedTitles, actualTitles);
+
+        menuElements.get(6).click();
+        assertEquals("Video", driver.findElement(By.className("VideoHub__title")).getText());
+        element = driver.findElement(By.xpath("//*[text()='Latest Videos on Style']/ancestor::*[@class='Zone__wrapper']"));
+        assertEquals(20, driver.findElements(By.cssSelector(".VideosFilters__card")).size());
+    }
+
+    /**
+     * CNN15
+     * Tamar
+     * HTML refer to CNN01
+     */
+    @Test
+    public void CNN15_Tamar() {
+        driver.get("https://edition.cnn.com/");
+        assertTrue(driver.findElement(By.cssSelector("a[data-analytics='header_top-nav'][name='world']")).isDisplayed());
+        driver.findElement(By.cssSelector("[data-test='searchButton']")).click();
+        assertNotEquals("none", driver.findElement(By.cssSelector("[class*='indexes__NavGrid']")).getCssValue("display"));
+        driver.findElement(By.id("menuButton")).click();
+        assertEquals("none", driver.findElement(By.cssSelector("[class*='indexes__NavGrid']")).getCssValue("display"));
+        driver.findElement(By.id("menuButton")).click();
+        assertNotEquals("none", driver.findElement(By.cssSelector("[class*='indexes__NavGrid']")).getCssValue("display"));
+    }
+
+    /**
+     * CNN16
+     * Tamar
+     * HTML refer to CNN01, CNN16
+     */
+    @Test
+    public void CNN16_Tamar() {
+        driver.get("https://edition.cnn.com/");
+        assertTrue(driver.findElement(By.cssSelector("a[data-analytics='header_top-nav'][name='world']")).isDisplayed());
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        for (int i = 0; i < 2; i++) {
+            driver.findElement(By.id("menuButton")).click();
+            assertNotEquals("none", driver.findElement(By.cssSelector("[class*='indexes__NavGrid']")).getCssValue("display"));
+            String section = "tech", category = "gadget",
+                    cssSelectorText = "[data-analytics='header_top-nav'][aria-label='Business']", title = "Gadget";
+            if (i == 1) {
+                section = "business";
+                category = "markets";
+                cssSelectorText = "[alt='CNN Business']";
+                title = "Market";
+            }
+            driver.findElement(By.cssSelector("#nav [data-section='" + section + "'] [name='" + category + "']")).click();
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(cssSelectorText)));
+            assertTrue(driver.getTitle().contains(title));
+            if (i==0){
+                driver.navigate().back();
+                wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".pg-intl_homepage")));
+            }
+        }
+    }
+
+
+    /**
      * CNN25
      * Mika
      * HTML refer to CNN25
      */
     @Test
-    public void CNN25_Mika()
-    {
+    public void CNN25_Mika() {
         driver.get("https://edition.cnn.com/");
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -542,8 +661,7 @@ public class CNN {
      * HTML refer to CNN25 and CNN26
      */
     @Test
-    public void CNN26_Mika()
-    {
+    public void CNN26_Mika() {
         driver.get("https://edition.cnn.com/");
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -586,8 +704,7 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html, log_in_page.html
      */
     @Test
-    public void CNN27_Mika()
-    {
+    public void CNN27_Mika() {
         driver.get("https://edition.cnn.com/");
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -609,8 +726,7 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html, log_in_page.html, CNN26, CNN28
      */
     @Test
-    public void CNN28_Mika()
-    {
+    public void CNN28_Mika() {
         driver.get("https://edition.cnn.com/");
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -646,8 +762,7 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html, log_in_page.html, CNN26, CNN28 - settings_page.html
      */
     @Test
-    public void CNN29_Mika()
-    {
+    public void CNN29_Mika() {
         driver.get("https://edition.cnn.com/");
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -682,8 +797,7 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html, log_in_page.html, CNN26, CNN28 - settings_page.html, CNN30
      */
     @Test
-    public void CNN30_Mika()
-    {
+    public void CNN30_Mika() {
         driver.get("https://edition.cnn.com/");
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -713,8 +827,7 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html, log_in_page.html, CNN26, CNN28 - settings_page.html, CNN30
      */
     @Test
-    public void CNN31_Mika()
-    {
+    public void CNN31_Mika() {
         driver.get("https://edition.cnn.com/");
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -747,8 +860,7 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html, log_in_page.html, CNN26, CNN28 - settings_page.html, CNN30
      */
     @Test
-    public void CNN32_Mika()
-    {
+    public void CNN32_Mika() {
         String emailAddress = "qa.tries.123@gmail.com";
         String password = "qa@123456789";
 
@@ -795,8 +907,7 @@ public class CNN {
      * HTML refer to CNN25, CNN26, CNN28 - settings_page.html, CNN30
      */
     @Test
-    public void CNN33_Mika()
-    {
+    public void CNN33_Mika() {
         String emailAddress = "qa.tries.123@gmail.com";
         String password = "qa@123456789";
 
@@ -849,8 +960,7 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html, log_in_page.html, CNN26
      */
     @Test
-    public void CNN34_Mika()
-    {
+    public void CNN34_Mika() {
         String emailAddress = "qa.tries.123@gmail.com";
         String password = "qa@123456789";
 
