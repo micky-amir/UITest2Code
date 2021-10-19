@@ -627,11 +627,49 @@ public class CNN {
             driver.findElement(By.cssSelector("#nav [data-section='" + section + "'] [name='" + category + "']")).click();
             wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(cssSelectorText)));
             assertTrue(driver.getTitle().contains(title));
-            if (i==0){
+            if (i == 0) {
                 driver.navigate().back();
                 wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".pg-intl_homepage")));
             }
         }
+    }
+
+    /**
+     * CNN17
+     * Tamar
+     * HTML refer to CNN01, CNN16
+     */
+    @Test
+    public void CNN17_Tamar() {
+        driver.get("https://edition.cnn.com/");
+        assertTrue(driver.findElement(By.cssSelector("a[data-analytics='header_top-nav'][name='world']")).isDisplayed());
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        driver.findElement(By.id("menuButton")).click();
+        assertNotEquals("none", driver.findElement(By.cssSelector("[class*='indexes__NavGrid']")).getCssValue("display"));
+        List<WebElement> titleElements = driver.findElements(By.cssSelector("ul[mode='dark'] > li > a[data-analytics='header_expanded-nav']"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("World", "US Politics", "Business", "Health",
+                "Entertainment", "Tech", "Style", "Travel", "Sports", "Videos", "Features", "Weather", "More"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+
+        driver.findElement(By.cssSelector("#nav [data-section='business'] [name='markets']")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[alt='CNN Business']")));
+        assertTrue(driver.getTitle().contains("Market"));
+        driver.findElement(By.className("menu-icon")).click();
+        wait.until(ExpectedConditions.attributeContains(By.className("menu-icon"), "class", "open"));
+        titleElements.clear();
+        expectedTitles.clear();
+        actualTitles.clear();
+        titleElements = driver.findElements(By.cssSelector(".subnav h3 a"));
+        expectedTitles.addAll(Arrays.asList("Markets", "Tech", "Media", "Success", "Center Piece",
+                "Perspectives", "Video", "International", "More"));
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
     }
 
 
