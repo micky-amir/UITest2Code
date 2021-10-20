@@ -672,6 +672,150 @@ public class CNN {
         assertEquals(expectedTitles, actualTitles);
     }
 
+    /**
+     * CNN18
+     * Tamar
+     * HTML refer to CNN01, CNN16
+     */
+    @Test
+    public void CNN18_Tamar() throws InterruptedException {
+        driver.get("https://edition.cnn.com/");
+        assertTrue(driver.findElement(By.cssSelector("a[data-analytics='header_top-nav'][name='world']")).isDisplayed());
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        driver.findElement(By.id("menuButton")).click();
+        assertNotEquals("none", driver.findElement(By.cssSelector("[class*='indexes__NavGrid']")).getCssValue("display"));
+
+        driver.findElement(By.cssSelector("#nav [data-section='business'] [name='markets']")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[alt='CNN Business']")));
+        assertTrue(driver.getTitle().contains("Market"));
+        By locator = By.xpath("//*[@class='world-market']/ancestor::*[@class='module']");
+        for (int i = 0; i < 10; i++) {
+            String initialText = driver.findElement(locator).getText();
+            Thread.sleep(2000);
+            assertNotEquals("problem in the" + i + "time", initialText, driver.findElement(locator).getText());
+        }
+    }
+
+    /**
+     * CNN19
+     * Tamar
+     * HTML refer to CNN01, CNN19
+     */
+    @Test
+    public void CNN19_Tamar() throws InterruptedException {
+        driver.get("https://edition.cnn.com/");
+        assertTrue(driver.findElement(By.cssSelector("a[data-analytics='header_top-nav'][name='world']")).isDisplayed());
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        driver.findElement(By.id("menuButton")).click();
+        assertNotEquals("none", driver.findElement(By.cssSelector("[class*='indexes__NavGrid']")).getCssValue("display"));
+
+        driver.findElement(By.cssSelector("#nav [data-section='business'] [name='success']")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(
+                By.cssSelector("[data-analytics='header_top-nav'][aria-label='Business']")));
+        assertEquals("SUCCESS", driver.findElement(By.tagName("h1")).getText());
+        element = driver.findElement(By.cssSelector(".media__image"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , element));
+        driver.findElement(By.cssSelector("[data-ad-section='const-video-leaf'] a")).click();
+
+        By locator = By.cssSelector(".pui_control-bar_playback-time > span");
+        actions.moveToElement(wait.until(ExpectedConditions.presenceOfElementLocated((By.tagName("video"))))).perform();
+        wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+        actions.moveToElement(driver.findElement(locator)).perform();
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(locator, "")));
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(locator, "0:00")));
+
+        driver.navigate().back();
+        wait.until(ExpectedConditions.presenceOfElementLocated(
+                By.cssSelector("[data-analytics='header_top-nav'][aria-label='Business']")));
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated((By.cssSelector(".ad.ad--desktop iframe"))));
+        actions.moveToElement(element).perform();
+        Thread.sleep(1000);
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , element));
+        element.click();
+        assertEquals(2, driver.getWindowHandles().size());
+    }
+
+    /**
+     * CNN20
+     * Tamar
+     * HTML refer to CNN01, CNN19, CNN20
+     */
+    @Test
+    public void CNN20_Tamar() {
+        driver.get("https://edition.cnn.com/");
+        assertTrue(driver.findElement(By.cssSelector("a[data-analytics='header_top-nav'][name='world']")).isDisplayed());
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        driver.findElement(By.id("menuButton")).click();
+        assertNotEquals("none", driver.findElement(By.cssSelector("[class*='indexes__NavGrid']")).getCssValue("display"));
+
+        driver.findElement(By.cssSelector("#nav [data-section='business'] [name='success']")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(
+                By.cssSelector("[data-analytics='header_top-nav'][aria-label='Business']")));
+        assertEquals("SUCCESS", driver.findElement(By.tagName("h1")).getText());
+        driver.findElement(By.id("menuButton")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[text()='Dow']"))).click();
+        wait.until(ExpectedConditions.titleContains("Dow Jones Industrial Average"));
+        List<WebElement> sectionElements = driver.findElements(By.cssSelector("#cnnBody h3"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Quote Details", "Gainers", "Losers"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : sectionElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        Actions actions = new Actions(driver);
+        actions.moveToElement(sectionElements.get(0)).perform();
+        List<WebElement> categoriesElements = driver.findElements(By.cssSelector("#wsod_quoteRight tr > td:nth-child(1)"));
+        expectedTitles.clear();
+        actualTitles.clear();
+        expectedTitles.addAll(Arrays.asList("Today's volume", "Average daily volume (3 months)", "Average P/E", "1 year change"));
+        for (WebElement element : categoriesElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+
+        for (int i = 0; i < 2; i++) {
+            actions.moveToElement(sectionElements.get(i + 1)).perform();
+            categoriesElements.clear();
+            expectedTitles.clear();
+            actualTitles.clear();
+            categoriesElements = driver.findElements(By.cssSelector("table:nth-child(2) th"));
+            expectedTitles.addAll(Arrays.asList("Company", "Price", "Change", "% Change"));
+            for (WebElement element : categoriesElements) {
+                actualTitles.add(element.getText());
+            }
+            assertEquals(expectedTitles, actualTitles);
+            List<WebElement> dataElements = sectionElements.get(1).findElements(By.cssSelector("table:nth-child(" + i + 2 + ") .posData"));
+            char expectedSymbol = (char) (45 - ((i - 1) * 2));
+            for (WebElement element : dataElements) {
+                assertTrue(element.getText().startsWith(String.valueOf(expectedSymbol)));
+            }
+        }
+    }
 
     /**
      * CNN25
