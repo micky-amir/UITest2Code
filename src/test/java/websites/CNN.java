@@ -818,6 +818,73 @@ public class CNN {
     }
 
     /**
+     * CNN21
+     * Tamar
+     * HTML refer to CNN01, CNN19, CNN21
+     */
+    @Test
+    public void CNN21_Tamar() {
+        driver.get("https://edition.cnn.com/");
+        assertTrue(driver.findElement(By.cssSelector("a[data-analytics='header_top-nav'][name='world']")).isDisplayed());
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        driver.findElement(By.id("menuButton")).click();
+        assertNotEquals("none", driver.findElement(By.cssSelector("[class*='indexes__NavGrid']")).getCssValue("display"));
+
+        driver.findElement(By.cssSelector("#nav [data-section='business'] [name='success']")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(
+                By.cssSelector("[data-analytics='header_top-nav'][aria-label='Business']")));
+        assertEquals("SUCCESS", driver.findElement(By.tagName("h1")).getText());
+        driver.findElement(By.id("menuButton")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[text()='Before the Bell']"))).click();
+        wait.until(ExpectedConditions.titleContains("Before the Bell"));
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".cnn-audio-player-wrapper > iframe")));
+        driver.switchTo().frame(element);
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(By.id("elapsed"), "")));
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(By.id("elapsed"), "0:00")));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("control-play-pause"))).click();
+        assertFalse(driver.findElement(By.id("control-play-pause")).getAttribute("class").contains(" pause"));
+        String currentTime = driver.findElement(By.id("elapsed")).getText();
+        driver.findElement(By.id("control-play-pause")).click();
+        assertEquals(currentTime, driver.findElement(By.id("elapsed")).getText());
+        assertTrue(driver.findElement(By.id("control-play-pause")).getAttribute("class").contains(" pause"));
+    }
+
+    /**
+     * CNN22
+     * Tamar
+     * HTML refer to CNN01, CNN19, CNN22
+     */
+    @Test
+    public void CNN22_Tamar() {
+        driver.get("https://edition.cnn.com/");
+        assertTrue(driver.findElement(By.cssSelector("a[data-analytics='header_top-nav'][name='world']")).isDisplayed());
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        driver.findElement(By.id("menuButton")).click();
+        assertNotEquals("none", driver.findElement(By.cssSelector("[class*='indexes__NavGrid']")).getCssValue("display"));
+
+        driver.findElement(By.cssSelector("#nav [data-section='business'] [name='success']")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(
+                By.cssSelector("[data-analytics='header_top-nav'][aria-label='Business']")));
+        assertEquals("SUCCESS", driver.findElement(By.tagName("h1")).getText());
+        driver.findElement(By.id("menuButton")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[text()='Fear & Greed']"))).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Fear & Greed Index"));
+        assertTrue(driver.findElement(By.id("needleChart")).isDisplayed());
+        List<WebElement> titleElements = driver.findElements(By.cssSelector(".label"));
+        List<String> expectedNames = new ArrayList<>(
+                Arrays.asList("Junk Bond Demand", "Market Volatility", "Safe Haven Demand", "Stock Price Breadth",
+                        "Put and Call Options", "Market Momentum", "Stock Price Strength"));
+        List<String> actualNames = new ArrayList<>();
+        List<String> options = new ArrayList<>(Arrays.asList("Extreme Fear", "Fear", "Neutral", "Greed", "Extreme Greed"));
+        for (WebElement element : titleElements) {
+            actualNames.add(element.findElement(By.className("wsod_fLeft")).getText());
+            assertTrue(options.contains(element.findElement(By.className("wsod_fRight")).getText()));
+        }
+        assertTrue(actualNames.containsAll(expectedNames));
+        assertTrue(driver.findElement(By.id("feargreedOverTime")).isDisplayed());
+    }
+
+    /**
      * CNN25
      * Mika
      * HTML refer to CNN25
