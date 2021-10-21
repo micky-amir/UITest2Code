@@ -885,6 +885,78 @@ public class CNN {
     }
 
     /**
+     * CNN23
+     * Tamar
+     * HTML refer to CNN01, CNN19, CNN23
+     */
+    @Test
+    public void CNN23_Tamar() {
+        driver.get("https://edition.cnn.com/");
+        assertTrue(driver.findElement(By.cssSelector("a[data-analytics='header_top-nav'][name='world']")).isDisplayed());
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        driver.findElement(By.id("menuButton")).click();
+        assertNotEquals("none", driver.findElement(By.cssSelector("[class*='indexes__NavGrid']")).getCssValue("display"));
+
+        driver.findElement(By.cssSelector("#nav [data-section='business'] [name='success']")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(
+                By.cssSelector("[data-analytics='header_top-nav'][aria-label='Business']")));
+        assertEquals("SUCCESS", driver.findElement(By.tagName("h1")).getText());
+        driver.findElement(By.id("menuButton")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[text()=\"Tracking America's Recovery\"]"))).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Tracking America's recovery"));
+        assertTrue(driver.findElement(By.xpath("//*[text()='JUMP TO']")).isDisplayed());
+        List<String> titles = Arrays.asList("Your Job", "Your Home", "Your Investments", "Your Money", "Your Spending", "Your Leisure", "Your Travel");
+        for (String title : titles) {
+            By locator = By.id("sticky-link-" + title.toLowerCase(Locale.ROOT).replace(' ', '-'));
+            if (title.equals("Your Home"))
+                locator = By.id("sticky-link-" + title.toLowerCase(Locale.ROOT).replace(' ', '-') + "-");
+            if (title.equals("Your Job")) {
+                Actions actions = new Actions(driver);
+                actions.moveToElement(driver.findElement(By.id("anchor-link-your-job"))).click().perform();
+            } else
+                driver.findElement(locator).click();
+            wait.until(ExpectedConditions.attributeContains(locator, "class", "active"));
+
+            assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                    "var elem = arguments[0],                 " +
+                            "  box = elem.getBoundingClientRect(),    " +
+                            "  cx = box.left + box.width / 2,         " +
+                            "  cy = box.top + box.height / 2,         " +
+                            "  e = document.elementFromPoint(cx, cy); " +
+                            "for (; e; e = e.parentElement) {         " +
+                            "  if (e === elem)                        " +
+                            "    return true;                         " +
+                            "}                                        " +
+                            "return false;                            "
+                    , driver.findElement(By.xpath("//h1[contains(text(),'" + title + "')]"))));
+        }
+    }
+
+    /**
+     * CNN24
+     * Tamar
+     * HTML refer to CNN01, CNN24
+     */
+    @Test
+    public void CNN24_Tamar() {
+        driver.get("https://edition.cnn.com/");
+        assertTrue(driver.findElement(By.cssSelector("a[data-analytics='header_top-nav'][name='world']")).isDisplayed());
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        driver.findElement(By.id("menuButton")).click();
+        assertNotEquals("none", driver.findElement(By.cssSelector("[class*='indexes__NavGrid']")).getCssValue("display"));
+
+        driver.findElement(By.cssSelector("[name='entertainment']")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("entertainment-logo-icon")));
+        List<String> subsections = Arrays.asList("Stars", "Screen", "Binge", "Culture", "Media");
+        for (String text : subsections) {
+            driver.findElement(By.cssSelector
+                    ("[data-analytics='header_top-nav'][name='" + text.toLowerCase(Locale.ROOT) + "']")).click();
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector
+                    ("[selected][data-analytics='header_top-nav'][name='" + text.toLowerCase(Locale.ROOT) + "']")));
+        }
+    }
+
+    /**
      * CNN25
      * Mika
      * HTML refer to CNN25
