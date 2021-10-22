@@ -10,6 +10,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -630,12 +631,15 @@ public class CNN2
     /**
      * CNN43 not finished
      * Mika
-     * HTML refer to CNN25 - home_page.html, CNN35 - hamburger_menu.html, CNN41, CNN42
+     * HTML refer to CNN25 - home_page.html, CNN35 - hamburger_menu.html, CNN43
      */
     @Test
-    public void CNN43_Mika() throws InterruptedException
+    public void CNN43_Mika()
     {
         String periodName = "";
+        String region = "Asia";
+        String day = "Monday, October 25, 2021";
+        int dayNum = 2;
 
         driver.get("https://edition.cnn.com/");
 
@@ -650,17 +654,17 @@ public class CNN2
 
         element = driver.findElement(By.xpath("//*[contains(@class, 'region__container')]"));
         element.findElement(By.xpath("//*[contains(@class, 'select')]")).click();
-        element.findElement(By.linkText("Asia")).click();
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h1[text()='Intl - TV Schedule Asia']")));
+        element.findElement(By.linkText(region)).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath
+                ("//h1[text()='Intl - TV Schedule " + region + "']")));
         element = driver.findElements(By.xpath("//h2[@class='zn-header__text']")).get(0);
         assertEquals("Morning", element.findElement(By.tagName("a")).getText());
 
         element = driver.findElement(By.xpath("//*[contains(@class, 'day__container')]"));
         driver.findElement(By.xpath("//*[contains(@class, 'day__container')]//*[contains(@class, 'select')]")).click();
         wait.until(ExpectedConditions.elementToBeClickable
-                (element.findElement(By.xpath("//li[text()='Monday, October 25, 2021']")))).click();
-        assertEquals("Monday, October 25, 2021",
-                element.findElement(By.xpath("//*[contains(@class, 'initial-day__label')]")).getText());
+                (element.findElement(By.xpath("//li[text()='" + day + "']")))).click();
+        assertEquals(day, element.findElement(By.xpath("//*[contains(@class, 'initial-day__label')]")).getText());
 
         List<WebElement> dayPeriods = driver.findElements
                 (By.xpath("//ul[contains(@class, 'day-period')]/li[contains(@class, 'day-period')]"));
@@ -668,13 +672,267 @@ public class CNN2
         for (WebElement period : dayPeriods)
         {
             periodName = period.getText();
+            if (!periodName.equals("Morning"))
+            {
+                System.out.println(periodName);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated
+                        (By.xpath("//*[contains(@class, 'tv_schedule_day_" + dayNum
+                                + "')]//h2[@class='zn-header__text']/a[text()='" + periodName + "']")));
+            }
             action.moveToElement(period).click().perform();
-            element = wait.until(ExpectedConditions.presenceOfElementLocated
-                    (By.xpath("//*[contains(@class, 'tv_schedule_day_4')]//h2[@class='zn-header__text']/a[text()='"
-                    + periodName + "']")));
-            Thread.sleep(1000);
-            System.out.println(periodName);
-            assertTrue(element.isDisplayed());
+            wait.until(ExpectedConditions.visibilityOfElementLocated
+                    (By.xpath("//*[contains(@class, 'tv_schedule_day_" + dayNum
+                            + "')]//h2[@class='zn-header__text']/a[text()='" + periodName + "']")));
         }
+    }
+
+    /**
+     * CNN44 not finished
+     * Mika
+     * HTML refer to CNN25 - home_page.html, CNN35 - hamburger_menu.html, CNN41, CNN42
+     */
+    @Test
+    public void CNN44_Mika()
+    {
+        String location = "United States";
+
+        driver.get("https://edition.cnn.com/");
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        Actions action = new Actions(driver);
+
+        driver.findElement(By.className("menu-icon")).click();
+        element = driver.findElement
+                (By.xpath("//*[@name='weather' and @data-analytics='header_expanded-nav']"));
+        action.moveToElement(element).click().perform();
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated
+                (By.xpath("//input[@placeholder='Enter Location']")));
+        element.click();
+        element.sendKeys(location);
+        driver.findElement(By.xpath("//*[@class='tt-dropdown-menu']/*[@class='tt-dataset-user-location']")).click();
+        // driver.findElement(By.xpath("//*[@value='Get Forecast']"));
+
+        driver.findElement(By.xpath("//*[@data-temp='fahrenheit']")).click();
+        assertTrue(driver.findElement(By.xpath("//*[@data-temptype='fahrenheit']")).isDisplayed());
+    }
+
+    /**
+     * CNN45
+     * Mika
+     * HTML refer to CNN25 - home_page.html, CNN35 - hamburger_menu.html, CNN45
+     */
+    @Test
+    public void CNN45_Mika()
+    {
+        String location = "United States";
+
+        driver.get("https://edition.cnn.com/");
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        Actions action = new Actions(driver);
+
+        driver.findElement(By.className("menu-icon")).click();
+        element = driver.findElement
+                (By.xpath("//*[@name='wildfire-tracker' and @data-analytics='header_expanded-nav']"));
+        action.moveToElement(element).click().perform();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h1[contains(text(), 'wildfires')]")));
+
+        element = driver.findElement(By.xpath("//h3[text()='Air quality']"));
+        action.moveToElement(element).perform();
+        element = driver.findElement(By.xpath("//input[@placeholder='Search your location']"));
+        element.click();
+        element.sendKeys(location);
+        element.sendKeys(Keys.ENTER);
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(), 'air quality index')]")));
+    }
+
+    /**
+     * CNN46
+     * Mika
+     * HTML refer to CNN25 - home_page.html
+     */
+    @Test
+    public void CNN46_Mika()
+    {
+        String[] socialNetworks = new String[] {"facebook", "instagram", "twitter"};
+        String currentNetwork = "facebook";
+        String expectedUrl = "https://www.facebook.com/cnninternational";
+        String newTab;
+
+        driver.get("https://edition.cnn.com/");
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+
+        for (String socialNetwork : socialNetworks)
+        {
+            assertTrue(driver.findElement(By.xpath("//*[@id='footer-wrap']//*[@data-icon='" + socialNetwork + "']"))
+                    .isDisplayed());
+        }
+
+        driver.findElement(By.xpath("//*[@id='footer-wrap']//*[@data-icon='" + currentNetwork + "']")).click();
+
+        newTab = (String) driver.getWindowHandles().toArray()[1];
+        driver.switchTo().window(newTab);
+        wait.until(ExpectedConditions.urlToBe(expectedUrl));
+    }
+
+    /**
+     * CNN47
+     * Mika
+     * HTML refer to CNN25 - home_page.html
+     */
+    @Test
+    public void CNN47_Mika()
+    {
+        String[] socialNetworks = new String[] {"facebook", "instagram", "twitter"};
+        String currentNetwork = "twitter";
+        String expectedUrl = "https://twitter.com/cnni";
+        String newTab;
+
+        driver.get("https://edition.cnn.com/");
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+
+        for (String socialNetwork : socialNetworks)
+        {
+            assertTrue(driver.findElement(By.xpath("//*[@id='footer-wrap']//*[@data-icon='" + socialNetwork + "']"))
+                    .isDisplayed());
+        }
+
+        driver.findElement(By.xpath("//*[@id='footer-wrap']//*[@data-icon='" + currentNetwork + "']")).click();
+
+        newTab = (String) driver.getWindowHandles().toArray()[1];
+        driver.switchTo().window(newTab);
+        wait.until(ExpectedConditions.urlToBe(expectedUrl));
+    }
+
+    /**
+     * CNN48
+     * Mika
+     * HTML refer to CNN25 - home_page.html
+     */
+    @Test
+    public void CNN48_Mika()
+    {
+        String[] socialNetworks = new String[] {"facebook", "instagram", "twitter"};
+        String currentNetwork = "instagram";
+        String expectedUrl = "https://www.instagram.com/cnn/";
+        String newTab;
+
+        driver.get("https://edition.cnn.com/");
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+
+        for (String socialNetwork : socialNetworks)
+        {
+            assertTrue(driver.findElement(By.xpath("//*[@id='footer-wrap']//*[@data-icon='" + socialNetwork + "']"))
+                    .isDisplayed());
+        }
+
+        driver.findElement(By.xpath("//*[@id='footer-wrap']//*[@data-icon='" + currentNetwork + "']")).click();
+
+        newTab = (String) driver.getWindowHandles().toArray()[1];
+        driver.switchTo().window(newTab);
+        wait.until(ExpectedConditions.urlToBe(expectedUrl));
+    }
+
+    /**
+     * CNN49 not finished - add assertions
+     * Mika
+     * HTML refer to CNN25 - home_page.html
+     */
+    @Test
+    public void CNN49_Mika()
+    {
+        String[] optionsList = new String[] { "Terms of Use", "Privacy Policy", "Accessibility & CC", "AdChoices",
+                "About Us", "Modern Slavery Act Statement", "Advertise with us", "CNN Store", "Newsletters",
+                "Transcripts", "License Footage", "CNN Newsource", "Sitemap" };
+        List<String> goBack = Arrays.asList("Advertise with us", "CNN Store", "Newsletters",
+                "Transcripts", "License Footage", "CNN Newsource");
+        String hasPopUp = "AdChoices";
+
+        driver.get("https://edition.cnn.com/");
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        Actions action = new Actions(driver);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+
+        for (String option : optionsList)
+            assertTrue(driver.findElement(By.linkText(option)).isDisplayed());
+
+        for (String option : optionsList)
+        {
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText(option))).click();
+            if (option.equals(hasPopUp))
+                wait.until(ExpectedConditions.elementToBeClickable
+                        (By.xpath("//*[contains(@id, 'closeBtn')]"))).click();
+            if (goBack.contains(option))
+                driver.navigate().back();
+            js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        }
+    }
+
+    /**
+     * CNN50 not finished - add html pages
+     * Mika
+     * HTML refer to CNN25 - home_page.html
+     */
+    @Test
+    public void CNN50_Mika()
+    {
+        String[] optionsList = new String[] { "Terms of Use", "Privacy Policy", "Accessibility & CC", "AdChoices",
+                "About Us", "Modern Slavery Act Statement", "Advertise with us", "CNN Store", "Newsletters",
+                "Transcripts", "License Footage", "CNN Newsource", "Sitemap" };
+        String newTab;
+        String textToType = "try";
+        String emailAddress = "qa.tries.123@gmail.com";
+        String[] feedbackFields = new String[] {"Name", "Email", "Thoughts", "Comments"};
+
+        driver.get("https://edition.cnn.com/");
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        Actions action = new Actions(driver);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+
+        for (String option : optionsList)
+            assertTrue(driver.findElement(By.linkText(option)).isDisplayed());
+
+        driver.findElement(By.linkText("About Us")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h1[text()='ABOUT CNN DIGITAL']")));
+
+        element = driver.findElement(By.xpath("//*[text()='SUBMIT FEEDBACK:']"));
+        action.moveToElement(element).perform();
+
+        driver.findElement(By.linkText("Have something to say? Click Here")).click();
+        newTab = (String) driver.getWindowHandles().toArray()[1];
+        driver.switchTo().window(newTab);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[text()='CNN Feedback']")));
+
+        for (String field : feedbackFields)
+        {
+            if (field.equals("Email"))
+                driver.findElement(By.xpath("//*[@name='feedback" + field + "']")).sendKeys(emailAddress);
+            else
+                driver.findElement(By.xpath("//*[@name='feedback" + field + "']")).sendKeys(textToType);
+        }
+
+        driver.findElement(By.id("js-feedback-send")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated
+                (By.xpath("//*[text()='Thank you for your feedback.  It has been submitted successfully.']")));
     }
 }
