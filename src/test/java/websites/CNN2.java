@@ -2,7 +2,6 @@ package websites;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.*;
@@ -444,7 +443,7 @@ public class CNN2
         for (String country : countries)
         {
             countryXPath = "//a[text()='" + country + "' and @data-analytics='header_top-nav']";
-            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(countryXPath))).click();
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath(countryXPath))).click();
             countryXPath = "//h1[text()='" + country + "']";
             wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(countryXPath)));
         }
@@ -593,14 +592,15 @@ public class CNN2
     }
 
     /**
-     * CNN42 not finished
+     * CNN42
      * Mika
-     * HTML refer to CNN25 - home_page.html, CNN35 - hamburger_menu.html, CNN41
+     * HTML refer to CNN25 - home_page.html, CNN35 - hamburger_menu.html, CNN41, CNN42
      */
     @Test
     public void CNN42_Mika()
     {
         String sportToSelect = "Football";
+        String articleTitle = "";
 
         driver.get("https://edition.cnn.com/");
 
@@ -614,11 +614,67 @@ public class CNN2
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h1[text()='" + sportToSelect + "']")));
 
-        driver.findElement(By.xpath
-                ("//li[1]//*[@class='media']/following-sibling::*[@class='cd__content']/h3[@class='cd__headline']"))
-                .click();
+        element = driver.findElement(By.xpath
+                ("//li[1]//*[@class='media']/following-sibling::*[@class='cd__content']/h3[@class='cd__headline']"));
+        //There's more than 1 element with this xpath, but we want the first one anyway.
+        articleTitle = element.findElement(By.xpath("//*[contains(@class, 'cd__headline-text')]")).getText();
+        action.moveToElement(element).click().perform();
+
+        assertEquals(articleTitle,
+                wait.until(ExpectedConditions.presenceOfElementLocated(By.className("pg-headline"))).getText());
 
         driver.navigate().back();
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h1[text()='" + sportToSelect + "']")));
+    }
+
+    /**
+     * CNN43 not finished
+     * Mika
+     * HTML refer to CNN25 - home_page.html, CNN35 - hamburger_menu.html, CNN41, CNN42
+     */
+    @Test
+    public void CNN43_Mika() throws InterruptedException
+    {
+        String periodName = "";
+
+        driver.get("https://edition.cnn.com/");
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        Actions action = new Actions(driver);
+
+        driver.findElement(By.className("menu-icon")).click();
+        element = driver.findElement
+                (By.xpath("//*[@name='tv-schedule' and @data-analytics='header_expanded-nav']"));
+        action.moveToElement(element).click().perform();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h1[text()='TV Schedule - CNN']")));
+
+        element = driver.findElement(By.xpath("//*[contains(@class, 'region__container')]"));
+        element.findElement(By.xpath("//*[contains(@class, 'select')]")).click();
+        element.findElement(By.linkText("Asia")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h1[text()='Intl - TV Schedule Asia']")));
+        element = driver.findElements(By.xpath("//h2[@class='zn-header__text']")).get(0);
+        assertEquals("Morning", element.findElement(By.tagName("a")).getText());
+
+        element = driver.findElement(By.xpath("//*[contains(@class, 'day__container')]"));
+        driver.findElement(By.xpath("//*[contains(@class, 'day__container')]//*[contains(@class, 'select')]")).click();
+        wait.until(ExpectedConditions.elementToBeClickable
+                (element.findElement(By.xpath("//li[text()='Monday, October 25, 2021']")))).click();
+        assertEquals("Monday, October 25, 2021",
+                element.findElement(By.xpath("//*[contains(@class, 'initial-day__label')]")).getText());
+
+        List<WebElement> dayPeriods = driver.findElements
+                (By.xpath("//ul[contains(@class, 'day-period')]/li[contains(@class, 'day-period')]"));
+
+        for (WebElement period : dayPeriods)
+        {
+            periodName = period.getText();
+            action.moveToElement(period).click().perform();
+            element = wait.until(ExpectedConditions.presenceOfElementLocated
+                    (By.xpath("//*[contains(@class, 'tv_schedule_day_4')]//h2[@class='zn-header__text']/a[text()='"
+                    + periodName + "']")));
+            Thread.sleep(1000);
+            System.out.println(periodName);
+            assertTrue(element.isDisplayed());
+        }
     }
 }
