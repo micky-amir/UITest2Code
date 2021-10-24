@@ -2,7 +2,6 @@ package websites;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.*;
@@ -522,7 +521,7 @@ public class CNN2
             headline = article.findElement(By.className("cnn-search__result-headline"));
             body = article.findElement(By.className("cnn-search__result-body"));
             assertTrue(headline.findElement(By.tagName("a")).getText().toLowerCase(Locale.ROOT).contains(textToSearch.toLowerCase(Locale.ROOT))
-            || body.getText().toLowerCase(Locale.ROOT).contains(textToSearch.toLowerCase(Locale.ROOT)));
+                    || body.getText().toLowerCase(Locale.ROOT).contains(textToSearch.toLowerCase(Locale.ROOT)));
         }
     }
 
@@ -630,7 +629,7 @@ public class CNN2
     }
 
     /**
-     * CNN43 not finished
+     * CNN43
      * Mika
      * HTML refer to CNN25 - home_page.html, CNN35 - hamburger_menu.html, CNN43
      */
@@ -671,6 +670,8 @@ public class CNN2
         List<WebElement> dayPeriods = driver.findElements
                 (By.xpath("//ul[contains(@class, 'day-period')]/li[contains(@class, 'day-period')]"));
 
+        js.executeScript("window.scrollTo(0, -document.body.scrollHeight)");
+
         for (WebElement period : dayPeriods)
         {
             periodName = period.getText();
@@ -680,23 +681,23 @@ public class CNN2
                     + "')]//h2[@class='zn-header__text']/a[text()='" + periodName + "']"));
             assertTrue((Boolean) js.executeScript
                     ("var elem = arguments[0],                 " +
-                            "  box = elem.getBoundingClientRect(),    " +
-                            "  cx = box.left + box.width / 2,         " +
-                            "  cy = box.top + box.height / 2,         " +
-                            "  e = document.elementFromPoint(cx, cy); " +
-                            "for (; e; e = e.parentElement) {         " +
-                            "  if (e === elem)                        " +
-                            "    return true;                         " +
-                            "}                                        " +
-                            "return false;                            "
-                    , element));
+                                    "  box = elem.getBoundingClientRect(),    " +
+                                    "  cx = box.left + box.width / 2,         " +
+                                    "  cy = box.top + box.height / 2,         " +
+                                    "  e = document.elementFromPoint(cx, cy); " +
+                                    "for (; e; e = e.parentElement) {         " +
+                                    "  if (e === elem)                        " +
+                                    "    return true;                         " +
+                                    "}                                        " +
+                                    "return false;                            "
+                            , element));
         }
     }
 
     /**
-     * CNN44 not finished
+     * CNN44
      * Mika
-     * HTML refer to CNN25 - home_page.html, CNN35 - hamburger_menu.html, CNN41, CNN42
+     * HTML refer to CNN25 - home_page.html, CNN35 - hamburger_menu.html, CNN44
      */
     @Test
     public void CNN44_Mika()
@@ -713,14 +714,14 @@ public class CNN2
                 (By.xpath("//*[@name='weather' and @data-analytics='header_expanded-nav']"));
         action.moveToElement(element).click().perform();
 
-        element = wait.until(ExpectedConditions.elementToBeClickable
+        element = wait.until(ExpectedConditions.presenceOfElementLocated
                 (By.xpath("//input[@placeholder='Enter Location']")));
         element.click();
         element.sendKeys(location);
-        driver.findElement(By.xpath("//*[@class='tt-dropdown-menu']/*[@class='tt-dataset-user-location']")).click();
-        // driver.findElement(By.xpath("//*[@value='Get Forecast']"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@class='tt-dropdown-menu']/*[@class='tt-dataset-user-location']/*/*"))).click();
 
-        driver.findElement(By.xpath("//*[@data-temp='fahrenheit']")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated
+                (By.xpath("//*[@data-temp='fahrenheit']"))).click();
         assertTrue(driver.findElement(By.xpath("//*[@data-temptype='fahrenheit']")).isDisplayed());
     }
 
@@ -855,9 +856,9 @@ public class CNN2
     }
 
     /**
-     * CNN49 not finished - add assertions
+     * CNN49
      * Mika
-     * HTML refer to CNN25 - home_page.html
+     * HTML refer to CNN25 - home_page.html, CNN28 - CNN_Newsletters_page.html, CNN49
      */
     @Test
     public void CNN49_Mika()
@@ -867,21 +868,19 @@ public class CNN2
                 "Transcripts", "License Footage", "CNN Newsource", "Sitemap" };
         String[] xpathToCheck = new String[]
                 { "//h1[text()='CNN Terms of Use']", "//h1[contains(text(), 'Privacy Policy')]",
-                "//h1[contains(text(), 'Accessibility')]", "//h1[contains(text(), 'Advertising Choices')]",
-                "//h1[text()='ABOUT CNN DIGITAL']", "//h1[contains(text(), 'Modern Slavery Act Statement')]",
-                "//h2[contains(text(), 'Welcome to CNNIC')]", "//h1[contains(text(), 'CNN Store')]",
-                "//h1[text()='CNN Newsletters']", "//img[@alt='TRANSCRIPTS']",
-                "//h4[contains(text(), 'FOOTAGE')]", "//h1[text()='WE’RE AT THE HEART OF IT']",
-                "//h1[contains(text(), 'CNN Site Map')]" };
+                        "//h1[contains(text(), 'Accessibility')]", "//h1[contains(text(), 'Advertising Choices')]",
+                        "//h1[text()='ABOUT CNN DIGITAL']", "//h1[contains(text(), 'Modern Slavery Act Statement')]",
+                        "//h2[contains(text(), 'Welcome to CNNIC')]", "//h1[contains(text(), 'CNN Store')]",
+                        "//h1[text()='CNN Newsletters']", "//img[@alt='TRANSCRIPTS']",
+                        "//h4[contains(text(), 'FOOTAGE')]", "//h1[text()='WE’RE AT THE HEART OF IT']",
+                        "//h1[contains(text(), 'CNN Site Map')]" };
         List<String> goBack = Arrays.asList("Advertise with us", "CNN Store", "Newsletters",
                 "Transcripts", "License Footage", "CNN Newsource");
         String hasPopUp = "AdChoices";
-        int popUpFrameNum = 7;
 
         driver.get("https://edition.cnn.com/");
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        Actions action = new Actions(driver);
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
@@ -895,11 +894,8 @@ public class CNN2
 
             if (optionsList[i].equals(hasPopUp))
             {
-                driver.switchTo().frame(popUpFrameNum);
-                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpathToCheck[i])));
                 wait.until(ExpectedConditions.elementToBeClickable
                         (By.xpath("//*[contains(@id, 'closeBtn')]"))).click();
-                driver.switchTo().defaultContent();
             }
             else
                 wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpathToCheck[i])));
@@ -915,9 +911,9 @@ public class CNN2
     }
 
     /**
-     * CNN50 not finished - add html pages
+     * CNN50
      * Mika
-     * HTML refer to CNN25 - home_page.html
+     * HTML refer to CNN25 - home_page.html, CNN49 - About_Us_page, CNN50
      */
     @Test
     public void CNN50_Mika()
