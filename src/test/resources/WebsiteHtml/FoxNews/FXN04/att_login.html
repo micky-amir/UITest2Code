@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style=""><div class="overlay-body" style="display:none;"></div>
+
+
+
+<div id="header"><div id="GlobalNav"><div class="globalNavWrap"><ul><li class="selected"><a href="http://www.att.net/" title="att.net" target="_top">att.net</a></li><li><a href="http://www.att.com" title="att.com" target="_top">att.com</a></li><li class="last"><a href="https://watch.att.com/uverse-tv/" title="uverse.com" target="_top">uverse.com</a></li></ul><ul class="gnMoreLinks"><li class="last"><a href="https://envivo.att.yahoo.com/" title="En Español" target="_top">En Español</a></li></ul></div></div><div id="masthead"><a href="http://www.att.net" target="_top" id="attLogoHead" title="att.net Home">AT&amp;T</a><div id="signIn"><ul><li class="last"><a href="https://www.att.com/esupport/index.jsp?App_ID=PBY" target="_top">AT&amp;T Support</a></li></ul></div></div></div>
+
+
+
+<div id="pageWrap"><div id="YadWrap"><div id="richad"></div></div>
+
+    <div id="pageBody"><div id="modal-overlay-body" style="display:none;"></div>
+
+        <div id="loginWrap">
+            <!-- S5713 RD CR-1403-0292 Adding new informational text to the Federation login page Start Instructions -->
+            <div class="instructions-desktop">
+                <h1>Welcome!</h1>
+                <p>As an AT&amp;T U-verse TV member, you can watch live channels and on-demand shows on your device at no additional charge by logging in with your U-verse TV Email/User ID and Password. Remember, this channel must be part of your active U-verse TV subscription package.</p>
+                <p>Enjoy!</p>
+            </div>
+            <!-- End Instructions -->
+
+
+            <form action="login.do" method="post" id="LoginForm" class="LoginForm-noad" focus="userid" name="LoginForm" type="com.sbc.idm.igate_edam.forms.LoginFormBean">
+                <input type="hidden" name="style" value="ATT-ADB">
+                <input type="hidden" name="targetURL" value="https://loginprodx.att.net/FIM/sps/auth?FedName=ATT-ADB&amp;FedId=uuid2b03a1d7-0139-1cca-be40-d32385710be9">
+                <input type="hidden" name="previousRefID" value="1635060826209_883509668_CC">
+                <input type="hidden" name="optOutGroupUpdate" value="null">
+                <h1><strong>Sign in now!</strong></h1>
+                <!-- S5713 RD CR-1403-0292 Adding new informational text to the Federation login page Start Instructions -->
+                <div class="instructions-mobile">
+                    <p>As an AT&amp;T U-verse TV member, you can watch live channels and on demand shows on your device at no additional charge by logging in with your U-verse TV Email/User ID and Password. This channel must be part of your active U-verse subscription.</p>
+                </div>
+                <!-- End Instructions -->
+
+                <ul class="uLogin">
+
+                    <li id="uID">
+
+                        <span class="deleteicon"><label for="nameBox">Email/User ID</label><input type="text" name="userid" id="nameBox" value="" maxlength="50" size="50" class="slidTxtbox" title="Userid"><span></span></span>
+
+
+
+                        <div class="quesIcon" id="ques1"><a href="#" class="tip" title="Tips for signing in">Sign In Tips</a><div id="qAns1" class="qAns"><div class="overContent"><h3>Sign in tips</h3><p>You can log in with your AT&amp;T Email Address username@currently.com OR</p><p>username@ameritech.net<br>username@att.net<br>username@bellsouth.net<br>username@flash.net<br>username@nvbell.net<br>username@pacbell.net<br>username@prodigy.net<br>username@sbcglobal.net<br>username@snet.net<br>username@swbell.net<br>username@wans.net</p><p class="pBr"><a href="https://www.att.com/esupport/article.html#!/wireless/KM1187387" title="Learn about shared passwords for AT&amp;T email" -="">Learn about shared passwords for AT&amp;T <br>email.</a></p><!--<a href="#" class="close">Close</a>--></div></div></div>
+                        <p class="fgtPwd"><a href="https://www.att.com/olam/enterEmailForgotId.myworld" id="fgtUID" class="colLink">Forgot Email/User ID?</a></p>
+
+                    </li>
+
+                    <li id="uPwd">
+
+                        <span class="deleteicon"><label for="pwdBox">Password</label><input type="text" placeholder="Password" name="password" id="pwdBox" value="" maxlength="50" size="50" class="slidTxtbox" autocomplete="off" title="Password"><span></span></span>
+
+
+
+                        <!-- <p class="fgtPwd"><a href="#" id="fgtPwd" class="colLink">Forgot Password?</a></p> -->
+                        <p class="fgtPwd"><a id="fgtPwd" href="#modal" onclick="overlay()" class="colLink" aria-describedby="spanLog">Forgot Password?</a>
+                            <span id="spanLog" style="display:none;">Redirects to www.att.com.</span></p>
+                    </li><li id="shwPc"><p><input type="checkbox" name="showPwd" id="showPwd" class="slidChkBox"><label for="showPwd">Show password characters</label></p></li>
+
+                    <li id="uRM">
+
+                        <p><input type="checkbox" name="rememberID" id="rememberID" class="slidChkBox"><label for="rememberID">Keep me signed in</label></p>
+
+                        <p>for 2 weeks unless I sign out. <span class="quesIcon" id="ques2"><a href="#" class="tip" title="Additional Information about Keep Me Signed In">Additional Information about Keep Me Signed In</a><span id="qAns2" class="qAns"><div class="overContent"><h3>What does "Keep me signed in" mean?</h3><p> Many of our users have asked for a way to reduce how frequently they're asked to sign-in to att.net and Mail. By checking  this new box you'll stay signed in for up to 2 weeks or until you sign out. You'll get easier access to your mail, photos, music, and all your other stuff, even if you close your browser or shut down your computer.</p> <p>To protect your most sensitive data and activities (like changing your password or using your credit card), we'll ask you to re-enter your password when you access some AT&amp;T services.</p> <h3>What if I'm on a computer that I share with others?</h3> <p>If you're using a public computer or you share this computer with others, we recommend that you uncheck the "Keep me signed in" box.</p> <p>This checkbox applies to this computer only. So, for example, you can stay signed in on your home computer, but maintain more frequent password protection on your work or school computer.</p> <p>You can change the length of time you remain signed in to att.net and Mail, once you are signed in, by clicking on the "My Account" link at the top of most of the att.net pages. Go to the "Member Information" section to change the frequency whereby AT&amp;T will prompt you for your password. If you do so, AT&amp;T will ask you to verify your password more frequently, although your sign-in screen will indicate every "two weeks".</p> <p>If you need to sign out, remember to click the "Sign Out" link located at the top of most att.net pages when you're signed in.</p><!--<a href="#" class="close">Close</a>--></div></span></span></p>
+
+                        <p class="text-desktop">(Uncheck if on a shared computer.)</p><p class="text-mobile">(Uncheck if on a shared device.)</p>
+
+                    </li>
+
+                    <li id="uBtn">
+
+                        <input type="submit" id="submitLogin" value="Sign In" class="loginBtn">
+
+                    </li><li id="uActCr"><label for="regurl">Don't have an AT&amp;T Account?</label><a href="https://attreg.att.net/PortalRegWeb/PortalRegController?callingAppId=OP&amp;returnUrl=" id="regurl" name="regurl"><input id="acctCreate" name="acctCreate" class="loginBtnClear" type="button" value="Create AT&amp;T Account" alt="Create AT&amp;T Account"></a></li>
+
+
+
+                </ul>
+
+
+
+                <div id="lognp"><img width="1" height="1" alt="" src="https://home.secureapp.att.net/attportal/s/context.dll?id=9002001&amp;type=clickthru&amp;name=cgate.signIn.Pageviews.sp-auth-adobe-com&amp;redirecturl=/i/s.gif?nocache=9315"></div>
+
+                <div id="overLayCheck" class="overLayRight1"><h3>You have chosen to stay signed in for 2 weeks. What does this mean?</h3><p>Many of our AT&amp;T users have asked for a way to reduce how frequently they're asked to sign-in to att.net. By checking this new box, you'll stay signed in for up to 2 weeks or until you sign out. To protect your most sensitive data and activities (like changing your password or using your credit card), we'll ask you to re-enter your password when you access some AT&amp;T services.</p><p>If you're using a public computer or you share this computer with others, we recommend that you uncheck the "Keep me signed in" box.</p> <p>This checkbox applies to this computer only. So, for example, you can stay signed in on your home computer, but maintain more frequent password protection on your work or school computer.</p><p>If you need to sign out, remember to click the "Sign Out" link located at the top of most att.net pages when you're signed in.</p><ul class="btnSignIn"><li><button id="btnKeepMe" class="btnLong" onclick="chkTick()">Keep Me Signed In</button></li><li><button id="btnSignIn" class="btnLong" onclick="unchkTick()">Sign Me In, but I don't want to stay Signed In for 2 weeks</button></li></ul><div class="clrAll"></div></div>
+
+            </form>
+
+            <div id="promo"></div>
+            <div id="modal" role="dialog" aria-labelledby="RedirectionModal">
+                <div class="modal-content">
+
+                    <div class="copy">
+                        <p id="RedirectionModal" class="pstyle">You are being redirected to ATT.com<br><span class="pstyle1">where you can recover your password.</span> </p>
+                    </div>
+                    <div id="count" style="visibility:hidden;margin-top:-28px;">Redirecting in 10 seconds...</div>
+                    <a onclick="cancelLoad()" class="hover" id="CancelM" aria-label="Cancel" href="#" role="button"><img class="btnCancel" src="https://home.secureapp.att.net/design/CDLS10/img/logos/Button.png" alt="Cancel"></a>
+                    <div><img id="logo1" class="attlogo" alt="attlogo" src="https://home.secureapp.att.net/design/CDLS10/img/logos/AT&amp;T_logo.png"></div>
+                </div>
+                <div class="overlay"></div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div id="footer"><div class="footerWrap"><ul><li class="first"><a href="https://www.att.com/legal/terms.attNetTermsOfUse.html">Terms</a></li><li><a href="https://about.att.com/csr/home/privacy.html" target="_top">Privacy</a></li><li><a href="https://www.xandr.com/" target="_blank">Advertise</a></li><li><a href="https://about.att.com/csr/home/privacy/full_privacy_policy.html#obc" target="_top">Advertising Choices</a></li><li><a href="https://www.att.com/legal/terms.aup.html" target="_top">Acceptable Use Policy</a></li><li class="last"><a href="https://survey.foreseeresults.com/survey/display?cid=JxTg9PsUYKor4P5i9ne0Ug==&amp;sid=s-feedback-en" target="_top">Feedback</a></li></ul><p><a href="http://www.att.net/s/context.dll?id=1400&amp;type=clickthru&amp;name=global.footer.att.IP&amp;redirecturl=http://www.att.com/gen/privacy-policy?pid=2587" target="_top">© 2020 AT&amp;T Intellectual Property</a>. All rights reserved. AT&amp;T and the AT&amp;T logo are trademarks of AT&amp;T Intellectual Property.</p></div></div>
+
+
+
+<div id="yad">
+</div>
+<script src="//www.att.com/scripts/adobe/prod/detm-container-ftr.js"></script>
+<!-- TG1403 S5534 - CR-1402-0249 RD2376 - Replace WebTrends tags with Adobe tags -->
+<!-- <script type="text/javascript">_satellite.pageBottom();</script> -->
+
+
+
+<script type="text/javascript">
+/*<![CDATA[*/
+document.cookie = "IV_JCT=%2FcommonLogin; path=/";
+/*]]>*/
+</script>
+<script>mendeleyWebImporter = {
+  downloadPdfs(t,e) { return this._call('downloadPdfs', [t,e]); },
+  open() { return this._call('open', []); },
+  setLoginToken(t) { return this._call('setLoginToken', [t]); },
+  _call(methodName, methodArgs) {
+    const id = Math.random();
+    window.postMessage({ id, token: '0.9982621434826924', methodName, methodArgs }, 'https://loginprodx.att.net');
+    return new Promise(resolve => {
+      const listener = window.addEventListener('message', event => {
+        const data = event.data;
+        if (typeof data !== 'object' || !('result' in data) || data.id !== id) return;
+        window.removeEventListener('message', listener);
+        resolve(data.result);
+      });
+    });
+  }
+};</script><script src="https://www.att.com/scripts/adobe/prod/attmonetization/js/attmonetization.config.js" defer="" type="text/javascript"></script><script src="https://signin.att.com/static/ciam/en/common/js/keepAlive.js" defer="" type="text/javascript"></script><iframe src="https://servedby.flashtalking.com/container/19536;124481;13503;iframe/?lineOfBusiness=Default&amp;language=EN&amp;customerType=UNKNOWN&amp;flowCode=Default&amp;liabilityType=Default&amp;productSegment=Default&amp;slidAssocAccts=Default&amp;ft_referrer=https%3A//loginprodx.att.net/commonLogin/igate_edam/controller.do%3FTAM_OP%3Dlogin%26USERNAME%3Dunauthenticated%26ERROR_CODE%3D0x00000000%26ERROR_TEXT%3DHPDBA0521I%2520%2520%2520Successful%2520completion%26METHOD%3DGET%26URL%3D%252FFIM%252Fsps%252Fauth%253FFedName%253DATT-ADB%2526FedId%253Duuid2b03a1d7-0139-1cca-be40-d32385710be9%253Ftucd567%253Dw%26REFERER%3Dhttps%253A%252F%252Fsp.auth.adobe.com%252F%26HOSTNAME%3Dloginprodx.att.net%26AUTHNLEVEL%3D%26FAILREASON%3D%26PROTOCOL%3Dhttps%26OLDSESSION%3D&amp;ns=https%3A//sp.auth.adobe.com/&amp;cb=24165.2176048599" style="width: 1px; height: 1px; position: absolute; display: none;"></iframe><div style="width:0px; height:0px; display:none; visibility:hidden;" id="batBeacon502893397196"><img style="width:0px; height:0px; display:none; visibility:hidden;" id="batBeacon203281008915" width="0" height="0" alt="" src="https://bat.bing.com/action/0?ti=18003891&amp;Ver=2&amp;mid=59ae868e-fad2-4c67-927f-54a3fb329cb0&amp;sid=a6804a10349511ecb1f62feb8305c62e&amp;vid=a68064e0349511ec8fe6212aa2230c99&amp;vids=0&amp;ec=Default-UNKNOWN-Default-EN&amp;ea=page_view&amp;el=&amp;evt=custom&amp;msclkid=N&amp;rn=63689"></div></body>
+</html>
