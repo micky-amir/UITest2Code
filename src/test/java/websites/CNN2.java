@@ -2,6 +2,7 @@ package websites;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.*;
@@ -629,7 +630,7 @@ public class CNN2
     }
 
     /**
-     * CNN43
+     * CNN43 not finished
      * Mika
      * HTML refer to CNN25 - home_page.html, CNN35 - hamburger_menu.html, CNN43
      */
@@ -670,8 +671,6 @@ public class CNN2
         List<WebElement> dayPeriods = driver.findElements
                 (By.xpath("//ul[contains(@class, 'day-period')]/li[contains(@class, 'day-period')]"));
 
-        js.executeScript("window.scrollTo(0, -document.body.scrollHeight)");
-
         for (WebElement period : dayPeriods)
         {
             periodName = period.getText();
@@ -695,9 +694,9 @@ public class CNN2
     }
 
     /**
-     * CNN44
+     * CNN44 not finished
      * Mika
-     * HTML refer to CNN25 - home_page.html, CNN35 - hamburger_menu.html, CNN44
+     * HTML refer to CNN25 - home_page.html, CNN35 - hamburger_menu.html, CNN41, CNN42
      */
     @Test
     public void CNN44_Mika()
@@ -714,14 +713,14 @@ public class CNN2
                 (By.xpath("//*[@name='weather' and @data-analytics='header_expanded-nav']"));
         action.moveToElement(element).click().perform();
 
-        element = wait.until(ExpectedConditions.presenceOfElementLocated
+        element = wait.until(ExpectedConditions.elementToBeClickable
                 (By.xpath("//input[@placeholder='Enter Location']")));
         element.click();
         element.sendKeys(location);
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@class='tt-dropdown-menu']/*[@class='tt-dataset-user-location']/*/*"))).click();
+        driver.findElement(By.xpath("//*[@class='tt-dropdown-menu']/*[@class='tt-dataset-user-location']")).click();
+        // driver.findElement(By.xpath("//*[@value='Get Forecast']"));
 
-        wait.until(ExpectedConditions.presenceOfElementLocated
-                (By.xpath("//*[@data-temp='fahrenheit']"))).click();
+        driver.findElement(By.xpath("//*[@data-temp='fahrenheit']")).click();
         assertTrue(driver.findElement(By.xpath("//*[@data-temptype='fahrenheit']")).isDisplayed());
     }
 
@@ -856,9 +855,9 @@ public class CNN2
     }
 
     /**
-     * CNN49
+     * CNN49 not finished - add assertions
      * Mika
-     * HTML refer to CNN25 - home_page.html, CNN28 - CNN_Newsletters_page.html, CNN49
+     * HTML refer to CNN25 - home_page.html
      */
     @Test
     public void CNN49_Mika()
@@ -877,10 +876,12 @@ public class CNN2
         List<String> goBack = Arrays.asList("Advertise with us", "CNN Store", "Newsletters",
                 "Transcripts", "License Footage", "CNN Newsource");
         String hasPopUp = "AdChoices";
+        int popUpFrameNum = 7;
 
         driver.get("https://edition.cnn.com/");
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
+        Actions action = new Actions(driver);
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
@@ -894,8 +895,11 @@ public class CNN2
 
             if (optionsList[i].equals(hasPopUp))
             {
+                driver.switchTo().frame(popUpFrameNum);
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpathToCheck[i])));
                 wait.until(ExpectedConditions.elementToBeClickable
                         (By.xpath("//*[contains(@id, 'closeBtn')]"))).click();
+                driver.switchTo().defaultContent();
             }
             else
                 wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpathToCheck[i])));
@@ -911,9 +915,9 @@ public class CNN2
     }
 
     /**
-     * CNN50
+     * CNN50 not finished - add html pages
      * Mika
-     * HTML refer to CNN25 - home_page.html, CNN49 - About_Us_page, CNN50
+     * HTML refer to CNN25 - home_page.html
      */
     @Test
     public void CNN50_Mika()

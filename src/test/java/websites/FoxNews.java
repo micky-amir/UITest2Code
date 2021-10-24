@@ -262,8 +262,59 @@ public class FoxNews {
         }
         element.click();
         wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(locator, newCount)));
-        driver.findElement(By.className("cancel")).click();
+    }
+
+    /**
+     * FXN09
+     * Tamar
+     * HTML refers to FXN01, FXN06, FXN09
+     */
+    @Test
+    public void FXN09_Tamar() {
+        driver.get("https://www.foxnews.com/");
+        assertTrue(driver.findElement(By.cssSelector("[aria-label='hot topics']")).isDisplayed());
+        assertTrue(driver.findElement(By.className("market-data")).isDisplayed());
+        driver.findElement(By.className("js-focus-search")).click();
+        assertNotEquals("none", driver.findElement(By.className("expandable-nav")).getCssValue("display"));
+        element = driver.findElement(By.cssSelector("[aria-label='search foxnews.com']"));
+        assertTrue(element.isDisplayed());
+        element.sendKeys("Covid");
+        element = driver.findElement(By.cssSelector("[aria-label='submit search']"));
+        assertTrue(element.isDisplayed());
+        element.submit();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("search-results-content")));
+        assertTrue(driver.findElement(By.className("num-found")).isDisplayed());
+        element = driver.findElement(By.cssSelector("h2 > a"));
+        String title = element.getText();
         element.click();
-        wait.until(ExpectedConditions.textToBe(locator, originalCount));
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        assertEquals(title, driver.getTitle());
+        assertTrue(driver.getCurrentUrl().startsWith("https://www.foxnews.com/"));
+    }
+
+    /**
+     * FXN10
+     * Tamar
+     * HTML refers to FXN01, FXN10
+     */
+    @Test
+    public void FXN10_Tamar() {
+        driver.get("https://www.foxnews.com/");
+        assertTrue(driver.findElement(By.cssSelector("[aria-label='hot topics']")).isDisplayed());
+        assertTrue(driver.findElement(By.className("market-data")).isDisplayed());
+        driver.findElement(By.cssSelector(".more-markets > a")).click();
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        assertEquals("Markets", driver.findElement(By.tagName("h1")).getText());
+        driver.switchTo().frame(driver.findElement(By.id("market-index-charts")));
+        List<WebElement> sectionElements = driver.findElements(By.className("fdsg-headtext"));
+        List<String> expectedTitles = Arrays.asList("DOW JONES AVERAGES", "NASDAQ COMPOSITE INDEX", "S&P 500");
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : sectionElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
     }
 }
