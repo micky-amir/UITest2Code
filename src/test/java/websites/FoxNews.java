@@ -445,6 +445,54 @@ public class FoxNews {
             }
             assertEquals(expectedCategories, actualCategories);
         }
+    }
 
+    /**
+     * FXN13
+     * Tamar
+     * HTML refers to FXN01, FXN03, FXN11, FXN13
+     */
+    @Test
+    public void FXN13_Tamar() {
+        driver.get("https://www.foxnews.com/");
+        element = driver.findElement(By.xpath("//nav[@id='main-nav']//a[text()='Business']"));
+        assertTrue(element.isDisplayed());
+        element.click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        assertEquals("Fox Business", driver.findElement(By.tagName("h1")).getText());
+        List<WebElement> navElements = driver.findElements(By.cssSelector("#main-nav a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Personal Finance", "Economy", "Markets", "Watchlist",
+                "Lifestyle", "Real Estate", "Tech", "TV", "Podcasts", "More"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : navElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        navElements.get(3).click();
+        wait.until(ExpectedConditions.textToBe(By.className("page-title"), "Watchlist"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='Create a New List']"))).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Sign In"));
+        driver.findElement(By.xpath("//*[text()='Create Account']")).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Create Account"));
+        driver.findElement(By.cssSelector("[name='email']")).sendKeys("qa.tries.123@gmail.com");
+        driver.findElement(By.id("password")).sendKeys("test123!");
+        driver.findElement(By.cssSelector("[name='firstName']")).sendKeys("first");
+        driver.findElement(By.cssSelector("[name='lastName']")).sendKeys("last");
+        driver.findElement(By.cssSelector("[name='displayName']")).sendKeys("testUser");
+        driver.findElement(By.cssSelector("[name='month']")).click();
+        driver.findElement(By.xpath("//option[text()='Jan']")).click();
+        driver.findElement(By.cssSelector("[name='day']")).click();
+        driver.findElement(By.xpath("//option[text()='01']")).click();
+        driver.findElement(By.cssSelector("[name='year']")).click();
+        driver.findElement(By.xpath("//option[text()='2000']")).click();
+        driver.findElement(By.cssSelector("[name='gender']")).click();
+        driver.findElement(By.xpath("//option[text()='Female']")).click();
+        driver.findElement(By.className("foxid-input-checkbox")).click();
+        driver.findElement(By.xpath("//button[text()='Create Account']")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='Verify Account']")));
+        driver.findElement(By.xpath("//button[text()='Log Out']")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//nav[@id='main-nav']//a[text()='Business']")));
     }
 }
