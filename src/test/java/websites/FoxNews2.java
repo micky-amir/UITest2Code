@@ -260,9 +260,9 @@ public class FoxNews2
     }
 
     /**
-     * FXN31 not finished
+     * FXN31
      * Mika
-     * HTML refer to
+     * HTML refer to FXN25 - home_page.html, FXN31
      */
     @Test
     public void FXN31_Mika()
@@ -294,9 +294,9 @@ public class FoxNews2
     }
 
     /**
-     * FXN32 not finished
+     * FXN32
      * Mika
-     * HTML refer to
+     * HTML refer to FXN25 - home_page.html, FXN31, FXN32
      */
     @Test
     public void FXN32_Mika()
@@ -333,6 +333,15 @@ public class FoxNews2
         wait.until(ExpectedConditions.presenceOfElementLocated
                 (By.xpath("//*[contains(@class, 'h2') and text()='" + itemToChoose + "']")));
 
+        try
+        {
+            driver.findElement(By.xpath("//*[@alt='close']")).click();
+        }
+        catch (Exception ignored)
+        {
+            ;
+        }
+
         element = driver.findElement(By.xpath("//*[contains(@class, 'sectionNav') and text()='" + optionInItem + "']"));
         action.moveToElement(element).perform();
         element.click();
@@ -347,9 +356,9 @@ public class FoxNews2
     }
 
     /**
-     * FXN33 not finished
+     * FXN33
      * Mika
-     * HTML refer to
+     * HTML refer to FXN25 - home_page.html, FXN31
      */
     @Test
     public void FXN33_Mika() throws InterruptedException
@@ -403,9 +412,9 @@ public class FoxNews2
     }
 
     /**
-     * FXN34 not finished
+     * FXN34
      * Mika
-     * HTML refer to
+     * HTML refer to FXN25 - home_page.html, FXN31
      */
     @Test
     public void FXN34_Mika() throws InterruptedException
@@ -442,7 +451,16 @@ public class FoxNews2
         wait.until(ExpectedConditions.presenceOfElementLocated
                 (By.xpath("//*[contains(@class, 'h2') and text()='" + itemToChoose + "']")));
 
-        element = driver.findElement(By.xpath("//*[@for='" + checkboxToSelect + "_checkbox']"));
+        try
+        {
+            driver.findElement(By.xpath("//*[@alt='close']")).click();
+        }
+        catch (Exception ignored)
+        {
+            ;
+        }
+
+        element = driver.findElement(By.id(checkboxToSelect + "_checkbox"));
         action.moveToElement(element).click().perform();
         wait.until(ExpectedConditions.elementToBeSelected(element));
 
