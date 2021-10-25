@@ -493,6 +493,6 @@ public class FoxNews {
         driver.findElement(By.xpath("//button[text()='Create Account']")).click();
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='Verify Account']")));
         driver.findElement(By.xpath("//button[text()='Log Out']")).click();
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//nav[@id='main-nav']//a[text()='Business']")));
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Fox Business"));
     }
 }
