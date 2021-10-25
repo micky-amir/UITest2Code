@@ -317,4 +317,60 @@ public class FoxNews {
         }
         assertEquals(expectedTitles, actualTitles);
     }
+
+    /**
+     * FXN11
+     * Tamar
+     * HTML refers to FXN01, FXN03, FX10, FXN11
+     */
+    @Test
+    public void FXN11_Tamar() {
+        driver.get("https://www.foxnews.com/");
+        element = driver.findElement(By.xpath("//nav[@id='main-nav']//a[text()='Business']"));
+        assertTrue(element.isDisplayed());
+        element.click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        assertEquals("Fox Business", driver.findElement(By.tagName("h1")).getText());
+        List<WebElement> navElements = driver.findElements(By.cssSelector("#main-nav a"));
+        List<String> expectedTitles = Arrays.asList("Personal Finance", "Economy", "Markets", "Watchlist",
+                "Lifestyle", "Real Estate", "Tech", "TV", "Podcasts", "More");
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : navElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        for (String title : actualTitles) {
+            driver.findElement(By.xpath("//nav[@id='main-nav']//a[contains(text(), '" + title + "')]")).click();
+            switch (title) {
+                case "Personal Finance":
+                    assertTrue(driver.findElement(By.tagName("h1")).getText().contains(title));
+                    driver.navigate().back();
+                    wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Fox Business"));
+                    break;
+                case "Watchlist":
+                    assertTrue(driver.findElement(By.className("page-title")).getText().contains(title));
+                    break;
+                case "Tech":
+                    wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Technology"));
+                    break;
+                case "TV":
+                    wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "On Air"));
+                    break;
+                case "Podcasts":
+                    wait.until(ExpectedConditions.textToBe(By.tagName("strong"), "FOX News Talk"));
+                    driver.navigate().back();
+                    wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "On Air"));
+                    break;
+                case "More":
+                    assertNotEquals("none", driver.findElement(By.className("expandable-nav")).getCssValue("display"));
+                    assertTrue(driver.findElement(By.className("search")).isDisplayed());
+                    break;
+                default:
+                    wait.until(ExpectedConditions.textToBe(By.tagName("h1"), title));
+                    break;
+            }
+        }
+    }
 }
