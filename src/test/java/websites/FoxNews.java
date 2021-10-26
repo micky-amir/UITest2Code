@@ -495,4 +495,199 @@ public class FoxNews {
         driver.findElement(By.xpath("//button[text()='Log Out']")).click();
         wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Fox Business"));
     }
+
+    /**
+     * FXN14
+     * Tamar
+     * HTML refers to FXN01, FXN03, FXN11, FXN13, FXN14
+     */
+    @Test
+    public void FXN14_Tamar() {
+        driver.get("https://www.foxnews.com/");
+        element = driver.findElement(By.xpath("//nav[@id='main-nav']//a[text()='Business']"));
+        assertTrue(element.isDisplayed());
+        element.click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        assertEquals("Fox Business", driver.findElement(By.tagName("h1")).getText());
+        List<WebElement> navElements = driver.findElements(By.cssSelector("#main-nav a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Personal Finance", "Economy", "Markets", "Watchlist",
+                "Lifestyle", "Real Estate", "Tech", "TV", "Podcasts", "More"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : navElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        navElements.get(3).click();
+
+        wait.until(ExpectedConditions.textToBe(By.className("page-title"), "Watchlist"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='Create a New List']"))).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Sign In"));
+        driver.findElement(By.cssSelector("[name='email']")).sendKeys("qa.tries.123@gmail.com");
+        driver.findElement(By.cssSelector("[name='password']")).sendKeys("test123!");
+        driver.findElement(By.cssSelector(".login")).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Fox Business"));
+        driver.findElement(By.cssSelector("[data-omtr-intcmp='nav_watchlist']")).click();
+
+        wait.until(ExpectedConditions.textToBe(By.className("page-title"), "Watchlist"));
+        assertTrue(driver.findElement(By.className("watchlist-search-bar")).isDisplayed());
+        assertTrue(driver.findElement(By.className("edit-button")).isDisplayed());
+        String[] searchWords = {"ST", "A"};
+        for (int i = 0; i < 2; i++) {
+            driver.findElement(By.cssSelector(".watchlist-search-bar > input")).sendKeys(searchWords[i]);
+            wait.until(ExpectedConditions.not(ExpectedConditions.attributeToBeNotEmpty(driver.findElement(By.className("dropdown")), "style")));
+            element = driver.findElement(By.className("result"));
+            String name = element.findElement(By.className("company")).getText();
+            element.click();
+            wait.until(ExpectedConditions.textToBe(By.cssSelector(".table-row:last-child .stock-summary-cell .company-name"), name));
+        }
+    }
+
+    /**
+     * FXN15
+     * Tamar
+     * HTML refers to FXN01, FXN03, FXN11, FXN13, FXN14, FXN15
+     */
+    @Test
+    public void FXN15_Tamar() {
+        driver.get("https://www.foxnews.com/");
+        element = driver.findElement(By.xpath("//nav[@id='main-nav']//a[text()='Business']"));
+        assertTrue(element.isDisplayed());
+        element.click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        assertEquals("Fox Business", driver.findElement(By.tagName("h1")).getText());
+        List<WebElement> navElements = driver.findElements(By.cssSelector("#main-nav a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Personal Finance", "Economy", "Markets", "Watchlist",
+                "Lifestyle", "Real Estate", "Tech", "TV", "Podcasts", "More"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : navElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        navElements.get(3).click();
+
+        wait.until(ExpectedConditions.textToBe(By.className("page-title"), "Watchlist"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='Create a New List']"))).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Sign In"));
+        driver.findElement(By.cssSelector("[name='email']")).sendKeys("qa.tries.123@gmail.com");
+        driver.findElement(By.cssSelector("[name='password']")).sendKeys("test123!");
+        driver.findElement(By.cssSelector(".login")).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Fox Business"));
+        driver.findElement(By.cssSelector("[data-omtr-intcmp='nav_watchlist']")).click();
+
+        wait.until(ExpectedConditions.textToBe(By.className("page-title"), "Watchlist"));
+        assertTrue(driver.findElement(By.className("watchlist-search-bar")).isDisplayed());
+        assertTrue(driver.findElement(By.className("edit-button")).isDisplayed());
+        driver.findElement(By.cssSelector(".watchlist-search-bar > input")).sendKeys("ST");
+        wait.until(ExpectedConditions.not(ExpectedConditions.attributeToBeNotEmpty(driver.findElement(By.className("dropdown")), "style")));
+        element = driver.findElement(By.className("result"));
+        String name = element.findElement(By.className("company")).getText();
+        element.click();
+        wait.until(ExpectedConditions.textToBe(By.cssSelector(".table-row:last-child .stock-summary-cell .company-name"), name));
+
+        driver.findElement(By.className("edit-button")).click();
+        wait.until(ExpectedConditions.textToBe(By.cssSelector(".watchlist-header > button"), "Save"));
+        driver.findElement(By.className("edit-done-button")).click();
+        wait.until(ExpectedConditions.textToBe(By.cssSelector(".watchlist-header > button"), "Edit"));
+    }
+
+    /**
+     * FXN16
+     * Tamar
+     * HTML refers to FXN01, FXN03, FXN11, FXN13, FXN14, FXN15
+     */
+    @Test
+    public void FXN16_Tamar() {
+        driver.get("https://www.foxnews.com/");
+        element = driver.findElement(By.xpath("//nav[@id='main-nav']//a[text()='Business']"));
+        assertTrue(element.isDisplayed());
+        element.click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        assertEquals("Fox Business", driver.findElement(By.tagName("h1")).getText());
+        List<WebElement> navElements = driver.findElements(By.cssSelector("#main-nav a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Personal Finance", "Economy", "Markets", "Watchlist",
+                "Lifestyle", "Real Estate", "Tech", "TV", "Podcasts", "More"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : navElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        navElements.get(3).click();
+
+        wait.until(ExpectedConditions.textToBe(By.className("page-title"), "Watchlist"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='Create a New List']"))).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Sign In"));
+        driver.findElement(By.cssSelector("[name='email']")).sendKeys("qa.tries.123@gmail.com");
+        driver.findElement(By.cssSelector("[name='password']")).sendKeys("test123!");
+        driver.findElement(By.cssSelector(".login")).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Fox Business"));
+        driver.findElement(By.cssSelector("[data-omtr-intcmp='nav_watchlist']")).click();
+
+        wait.until(ExpectedConditions.textToBe(By.className("page-title"), "Watchlist"));
+        assertTrue(driver.findElement(By.className("watchlist-search-bar")).isDisplayed());
+        assertTrue(driver.findElement(By.className("edit-button")).isDisplayed());
+        for (int i = 0; i < 2; i++) {
+            driver.findElement(By.cssSelector(".watchlist-search-bar > input")).sendKeys("ST");
+            wait.until(ExpectedConditions.not(ExpectedConditions.attributeToBeNotEmpty(driver.findElement(By.className("dropdown")), "style")));
+            element = driver.findElement(By.className("result"));
+            String name = element.findElement(By.className("company")).getText();
+            element.click();
+            wait.until(ExpectedConditions.textToBe(By.cssSelector(".table-row:last-child .stock-summary-cell .company-name"), name));
+            driver.findElement(By.className("edit-button")).click();
+
+            if (i == 0) {
+                wait.until(ExpectedConditions.textToBe(By.cssSelector(".watchlist-header > button"), "Save"));
+                driver.findElement(By.cssSelector(".table-row:last-child .watchlist-edit-row [alt='delete']")).click();
+                assertEquals(0, driver.findElements(By.xpath("//*[@class='table-row']//*[@class='company-name' and text()='" + name + "']")).size());
+                driver.findElement(By.className("edit-done-button")).click();
+                wait.until(ExpectedConditions.textToBe(By.cssSelector(".watchlist-header > button"), "Edit"));
+                assertEquals(0, driver.findElements(By.xpath("//*[@class='table-row']//*[@class='company-name' and text()='" + name + "']")).size());
+            } else {
+                wait.until(ExpectedConditions.presenceOfElementLocated(By.className("delete-button"))).click();
+                assertEquals("Are you sure you want to delete the whole list?", driver.switchTo().alert().getText());
+                driver.switchTo().alert().accept();
+                wait.until(ExpectedConditions.numberOfElementsToBe(By.cssSelector(".table-row .company-name"), 0));
+            }
+        }
+    }
+
+    /**
+     * FXN17
+     * Tamar
+     * HTML refers to FXN01, FXN03, FXN17
+     */
+    @Test
+    public void FXN17_Tamar() {
+        driver.get("https://www.foxnews.com/");
+        element = driver.findElement(By.xpath("//nav[@id='main-nav']//a[text()='Business']"));
+        assertTrue(element.isDisplayed());
+        element.click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        assertEquals("Fox Business", driver.findElement(By.tagName("h1")).getText());
+        List<WebElement> navElements = driver.findElements(By.cssSelector("#main-nav a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Personal Finance", "Economy", "Markets", "Watchlist",
+                "Lifestyle", "Real Estate", "Tech", "TV", "Podcasts", "More"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : navElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        navElements.get(7).click();
+        List<WebElement> buttons = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy((By.cssSelector(".heading a"))));
+        expectedTitles.clear();
+        actualTitles.clear();
+        expectedTitles = new ArrayList<>(Arrays.asList("Watch Live", "Full Schedule", "Personalities", "Channel Finder"));
+        for (WebElement element : buttons) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+    }
+
 }
