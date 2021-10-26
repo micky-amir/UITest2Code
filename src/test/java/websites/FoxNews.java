@@ -148,6 +148,7 @@ public class FoxNews {
     /**
      * FXN05
      * Tamar
+     * HTML refers to FXN01, FXN05
      */
     @Test
     public void FXN05_Tamar() {
@@ -688,6 +689,131 @@ public class FoxNews {
             actualTitles.add(element.getText());
         }
         assertEquals(expectedTitles, actualTitles);
+    }
+
+    /**
+     * FXN18
+     * Tamar
+     * HTML refers to FXN01, FXN03, FXN17, FXN18
+     */
+    @Test
+    public void FXN18_Tamar() {
+        driver.get("https://www.foxnews.com/");
+        element = driver.findElement(By.xpath("//nav[@id='main-nav']//a[text()='Business']"));
+        assertTrue(element.isDisplayed());
+        element.click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        assertEquals("Fox Business", driver.findElement(By.tagName("h1")).getText());
+        List<WebElement> navElements = driver.findElements(By.cssSelector("#main-nav a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Personal Finance", "Economy", "Markets", "Watchlist",
+                "Lifestyle", "Real Estate", "Tech", "TV", "Podcasts", "More"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : navElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        navElements.get(7).click();
+        List<WebElement> buttons = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy((By.cssSelector(".heading a"))));
+        expectedTitles.clear();
+        actualTitles.clear();
+        expectedTitles = new ArrayList<>(Arrays.asList("Watch Live", "Full Schedule", "Personalities", "Channel Finder"));
+        for (WebElement element : buttons) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        buttons.get(0).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("video-player")));
+        List<WebElement> subNavElements = wait.until(
+                ExpectedConditions.presenceOfAllElementsLocatedBy((By.cssSelector(".show nav.secondary a"))));
+        expectedTitles.clear();
+        actualTitles.clear();
+        expectedTitles = new ArrayList<>(Arrays.asList("Featured", "Full Episodes", "Primetime", "Daytime", "All Shows"));
+        for (WebElement element : subNavElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+    }
+
+    /**
+     * FXN19
+     * Tamar
+     * HTML refers to FXN01, FXN03, FXN17, FXN19
+     */
+    @Test
+    public void FXN19_Tamar() {
+        driver.get("https://www.foxnews.com/");
+        element = driver.findElement(By.xpath("//nav[@id='main-nav']//a[text()='Business']"));
+        assertTrue(element.isDisplayed());
+        element.click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        assertEquals("Fox Business", driver.findElement(By.tagName("h1")).getText());
+        List<WebElement> navElements = driver.findElements(By.cssSelector("#main-nav a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Personal Finance", "Economy", "Markets", "Watchlist",
+                "Lifestyle", "Real Estate", "Tech", "TV", "Podcasts", "More"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : navElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        navElements.get(7).click();
+        expectedTitles.clear();
+        actualTitles.clear();
+        List<WebElement> buttons = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy((By.cssSelector(".heading a"))));
+        expectedTitles = new ArrayList<>(Arrays.asList("Watch Live", "Full Schedule", "Personalities", "Channel Finder"));
+        for (WebElement element : buttons) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        buttons.get(1).click();
+
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Full Schedule"));
+        element = driver.findElement(By.xpath("//*[@class='weekday']//*[contains(text(), 'Yesterday')]"));
+        assertTrue(element.isDisplayed());
+        assertTrue(driver.findElement(By.xpath("//*[@class='weekday']//*[contains(text(), 'Today')]")).isDisplayed());
+        element.click();
+        assertTrue(driver.findElement(By.cssSelector(".item-day.active")).getText().contains("Yesterday"));
+    }
+
+    /**
+     * FXN20
+     * Tamar
+     * HTML refers to FXN01, FXN03, FXN17, FXN20
+     */
+    @Test
+    public void FXN20_Tamar() {
+        driver.get("https://www.foxnews.com/");
+        element = driver.findElement(By.xpath("//nav[@id='main-nav']//a[text()='Business']"));
+        assertTrue(element.isDisplayed());
+        element.click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        assertEquals("Fox Business", driver.findElement(By.tagName("h1")).getText());
+        List<WebElement> navElements = driver.findElements(By.cssSelector("#main-nav a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Personal Finance", "Economy", "Markets", "Watchlist",
+                "Lifestyle", "Real Estate", "Tech", "TV", "Podcasts", "More"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : navElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        navElements.get(7).click();
+        expectedTitles.clear();
+        actualTitles.clear();
+        List<WebElement> buttons = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy((By.cssSelector(".heading a"))));
+        expectedTitles = new ArrayList<>(Arrays.asList("Watch Live", "Full Schedule", "Personalities", "Channel Finder"));
+        for (WebElement element : buttons) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        buttons.get(2).click();
+
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Anchors & Reporters"));
     }
 
 }
