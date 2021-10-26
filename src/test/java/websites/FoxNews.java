@@ -816,4 +816,47 @@ public class FoxNews {
         wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Anchors & Reporters"));
     }
 
+    /**
+     * FXN21
+     * Tamar
+     * HTML refers to FXN01, FXN03, FXN17, FXN21
+     */
+    @Test
+    public void FXN21_Tamar() {
+        driver.get("https://www.foxnews.com/");
+        element = driver.findElement(By.xpath("//nav[@id='main-nav']//a[text()='Business']"));
+        assertTrue(element.isDisplayed());
+        element.click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        assertEquals("Fox Business", driver.findElement(By.tagName("h1")).getText());
+        List<WebElement> navElements = driver.findElements(By.cssSelector("#main-nav a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Personal Finance", "Economy", "Markets", "Watchlist",
+                "Lifestyle", "Real Estate", "Tech", "TV", "Podcasts", "More"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : navElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        navElements.get(7).click();
+        expectedTitles.clear();
+        actualTitles.clear();
+        List<WebElement> buttons = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy((By.cssSelector(".heading a"))));
+        expectedTitles = new ArrayList<>(Arrays.asList("Watch Live", "Full Schedule", "Personalities", "Channel Finder"));
+        for (WebElement element : buttons) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        buttons.get(3).click();
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("channel-finder")));
+        driver.switchTo().frame(element);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Fox Business Network"));
+        driver.findElement(By.id("cfZip")).sendKeys("12010");
+        driver.findElement(By.id("bttnGO")).click();
+        assertEquals("Choose your Provider", driver.findElement(By.id("providerLabel")).getText());
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector("#cfProviderSelect > *"), 1));
+    }
+
 }
