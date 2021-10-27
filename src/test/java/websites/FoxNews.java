@@ -859,4 +859,56 @@ public class FoxNews {
         wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector("#cfProviderSelect > *"), 1));
     }
 
+    /**
+     * FXN22
+     * Tamar
+     * HTML refers to FXN01, FXN03
+     */
+    @Test
+    public void FXN22_Tamar() {
+        driver.get("https://www.foxnews.com/");
+        element = driver.findElement(By.xpath("//nav[@id='main-nav']//a[text()='Business']"));
+        assertTrue(element.isDisplayed());
+        element.click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        assertEquals("Fox Business", driver.findElement(By.tagName("h1")).getText());
+        List<WebElement> navElements = driver.findElements(By.cssSelector("#main-nav a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Personal Finance", "Economy", "Markets", "Watchlist",
+                "Lifestyle", "Real Estate", "Tech", "TV", "Podcasts", "More"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : navElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        navElements.get(8).click();
+        expectedTitles.clear();
+        actualTitles.clear();
+        List<WebElement> menuItems = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
+                (By.cssSelector(".menu-top-nav-container #menu-top-nav-1 > li.menu-item > a"))));
+        expectedTitles = new ArrayList<>(Arrays.asList("How to Listen", "FOX News Talk Shows", "Podcasts", "Station Finder"));
+        for (int i = 1; i < menuItems.size(); i++) {
+            actualTitles.add(menuItems.get(i).getText().replace("\n»", ""));
+        }
+        assertEquals(expectedTitles, actualTitles);
+
+        Actions actions = new Actions(driver);
+        actions.moveToElement(menuItems.get(3)).perform();
+        wait.until(ExpectedConditions.attributeContains(menuItems.get(3).findElement(
+                By.xpath(".//following-sibling::ul[@class='sub-menu']")), "style", "display: block;"));
+        expectedTitles.clear();
+        actualTitles.clear();
+        List<WebElement> submenuItems = menuItems.get(3).findElements((By.xpath(
+                ".//following-sibling::ul[@class='sub-menu']//li[contains(@class, 'menu-item-type-custom')]/a")));
+        expectedTitles = new ArrayList<>(Arrays.asList(
+                "Premium Podcast Account Access", "FOX News Talk Radio Premium Podcasts",
+                "FOX News Channel Premium Podcasts", "FOX Business Network Premium Podcasts", "Free Podcasts"));
+        for (WebElement element : submenuItems) {
+            if (!element.getText().isEmpty())
+                actualTitles.add(element.getText().replace("\n»", ""));
+        }
+        assertEquals(expectedTitles, actualTitles);
+    }
+
 }
