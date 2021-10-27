@@ -911,4 +911,74 @@ public class FoxNews {
         assertEquals(expectedTitles, actualTitles);
     }
 
+    /**
+     * FXN23
+     * Tamar
+     * HTML refers to FXN01, FXN03, FXN23
+     */
+    @Test
+    public void FXN23_Tamar() {
+        driver.get("https://www.foxnews.com/");
+        element = driver.findElement(By.xpath("//nav[@id='main-nav']//a[text()='Business']"));
+        assertTrue(element.isDisplayed());
+        element.click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        assertEquals("Fox Business", driver.findElement(By.tagName("h1")).getText());
+        List<WebElement> navElements = driver.findElements(By.cssSelector("#main-nav a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Personal Finance", "Economy", "Markets", "Watchlist",
+                "Lifestyle", "Real Estate", "Tech", "TV", "Podcasts", "More"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : navElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        navElements.get(8).click();
+        expectedTitles.clear();
+        actualTitles.clear();
+        List<WebElement> menuItems = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
+                (By.cssSelector(".menu-top-nav-container #menu-top-nav-1 > li.menu-item > a"))));
+        expectedTitles = new ArrayList<>(Arrays.asList("How to Listen", "FOX News Talk Shows", "Podcasts", "Station Finder"));
+        for (int i = 1; i < menuItems.size(); i++) {
+            actualTitles.add(menuItems.get(i).getText().replace("\n»", ""));
+        }
+        assertEquals(expectedTitles, actualTitles);
+        menuItems.get(4).click();
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".td-page-text-content iframe")));
+        driver.switchTo().frame(element);
+        assertTrue(driver.findElement(By.cssSelector("select[name='State']")).isDisplayed());
+        assertTrue(driver.findElement(By.cssSelector("select[name='Show']")).isDisplayed());
+        assertTrue(driver.findElement(By.cssSelector("input[value='Search']")).isDisplayed());
+        driver.findElement(By.cssSelector("select[name='State']")).click();
+        driver.findElement(By.cssSelector("option[value='AZ']")).click();
+        driver.findElement(By.cssSelector("select[name='Show']")).click();
+        driver.findElement(By.cssSelector("option[value='5']")).click();
+        driver.findElement(By.cssSelector("input[value='Search']")).click();
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("tbody > tr")));
+        assertEquals("5 MINUTE NEWS", driver.findElement(By.cssSelector("h1 span:nth-child(1)")).getText());
+        assertEquals("AZ", driver.findElement(By.cssSelector("h1 span:nth-child(2)")).getText());
+    }
+
+    /**
+     * FXN24
+     * Tamar
+     * HTML refers to FXN01, FXN03, FXN24
+     */
+    @Test
+    public void FXN24_Tamar() {
+        driver.get("https://www.foxnews.com/");
+        assertTrue(driver.findElement(By.cssSelector("[aria-label='hot topics']")).isDisplayed());
+        assertTrue(driver.findElement(By.className("market-data")).isDisplayed());
+        driver.findElement(By.xpath("//nav[@id='main-nav']//a[text()='Business']")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        driver.findElement(By.className("js-focus-search")).click();
+        assertNotEquals("none", driver.findElement(By.className("expandable-nav")).getCssValue("display"));
+        assertTrue(driver.findElement(By.cssSelector("[aria-label='search foxbusiness.com']")).isDisplayed());
+        assertTrue(driver.findElement(By.cssSelector("[aria-label='submit search']")).isDisplayed());
+        driver.findElement(By.cssSelector("[data-omtr-intcmp='more_personalfinance_subsection_retirement']")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h1[contains(text(), 'Retirement')]")));
+    }
 }
