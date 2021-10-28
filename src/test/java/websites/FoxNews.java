@@ -983,6 +983,81 @@ public class FoxNews {
     }
 
     /**
+     * FXN44
+     * Tamar
+     * HTML refers to FXN01, FXN44
+     */
+    @Test
+    public void FXN44_Tamar() {
+        driver.get("https://www.foxnews.com/");
+        assertTrue(driver.findElement(By.cssSelector("[aria-label='hot topics']")).isDisplayed());
+        assertTrue(driver.findElement(By.className("market-data")).isDisplayed());
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+
+        driver.findElement(By.className("js-focus-search")).click();
+        assertNotEquals("none", driver.findElement(By.className("expandable-nav")).getCssValue("display"));
+        assertTrue(driver.findElement(By.cssSelector("[aria-label='search foxnews.com']")).isDisplayed());
+        assertTrue(driver.findElement(By.cssSelector("[aria-label='submit search']")).isDisplayed());
+        driver.findElement(By.cssSelector("[aria-label='Other - Fox News Shop']")).click();
+        wait.until(ExpectedConditions.titleContains("Shop"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".field.search")));
+        assertTrue(driver.findElement(By.xpath("//*[text()='My Cart']")).isDisplayed());
+        driver.findElement(By.xpath("//*[text()='Patriotic Collection']/..")).click();
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(".product-item")));
+        driver.findElement(By.cssSelector("[title='Add to Cart']")).click();
+        wait.until(ExpectedConditions.textToBe(By.className("counter-number"), "1"));
+        driver.findElement(By.cssSelector(".showcart")).click();
+        assertEquals("1 Item in Cart", driver.findElement(By.className("items-total")).getText());
+    }
+
+    /**
+     * FXN45
+     * Tamar
+     * HTML refers to FXN01, FXN44, FXN45
+     */
+    @Test
+    public void FXN45_Tamar() {
+        driver.get("https://www.foxnews.com/");
+        assertTrue(driver.findElement(By.cssSelector("[aria-label='hot topics']")).isDisplayed());
+        assertTrue(driver.findElement(By.className("market-data")).isDisplayed());
+        WebDriverWait wait = new WebDriverWait(driver, 15);
+
+        driver.findElement(By.className("js-focus-search")).click();
+        assertNotEquals("none", driver.findElement(By.className("expandable-nav")).getCssValue("display"));
+        assertTrue(driver.findElement(By.cssSelector("[aria-label='search foxnews.com']")).isDisplayed());
+        assertTrue(driver.findElement(By.cssSelector("[aria-label='submit search']")).isDisplayed());
+        driver.findElement(By.cssSelector("[aria-label='Other - Fox News Shop']")).click();
+        wait.until(ExpectedConditions.titleContains("Shop"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".field.search")));
+        assertTrue(driver.findElement(By.xpath("//*[text()='My Cart']")).isDisplayed());
+        driver.findElement(By.xpath("//*[text()='Patriotic Collection']/..")).click();
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(".product-item")));
+        driver.findElement(By.cssSelector("[title='Add to Cart']")).click();
+        wait.until(ExpectedConditions.textToBe(By.className("counter-number"), "1"));
+        driver.findElement(By.cssSelector(".showcart")).click();
+
+        assertNotEquals("none",
+                driver.findElement(By.cssSelector(".minicart-wrapper .ui-dialog")).getCssValue("display"));
+        driver.findElement(By.xpath("//*[text()='View and Edit Cart']/..")).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Shopping Cart"));
+        assertEquals(1, driver.findElements(By.cssSelector(".cart.item")).size());
+        element = driver.findElement(By.cssSelector("[title='Qty']"));
+        assertEquals("1", element.getAttribute("value"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@class='cart-summary']//*[text()='Order Total']")));
+        By locator = By.cssSelector("[data-th='Order Total']");
+        String originalTotal = driver.findElement(locator).getText();
+        element.clear();
+        element.sendKeys("3");
+        driver.findElement(By.xpath("//*[text()='Update Shopping Cart']")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(locator, originalTotal)));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[title='Remove item']"))).click();
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(By.className("cart-empty"),
+                "You have no items in your shopping cart."));
+        assertTrue(driver.findElement(By.cssSelector(".counter.qty")).getAttribute("class").contains("empty"));
+    }
+
+    /**
      * FXN46
      * Tamar
      * HTML refers to FXN01
