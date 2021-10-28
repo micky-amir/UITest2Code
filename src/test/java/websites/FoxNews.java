@@ -981,4 +981,202 @@ public class FoxNews {
         driver.findElement(By.cssSelector("[data-omtr-intcmp='more_personalfinance_subsection_retirement']")).click();
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h1[contains(text(), 'Retirement')]")));
     }
+
+    /**
+     * FXN46
+     * Tamar
+     * HTML refers to FXN01
+     */
+    @Test
+    public void FXN46_Tamar() {
+        driver.get("https://www.foxnews.com/");
+        assertTrue(driver.findElement(By.cssSelector("[aria-label='hot topics']")).isDisplayed());
+        assertTrue(driver.findElement(By.className("market-data")).isDisplayed());
+        JavascriptExecutor js = driver;
+        js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.className("footer-lower"))));
+        driver.findElement(By.cssSelector("footer a[aria-label*='Terms of Use']")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Fox News Network, LLC Terms of Use Agreement"));
+        js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.xpath("//*[text()=" +
+                        "'I HAVE READ THIS AGREEMENT AND AGREE TO ALL OF THE PROVISIONS CONTAINED ABOVE.']"))));
+    }
+
+    /**
+     * FXN47
+     * Tamar
+     * HTML refers to FXN01, FXN47
+     */
+    @Test
+    public void FXN47_Tamar() {
+        driver.get("https://www.foxnews.com/");
+        assertTrue(driver.findElement(By.cssSelector("[aria-label='hot topics']")).isDisplayed());
+        assertTrue(driver.findElement(By.className("market-data")).isDisplayed());
+        JavascriptExecutor js = driver;
+        js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.className("footer-lower"))));
+        driver.findElement(By.cssSelector("footer a[aria-label*='Privacy Policy']")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Privacy Policy"));
+        assertEquals("Table of Contents:", driver.findElement(By.tagName("h2")).getText());
+        List<WebElement> navElements = driver.findElements(By.cssSelector("ol > li strong"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Scope and Application",
+                "Collection of Information", "Use and Disclosure", "Security", "User Access and Control",
+                "Other Important Information", "Contact Us", "California Consumer Privacy Act Notice"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : navElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+    }
+
+    /**
+     * FXN48
+     * Tamar
+     * HTML refers to FXN01
+     */
+    @Test
+    public void FXN48_Tamar() {
+        driver.get("https://www.foxnews.com/");
+        assertTrue(driver.findElement(By.cssSelector("[aria-label='hot topics']")).isDisplayed());
+        assertTrue(driver.findElement(By.className("market-data")).isDisplayed());
+        JavascriptExecutor js = driver;
+        js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.className("footer-lower"))));
+        driver.findElement(By.cssSelector("footer a[aria-label='Facebook']")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.urlToBe("https://www.facebook.com/FoxNews"));
+    }
+
+    /**
+     * FXN49
+     * Tamar
+     * HTML refers to FXN01
+     */
+    @Test
+    public void FXN49_Tamar() {
+        driver.get("https://www.foxnews.com/");
+        assertTrue(driver.findElement(By.cssSelector("[aria-label='hot topics']")).isDisplayed());
+        assertTrue(driver.findElement(By.className("market-data")).isDisplayed());
+        JavascriptExecutor js = driver;
+        js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.className("footer-lower"))));
+        driver.findElement(By.cssSelector("footer a[aria-label='Instagram']")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.urlToBe("https://www.instagram.com/foxnews/"));
+    }
+
+    /**
+     * FXN50
+     * Tamar
+     * HTML refers to FXN01
+     */
+    @Test
+    public void FXN50_Tamar() {
+        driver.get("https://www.foxnews.com/");
+        assertTrue(driver.findElement(By.cssSelector("[aria-label='hot topics']")).isDisplayed());
+        assertTrue(driver.findElement(By.className("market-data")).isDisplayed());
+        JavascriptExecutor js = driver;
+        js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.className("footer-lower"))));
+        driver.findElement(By.cssSelector("footer a[aria-label='Twitter']")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.urlToBe("https://twitter.com/foxnews"));
+    }
+
+    /**
+     * FXN51
+     * Tamar
+     * HTML refers to FXN01
+     */
+    @Test
+    public void FXN51_Tamar() {
+        driver.get("https://www.foxnews.com/");
+        assertTrue(driver.findElement(By.cssSelector("[aria-label='hot topics']")).isDisplayed());
+        assertTrue(driver.findElement(By.className("market-data")).isDisplayed());
+        JavascriptExecutor js = driver;
+        js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.className("footer-lower"))));
+        driver.findElement(By.cssSelector("footer a[aria-label='Youtube']")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.urlToBe("https://www.youtube.com/c/FoxNews"));
+    }
 }
