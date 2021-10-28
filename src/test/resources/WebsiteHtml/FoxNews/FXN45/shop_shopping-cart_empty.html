@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body data-container="body" class="checkout-cart-index page-layout-1column" style="" aria-busy="false">
+<span role="button" class="acsb-sr-only acsb-skip-link" data-acsb="sr-trigger" data-acsb-sr-only="true" data-acsb-force-visible="true" aria-label=" Use Website In a Screen-Reader Mode " aria-pressed="false"></span><div class="acsb-skip-links acsb-force-visible acsb-ready" role="region" aria-label="Skip Links" data-acsb="skipLinks" style="display: none;"> <a href="#acsbContent" data-acsb-skip-link="content" class="acsb-skip-link"> Skip to Content <div aria-hidden="true"><span class="acsb-symbol">↵</span>ENTER</div> </a> <a href="#acsbMenu" data-acsb-skip-link="menu" class="acsb-skip-link"> Skip to Menu <div aria-hidden="true"><span class="acsb-symbol">↵</span>ENTER</div> </a> <a href="#acsbFooter" data-acsb-skip-link="footer" class="acsb-skip-link"> Skip to Footer <div aria-hidden="true"><span class="acsb-symbol">↵</span>ENTER</div> </a>
+</div><div data-role="cadence-fbpixel-fpc" style="display:none;">
+
+</div>
+
+<script>
+    try {
+        if (!window.localStorage || !window.sessionStorage) {
+            throw new Error();
+        }
+
+        localStorage.setItem('storage_test', 1);
+        localStorage.removeItem('storage_test');
+    } catch(e) {
+        (function () {
+            var Storage = function (type) {
+                var data;
+
+                function createCookie(name, value, days) {
+                    var date, expires;
+
+                    if (days) {
+                        date = new Date();
+                        date.setTime(date.getTime()+(days * 24 * 60 * 60 * 1000));
+                        expires = '; expires=' + date.toGMTString();
+                    } else {
+                        expires = '';
+                    }
+                    document.cookie = name + '=' + value+expires+'; path=/';
+                }
+
+                function readCookie(name) {
+                    var nameEQ = name + '=',
+                        ca = document.cookie.split(';'),
+                        i = 0,
+                        c;
+
+                    for (i=0; i < ca.length; i++) {
+                        c = ca[i];
+
+                        while (c.charAt(0) === ' ') {
+                            c = c.substring(1,c.length);
+                        }
+
+                        if (c.indexOf(nameEQ) === 0) {
+                            return c.substring(nameEQ.length, c.length);
+                        }
+                    }
+
+                    return null;
+                }
+
+                function setData(data) {
+                    data = encodeURIComponent(JSON.stringify(data));
+                    createCookie(type === 'session' ? getSessionName() : 'localStorage', data, 365);
+                }
+
+                function clearData() {
+                    createCookie(type === 'session' ? getSessionName() : 'localStorage', '', 365);
+                }
+
+                function getData() {
+                    var data = type === 'session' ? readCookie(getSessionName()) : readCookie('localStorage');
+
+                    return data ? JSON.parse(decodeURIComponent(data)) : {};
+                }
+
+                function getSessionName() {
+                    if (!window.name) {
+                        window.name = new Date().getTime();
+                    }
+
+                    return 'sessionStorage' + window.name;
+                }
+
+                data = getData();
+
+                return {
+                    length: 0,
+                    clear: function () {
+                        data = {};
+                        this.length = 0;
+                        clearData();
+                    },
+
+                    getItem: function (key) {
+                        return data[key] === undefined ? null : data[key];
+                    },
+
+                    key: function (i) {
+                        var ctr = 0,
+                            k;
+
+                        for (k in data) {
+                            if (ctr.toString() === i.toString()) {
+                                return k;
+                            } else {
+                                ctr++
+                            }
+                        }
+
+                        return null;
+                    },
+
+                    removeItem: function (key) {
+                        delete data[key];
+                        this.length--;
+                        setData(data);
+                    },
+
+                    setItem: function (key, value) {
+                        data[key] = value.toString();
+                        this.length++;
+                        setData(data);
+                    }
+                };
+            };
+
+            window.localStorage.__proto__ = window.localStorage = new Storage('local');
+            window.sessionStorage.__proto__ = window.sessionStorage = new Storage('session');
+        })();
+    }
+</script>
+<script>
+        require.config({
+            deps: [
+                'jquery',
+                'mage/translate',
+                'jquery/jquery-storageapi'
+            ],
+            callback: function ($) {
+                'use strict';
+
+                var dependencies = [],
+                    versionObj;
+
+                $.initNamespaceStorage('mage-translation-storage');
+                $.initNamespaceStorage('mage-translation-file-version');
+                versionObj = $.localStorage.get('mage-translation-file-version');
+
+
+                if (versionObj.version !== '113d795835981f233635ff7c30e8b07faee9d51d') {
+                    dependencies.push(
+                        'text!js-translation.json'
+                    );
+
+                }
+
+                require.config({
+                    deps: dependencies,
+                    callback: function (string) {
+                        if (typeof string === 'string') {
+                            $.mage.translate.add(JSON.parse(string));
+                            $.localStorage.set('mage-translation-storage', string);
+                            $.localStorage.set(
+                                'mage-translation-file-version',
+                                {
+                                    version: '113d795835981f233635ff7c30e8b07faee9d51d'
+                                }
+                            );
+                        } else {
+                            $.mage.translate.add($.localStorage.get('mage-translation-storage'));
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+
+
+<noscript>
+    <div class="message global noscript">
+        <div class="content">
+            <p>
+                <strong>JavaScript seems to be disabled in your browser.</strong>
+                <span>For the best experience on our site, be sure to turn on Javascript in your browser.</span>
+            </p>
+        </div>
+    </div>
+</noscript>
+
+<!-- Google Tag Manager by MagePal -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-NJVNFVS"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager by MagePal -->
+
+
+<div class="page-wrapper"><header class="page-header"><div class="panel wrapper"><div class="panel header"><a class="action skip contentarea" href="#contentarea"><span>Skip to Content</span></a>
+    <div class="header_promotionWrapper"><a href="https://shop.foxnews.com/all-products/" style="color: rgb(255,255,255)"><b>FREE</b> shipping on orders of $65 or more!*</a></div></div></div><div class="header content">    <a class="logo" href="https://shop.foxnews.com/" title="">
+    <img src="https://shop.foxnews.com/media/logo/websites/1/fn-shop-logo.svg" alt="" width="350" height="50">
+</a>
+    <span data-action="toggle-nav" class="action nav-toggle"><span>Menu</span></span><div class="block block-search">
+        <div class="block block-title"><strong>Search</strong></div>
+        <div class="block block-content">
+            <form class="form minisearch" id="search_mini_form" action="https://shop.foxnews.com/catalogsearch/result/" method="get">
+                <div class="field search">
+                    <label class="label" for="search" data-role="minisearch-label">
+                        <span>Search</span>
+                    </label>
+
+                    <div class="control miniSearchBox">
+                        <div id="searchArw" style="margin: 20px 20px 20px 20px;">
+                            <input id="search" type="text" name="q" value="" placeholder="Search entire store here..." class="input-text" maxlength="128" role="combobox" aria-haspopup="false" aria-autocomplete="both" autocomplete="off">
+                            <div id="search_autocomplete" class="search-autocomplete"></div>
+                            <div class="nested">
+                                <a class="action advanced" href="https://shop.foxnews.com/catalogsearch/advanced/" data-action="advanced-search">
+                                    Advanced Search    </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="actions">
+                    <button type="submit" title="Search" class="action search" disabled="">
+                        <span>Search</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="rightWrap-wrapper"><div class="miniaccountWrap-wrapper"><div id="miniaccount" data-block="miniaccount" class="miniaccount-wrapper">
+        <a id="accountShow" class="action showaccount" data-bind="scope: 'miniaccount_content'">
+
+            <span>My Account</span>
+        </a>
+
+
+        <div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front mage-dropdown-dialog" tabindex="-1" role="dialog" aria-describedby="miniAccountBlock" style="display: none;"><div id="miniAccountBlock" class="block block-miniaccount empty ui-dialog-content ui-widget-content" data-role="dropdownDialog" style="position: absolute; padding: 10px 0px 0px; list-style: none none; background: rgb(255, 255, 255); border: 1px solid rgb(187, 187, 187); width: auto; min-width: 300px; z-index: 101; box-sizing: border-box; margin-bottom: 0px; box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px;">
+
+            <div class="block-content">
+
+
+                <button type="button" id="btn-miniaccount-close" class="action close" data-action="close" title="Close">
+                    <span data-bind="i18n: ''"></span>
+
+                </button>
+                <div id="miniaccount-content-wrapper" data-bind="scope: 'miniaccount_content'">
+                    <ul>
+
+
+                        <li>
+                            <a id="xMyAccount" style="display: none;" href="https://shop.foxnews.com/customer/account/">My Account</a>
+
+                            <a id="xCreateAccount" style="display: block;" href="https://shop.foxnews.com/customer/account/create/">Create an Account</a>
+
+                        </li>
+
+
+
+
+
+
+                        <li class="authorization-link" data-label="or">
+
+                            <a id="xLogOut" style="display: none;" href="https://shop.foxnews.com/customer/account/logout/">Log Out</a>
+
+                            <a id="xLogIn" style="display: block;" href="https://shop.foxnews.com/customer/account/login/">Sign In</a>
+                        </li>
+
+                        <script>
+
+
+
+    // <![CDATA[
+    require([
+        'jquery',
+        'Magento_Customer/js/customer-data',
+        'Magento_Customer/js/section-config',
+        'domReady!'
+    ], function ($) {
+            //show/hide login/logout based upon isloggedin state
+
+            /**
+             * Events listener
+             */
+            $(document).on('ajaxComplete', function (event, xhr, settings) {
+
+
+                var customerBlockData = JSON.parse(localStorage.getItem('mage-cache-storage'));
+
+                if(typeof customerBlockData == 'undefined'){
+                    //console.log('you are logged out');
+                    $('#xLogOut').css('display','none');
+                    $('#xLogIn').css('display','block');
+                }else{
+                    var customerBlockData2 = JSON.parse(localStorage.getItem('mage-cache-storage')).customer;
+                    if(typeof customerBlockData2 == 'undefined'){
+                        //console.log('you are logged out');
+                        $('#xLogOut').css('display','none');
+                        $('#xLogIn').css('display','block');
+                    }else{
+                        var customerBlockData3 = JSON.parse(localStorage.getItem('mage-cache-storage')).customer.websiteId;
+                        if(typeof customerBlockData3 == 'undefined'){
+                            //console.log('you are logged out');
+                            $('#xLogOut').css('display','none');
+                            $('#xLogIn').css('display','block');
+                        }else{
+                            //console.log('you are logged in');
+                            $('#xLogOut').css('display','block');
+                            $('#xLogIn').css('display','none');
+                        }
+                    }
+                }
+
+            }); //end document.
+
+
+
+    }); //end function and require
+
+    // ]]>
+
+</script></ul>
+                </div></div></div></div></div>
+
+
+
+
+        <script type="text/javascript">
+    require([ 'jquery', 'jquery/ui'], function($){
+        $('#btn-miniaccount-close').click(function(){
+            //close the myaccount mini box
+            //showcart
+            //var modal = document.getElementById('accountShow');
+            //modal.style.display = "none";
+            $('#accountShow').removeClass('active');
+            $('#miniaccount').removeClass('active');
+            $('.ui-dialog').css('display','none');
+            //$(this).modal("closeModal");
+        });
+    });
+</script>
+
+
+
+
+        <script>
+
+
+
+// <![CDATA[
+require([
+    'jquery',
+    'Magento_Customer/js/customer-data',
+    'Magento_Customer/js/section-config',
+    'domReady!'
+], function ($) {
+        //show/hide login/logout based upon isloggedin state
+
+        /**
+         * Events listener
+         */
+        $(document).on('ajaxComplete', function (event, xhr, settings) {
+
+
+            var customerBlockData = JSON.parse(localStorage.getItem('mage-cache-storage'));
+
+            if(typeof customerBlockData == 'undefined'){
+                //console.log('you are logged out');
+                $('#xMyAccount').css('display','none');
+                $('#xCreateAccount').css('display','block');
+            }else{
+                var customerBlockData2 = JSON.parse(localStorage.getItem('mage-cache-storage')).customer;
+                if(typeof customerBlockData2 == 'undefined'){
+                    //console.log('you are logged out');
+                    $('#xMyAccount').css('display','none');
+                    $('#xCreateAccount').css('display','block');
+                }else{
+                    var customerBlockData3 = JSON.parse(localStorage.getItem('mage-cache-storage')).customer.websiteId;
+                    if(typeof customerBlockData3 == 'undefined'){
+                        //console.log('you are logged out');
+                        $('#xMyAccount').css('display','none');
+                        $('#xCreateAccount').css('display','block');
+                    }else{
+                        //console.log('you are logged in');
+                        $('#xMyAccount').css('display','block');
+                        $('#xCreateAccount').css('display','none');
+                    }
+                }
+            }
+
+        }); //end document.
+
+
+
+}); //end function and require
+
+// ]]>
+
+</script>
+
+
+
+
+
+
+
+
+    </div>
+        <div data-block="minicart" class="minicart-wrapper">
+            <a class="action showcart" href="https://shop.foxnews.com/checkout/cart/" data-bind="scope: 'minicart_content'">
+                <span class="text">My Cart</span>
+                <span class="counter qty empty" data-bind="css: { empty: !!getCartParam('summary_count') == false }, blockLoader: isLoading">
+            <span class="counter-number"><!-- ko text: getCartParam('summary_count') -->0<!-- /ko --></span>
+            <span class="counter-label">
+            <!-- ko if: getCartParam('summary_count') --><!-- /ko -->
+            </span>
+        </span>
+            </a>
+
+            <script>
+        window.checkout = {"shoppingCartUrl":"https:\/\/shop.foxnews.com\/checkout\/cart\/","checkoutUrl":"https:\/\/shop.foxnews.com\/checkout\/","updateItemQtyUrl":"https:\/\/shop.foxnews.com\/checkout\/sidebar\/updateItemQty\/","removeItemUrl":"https:\/\/shop.foxnews.com\/checkout\/sidebar\/removeItem\/","imageTemplate":"Magento_Catalog\/product\/image_with_borders","baseUrl":"https:\/\/shop.foxnews.com\/","minicartMaxItemsVisible":5,"websiteId":"1","maxItemsToDisplay":10,"customerLoginUrl":"https:\/\/shop.foxnews.com\/customer\/account\/login\/referer\/aHR0cHM6Ly9zaG9wLmZveG5ld3MuY29tL2NoZWNrb3V0L2NhcnQvaW5kZXgv\/","isRedirectRequired":false,"autocomplete":"off","captcha":{"user_login":{"isCaseSensitive":false,"imageHeight":50,"imageSrc":"","refreshUrl":"https:\/\/shop.foxnews.com\/captcha\/refresh\/","isRequired":false}}};
+    </script>
+
+            <div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front mage-dropdown-dialog" tabindex="-1" role="dialog" aria-describedby="ui-id-1" style="display: none;"><div class="block block-minicart ui-dialog-content ui-widget-content" data-role="dropdownDialog" id="ui-id-1" style="display: block;">
+                <div id="minicart-content-wrapper" data-bind="scope: 'minicart_content'">
+                    <!-- ko template: getTemplate() -->
+                    <div class="block-title">
+                        <strong>
+                            <span class="text" data-bind="i18n: 'My Cart'">My Cart</span>
+                            <span class="qty empty" data-bind="css: { empty: !!getCartParam('summary_count') == false },
+                           attr: { title: $t('Items in Cart') }, text: getCartParam('summary_count')" title="Items in Cart">0</span>
+                        </strong>
+                    </div>
+
+                    <div class="block-content">
+                        <button type="button" id="btn-minicart-close" class="action close" data-action="close" data-bind="attr: { title: $t('Close') }" title="Close">
+                            <span data-bind="i18n: 'Close'">Close</span>
+                        </button>
+
+                        <!-- ko if: getCartParam('summary_count') --><!-- /ko -->
+
+
+                        <!-- ko if: getCartParam('summary_count') --><!-- /ko -->
+
+                        <!-- ko ifnot: getCartParam('summary_count') -->
+                        <strong class="subtitle empty" data-bind="visible: closeSidebar(), i18n: 'You have no items in your shopping cart.'">You have no items in your shopping cart.</strong>
+                        <!-- ko if: getCartParam('cart_empty_message') --><!-- /ko -->
+                        <!-- /ko -->
+
+
+
+
+
+
+
+                        <div id="minicart-widgets" class="minicart-widgets">
+                            <!-- ko foreach: getRegion('promotion') --><!-- ko template: getTemplate() -->
+                            <!-- ko foreach: {data: elems, as: 'element'} --><!-- /ko -->
+                            <!-- /ko --><!-- /ko -->
+                        </div>
+                    </div>
+                    <!-- ko foreach: getRegion('sign-in-popup') --><!-- /ko -->
+                    <!-- /ko -->
+                </div>
+            </div></div></div>
+
+
+    </div></div></header>    <div class="sections nav-sections">
+    <div class="section-items nav-sections-items" role="tablist">
+        <div class="section-item-title nav-sections-item-title active" data-role="collapsible" role="tab" data-collapsible="true" aria-controls="store.menu" aria-selected="false" aria-expanded="true" tabindex="0">
+            <a class="nav-sections-item-switch" data-toggle="switch" href="#store.menu">Menu</a>
+        </div>
+        <div class="section-item-content nav-sections-item-content" id="store.menu" data-role="content" role="tabpanel" aria-hidden="false">
+            <nav class="navigation" data-action="navigation">
+                <ul id="ui-id-2" class="ui-menu ui-widget ui-widget-content ui-corner-all" role="menu" tabindex="0" aria-activedescendant="ui-id-9">
+                    <li class="level0 nav-1 category-item first level-top parent ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/apparel/" class="level-top ui-corner-all" aria-haspopup="true" id="ui-id-3" tabindex="-1" role="menuitem"><span class="ui-menu-icon ui-icon ui-icon-carat-1-e"></span><span>Apparel</span></a><ul class="level0 submenu ui-menu ui-widget ui-widget-content ui-corner-all" role="menu" aria-hidden="true" aria-expanded="false" style="display: none;"><li class="level1 nav-1-1 category-item first ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/apparel/t-shirts/" id="ui-id-10" class="ui-corner-all" tabindex="-1" role="menuitem"><span>T-Shirts</span></a></li><li class="level1 nav-1-2 category-item ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/apparel/hoodies-fleece/" id="ui-id-11" class="ui-corner-all" tabindex="-1" role="menuitem"><span>Hoodies &amp; Fleece</span></a></li><li class="level1 nav-1-3 category-item ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/apparel/polos/" id="ui-id-12" class="ui-corner-all" tabindex="-1" role="menuitem"><span>Polos</span></a></li><li class="level1 nav-1-4 category-item ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/apparel/pants/" id="ui-id-13" class="ui-corner-all" tabindex="-1" role="menuitem"><span>Pants</span></a></li><li class="level1 nav-1-5 category-item ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/apparel/outerwear/" id="ui-id-14" class="ui-corner-all" tabindex="-1" role="menuitem"><span>Outerwear</span></a></li><li class="level1 nav-1-6 category-item last ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/apparel/socks/" id="ui-id-15" class="ui-corner-all" tabindex="-1" role="menuitem"><span>Socks</span></a></li></ul></li><li class="level0 nav-2 category-item level-top parent ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/accessories/" class="level-top ui-corner-all" aria-haspopup="true" id="ui-id-4" tabindex="-1" role="menuitem"><span class="ui-menu-icon ui-icon ui-icon-carat-1-e"></span><span>Gifts &amp; Accessories</span></a><ul class="level0 submenu ui-menu ui-widget ui-widget-content ui-corner-all" role="menu" aria-hidden="true" aria-expanded="false" style="display: none;"><li class="level1 nav-2-1 category-item first parent ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/accessories/drinkware/" aria-haspopup="true" id="ui-id-16" class="ui-corner-all" tabindex="-1" role="menuitem"><span class="ui-menu-icon ui-icon ui-icon-carat-1-e"></span><span>Drinkware</span></a><ul class="level1 submenu ui-menu ui-widget ui-widget-content ui-corner-all expanded" role="menu" aria-hidden="true" aria-expanded="false" style="display: none;"><li class="level2 nav-2-1-1 category-item first ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/drinkware/mugs/" id="ui-id-24" class="ui-corner-all" tabindex="-1" role="menuitem"><span>Mugs</span></a></li><li class="level2 nav-2-1-2 category-item ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/accessories/drinkware/tumblers/" id="ui-id-25" class="ui-corner-all" tabindex="-1" role="menuitem"><span>Tumblers</span></a></li><li class="level2 nav-2-1-3 category-item ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/drinkware/glasses/" id="ui-id-26" class="ui-corner-all" tabindex="-1" role="menuitem"><span>Glassware</span></a></li><li class="level2 nav-2-1-4 category-item last ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/drinkware/water-bottles/" id="ui-id-27" class="ui-corner-all" tabindex="-1" role="menuitem"><span>Water Bottles</span></a></li></ul></li><li class="level1 nav-2-2 category-item parent ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/hats/" aria-haspopup="true" id="ui-id-17" class="ui-corner-all" tabindex="-1" role="menuitem"><span class="ui-menu-icon ui-icon ui-icon-carat-1-e"></span><span>Hats</span></a><ul class="level1 submenu ui-menu ui-widget ui-widget-content ui-corner-all expanded" role="menu" aria-hidden="true" aria-expanded="false" style="display: none;"><li class="level2 nav-2-2-1 category-item first ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/hats/fox-news-logo-hats/" id="ui-id-28" class="ui-corner-all" tabindex="-1" role="menuitem"><span>Fox News Logo Hats</span></a></li><li class="level2 nav-2-2-2 category-item ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/hats/fox-nation-hats/" id="ui-id-29" class="ui-corner-all" tabindex="-1" role="menuitem"><span>Fox Nation Hats</span></a></li><li class="level2 nav-2-2-3 category-item ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/hats/fox-friends-hats/" id="ui-id-30" class="ui-corner-all" tabindex="-1" role="menuitem"><span>Fox &amp; Friends Hats</span></a></li><li class="level2 nav-2-2-4 category-item ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/hats/the-five-hats/" id="ui-id-31" class="ui-corner-all" tabindex="-1" role="menuitem"><span>The Five Hats</span></a></li><li class="level2 nav-2-2-5 category-item last ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/accessories/hats/fox-business-hats/" id="ui-id-32" class="ui-corner-all" tabindex="-1" role="menuitem"><span>Fox Business Hats</span></a></li></ul></li><li class="level1 nav-2-3 category-item ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/accessories/bags/" id="ui-id-18" class="ui-corner-all" tabindex="-1" role="menuitem"><span>Bags</span></a></li><li class="level1 nav-2-4 category-item ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/accessories/umbrellas/" id="ui-id-19" class="ui-corner-all" tabindex="-1" role="menuitem"><span>Umbrellas</span></a></li><li class="level1 nav-2-5 category-item ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/accessories/home-decor/" id="ui-id-20" class="ui-corner-all" tabindex="-1" role="menuitem"><span>Home Decor</span></a></li><li class="level1 nav-2-6 category-item ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/accessories/kitchen/" id="ui-id-21" class="ui-corner-all" tabindex="-1" role="menuitem"><span>Kitchen Accessories</span></a></li><li class="level1 nav-2-7 category-item ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/accessories/pet-products/" id="ui-id-22" class="ui-corner-all" tabindex="-1" role="menuitem"><span>Pet Products</span></a></li><li class="level1 nav-2-8 category-item last ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/accessories/watches/" id="ui-id-23" class="ui-corner-all" tabindex="-1" role="menuitem"><span>Watches</span></a></li></ul></li><li class="level0 nav-3 category-item level-top parent ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/shop-by-show/" class="level-top ui-corner-all" aria-haspopup="true" id="ui-id-5" tabindex="-1" role="menuitem"><span class="ui-menu-icon ui-icon ui-icon-carat-1-e"></span><span>Shows</span></a><ul class="level0 submenu ui-menu ui-widget ui-widget-content ui-corner-all" role="menu" aria-hidden="true" aria-expanded="false" style="display: none;"><li class="level1 nav-3-1 category-item first ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/shop-by-show/fox-friends/" id="ui-id-33" class="ui-corner-all" tabindex="-1" role="menuitem"><span>Fox &amp; Friends</span></a></li><li class="level1 nav-3-2 category-item ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/shop-by-show/the-five/" id="ui-id-34" class="ui-corner-all" tabindex="-1" role="menuitem"><span>The Five</span></a></li><li class="level1 nav-3-3 category-item last ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/shop-by-show/gutfeld/" id="ui-id-35" class="ui-corner-all" tabindex="-1" role="menuitem"><span>Gutfeld</span></a></li></ul></li><li class="level0 nav-4 category-item level-top parent ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/fox-nation-gear/" class="level-top ui-corner-all" aria-haspopup="true" id="ui-id-6" tabindex="-1" role="menuitem"><span class="ui-menu-icon ui-icon ui-icon-carat-1-e"></span><span>Fox Nation</span></a><ul class="level0 submenu ui-menu ui-widget ui-widget-content ui-corner-all" role="menu" aria-expanded="false" style="display: none; top: 50px; left: 0.390625px;" aria-hidden="true"><li class="level1 nav-4-1 category-item first ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/fox-nation-gear/fox-nation-patriot/" id="ui-id-36" class="ui-corner-all" tabindex="-1" role="menuitem"><span>Fox Nation Patriot</span></a></li><li class="level1 nav-4-2 category-item last ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/fox-nation-gear/fox-nation-tucker-carlson-originals/" id="ui-id-37" class="ui-corner-all" tabindex="-1" role="menuitem"><span>Tucker Carlson Originals</span></a></li></ul></li><li class="level0 nav-5 category-item level-top ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/fox-business/" class="level-top ui-corner-all" id="ui-id-7" tabindex="-1" role="menuitem"><span>Fox Business</span></a></li><li class="level0 nav-6 category-item level-top ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/books/" class="level-top ui-corner-all" id="ui-id-8" tabindex="-1" role="menuitem"><span>Books</span></a></li><li class="level0 nav-7 category-item level-top ui-menu-item" role="presentation"><a href="https://shop.foxnews.com/patriotic-collection/" class="level-top ui-corner-all" id="ui-id-9" tabindex="-1" role="menuitem"><span>Patriotic Collection</span></a></li>            </ul>
+            </nav>
+        </div>
+        <div class="section-item-title nav-sections-item-title" data-role="collapsible" role="tab" data-collapsible="true" aria-controls="store.links" aria-selected="false" aria-expanded="false" tabindex="0">
+            <a class="nav-sections-item-switch" data-toggle="switch" href="#store.links">Account</a>
+        </div>
+        <div class="section-item-content nav-sections-item-content" id="store.links" data-role="content" role="tabpanel" aria-hidden="true" style="display: none;"><!-- Account links --></div>
+    </div>
+</div>
+    <main id="maincontent" class="page-main"><a id="contentarea" tabindex="-1"></a>
+        <div class="page-title-wrapper">
+            <h1 class="page-title">
+                <span class="base" data-ui-id="page-title-wrapper">Shopping Cart</span>    </h1>
+        </div>
+        <div class="page messages"><div data-placeholder="messages"></div>
+        </div><div class="columns"><div class="snow-shipbar-box" data-bind="scope: 'amasty-shipbar-top'">
+            <!-- ko template: getTemplate() --><!--ko if: isVisible -->
+            <div class="amasty-shipbar container" data-bind="style: { 'pointer-events' : contentVisibility() ? 'all': 'none' }, css: additionalClass, afterRender: initMoving" style="pointer-events: all;">
+                <!--ko if: haveCustomStyle()--><!-- /ko -->
+                <div class="main-container">
+                    <!--ko if: isCarVisible() --><!-- /ko -->
+                    <!--ko if: contentVisibility -->
+                    <div class="bar-content no-border" data-bind="style: { 'backgroundColor' : barBackground }, css: {'no-border': !isCarVisible()}" style="background-color: rgb(255, 255, 255);">
+                        <!--ko if: haveAction()--><!-- /ko -->
+                        <div class="content">
+            <span class="label-content" data-bind="
+                   html: getLabelContent(),
+                   style: {
+                       'color' : textColor,
+                       'font-size' : getFontSize(),
+                       'font-family' : fontFamily
+                }" style="color: rgb(0, 51, 101); font-size: 18px; font-family: Arial, Helvetica, sans-serif;">Get Free Shipping on orders over <b style="color: #47980d">$65.00</b>.</span>
+                            <!--ko if: hasTermContent()-->
+                            <!--ko ifnot: helpFlag -->
+                            <svg class="extra" data-bind="click: helpFlag.bind(null, true), style: { 'fill' : extraColor }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 508.52 508.52" style="fill: rgb(71, 152, 13);">
+                                <path d="M254.26 0C113.845 0 0 113.845 0 254.26s113.845 254.26 254.26 254.26 254.26-113.845 254.26-254.26S394.675 0 254.26 0zm31.782 381.39c0 17.544-14.239 31.782-31.782 31.782s-31.782-14.239-31.782-31.782V222.477c0-17.544 14.239-31.782 31.782-31.782s31.782 14.239 31.782 31.782V381.39zM254.26 159.421c-17.544 0-31.782-14.239-31.782-31.782s14.239-31.782 31.782-31.782 31.782 14.239 31.782 31.782-14.238 31.782-31.782 31.782z"></path>
+                            </svg>
+                            <!-- /ko -->
+                            <!--ko if: helpFlag--><!-- /ko -->
+                            <!-- /ko -->
+                        </div>
+                        <!--ko if: isCloseable() --><!-- /ko -->
+                    </div>
+                    <!-- /ko -->
+                </div>
+            </div>
+            <!-- /ko -->
+            <!-- /ko -->
+
+        </div>
+            <div class="column main"><input name="form_key" type="hidden" value="dAKvsTB6cwlLqq2B"><div id="authenticationPopup" data-bind="scope:'authenticationPopup'" style="display: none;">
+                <script>
+        window.authenticationPopup = {"autocomplete":"off","customerRegisterUrl":"https:\/\/shop.foxnews.com\/customer\/account\/create\/","customerForgotPasswordUrl":"https:\/\/shop.foxnews.com\/customer\/account\/forgotpassword\/","baseUrl":"https:\/\/shop.foxnews.com\/"};
+    </script>
+                <!-- ko template: getTemplate() -->
+
+
+                <!-- /ko -->
+
+            </div>
+
+
+
+
+
+                <span></span>
+                <div class="ambanners ambanner-0" data-position="0" data-bannerid="" data-role="amasty-banner-container"></div><div class="cart-empty">
+                    <p>You have no items in your shopping cart.</p>
+                    <p>Click <a href="https://shop.foxnews.com/">here</a> to continue shopping.</p>
+                </div>
+            </div></div></main><style>
+            .toast .message { transition: transform 0.1s ease; }
+                .toast .message.error { background-color: #F1E5E6; }
+                .toast .message.notice { background-color: #FFEED9; }
+                .toast .message.success { background-color: #EAF1E6; }
+                .toast .message.success { color: #185504; }
+                .toast .message.notice { color: #FF7E00; }
+                .toast .message.error { color: #AE0015; }
+                .toast.progress .message.success:after { background-color: #0DA462; }
+                .toast.progress .message.notice:after { background-color: #AE9144; }
+                .toast.progress .message.error:after { background-color: #AE4D44; }
+    </style>
+
+    <div class="toast progress" data-bind="scope: 'messages'">
+        <!-- ko if: cookieMessages && cookieMessages.length > 0 --><!-- /ko -->
+        <!-- ko if: messages().messages && messages().messages.length > 0 --><!-- /ko -->
+        <div class="bar"></div>
+    </div>
+
+
+    <footer class="page-footer"><div class="footer_newsletterWrapper"><div class="newsletter">
+        <form class="subscribe" novalidate="novalidate" action="https://shop.foxnews.com/newsletter/subscriber/new/" method="post" id="newsletter-validate-detail">
+            <legend>Newsletter</legend>
+            <label>Sign up for new product info!</label>
+            <div style="min-width: 340px; margin-left: 10px;">
+                <input type="email" name="email" id="newsletter" placeholder="Enter your email address" data-validate="{required:true, 'validate-email':true}">
+                <button title="Subscribe" type="submit">Subscribe</button>
+            </div>
+        </form>
+    </div>
+    </div><div class="snow-shipbar-box" data-bind="scope: 'amasty-shipbar-bottom'">
+        <!-- ko template: getTemplate() --><!--ko if: isVisible --><!-- /ko -->
+        <!-- /ko -->
+
+    </div>
+        <!--added js code at the bottom - DM -->
+        <div class="block block-customer-login" id="popup-modal" style="display: none;">
+            <div class="block-title">
+                <strong id="block-customer-login-heading" role="heading" aria-level="2">Registered Customers</strong>
+            </div>
+            <div class="block-content" aria-labelledby="block-customer-login-heading">
+                <form class="form form-login" action="https://shop.foxnews.com/customer/account/loginPost/" method="post" id="login-form" novalidate="novalidate">
+                    <input name="form_key" type="hidden" value="dAKvsTB6cwlLqq2B">            <fieldset class="fieldset login" data-hasrequired="* Required Fields">
+                    <div class="field note">If you have an account, sign in with your email address.</div>
+                    <div class="field email required">
+                        <label class="label" for="email"><span>Email</span></label>
+                        <div class="control">
+                            <input name="login[username]" value="" autocomplete="off" id="email" type="email" class="input-text" title="Email" data-validate="{required:true, 'validate-email':true}" aria-required="true">
+                        </div>
+                    </div>
+                    <div class="field password required">
+                        <label for="pass" class="label"><span>Password</span></label>
+                        <div class="control">
+                            <input name="login[password]" type="password" autocomplete="off" class="input-text" id="pass" title="Password" data-validate="{required:true}" aria-required="true">
+                        </div>
+                    </div>
+                    <div class="actions-toolbar">
+                        <div class="primary"><div><div class="grecaptcha-badge" data-style="bottomright" style="width: 256px; height: 60px; display: block; transition: right 0.3s ease 0s; position: fixed; bottom: 14px; right: -186px; box-shadow: gray 0px 0px 5px; border-radius: 2px; overflow: hidden;"><div class="grecaptcha-logo"><iframe title="reCAPTCHA" src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LdbXHUUAAAAACjjNkwgKMYCWXwmOp3EUEn4UWz1&amp;co=aHR0cHM6Ly9zaG9wLmZveG5ld3MuY29tOjQ0Mw..&amp;hl=iw&amp;v=YhkYx1k-yvvb8OonJPmOpoJY&amp;size=invisible&amp;cb=1mu5cv7w7if" width="256" height="60" role="presentation" name="a-7aq0pst50lly" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div><div class="grecaptcha-error"></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;"></iframe></div><button type="submit" class="action login primary" name="send" id="send2"><span>Sign In</span></button></div>
+                        <div class="secondary"><a class="action remind" href="https://shop.foxnews.com/customer/account/forgotpassword/"><span>Forgot Your Password?</span></a></div>
+                    </div>
+                </fieldset>
+                    <input type="hidden" name="amasty_invisible_token" value=""></form>
+            </div>
+        </div>
+
+
+        <!-- TRIGGER POPUP WHEN login-pop is clicked -->
+        <script type="text/javascript">
+    require(['jquery', 'Magento_Ui/js/modal/modal'],
+    function($, modal) {
+    var options = {
+    type: 'popup',
+    responsive: true,
+    innerScroll: true,
+    modalClass: 'custom-block-customer-login',
+    buttons: false,
+    };
+
+    $(document).on("click","#login-popup", function() {
+    //$('#login-popup).click(function(){
+    var popup = modal(options, $('#popup-modal'));
+    $('#popup-modal').modal('openModal');
+    });
+    }
+    );
+</script>
+        <div class="widget block block-static-block">
+            <div id="footer_links_wrapper">
+
+                <div class="footer-links-collapsible"><div class="borderWall" role="tablist">
+                    <div class="collapsibleC active" data-role="collapsible" role="tab" aria-selected="false" aria-expanded="true" data-collapsible="true">
+                        <div data-role="trigger" tabindex="0">
+                            <h3>All Products</h3>
+                        </div>
+                    </div>
+                    <div class="content forceShow" data-role="content" role="tabpanel" aria-hidden="false">
+                        <ul class="footer items">
+                            <li><a href="https://shop.foxnews.com/apparel/" name="Apparel">Apparel</a></li>
+                            <li><a href="https://shop.foxnews.com/accessories/" name="Accessories">Gifts &amp; Accessories</a></li>
+                            <li><a href="https://shop.foxnews.com/drinkware/" name="Drinkware">Drinkware</a></li>
+                            <li><a href="https://shop.foxnews.com/new-arrivals/" name="New Arrivals">New Arrivals</a></li>
+                        </ul>
+                    </div>
+                </div>
+                </div>
+
+
+                <div class="footer-links-collapsible">
+                    <div class="borderWall" role="tablist">
+                        <div class="collapsibleC active" data-role="collapsible" role="tab" aria-selected="false" aria-expanded="true" data-collapsible="true">
+                            <div data-role="trigger" tabindex="0">
+                                <h3>My Account</h3>
+                            </div>
+                        </div>
+                        <div class="content forceShow" data-role="content" role="tabpanel" aria-hidden="false">
+                            <ul class="footer items">
+                                <li><a href="/customer/account/login" name="login">Sign-in</a></li>
+                                <li><a href="/customer/account/create/" name="register">Register</a></li>
+                                <li><a href="/checkout/cart/" name="shopping cart">Shopping Cart</a></li>
+                                <li><a href="/customer/account/login" name="track order">Track My Order</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-links-collapsible"><div class="borderWall" role="tablist">
+                    <div class="collapsibleC active" data-role="collapsible" role="tab" aria-selected="false" aria-expanded="true" data-collapsible="true">
+                        <div data-role="trigger" tabindex="0">
+                            <h3>Customer Support</h3>
+                        </div>
+                    </div>
+                    <div class="content forceShow" data-role="content" role="tabpanel" aria-hidden="false">
+                        <ul class="footer items">
+                            <li><a href="/contact/" name="track order">Contact Us</a></li>
+                            <li><a href="/faqs" name="track order">FAQs</a></li>
+                            <li><a href="/return-policy" name="track order">Return Policy</a></li>
+                            <li><a href="https://www.foxnews.com/privacy-policy" target="_blank">Privacy Policy</a></li>
+                            <li><a href="https://www.foxnews.com/terms-of-use" target="_blank">Terms of Use</a></li>
+                            <li><a href="https://www.foxnews.com/donotsell" target="_blank">Do Not Sell My Personal Information</a></li>
+                            <!-- <li>Promotional Disclaimers</li> -->
+                        </ul>
+                    </div>
+                </div>
+                </div>
+
+                <div class="footer-links-collapsible"><div class="borderWall" role="tablist">
+                    <div class="collapsibleC active" data-role="collapsible" role="tab" aria-selected="false" aria-expanded="true" data-collapsible="true">
+                        <div data-role="trigger" tabindex="0">
+                            <h3>Foxnews.com</h3>
+                        </div>
+                    </div>
+                    <div class="content forceShow" data-role="content" role="tabpanel" aria-hidden="false">
+                        <ul class="footer items">
+                            <li><a href="http://www.foxnews.com/us.html" target="_blank">U.S.</a></li>
+                            <li><a href="http://www.foxnews.com/world.html" target="_blank">World</a></li>
+                            <li><a href="http://www.foxnews.com/opinion.html" target="_blank">Opinion</a></li>
+                            <li><a href="http://www.foxnews.com/politics.html" target="_blank">Politics</a></li>
+                            <li><a href="http://www.foxnews.com/entertainment.html" target="_blank">Entertainment</a></li>
+                            <li><a href="http://www.foxnews.com/lifestyle.html" target="_blank">Lifestyle</a></li>
+                            <li><a href="http://www.foxnews.com/shows.html" target="_blank">TV</a></li>
+                        </ul>
+                    </div>
+                </div>
+                </div>
+
+                <div class="footer-links-collapsible">
+                    <div class="borderWall" role="tablist">
+                        <div class="collapsibleC active" data-role="collapsible" role="tab" aria-selected="false" aria-expanded="true" data-collapsible="true">
+                            <div data-role="trigger" tabindex="0">
+                                <h3>Other</h3>
+                            </div>
+                        </div>
+                        <div class="content forceShow" data-role="content" role="tabpanel" aria-hidden="false">
+                            <ul class="footer items">
+                                <li><a href="http://insider.foxnews.com/" target="_blank">Fox News Insider</a></li>
+                                <li><a href="https://radio.foxnews.com" target="_blank">Fox News Radio</a></li>
+                                <li><a href="https://www.foxnews.com/go#&amp;_intcmp=hp1fs13_4,hp1fs" target="_blank">Fox News Go</a></li>
+                                <li><a href="https://www.foxbusiness.com" target="_blank">Fox Business</a></li>
+                                <li><a href="https://nation.foxnews.com/" target="_blank">Fox Nation</a></li>
+                                <li><a href="https://shop.foxnews.com/sitemap.html/" name="Site Map">Site Map</a></li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div class="socialWrapper">
+                        <ul class="social_icons">
+                            <li class="social_set">
+                                <ul class="social_innr">
+                                    <a target="_blank" href="https://www.facebook.com/FoxNews/" name="Facebook"><li class="ico-facebook"></li></a>
+                                    <a target="_blank" href="https://twitter.com/FoxNews" name="Twitter"><li class="ico-twitter"></li></a>
+                                </ul>
+                            </li>
+                            <li class="social_set">
+                                <ul class="social_innr">
+                                    <a target="_blank" href="https://www.instagram.com/foxnews" name="Instagram"><li class="ico-instagram"></li></a>
+                                    <a target="_blank" href="https://www.youtube.com/channel/UCXIJgqnII2ZOINSWNOGFThA" name="YouTube"><li class="ico-youtube"></li></a>
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+
+
+
+            <script type="text/javascript" xml="space">// <![CDATA[
+    require([
+        'jquery',
+        'accordion',
+        'collapsible'], function ($) {
+
+        //set the footer navigation accordion on media change
+
+
+        //initialize the accordion
+        $( "#footer_links_wrapper" ).accordion({"openedState": "active", "collapsible": false, "multipleCollapsible": true, "active": [0,1,2,3,4], icons: { "header": "ui-icon-triangle-1-e", "activeHeader": "ui-icon-triangle-1-s" }});
+
+       //function that is called on media change
+       function footerNavState(x) {
+    		if (x.matches) { // If media query matches
+    			//remove forceShow class, destroy, and rebuild the accordion
+    			$("#footer_links_wrapper .content").removeClass("forceShow");
+				$( "#footer_links_wrapper" ).accordion("destroy");
+				$( "#footer_links_wrapper" ).accordion({"openedState": "active", "collapsible": true, "multipleCollapsible": false, "active": 0, icons: { "header": "ui-icon-triangle-1-e", "activeHeader": "ui-icon-triangle-1-s" }});
+			} else {
+
+				//destroy and rebuild the accordion, and then add the forceShow class
+				$( "#footer_links_wrapper" ).accordion("destroy");
+				$( "#footer_links_wrapper" ).accordion({"openedState": "active", "collapsible": false, "multipleCollapsible": true,  "active": "0 1 2 3 4"});
+				$("#footer_links_wrapper .content").addClass("forceShow");
+			}
+		}
+
+		//initialize listener
+		var x = window.matchMedia("(max-width: 767px)");
+		footerNavState(x); // Call listener function at run time
+		x.addListener(footerNavState); // Attach listener function on state changes
+
+    });
+// ]]></script></div>
+    </footer>
+    <script>
+    require([
+        'jquery',
+        'domReady!'
+    ], function ($) {
+
+        $( document ).ready(function() {
+              $('.flip-card-back').show();
+       });
+  });
+</script>
+
+    <script> (function(){ var s = document.createElement('script'), e = ! document.body ? document.querySelector('head') : document.body; s.src = 'https://acsbapp.com/apps/app/dist/js/app.js'; s.async = true; s.onload = function(){ acsbJS.init({ statementLink : '', footerHtml : '', hideMobile : false, hideTrigger : false, language : 'en', position : 'right', leadColor : '#146FF8', triggerColor : '#146FF8', triggerRadius : '50%', triggerPositionX : 'right', triggerPositionY : 'bottom', triggerIcon : 'people', triggerSize : 'medium', triggerOffsetX : 20, triggerOffsetY : 20, mobile : { triggerSize : 'small', triggerPositionX : 'right', triggerPositionY : 'bottom', triggerOffsetX : 10, triggerOffsetY : 10, triggerRadius : '50%' } }); }; e.appendChild(s); }()); </script>    <script type="text/javascript">
+        require(['jquery'], function ($) {
+            window.formToProtectOnPage = [];
+            formsToProtect = ["form[action*=\"customer\/account\/createpost\"]","form[action*=\"customer\/account\/forgotpasswordpost\"]","form[action*=\"customer\/account\/loginPost\"]","form[action*=\"review\/product\/post\"]","form[action*=\"contact\/index\/post\"]"];
+            formsToProtect.forEach(function(item) {
+                formToProtect = $(item)[0];
+                if (formToProtect) {
+                    window.formToProtectOnPage.push(formToProtect);
+                }
+            });
+
+            if (window.formToProtectOnPage.length) {
+                var recaptchaScript = document.createElement('script');
+                recaptchaScript.src = 'https://www.google.com/recaptcha/api.js?onload=amInvisibleCaptchaOnloadCallback&render=explicit';
+                recaptchaScript.attributes = 'async defer';
+                document.body.appendChild(recaptchaScript);
+            }
+
+            window.amInvisibleCaptchaOnloadCallback = function () {
+                for (var i = 0; i < window.formToProtectOnPage.length; i++) {
+                    window.formToProtectOnPage[i].innerHTML +=
+                        '<input type="hidden" name="amasty_invisible_token" value=""/>';
+                }
+
+                var id = "";
+                if (id) {
+                    var additionalForm = document.getElementById(id).form;
+                    if (additionalForm) {
+                        window.formToProtectOnPage.push(additionalForm);
+                    }
+                }
+
+                for (var i = 0; i < window.formToProtectOnPage.length; i++) {
+                    var form = window.formToProtectOnPage[i];
+                    if (form.tagName.toLowerCase() != 'form') {
+                        continue;
+                    }
+                    id = form.querySelector("[type='submit']");
+
+                    (function(form, id) {
+                        grecaptcha.render(id, {
+                            'sitekey': '6LdbXHUUAAAAACjjNkwgKMYCWXwmOp3EUEn4UWz1',
+                            'callback': function(token) {
+                                if ($(form).valid()){
+                                    form.querySelector("[name='amasty_invisible_token']").setAttribute('value', token)
+                                    form.submit();
+                                } else {
+                                    grecaptcha.reset();
+                                }
+                            }
+                        });
+                    })(form, id);
+                }
+            };
+        });
+    </script>
+    <script type="text/javascript">
+
+    requirejs(['lazyLoad'], function(lazyLoad){
+        console.log(lazyLoad);
+        var lazyLoadInstance = new lazyLoad({
+            elements_selector: "img.lazy",
+            data_src: "src",
+            data_srcset: "srcset",
+            threshold: 150,
+            load_delay: 10
+            // ... more custom settings?
+        });
+
+    });
+</script>
+
+
+    <script type="application/ld+json">{"@context":"http:\/\/schema.org","@type":"WebSite","url":"https:\/\/shop.foxnews.com\/","name":"Fox News Shop","potentialAction":{"@type":"SearchAction","target":"https:\/\/shop.foxnews.com\/catalogsearch\/result\/?q={search_term_string}","query-input":"required name=search_term_string"}}</script><script type="application/ld+json">{"@context":"http:\/\/schema.org","@type":"Organization","url":"https:\/\/shop.foxnews.com\/","name":"Fox News Shop","logo":"https:\/\/shop.foxnews.com\/pub\/media\/logo\/websites\/1\/fn-shop-logo.svg","description":"Fox News Nations Shop","address":{"addressCountry":"United States"},"sameAs":["https:\/\/www.facebook.com\/FoxNews","https:\/\/twitter.com\/foxnews","https:\/\/plus.google.com\/+FoxNews","https:\/\/www.instagram.com\/foxnews\/"]}</script><small class="copyright">
+        <span>This material may not be published, broadcast, rewritten, or redistributed. © 2018-present Fox News Network, LLC. All rights reserved.</span>
+    </small>
+    <div class="snow_copyright_containerWrapper"><p style="text-align: center;"><a title="Powered By Snow Commerce" href="https://www.snowcommerce.com/" target="_blank" rel="noopener noreferrer">Powered by</a></p>
+        <p style="text-align: center;"><a title="Snow Commerce" href="https://www.snowcommerce.com/" target="_blank" rel="noopener noreferrer"><img src="https://shop.foxnews.com/static/version1630313595/frontend/snowcommerce/fox-news-theme/en_US/images/source-svg/fox-snow-logo.svg" width="120" height="25"></a></p></div>
+
+    <script>
+require([
+    "jquery",
+    "jquery/ui"
+], function($){
+
+//<![CDATA[
+    $.extend(true, $, {
+        calendarConfig: {
+            dayNames: ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+            dayNamesMin: ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],
+            monthNames: ["January","February","March","April","May","June","July","August","September","October","November","December"],
+            monthNamesShort: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+            infoTitle: "About the calendar",
+            firstDay: 0,
+            closeText: "Close",
+            currentText: "Go Today",
+            prevText: "Previous",
+            nextText: "Next",
+            weekHeader: "WK",
+            timeText: "Time",
+            hourText: "Hour",
+            minuteText: "Minute",
+            dateFormat: $.datepicker.RFC_2822,
+            showOn: "button",
+            showAnim: "",
+            changeMonth: true,
+            changeYear: true,
+            buttonImageOnly: null,
+            buttonImage: null,
+            showButtonPanel: true,
+            showWeek: true,
+            timeFormat: '',
+            showTime: false,
+            showHour: false,
+            showMinute: false
+        }
+    });
+
+    enUS = {"m":{"wide":["January","February","March","April","May","June","July","August","September","October","November","December"],"abbr":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]}}; // en_US locale reference
+//]]>
+
+});
+</script>
+    <div class="ampromo-overlay" data-role="ampromo-overlay">
+        <div class="ampromo-items-content" data-ampromo-js="items-content">
+            <div class="ampromo-close" data-role="ampromo-popup-hide"></div>
+            <h2>
+                Free Items            </h2>
+            <div data-role="ampromo-items-container">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>mendeleyWebImporter = {
+  downloadPdfs(t,e) { return this._call('downloadPdfs', [t,e]); },
+  open() { return this._call('open', []); },
+  setLoginToken(t) { return this._call('setLoginToken', [t]); },
+  _call(methodName, methodArgs) {
+    const id = Math.random();
+    window.postMessage({ id, token: '0.3149912203215719', methodName, methodArgs }, 'https://shop.foxnews.com');
+    return new Promise(resolve => {
+      const listener = window.addEventListener('message', event => {
+        const data = event.data;
+        if (typeof data !== 'object' || !('result' in data) || data.id !== id) return;
+        window.removeEventListener('message', listener);
+        resolve(data.result);
+      });
+    });
+  }
+};</script><script src="https://www.google.com/recaptcha/api.js?onload=amInvisibleCaptchaOnloadCallback&amp;render=explicit"></script><div class="acsb-trigger acsb-bg-lead acsb-trigger-size-medium acsb-trigger-position-x-right acsb-trigger-position-y-bottom acsb-ready" tabindex="0" role="button" style="display: none; inset: auto 20px 20px auto; border-radius: 50%;" aria-label="Open accessibility options, statement and help" data-acsb="trigger"> <span class="acsb-trigger-icon"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 100 131.3" enable-background="new 0 0 100 131.3" xml:space="preserve"><path d="M71.6,131.3c1,0,2.1-0.3,3.1-0.8c3.9-1.8,5.5-6.2,3.6-10.1c0,0-14.3-32.7-16.9-44.7c-1-4.2-1.6-15.3-1.8-20.5c0-1.8,1-3.4,2.6-3.9l32-9.6c3.9-1,6.2-5.5,5.2-9.4c-1-3.9-5.5-6.2-9.4-5.2c0,0-29.6,9.6-40.3,9.6c-10.4,0-39.8-9.4-39.8-9.4c-3.9-1-8.3,0.8-9.6,4.7c-1.3,4.2,1,8.6,5.2,9.6l32,9.6c1.6,0.5,2.9,2.1,2.6,3.9c-0.3,5.2-0.8,16.4-1.8,20.5c-2.6,12-16.9,44.7-16.9,44.7c-1.8,3.9,0,8.3,3.6,10.1c1,0.5,2.1,0.8,3.1,0.8c2.9,0,5.7-1.6,6.8-4.4l15.3-31.2l14.6,31.4C66.1,129.7,68.7,131.3,71.6,131.3z"></path> <circle style="fill: #fff;" cx="50.3" cy="14.6" r="14.6"></circle></svg></span><span class="acsb-actions-active-icon"> <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 105 79" style="enable-background:new 0 0 105 79;" xml:space="preserve"> <g>	<path d="M12.6,38.9C6,31.9-4.7,42.6,2.3,49.2c8.7,9,17.3,18.3,26.3,27c4,3.7,7,3.7,10.7,0l63.6-63.3	c6.7-7-3.7-17.6-10.7-10.7L34.3,60.2L12.6,38.9z"></path>
+</g>
+</svg> </span>
+</div><div class="acsb-widget acsb-widget-position-right acsb-ready" style="display: none;" tabindex="-1" role="dialog" aria-label="Accessibility Adjustments" aria-modal="true" aria-hidden="true" data-acsb="widget"> <div class="acsb-header acsb-flex"> <div class="acsb-start"> <a href="#" role="button" tabindex="0" class="acsb-header-option acsb-header-option-close" data-acsb-option="close" aria-label="Close Accessibility Interface" data-acsb-tooltip="Close Accessibility Interface"> <i class="acsbi-close"></i> </a> <a href="#" role="button" tabindex="0" class="acsb-header-option acsb-header-option-position" data-acsb-option="position" aria-label="Change Accessibility Interface Position" data-acsb-tooltip="Change Accessibility Interface Position"> <i class="acsbi-sides"></i> </a> <a href="#" role="button" tabindex="0" class="acsb-header-option acsb-header-option-statement" data-acsb-option="statement" aria-label="Accessibility Statement" data-acsb-tooltip="Accessibility Statement"> <i class="acsbi-question"></i> </a> </div> <a role="button" href="#" tabindex="0" aria-label="English" class="acsb-language acsb-header-option-language" data-acsb-option="language" data-acsb-popup-trigger="acsb-language-popup"> <span class="acsb-language-flag"> <img src="https://web1.acsbapp.com/apps/app/dist/media/languages/en.svg" alt="English"> </span> <span class="acsb-language-text">English</span> <i class="acsbi-chevron_down"></i> </a>
+</div> <div class="acsb-main" data-acsb="main"> <div class="acsb-hero"> <span class="acsb-hero-title">Accessibility Adjustments</span> <div class="acsb-hero-actions acsb-flex"> <a href="#" class="acsb-hero-action" role="button" tabindex="0" data-acsb-option="reset"> <i class="acsbi-reset"></i> <span>Reset Settings</span> </a> <a href="#" class="acsb-hero-action" role="button" data-acsb-option="statement"> <i class="acsbi-bullhorn"></i> <span>Statement</span> </a> <a href="#" class="acsb-hero-action" role="button" tabindex="0" data-acsb-popup-trigger="acsb-hide-popup"> <i class="acsbi-hide"></i> <span>Hide Interface</span> </a> </div>
+</div> <div class="acsb-main-options"> <div class="acsb-search"> <form class="acsb-form" data-acsb-search="form" enctype="multipart/form-data" action="#" method="POST"> <input type="text" tabindex="0" name="acsb_search" autocomplete="off" placeholder="Search the online dictionary..." aria-label="Search the online dictionary..."> <i class="acsbi-search"></i> </form> <div class="acsb-search-results-wrapper" data-acsb-search-results="wrapper"> <span role="button" tabindex="0" data-acsb-search-results="close" aria-label="Close" class="acsb-search-close"> <i class="acsbi-close"></i> </span> <div class="acsb-search-results" data-acsb-search-results="list"></div> </div>
+</div> <div class="acsb-actions"> <div class="acsb-actions-box acsb-actions-box-profiles" data-acsb-actions-box="profiles"> <div class="acsb-actions-title">Choose the right accessibility profile for you</div> <div class="acsb-profiles"> <div class="acsb-profile acsb-profile-seizures" tabindex="0" role="button" aria-pressed="false" data-acsb-action="seizuresProfile"> <div class="acsb-profile-toggle" aria-hidden="true"> <div class="acsb-toggle acsb-toggle-off"> <span class="acsb-toggle-option acsb-toggle-option-off">OFF</span> <span class="acsb-toggle-option acsb-toggle-option-on">ON</span> </div> </div> <div class="acsb-profile-content"> <span class="acsb-profile-name">Seizure Safe Profile</span> <span class="acsb-profile-text">Eliminates flashes and reduces color</span> <i class="acsbi-vibrate"></i> </div> <div class="acsb-profile-description"> This profile enables epileptic and seizure prone users to browse safely by eliminating the risk of seizures that result from flashing or blinking animations and risky color combinations. </div> <i class="acsb-profile-connected acsbi-chain"></i> </div> <div class="acsb-profile acsb-profile-vision" tabindex="0" role="button" aria-pressed="false" data-acsb-action="visionProfile"> <div class="acsb-profile-toggle" aria-hidden="true"> <div class="acsb-toggle acsb-toggle-off"> <span class="acsb-toggle-option acsb-toggle-option-off">OFF</span> <span class="acsb-toggle-option acsb-toggle-option-on">ON</span> </div> </div> <div class="acsb-profile-content"> <span class="acsb-profile-name">Vision Impaired Profile</span> <span class="acsb-profile-text">Enhances the website's visuals</span> <i class="acsbi-eye"></i> </div> <div class="acsb-profile-description"> This profile adjusts the website, so that it is accessible to the majority of visual impairments such as Degrading Eyesight, Tunnel Vision, Cataract, Glaucoma, and others. </div> <i class="acsb-profile-connected acsbi-chain"></i> </div> <div class="acsb-profile acsb-profile-cognitive" tabindex="0" role="button" aria-pressed="false" data-acsb-action="cognitiveProfile"> <div class="acsb-profile-toggle" aria-hidden="true"> <div class="acsb-toggle acsb-toggle-off"> <span class="acsb-toggle-option acsb-toggle-option-off">OFF</span> <span class="acsb-toggle-option acsb-toggle-option-on">ON</span> </div> </div> <div class="acsb-profile-content"> <span class="acsb-profile-name">Cognitive Disability Profile</span> <span class="acsb-profile-text">Assists with reading and focusing</span> <i class="acsbi-thought"></i> </div> <div class="acsb-profile-description"> This profile provides various assistive features to help users with cognitive disabilities such as Autism, Dyslexia, CVA, and others, to focus on the essential elements of the website more easily. </div> <i class="acsb-profile-connected acsbi-chain"></i> </div> <div class="acsb-profile acsb-profile-adhd" tabindex="0" role="button" aria-pressed="false" data-acsb-action="adhdProfile"> <div class="acsb-profile-toggle" aria-hidden="true"> <div class="acsb-toggle acsb-toggle-off"> <span class="acsb-toggle-option acsb-toggle-option-off">OFF</span> <span class="acsb-toggle-option acsb-toggle-option-on">ON</span> </div> </div> <div class="acsb-profile-content"> <span class="acsb-profile-name">ADHD Friendly Profile</span> <span class="acsb-profile-text">More focus and fewer distractions</span> <i class="acsbi-target"></i> </div> <div class="acsb-profile-description"> This profile significantly reduces distractions, to help people with ADHD and Neurodevelopmental disorders browse, read, and focus on the essential elements of the website more easily. </div> <i class="acsb-profile-connected acsbi-chain"></i> </div> <div class="acsb-profile acsb-profile-blind" tabindex="0" role="button" aria-pressed="false" data-acsb-action="motorProfile"> <div class="acsb-profile-toggle" aria-hidden="true"> <div class="acsb-toggle acsb-toggle-off"> <span class="acsb-toggle-option acsb-toggle-option-off">OFF</span> <span class="acsb-toggle-option acsb-toggle-option-on">ON</span> </div> </div> <div class="acsb-profile-content"> <span class="acsb-profile-name">Blind Users (Screen-reader)</span> <span class="acsb-profile-text">Use the website with your screen-reader</span> <i class="acsbi-voice"></i> </div> <div class="acsb-profile-description"> This profile adjusts the website to be compatible with screen-readers such as JAWS, NVDA, VoiceOver, and TalkBack. A screen-reader is software that is installed on the blind user’s computer and smartphone, and websites should ensure compatibility with it. <br><br><strong>Note:</strong> This profile prompts automatically to screen-readers. </div> <i class="acsb-profile-connected acsbi-chain"></i> </div> <div class="acsb-profile acsb-profile-motor" tabindex="0" role="button" aria-pressed="false" data-acsb-action="motorProfile"> <div class="acsb-profile-toggle" aria-hidden="true"> <div class="acsb-toggle acsb-toggle-off"> <span class="acsb-toggle-option acsb-toggle-option-off">OFF</span> <span class="acsb-toggle-option acsb-toggle-option-on">ON</span> </div> </div> <div class="acsb-profile-content"> <span class="acsb-profile-name">Keyboard Navigation (Motor)</span> <span class="acsb-profile-text">Use the website with the keyboard</span> <i class="acsbi-navigation"></i> </div> <div class="acsb-profile-description"> This profile enables motor-impaired persons to operate the website using the keyboard Tab, Shift+Tab, and the Enter keys. Users can also use shortcuts such as “M” (menus), “H” (headings), “F” (forms), “B” (buttons), and “G” (graphics) to jump to specific elements.<br><br><strong>Note:</strong> This profile prompts automatically for keyboard users. </div> <i class="acsb-profile-connected acsbi-chain"></i> </div> </div> </div> <div class="acsb-actions-box acsb-actions-box-textAdjustments" data-acsb-actions-box="textAdjustments"> <div class="acsb-actions-title">Content Adjustments</div> <div class="acsb-actions-group"> <div class="acsb-action-box acsb-action-box-zoom acsb-action-box-big " tabindex="0" data-acsb-action="zoom" data-acsb-action-group="" data-acsb-action-message="" data-acsb-action-css-property="zoom" data-acsb-action-specific-element="body" data-acsb-action-specific-increment="25"> <div class="acsb-action-box-content"> <i class="acsb-box-icon acsbi-zoom"></i> <span class="acsb-box-title">Content Scaling</span> </div> <div class="acsb-big-box-element acsb-big-box-element-range"> <div class="acsb-range" data-acsb-range-slider=""> <div class="acsb-range-plus acsb-range-button acsb-bg-lead" data-acsb-range-action="increase" role="button" tabindex="0" aria-label="Increase"> <i class="acsbi-chevron_up"></i> </div> <div class="acsb-range-base acsb-color-lead" data-acsb-range-current-number="" data-acsb-range-default="Default"> Default </div> <div class="acsb-range-minus acsb-range-button acsb-bg-lead" data-acsb-range-action="decrease" tabindex="0" aria-label="Decrease" role="button"> <i class="acsbi-chevron_down"></i> </div>
+</div> </div> </div> <div class="acsb-action-box acsb-action-box-readableFont " role="button" aria-pressed="false" tabindex="0" data-acsb-action="readableFont" data-acsb-action-group="" data-acsb-action-message="" data-acsb-action-css-property="" data-acsb-action-specific-element="" data-acsb-action-specific-increment="0"> <div class="acsb-action-box-content"> <i class="acsb-box-icon acsbi-font"></i> <span class="acsb-box-title">Readable Font</span> </div> </div> <div class="acsb-action-box acsb-action-box-emphasizeTitles " role="button" aria-pressed="false" tabindex="0" data-acsb-action="emphasizeTitles" data-acsb-action-group="" data-acsb-action-message="" data-acsb-action-css-property="" data-acsb-action-specific-element="" data-acsb-action-specific-increment="0"> <div class="acsb-action-box-content"> <i class="acsb-box-icon acsbi-heading"></i> <span class="acsb-box-title">Highlight Titles</span> </div> </div> <div class="acsb-action-box acsb-action-box-emphasizeLinks " role="button" aria-pressed="false" tabindex="0" data-acsb-action="emphasizeLinks" data-acsb-action-group="" data-acsb-action-message="" data-acsb-action-css-property="" data-acsb-action-specific-element="" data-acsb-action-specific-increment="0"> <div class="acsb-action-box-content"> <i class="acsb-box-icon acsbi-link"></i> <span class="acsb-box-title">Highlight Links</span> </div> </div> <div class="acsb-action-box acsb-action-box-magnifier " role="button" aria-pressed="false" tabindex="0" data-acsb-action="magnifier" data-acsb-action-group="" data-acsb-action-message="" data-acsb-action-css-property="" data-acsb-action-specific-element="" data-acsb-action-specific-increment="0"> <div class="acsb-action-box-content"> <i class="acsb-box-icon acsbi-magnifier"></i> <span class="acsb-box-title">Text Magnifier</span> </div> </div> <div class="acsb-action-box acsb-action-box-fontSize acsb-action-box-big " tabindex="0" data-acsb-action="fontSize" data-acsb-action-group="" data-acsb-action-message="" data-acsb-action-css-property="font-size" data-acsb-action-specific-element="" data-acsb-action-specific-increment="0"> <div class="acsb-action-box-content"> <i class="acsb-box-icon acsbi-size"></i> <span class="acsb-box-title">Adjust Font Sizing</span> </div> <div class="acsb-big-box-element acsb-big-box-element-range"> <div class="acsb-range" data-acsb-range-slider=""> <div class="acsb-range-plus acsb-range-button acsb-bg-lead" data-acsb-range-action="increase" role="button" tabindex="0" aria-label="Increase"> <i class="acsbi-chevron_up"></i> </div> <div class="acsb-range-base acsb-color-lead" data-acsb-range-current-number="" data-acsb-range-default="Default"> Default </div> <div class="acsb-range-minus acsb-range-button acsb-bg-lead" data-acsb-range-action="decrease" tabindex="0" aria-label="Decrease" role="button"> <i class="acsbi-chevron_down"></i> </div>
+</div> </div> </div> <div class="acsb-action-box acsb-action-box-textAlignCenter " role="button" aria-pressed="false" tabindex="0" data-acsb-action="textAlignCenter" data-acsb-action-group="textAlign" data-acsb-action-message="" data-acsb-action-css-property="" data-acsb-action-specific-element="" data-acsb-action-specific-increment="0"> <div class="acsb-action-box-content"> <i class="acsb-box-icon acsbi-text_center"></i> <span class="acsb-box-title">Align Center</span> </div> </div> <div class="acsb-action-box acsb-action-box-lineHeight acsb-action-box-big " tabindex="0" data-acsb-action="lineHeight" data-acsb-action-group="" data-acsb-action-message="" data-acsb-action-css-property="line-height" data-acsb-action-specific-element="" data-acsb-action-specific-increment="0.1"> <div class="acsb-action-box-content"> <i class="acsb-box-icon acsbi-line_height"></i> <span class="acsb-box-title">Adjust Line Height</span> </div> <div class="acsb-big-box-element acsb-big-box-element-range"> <div class="acsb-range" data-acsb-range-slider=""> <div class="acsb-range-plus acsb-range-button acsb-bg-lead" data-acsb-range-action="increase" role="button" tabindex="0" aria-label="Increase"> <i class="acsbi-chevron_up"></i> </div> <div class="acsb-range-base acsb-color-lead" data-acsb-range-current-number="" data-acsb-range-default="Default"> Default </div> <div class="acsb-range-minus acsb-range-button acsb-bg-lead" data-acsb-range-action="decrease" tabindex="0" aria-label="Decrease" role="button"> <i class="acsbi-chevron_down"></i> </div>
+</div> </div> </div> <div class="acsb-action-box acsb-action-box-textAlignLeft " role="button" aria-pressed="false" tabindex="0" data-acsb-action="textAlignLeft" data-acsb-action-group="textAlign" data-acsb-action-message="" data-acsb-action-css-property="" data-acsb-action-specific-element="" data-acsb-action-specific-increment="0"> <div class="acsb-action-box-content"> <i class="acsb-box-icon acsbi-text_left"></i> <span class="acsb-box-title">Align Left</span> </div> </div> <div class="acsb-action-box acsb-action-box-letterSpacing acsb-action-box-big " tabindex="0" data-acsb-action="letterSpacing" data-acsb-action-group="" data-acsb-action-message="" data-acsb-action-css-property="letter-spacing" data-acsb-action-specific-element="" data-acsb-action-specific-increment="2"> <div class="acsb-action-box-content"> <i class="acsb-box-icon acsbi-space"></i> <span class="acsb-box-title">Adjust Letter Spacing</span> </div> <div class="acsb-big-box-element acsb-big-box-element-range"> <div class="acsb-range" data-acsb-range-slider=""> <div class="acsb-range-plus acsb-range-button acsb-bg-lead" data-acsb-range-action="increase" role="button" tabindex="0" aria-label="Increase"> <i class="acsbi-chevron_up"></i> </div> <div class="acsb-range-base acsb-color-lead" data-acsb-range-current-number="" data-acsb-range-default="Default"> Default </div> <div class="acsb-range-minus acsb-range-button acsb-bg-lead" data-acsb-range-action="decrease" tabindex="0" aria-label="Decrease" role="button"> <i class="acsbi-chevron_down"></i> </div>
+</div> </div> </div> <div class="acsb-action-box acsb-action-box-textAlignRight acsb-action-box-hide-mobile" role="button" aria-pressed="false" tabindex="0" data-acsb-action="textAlignRight" data-acsb-action-group="textAlign" data-acsb-action-message="" data-acsb-action-css-property="" data-acsb-action-specific-element="" data-acsb-action-specific-increment="0"> <div class="acsb-action-box-content"> <i class="acsb-box-icon acsbi-text_right"></i> <span class="acsb-box-title">Align Right</span> </div> </div> </div> </div> <div class="acsb-actions-box acsb-actions-box-colorAdjustments" data-acsb-actions-box="colorAdjustments"> <div class="acsb-actions-title">Color Adjustments</div> <div class="acsb-actions-group"> <div class="acsb-action-box acsb-action-box-darkContrast " role="button" aria-pressed="false" tabindex="0" data-acsb-action="darkContrast" data-acsb-action-group="contrast" data-acsb-action-message="" data-acsb-action-css-property="" data-acsb-action-specific-element="" data-acsb-action-specific-increment="0"> <div class="acsb-action-box-content"> <i class="acsb-box-icon acsbi-dark"></i> <span class="acsb-box-title">Dark Contrast</span> </div> </div> <div class="acsb-action-box acsb-action-box-lightContrast " role="button" aria-pressed="false" tabindex="0" data-acsb-action="lightContrast" data-acsb-action-group="contrast" data-acsb-action-message="" data-acsb-action-css-property="" data-acsb-action-specific-element="" data-acsb-action-specific-increment="0"> <div class="acsb-action-box-content"> <i class="acsb-box-icon acsbi-light"></i> <span class="acsb-box-title">Light Contrast</span> </div> </div> <div class="acsb-action-box acsb-action-box-monochrome " role="button" aria-pressed="false" tabindex="0" data-acsb-action="monochrome" data-acsb-action-group="contrast" data-acsb-action-message="" data-acsb-action-css-property="" data-acsb-action-specific-element="" data-acsb-action-specific-increment="0"> <div class="acsb-action-box-content"> <i class="acsb-box-icon acsbi-monochrome"></i> <span class="acsb-box-title">Monochrome</span> </div> </div> <div class="acsb-action-box acsb-action-box-highSaturation " role="button" aria-pressed="false" tabindex="0" data-acsb-action="highSaturation" data-acsb-action-group="contrast" data-acsb-action-message="" data-acsb-action-css-property="" data-acsb-action-specific-element="" data-acsb-action-specific-increment="0"> <div class="acsb-action-box-content"> <i class="acsb-box-icon acsbi-saturation"></i> <span class="acsb-box-title">High Saturation</span> </div> </div> <div class="acsb-action-box acsb-action-box-textColor acsb-action-box-big " tabindex="0" data-acsb-action="textColor" data-acsb-action-group="" data-acsb-action-message="" data-acsb-action-css-property="" data-acsb-action-specific-element="" data-acsb-action-specific-increment="0"> <div class="acsb-action-box-content"> <i class="acsb-box-icon acsbi-picker"></i> <span class="acsb-box-title">Adjust Text Colors</span> </div> <div class="acsb-big-box-element acsb-big-box-element-color">
+    <div class="acsb-color-box"> <span data-acsb-color="#0076B4" class="acsb-color-selection" role="button" tabindex="0" aria-label="Change Color to Blue" data-acsb-tooltip="Change Color to Blue" style="background-color: #0076B4 !important;"> </span> <span data-acsb-color="#7A549C" class="acsb-color-selection" role="button" tabindex="0" aria-label="Change Color to Purple" data-acsb-tooltip="Change Color to Purple" style="background-color: #7A549C !important;"> </span> <span data-acsb-color="#C83733" class="acsb-color-selection" role="button" tabindex="0" aria-label="Change Color to Red" data-acsb-tooltip="Change Color to Red" style="background-color: #C83733 !important;"> </span> <span data-acsb-color="#D07021" class="acsb-color-selection" role="button" tabindex="0" aria-label="Change Color to Orange" data-acsb-tooltip="Change Color to Orange" style="background-color: #D07021 !important;"> </span> <span data-acsb-color="#26999F" class="acsb-color-selection" role="button" tabindex="0" aria-label="Change Color to Teal" data-acsb-tooltip="Change Color to Teal" style="background-color: #26999F !important;"> </span> <span data-acsb-color="#4D7831" class="acsb-color-selection" role="button" tabindex="0" aria-label="Change Color to Green" data-acsb-tooltip="Change Color to Green" style="background-color: #4D7831 !important;"> </span> <span data-acsb-color="#ffffff" class="acsb-color-selection" role="button" tabindex="0" aria-label="Change Color to WHITE" data-acsb-tooltip="Change Color to WHITE" style="background-color: #ffffff !important;"> </span> <span data-acsb-color="#000000" class="acsb-color-selection" role="button" tabindex="0" aria-label="Change Color to Black" data-acsb-tooltip="Change Color to Black" style="background-color: #000000 !important;"> </span> <div class="disable" role="button" tabindex="0" data-acsb-color="disable"> Cancel </div>
+    </div> </div> </div> <div class="acsb-action-box acsb-action-box-highContrast " role="button" aria-pressed="false" tabindex="0" data-acsb-action="highContrast" data-acsb-action-group="contrast" data-acsb-action-message="" data-acsb-action-css-property="" data-acsb-action-specific-element="" data-acsb-action-specific-increment="0"> <div class="acsb-action-box-content"> <i class="acsb-box-icon acsbi-contrast"></i> <span class="acsb-box-title">High Contrast</span> </div> </div> <div class="acsb-action-box acsb-action-box-titleColor acsb-action-box-big " tabindex="0" data-acsb-action="titleColor" data-acsb-action-group="" data-acsb-action-message="" data-acsb-action-css-property="" data-acsb-action-specific-element="" data-acsb-action-specific-increment="0"> <div class="acsb-action-box-content"> <i class="acsb-box-icon acsbi-picker"></i> <span class="acsb-box-title">Adjust Title Colors</span> </div> <div class="acsb-big-box-element acsb-big-box-element-color">
+    <div class="acsb-color-box"> <span data-acsb-color="#0076B4" class="acsb-color-selection" role="button" tabindex="0" aria-label="Change Color to Blue" data-acsb-tooltip="Change Color to Blue" style="background-color: #0076B4 !important;"> </span> <span data-acsb-color="#7A549C" class="acsb-color-selection" role="button" tabindex="0" aria-label="Change Color to Purple" data-acsb-tooltip="Change Color to Purple" style="background-color: #7A549C !important;"> </span> <span data-acsb-color="#C83733" class="acsb-color-selection" role="button" tabindex="0" aria-label="Change Color to Red" data-acsb-tooltip="Change Color to Red" style="background-color: #C83733 !important;"> </span> <span data-acsb-color="#D07021" class="acsb-color-selection" role="button" tabindex="0" aria-label="Change Color to Orange" data-acsb-tooltip="Change Color to Orange" style="background-color: #D07021 !important;"> </span> <span data-acsb-color="#26999F" class="acsb-color-selection" role="button" tabindex="0" aria-label="Change Color to Teal" data-acsb-tooltip="Change Color to Teal" style="background-color: #26999F !important;"> </span> <span data-acsb-color="#4D7831" class="acsb-color-selection" role="button" tabindex="0" aria-label="Change Color to Green" data-acsb-tooltip="Change Color to Green" style="background-color: #4D7831 !important;"> </span> <span data-acsb-color="#ffffff" class="acsb-color-selection" role="button" tabindex="0" aria-label="Change Color to WHITE" data-acsb-tooltip="Change Color to WHITE" style="background-color: #ffffff !important;"> </span> <span data-acsb-color="#000000" class="acsb-color-selection" role="button" tabindex="0" aria-label="Change Color to Black" data-acsb-tooltip="Change Color to Black" style="background-color: #000000 !important;"> </span> <div class="disable" role="button" tabindex="0" data-acsb-color="disable"> Cancel </div>
+    </div> </div> </div> <div class="acsb-action-box acsb-action-box-lowSaturation " role="button" aria-pressed="false" tabindex="0" data-acsb-action="lowSaturation" data-acsb-action-group="contrast" data-acsb-action-message="" data-acsb-action-css-property="" data-acsb-action-specific-element="" data-acsb-action-specific-increment="0"> <div class="acsb-action-box-content"> <i class="acsb-box-icon acsbi-invert"></i> <span class="acsb-box-title">Low Saturation</span> </div> </div> <div class="acsb-action-box acsb-action-box-backgroundColor acsb-action-box-big " tabindex="0" data-acsb-action="backgroundColor" data-acsb-action-group="" data-acsb-action-message="" data-acsb-action-css-property="" data-acsb-action-specific-element="" data-acsb-action-specific-increment="0"> <div class="acsb-action-box-content"> <i class="acsb-box-icon acsbi-picker"></i> <span class="acsb-box-title">Adjust Background Colors</span> </div> <div class="acsb-big-box-element acsb-big-box-element-color">
+    <div class="acsb-color-box"> <span data-acsb-color="#0076B4" class="acsb-color-selection" role="button" tabindex="0" aria-label="Change Color to Blue" data-acsb-tooltip="Change Color to Blue" style="background-color: #0076B4 !important;"> </span> <span data-acsb-color="#7A549C" class="acsb-color-selection" role="button" tabindex="0" aria-label="Change Color to Purple" data-acsb-tooltip="Change Color to Purple" style="background-color: #7A549C !important;"> </span> <span data-acsb-color="#C83733" class="acsb-color-selection" role="button" tabindex="0" aria-label="Change Color to Red" data-acsb-tooltip="Change Color to Red" style="background-color: #C83733 !important;"> </span> <span data-acsb-color="#D07021" class="acsb-color-selection" role="button" tabindex="0" aria-label="Change Color to Orange" data-acsb-tooltip="Change Color to Orange" style="background-color: #D07021 !important;"> </span> <span data-acsb-color="#26999F" class="acsb-color-selection" role="button" tabindex="0" aria-label="Change Color to Teal" data-acsb-tooltip="Change Color to Teal" style="background-color: #26999F !important;"> </span> <span data-acsb-color="#4D7831" class="acsb-color-selection" role="button" tabindex="0" aria-label="Change Color to Green" data-acsb-tooltip="Change Color to Green" style="background-color: #4D7831 !important;"> </span> <span data-acsb-color="#ffffff" class="acsb-color-selection" role="button" tabindex="0" aria-label="Change Color to WHITE" data-acsb-tooltip="Change Color to WHITE" style="background-color: #ffffff !important;"> </span> <span data-acsb-color="#000000" class="acsb-color-selection" role="button" tabindex="0" aria-label="Change Color to Black" data-acsb-tooltip="Change Color to Black" style="background-color: #000000 !important;"> </span> <div class="disable" role="button" tabindex="0" data-acsb-color="disable"> Cancel </div>
+    </div> </div> </div> </div> </div> <div class="acsb-actions-box acsb-actions-box-orientationAdjustments" data-acsb-actions-box="orientationAdjustments"> <div class="acsb-actions-title">Orientation Adjustments</div> <div class="acsb-actions-group"> <div class="acsb-action-box acsb-action-box-mute " role="button" aria-pressed="false" tabindex="0" data-acsb-action="mute" data-acsb-action-group="" data-acsb-action-message="" data-acsb-action-css-property="" data-acsb-action-specific-element="" data-acsb-action-specific-increment="0"> <div class="acsb-action-box-content"> <i class="acsb-box-icon acsbi-mute"></i> <span class="acsb-box-title">Mute Sounds</span> </div> </div> <div class="acsb-action-box acsb-action-box-hideImages " role="button" aria-pressed="false" tabindex="0" data-acsb-action="hideImages" data-acsb-action-group="" data-acsb-action-message="" data-acsb-action-css-property="" data-acsb-action-specific-element="" data-acsb-action-specific-increment="0"> <div class="acsb-action-box-content"> <i class="acsb-box-icon acsbi-image"></i> <span class="acsb-box-title">Hide Images</span> </div> </div> <div class="acsb-action-box acsb-action-box-readMode acsb-action-box-hide-mobile" role="button" aria-pressed="false" tabindex="0" data-acsb-action="readMode" data-acsb-action-group="" data-acsb-action-message="" data-acsb-action-css-property="" data-acsb-action-specific-element="" data-acsb-action-specific-increment="0"> <div class="acsb-action-box-content"> <i class="acsb-box-icon acsbi-keyboard"></i> <span class="acsb-box-title">Read Mode</span> </div> </div> <div class="acsb-action-box acsb-action-box-readingGuide acsb-action-box-hide-mobile" role="button" aria-pressed="false" tabindex="0" data-acsb-action="readingGuide" data-acsb-action-group="" data-acsb-action-message="" data-acsb-action-css-property="" data-acsb-action-specific-element="" data-acsb-action-specific-increment="0"> <div class="acsb-action-box-content"> <i class="acsb-box-icon acsbi-bookmark"></i> <span class="acsb-box-title">Reading Guide</span> </div> </div> <div class="acsb-action-box acsb-action-box-usefulLinks acsb-action-box-big " tabindex="0" data-acsb-action="usefulLinks" data-acsb-action-group="" data-acsb-action-message="" data-acsb-action-css-property="" data-acsb-action-specific-element="" data-acsb-action-specific-increment="0"> <div class="acsb-action-box-content"> <i class="acsb-box-icon acsbi-links"></i> <span class="acsb-box-title">Useful Links</span> </div> <div class="acsb-big-box-element acsb-big-box-element-selecter"> <div class="acsb-selecter" data-acsb-selecter="usefulLinks"> <select aria-label="Useful Links"> <option selected="" disabled="" value="acsbDefault">Select an option</option> <option value="homepage">Home</option> <option value="top">Header</option> <option value="bottom">Footer</option> <option value="content">Main Content</option> </select>
+</div> </div> </div> <div class="acsb-action-box acsb-action-box-stopAnimations " role="button" aria-pressed="false" tabindex="0" data-acsb-action="stopAnimations" data-acsb-action-group="" data-acsb-action-message="" data-acsb-action-css-property="" data-acsb-action-specific-element="" data-acsb-action-specific-increment="0"> <div class="acsb-action-box-content"> <i class="acsb-box-icon acsbi-vibrate"></i> <span class="acsb-box-title">Stop Animations</span> </div> </div> <div class="acsb-action-box acsb-action-box-readingMask acsb-action-box-hide-mobile" role="button" aria-pressed="false" tabindex="0" data-acsb-action="readingMask" data-acsb-action-group="" data-acsb-action-message="" data-acsb-action-css-property="" data-acsb-action-specific-element="" data-acsb-action-specific-increment="0"> <div class="acsb-action-box-content"> <i class="acsb-box-icon acsbi-overlay"></i> <span class="acsb-box-title">Reading Mask</span> </div> </div> <div class="acsb-action-box acsb-action-box-emphasizeHover acsb-action-box-hide-mobile" role="button" aria-pressed="false" tabindex="0" data-acsb-action="emphasizeHover" data-acsb-action-group="" data-acsb-action-message="" data-acsb-action-css-property="" data-acsb-action-specific-element="" data-acsb-action-specific-increment="0"> <div class="acsb-action-box-content"> <i class="acsb-box-icon acsbi-mouse"></i> <span class="acsb-box-title">Highlight Hover</span> </div> </div> <div class="acsb-action-box acsb-action-box-emphasizeFocus " role="button" aria-pressed="false" tabindex="0" data-acsb-action="emphasizeFocus" data-acsb-action-group="" data-acsb-action-message="" data-acsb-action-css-property="" data-acsb-action-specific-element="" data-acsb-action-specific-increment="0"> <div class="acsb-action-box-content"> <i class="acsb-box-icon acsbi-focus"></i> <span class="acsb-box-title">Highlight Focus</span> </div> </div> <div class="acsb-action-box acsb-action-box-bigBlackCursor acsb-action-box-hide-mobile" role="button" aria-pressed="false" tabindex="0" data-acsb-action="bigBlackCursor" data-acsb-action-group="cursor" data-acsb-action-message="" data-acsb-action-css-property="" data-acsb-action-specific-element="" data-acsb-action-specific-increment="0"> <div class="acsb-action-box-content"> <i class="acsb-box-icon acsbi-cursor_full"></i> <span class="acsb-box-title">Big Black Cursor</span> </div> </div> <div class="acsb-action-box acsb-action-box-bigWhiteCursor acsb-action-box-hide-mobile" role="button" aria-pressed="false" tabindex="0" data-acsb-action="bigWhiteCursor" data-acsb-action-group="cursor" data-acsb-action-message="" data-acsb-action-css-property="" data-acsb-action-specific-element="" data-acsb-action-specific-increment="0"> <div class="acsb-action-box-content"> <i class="acsb-box-icon acsbi-cursor"></i> <span class="acsb-box-title">Big White Cursor</span> </div> </div> </div> </div> <div class="acsb-actions-box acsb-actions-box-hiddenAdjustments" data-acsb-actions-box="hiddenAdjustments"> <div class="acsb-actions-title">HIDDEN_ADJUSTMENTS</div> <div class="acsb-actions-group"> <div class="acsb-action-box acsb-action-box-keynav " role="button" aria-pressed="false" tabindex="0" data-acsb-action="keynav" data-acsb-action-group="" data-acsb-action-message="" data-acsb-action-css-property="" data-acsb-action-specific-element="" data-acsb-action-specific-increment="0"> <div class="acsb-action-box-content"> <span class="acsb-box-title">Keyboard Navigation</span> </div> </div> <div class="acsb-action-box acsb-action-box-accessMode " role="button" aria-pressed="false" tabindex="0" data-acsb-action="accessMode" data-acsb-action-group="" data-acsb-action-message="" data-acsb-action-css-property="" data-acsb-action-specific-element="" data-acsb-action-specific-increment="0"> <div class="acsb-action-box-content"> <span class="acsb-box-title">Accessible Mode</span> </div> </div> <div class="acsb-action-box acsb-action-box-screenReader " role="button" aria-pressed="false" tabindex="0" data-acsb-action="screenReader" data-acsb-action-group="" data-acsb-action-message="" data-acsb-action-css-property="" data-acsb-action-specific-element="" data-acsb-action-specific-increment="0"> <div class="acsb-action-box-content"> <span class="acsb-box-title">Screen Reader Adjustments</span> </div> </div> <div class="acsb-action-box acsb-action-box-readMode " role="button" aria-pressed="false" tabindex="0" data-acsb-action="readMode" data-acsb-action-group="" data-acsb-action-message="" data-acsb-action-css-property="" data-acsb-action-specific-element="" data-acsb-action-specific-increment="0"> <div class="acsb-action-box-content"> <span class="acsb-box-title">Read Mode</span> </div> </div> </div> </div> </div> </div> </div> <div class="acsb-footer acsb-flex acsb-flex-center" data-acsb-footer="true"> <a rel="noopener" data-acsb-footer-link="true" href="https://accessibe.com?utm_medium=link&amp;utm_source=widget" target="_blank"> Web Accessibility Solution By accessiBe </a>
+</div><div class="acsb-popup acsb-language-popup" tabindex="0" data-acsb-popup="acsb-language-popup"> <div class="acsb-popup-close-wide" data-acsb-popup-close="acsb-language-popup"></div> <div class="acsb-popup-content" role="dialog"> <span class="acsb-popup-close" tabindex="0" role="button" aria-label="Close" data-acsb-popup-close="acsb-language-popup"> <i class="acsbi-close"></i> </span> <div class="acsb-popup-content-holder" data-acsb-popup-content-holder=""> <div class="acsb-language-selection"> <span class="acsb-popup-title">Choose the Interface Language</span> <div class="acsb-languages acsb-flex"> <div class="acsb-language" role="button" tabindex="0" data-acsb-language="en"> <span class="acsb-language-flag"> <img src="https://web1.acsbapp.com/apps/app/dist/media/languages/en.svg" alt="English"> </span> <span class="acsb-language-text">English</span> </div> <div class="acsb-language" role="button" tabindex="0" data-acsb-language="es"> <span class="acsb-language-flag"> <img src="https://web1.acsbapp.com/apps/app/dist/media/languages/es.svg" alt="Español"> </span> <span class="acsb-language-text">Español</span> </div> <div class="acsb-language" role="button" tabindex="0" data-acsb-language="de"> <span class="acsb-language-flag"> <img src="https://web1.acsbapp.com/apps/app/dist/media/languages/de.svg" alt="Deutsch"> </span> <span class="acsb-language-text">Deutsch</span> </div> <div class="acsb-language" role="button" tabindex="0" data-acsb-language="pt"> <span class="acsb-language-flag"> <img src="https://web1.acsbapp.com/apps/app/dist/media/languages/pt.svg" alt="Português"> </span> <span class="acsb-language-text">Português</span> </div> <div class="acsb-language" role="button" tabindex="0" data-acsb-language="fr"> <span class="acsb-language-flag"> <img src="https://web1.acsbapp.com/apps/app/dist/media/languages/fr.svg" alt="Français"> </span> <span class="acsb-language-text">Français</span> </div> <div class="acsb-language" role="button" tabindex="0" data-acsb-language="it"> <span class="acsb-language-flag"> <img src="https://web1.acsbapp.com/apps/app/dist/media/languages/it.svg" alt="Italiano"> </span> <span class="acsb-language-text">Italiano</span> </div> <div class="acsb-language" role="button" tabindex="0" data-acsb-language="he"> <span class="acsb-language-flag"> <img src="https://web1.acsbapp.com/apps/app/dist/media/languages/he.svg" alt="עברית"> </span> <span class="acsb-language-text">עברית</span> </div> <div class="acsb-language" role="button" tabindex="0" data-acsb-language="tw"> <span class="acsb-language-flag"> <img src="https://web1.acsbapp.com/apps/app/dist/media/languages/tw.svg" alt="繁體中文"> </span> <span class="acsb-language-text">繁體中文</span> </div> <div class="acsb-language" role="button" tabindex="0" data-acsb-language="ru"> <span class="acsb-language-flag"> <img src="https://web1.acsbapp.com/apps/app/dist/media/languages/ru.svg" alt="Pусский"> </span> <span class="acsb-language-text">Pусский</span> </div> <div class="acsb-language" role="button" tabindex="0" data-acsb-language="ar"> <span class="acsb-language-flag"> <img src="https://web1.acsbapp.com/apps/app/dist/media/languages/ar.svg" alt="عربى"> </span> <span class="acsb-language-text">عربى</span> </div> <div class="acsb-language" role="button" tabindex="0" data-acsb-language="ua"> <span class="acsb-language-flag"> <img src="https://web1.acsbapp.com/apps/app/dist/media/languages/ua.svg" alt="عربى"> </span> <span class="acsb-language-text">عربى</span> </div> <div class="acsb-language" role="button" tabindex="0" data-acsb-language="nl"> <span class="acsb-language-flag"> <img src="https://web1.acsbapp.com/apps/app/dist/media/languages/nl.svg" alt="Nederlands"> </span> <span class="acsb-language-text">Nederlands</span> </div> <div class="acsb-language" role="button" tabindex="0" data-acsb-language="zh"> <span class="acsb-language-flag"> <img src="https://web1.acsbapp.com/apps/app/dist/media/languages/zh.svg" alt="繁體中文"> </span> <span class="acsb-language-text">繁體中文</span> </div> <div class="acsb-language" role="button" tabindex="0" data-acsb-language="ja"> <span class="acsb-language-flag"> <img src="https://web1.acsbapp.com/apps/app/dist/media/languages/ja.svg" alt="日本語"> </span> <span class="acsb-language-text">日本語</span> </div> </div>
+</div> </div> </div>
+</div><div class="acsb-popup acsb-feedback-popup" tabindex="0" data-acsb-popup="acsb-feedback-popup"> <div class="acsb-popup-close-wide" data-acsb-popup-close="acsb-feedback-popup"></div> <div class="acsb-popup-content" role="dialog"> <span class="acsb-popup-close" tabindex="0" role="button" aria-label="Close" data-acsb-popup-close="acsb-feedback-popup"> <i class="acsbi-close"></i> </span> <div class="acsb-popup-content-holder" data-acsb-popup-content-holder=""> </div> </div>
+</div><div class="acsb-popup acsb-statement-popup" tabindex="0" data-acsb-popup="acsb-statement-popup"> <div class="acsb-popup-close-wide" data-acsb-popup-close="acsb-statement-popup"></div> <div class="acsb-popup-content" role="dialog"> <span class="acsb-popup-close" tabindex="0" role="button" aria-label="Close" data-acsb-popup-close="acsb-statement-popup"> <i class="acsbi-close"></i> </span> <div class="acsb-popup-content-holder" data-acsb-popup-content-holder=""> <iframe src="https://acsbapp.com/statement/?app=true&amp;domain=shop.foxnews.com&amp;lang=en" aria-label="Accessibility Statement"></iframe> </div> </div>
+</div><div class="acsb-popup acsb-help-popup" tabindex="0" data-acsb-popup="acsb-help-popup"> <div class="acsb-popup-close-wide" data-acsb-popup-close="acsb-help-popup"></div> <div class="acsb-popup-content" role="dialog"> <span class="acsb-popup-close" tabindex="0" role="button" aria-label="Close" data-acsb-popup-close="acsb-help-popup"> <i class="acsbi-close"></i> </span> <div class="acsb-popup-content-holder" data-acsb-popup-content-holder=""> </div> </div>
+</div><div class="acsb-popup acsb-hide-popup" tabindex="0" data-acsb-popup="acsb-hide-popup"> <div class="acsb-popup-close-wide" data-acsb-popup-close="acsb-hide-popup"></div> <div class="acsb-popup-content" role="dialog"> <span class="acsb-popup-close" tabindex="0" role="button" aria-label="Close" data-acsb-popup-close="acsb-hide-popup"> <i class="acsbi-close"></i> </span> <div class="acsb-popup-content-holder" data-acsb-popup-content-holder=""> <div class="acsb-hide"> <span class="acsb-title">Hide Accessibility Interface?</span> <span class="acsb-text">Please note: If you choose to hide the accessibility interface, you won't be able to see it anymore, unless you clear your browsing history and data. Are you sure that you wish to hide the interface?</span> <div class="acsb-buttons"> <span role="button" tabindex="0" class="acsb-button acsb-button-colorized" data-acsb-option="hide">Accept</span> <span role="button" tabindex="0" class="acsb-button" data-acsb-popup-close="acsb-hide-popup">Cancel</span> </div>
+</div> </div> </div>
+</div><div class="acsb-popup acsb-message-popup" tabindex="0" data-acsb-popup="acsb-message-popup"> <div class="acsb-popup-close-wide" data-acsb-popup-close="acsb-message-popup"></div> <div class="acsb-popup-content" role="dialog"> <span class="acsb-popup-close" tabindex="0" role="button" aria-label="Close" data-acsb-popup-close="acsb-message-popup"> <i class="acsbi-close"></i> </span> <div class="acsb-popup-content-holder" data-acsb-popup-content-holder=""> <div class="acsb-popup-message-actual" data-acsb-popup-message-actual=""></div>
+    <span class="acsb-button" data-acsb-popup-close="acsb-message-popup" role="button" tabindex="0"> Continue</span> </div> </div>
+</div><div class="acsb-loader" data-acsb-loader=""> <div class="acsb-loader-block acsb-bg-lead"> <span class="acsb-loader-actual"></span> <i class="acsbi-checkmark"></i> </div>
+</div>
+    <div class="acsb-loader-overlay"></div></div><div data-acsb="blocker" data-acsb-option="close" class="acsb-widget-blocker acsb-ready" style="display: none;"></div><div data-acsb="processor" class="acsb-processor acsb-ready" style="display: none;"> <div class="acsb-loader" data-acsb-loader=""> <div class="acsb-loader-block"> <span class="acsb-loader-actual"></span> <span class="acsb-loader-content">Processing the data, please give it a few seconds...</span> </div> </div>
+</div><style type="text/css" class="acsb-dynamic-colors">body .acsb-widget .acsb-hero,
+    body .acsb-widget .acsb-footer,
+    body .acsb-widget .acsb-main:after,
+    body .acsb-widget .acsb-range-button,
+    body .acsb-widget .acsb-action-box.acsb-active,
+    body .acsb-widget .acsb-action-box:active,
+    body .acsb-widget .acsb-button:hover,
+    body .acsb-widget .acsb-button:focus,
+    body .acsb-widget .acsb-header,
+    body .acsb-widget .acsb-button.acsb-button-colorized,
+    body .acsb-widget .acsb-loader .acsb-loader-block,
+    body .acsb-widget .acsb-profile.acsb-active .acsb-profile-toggle .acsb-toggle:after,
+    body .acsb-navigator .acsb-navigator-options .acsb-navigator-given-options .acsb-navigator-given-buttons .acsb-navigator-given-button:hover,
+    body .acsb-navigator .acsb-navigator-options .acsb-navigator-given-options .acsb-navigator-given-buttons .acsb-navigator-given-button:focus,
+    body .acsb-navigator .acsb-navigator-options .acsb-navigator-all-options .acsb-navigator-option-group .acsb-navigator-option:hover,
+    body .acsb-navigator .acsb-navigator-options .acsb-navigator-all-options .acsb-navigator-option-group .acsb-navigator-option:focus,
+    body .acsb-navigator .acsb-navigator-options .acsb-navigator-given-options .acsb-navigator-given-buttons .acsb-navigator-given-button:hover {
+        background-color: #146FF8 !important;
+    }
+
+    body .acsb-widget .acsb-action-box:active,
+    body .acsb-widget .acsb-action-box:hover,
+    body .acsb-widget .acsb-button,
+    body .acsb-widget .acsb-button.acsb-button-colorized,
+    body .acsb-navigator .acsb-navigator-options .acsb-navigator-search input.acsb-navigator-search-input:hover,
+    body .acsb-navigator .acsb-navigator-options .acsb-navigator-search input.acsb-navigator-search-input:focus,
+    body .acsb-navigator .acsb-navigator-options .acsb-navigator-given-options .acsb-navigator-given-buttons .acsb-navigator-given-button {
+        border-color: #146FF8 !important;
+    }
+
+    body .acsb-widget .acsb-hero-action,
+    body .acsb-widget .acsb-hero-action i,
+    body .acsb-widget .acsb-header-option i,
+    body .acsb-widget .acsb-range-base,
+    body .acsb-widget .acsb-button,
+	body .acsb-widget .acsb-profile:hover .acsb-profile-content i,
+	body .acsb-widget .acsb-profile:focus .acsb-profile-content i,
+    body .acsb-widget .acsb-profile:hover .acsb-profile-content .acsb-profile-name,
+	body .acsb-widget .acsb-profile:focus .acsb-profile-content .acsb-profile-name,
+    body .acsb-widget .acsb-profile:hover .acsb-profile-content .acsb-profile-text,
+    body .acsb-widget .acsb-profile:focus .acsb-profile-content .acsb-profile-text,
+    body .acsb-navigator .acsb-navigator-options .acsb-navigator-given-options .acsb-navigator-given-links .acsb-navigator-given-link:hover,
+    body .acsb-navigator .acsb-navigator-options .acsb-navigator-given-options .acsb-navigator-given-links .acsb-navigator-given-link:focus,
+    body .acsb-navigator .acsb-navigator-options .acsb-navigator-given-options .acsb-navigator-given-buttons .acsb-navigator-given-button {
+        color: #146FF8 !important;
+    }body .acsb-trigger {
+        background-color: #146FF8 !important;
+    }
+    body .acsb-trigger .acsb-actions-active-icon svg path {
+        fill: #146FF8 !important;
+    }
+    body .acsb-trigger .acsb-actions-active-icon {
+        border-color: #146FF8 !important;
+    }</style><div style="visibility: hidden; position: absolute; width: 100%; top: -10000px; left: 0px; right: 0px; transition: visibility 0s linear 0.3s, opacity 0.3s linear 0s; opacity: 0;"><div style="width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 2000000000; background-color: rgb(255, 255, 255); opacity: 0.5;"></div><div style="margin: 0px auto; top: 0px; left: 0px; right: 0px; position: absolute; border: 1px solid rgb(204, 204, 204); z-index: 2000000000; background-color: rgb(255, 255, 255); overflow: hidden;"><iframe title="אתגר reCAPTCHA" src="https://www.google.com/recaptcha/api2/bframe?hl=iw&amp;v=YhkYx1k-yvvb8OonJPmOpoJY&amp;k=6LdbXHUUAAAAACjjNkwgKMYCWXwmOp3EUEn4UWz1" name="c-7aq0pst50lly" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox" style="width: 100%; height: 100%;"></iframe></div></div><div class="modals-wrapper"><!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+
+    <aside role="dialog" class="modal-popup popup-authentication
+               modal-slide
+               _inner-scroll" aria-describedby="modal-content-27" data-role="modal" data-type="popup" tabindex="0">
+        <div data-role="focusable-start" tabindex="0"></div>
+        <div class="modal-inner-wrap" data-role="focusable-scope">
+            <header class="modal-header">
+
+                <button class="action-close" data-role="closeBtn" type="button">
+                    <span>Close</span>
+                </button>
+            </header>
+            <div id="modal-content-27" class="modal-content" data-role="content"><div class="block-authentication" data-bind="afterRender: setModalElement, blockLoader: isLoading" style="">
+                <div class="block block-new-customer" data-bind="attr: {'data-label': $t('or')}" data-label="or">
+                    <div class="block-title">
+                        <strong id="block-new-customer-heading" role="heading" aria-level="2" data-bind="i18n: 'Checkout as a new customer'">Checkout as a new customer</strong>
+                    </div>
+                    <div class="block-content" aria-labelledby="block-new-customer-heading">
+                        <p data-bind="i18n: 'Creating an account has many benefits:'">Creating an account has many benefits:</p>
+                        <ul>
+                            <li data-bind="i18n: 'See order and shipping status'">See order and shipping status</li>
+                            <li data-bind="i18n: 'Track order history'">Track order history</li>
+                            <li data-bind="i18n: 'Check out faster'">Check out faster</li>
+                        </ul>
+                        <div class="actions-toolbar">
+                            <div class="primary">
+                                <a class="action action-register primary" data-bind="attr: {href: registerUrl}" href="https://shop.foxnews.com/customer/account/create/">
+                                    <span data-bind="i18n: 'Create an Account'">Create an Account</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="block block-customer-login" data-bind="attr: {'data-label': $t('or')}" data-label="or">
+                    <div class="block-title">
+                        <strong id="block-customer-login-heading" role="heading" aria-level="2" data-bind="i18n: 'Checkout using your account'">Checkout using your account</strong>
+                    </div>
+                    <!-- ko foreach: getRegion('messages') -->
+                    <!-- ko template: getTemplate() -->
+                    <div data-role="checkout-messages" class="messages toast show" data-bind="visible: isVisible(), click: removeAll">
+                        <!-- ko foreach: messageContainer.getErrorMessages() --><!--/ko-->
+                        <!-- ko foreach: messageContainer.getSuccessMessages() --><!--/ko-->
+                    </div>
+
+                    <!-- /ko -->
+                    <!--/ko-->
+                    <!-- ko foreach: getRegion('before') --><!-- /ko -->
+                    <div class="block-content" aria-labelledby="block-customer-login-heading">
+                        <form class="form form-login" method="post" data-bind="event: {submit: login }" id="login-form">
+                            <div class="fieldset login" data-bind="attr: {'data-hasrequired': $t('* Required Fields')}" data-hasrequired="* Required Fields">
+                                <div class="field email required">
+                                    <label class="label" for="customer-email"><span data-bind="i18n: 'Email Address'">Email Address</span></label>
+                                    <div class="control">
+                                        <input name="username" id="customer-email" type="email" class="input-text" data-mage-init="{&quot;mage/trim-input&quot;:{}}" data-bind="attr: {autocomplete: autocomplete}" data-validate="{required:true, 'validate-email':true}" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="field password required">
+                                    <label for="pass" class="label"><span data-bind="i18n: 'Password'">Password</span></label>
+                                    <div class="control">
+                                        <input name="password" type="password" class="input-text" id="pass" data-bind="attr: {autocomplete: autocomplete}" data-validate="{required:true}" autocomplete="off">
+                                    </div>
+                                </div>
+                                <!-- ko foreach: getRegion('additional-login-form-fields') -->
+                                <!-- ko template: getTemplate() -->
+                                <!-- ko foreach: {data: elems, as: 'element'} --><!-- /ko -->
+                                <!-- /ko -->
+
+                                <!-- ko template: getTemplate() -->
+                                <!-- ko if: (getIsVisible())-->
+                                <input name="captcha_form_id" type="hidden" data-bind="value: formId,  attr: {'data-scope': dataScope}" value="user_login" data-scope="">
+                                <!-- /ko -->
+                                <!-- ko if: (isRequired() && getIsVisible())--><!-- /ko -->
+                                <!-- /ko -->
+                                <!-- /ko -->
+                                <div class="actions-toolbar">
+                                    <input name="context" type="hidden" value="checkout">
+                                    <div class="primary">
+                                        <button type="submit" class="action action-login secondary" name="send" id="send2">
+                                            <span data-bind="i18n: 'Sign In'">Sign In</span>
+                                        </button>
+                                    </div>
+                                    <div class="secondary">
+                                        <a class="action" data-bind="attr: {href: forgotPasswordUrl}" href="https://shop.foxnews.com/customer/account/forgotpassword/">
+                                            <span data-bind="i18n: 'Forgot Your Password?'">Forgot Your Password?</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div></div>
+
+        </div>
+        <div data-role="focusable-end" tabindex="0"></div>
+    </aside></div></body>
+</html>
