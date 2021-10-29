@@ -1216,6 +1216,7 @@ public class FoxNews2
         driver.get("https://www.foxnews.com/");
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
+        Actions action = new Actions(driver);
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
         assertTrue(driver.findElement(By.xpath("//*[@class='subnav-title' and text()='Hot Topics']")).isDisplayed());
@@ -1239,10 +1240,188 @@ public class FoxNews2
 
 
         driver.findElement(By.xpath("//footer//a[text()='" + linkToClick + "']")).click();
-        wait.until(ExpectedConditions.titleIs(titleToCheck));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h1[text()='" + titleToCheck + "']")));
+
+        element = driver.findElement(By.xpath
+                ("//*[text()='I HAVE READ THIS AGREEMENT AND AGREE TO ALL OF THE PROVISIONS CONTAINED ABOVE.']"));
+        action.moveToElement(element).perform();
+        assertTrue((Boolean) js.executeScript
+                ("var elem = arguments[0],                 " +
+                                "  box = elem.getBoundingClientRect(),    " +
+                                "  cx = box.left + box.width / 2,         " +
+                                "  cy = box.top + box.height / 2,         " +
+                                "  e = document.elementFromPoint(cx, cy); " +
+                                "for (; e; e = e.parentElement) {         " +
+                                "  if (e === elem)                        " +
+                                "    return true;                         " +
+                                "}                                        " +
+                                "return false;                            "
+                        , element));
+    }
+
+    /**
+     * FXN47 not finished
+     * Mika
+     * HTML refer to FXN25 - home_page.html, FXN31
+     */
+    @Test
+    public void FXN47_Mika()
+    {
+        String linkToClick = "New Privacy Policy";
+        String titleToCheck = "Privacy Policy";
+        String[] contents = new String[] { "Scope and Application", "Collection of Information", "Use and Disclosure",
+                "Security", "User Access and Control", "Other Important Information", "Contact Us",
+                "California Consumer Privacy Act Notice" };
+
+        driver.get("https://www.foxnews.com/");
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        assertTrue(driver.findElement(By.xpath("//*[@class='subnav-title' and text()='Hot Topics']")).isDisplayed());
+        assertTrue(driver.findElement(By.xpath("//*[@class='subnav-title' and text()='Markets']")).isDisplayed());
 
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 
+        element = driver.findElement(By.className("site-footer"));
+        assertTrue((Boolean) js.executeScript
+                ("var elem = arguments[0],                 " +
+                                "  box = elem.getBoundingClientRect(),    " +
+                                "  cx = box.left + box.width / 2,         " +
+                                "  cy = box.top + box.height / 2,         " +
+                                "  e = document.elementFromPoint(cx, cy); " +
+                                "for (; e; e = e.parentElement) {         " +
+                                "  if (e === elem)                        " +
+                                "    return true;                         " +
+                                "}                                        " +
+                                "return false;                            "
+                        , element));
 
+
+        driver.findElement(By.xpath("//footer//a[text()='" + linkToClick + "']")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h1[text()='" + titleToCheck + "']")));
+
+        for (String content : contents)
+            assertTrue(driver.findElement(By.xpath("//strong[text()='" + content + "']")).isDisplayed());
+    }
+
+    /**
+     * FXN48 not finished
+     * Mika
+     * HTML refer to FXN25 - home_page.html, FXN31
+     */
+    @Test
+    public void FXN48_Mika()
+    {
+        String socialNetwork = "Facebook";
+        String urlToCheck = "https://www.facebook.com/FoxNews";
+
+        driver.get("https://www.foxnews.com/");
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        assertTrue(driver.findElement(By.xpath("//*[@class='subnav-title' and text()='Hot Topics']")).isDisplayed());
+        assertTrue(driver.findElement(By.xpath("//*[@class='subnav-title' and text()='Markets']")).isDisplayed());
+
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+
+        element = driver.findElement(By.className("site-footer"));
+        assertTrue((Boolean) js.executeScript
+                ("var elem = arguments[0],                 " +
+                                "  box = elem.getBoundingClientRect(),    " +
+                                "  cx = box.left + box.width / 2,         " +
+                                "  cy = box.top + box.height / 2,         " +
+                                "  e = document.elementFromPoint(cx, cy); " +
+                                "for (; e; e = e.parentElement) {         " +
+                                "  if (e === elem)                        " +
+                                "    return true;                         " +
+                                "}                                        " +
+                                "return false;                            "
+                        , element));
+
+
+        driver.findElement(By.xpath("//footer//*[@aria-label='" + socialNetwork + "']")).click();
+        wait.until(ExpectedConditions.urlToBe(urlToCheck));
+    }
+
+    /**
+     * FXN49 not finished
+     * Mika
+     * HTML refer to FXN25 - home_page.html, FXN31
+     */
+    @Test
+    public void FXN49_Mika()
+    {
+        String socialNetwork = "Instagram";
+        String urlToCheck = "https://www.instagram.com/foxnews/";
+
+        driver.get("https://www.foxnews.com/");
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        assertTrue(driver.findElement(By.xpath("//*[@class='subnav-title' and text()='Hot Topics']")).isDisplayed());
+        assertTrue(driver.findElement(By.xpath("//*[@class='subnav-title' and text()='Markets']")).isDisplayed());
+
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+
+        element = driver.findElement(By.className("site-footer"));
+        assertTrue((Boolean) js.executeScript
+                ("var elem = arguments[0],                 " +
+                                "  box = elem.getBoundingClientRect(),    " +
+                                "  cx = box.left + box.width / 2,         " +
+                                "  cy = box.top + box.height / 2,         " +
+                                "  e = document.elementFromPoint(cx, cy); " +
+                                "for (; e; e = e.parentElement) {         " +
+                                "  if (e === elem)                        " +
+                                "    return true;                         " +
+                                "}                                        " +
+                                "return false;                            "
+                        , element));
+
+
+        driver.findElement(By.xpath("//footer//*[@aria-label='" + socialNetwork + "']")).click();
+        wait.until(ExpectedConditions.urlToBe(urlToCheck));
+    }
+
+    /**
+     * FXN50 not finished
+     * Mika
+     * HTML refer to FXN25 - home_page.html, FXN31
+     */
+    @Test
+    public void FXN50_Mika()
+    {
+        String socialNetwork = "Twitter";
+        String urlToCheck = "https://twitter.com/foxnews";
+
+        driver.get("https://www.foxnews.com/");
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        assertTrue(driver.findElement(By.xpath("//*[@class='subnav-title' and text()='Hot Topics']")).isDisplayed());
+        assertTrue(driver.findElement(By.xpath("//*[@class='subnav-title' and text()='Markets']")).isDisplayed());
+
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+
+        element = driver.findElement(By.className("site-footer"));
+        assertTrue((Boolean) js.executeScript
+                ("var elem = arguments[0],                 " +
+                                "  box = elem.getBoundingClientRect(),    " +
+                                "  cx = box.left + box.width / 2,         " +
+                                "  cy = box.top + box.height / 2,         " +
+                                "  e = document.elementFromPoint(cx, cy); " +
+                                "for (; e; e = e.parentElement) {         " +
+                                "  if (e === elem)                        " +
+                                "    return true;                         " +
+                                "}                                        " +
+                                "return false;                            "
+                        , element));
+
+
+        driver.findElement(By.xpath("//footer//*[@aria-label='" + socialNetwork + "']")).click();
+        wait.until(ExpectedConditions.urlToBe(urlToCheck));
     }
 }
