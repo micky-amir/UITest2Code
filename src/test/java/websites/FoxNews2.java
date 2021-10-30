@@ -300,7 +300,7 @@ public class FoxNews2
     /**
      * FXN32
      * Mika
-     * HTML refer to FXN25 - home_page.html, FXN31, FXN32
+     * HTML refer to FXN25 - home_page.html, FXN31
      */
     @Test
     public void FXN32_Mika()
@@ -473,7 +473,7 @@ public class FoxNews2
     }
 
     /**
-     * FXN35 not finished
+     * FXN35
      * Mika
      * HTML refer to FXN25 - home_page.html, FXN31
      */
@@ -542,9 +542,9 @@ public class FoxNews2
     }
 
     /**
-     * FXN36 not finished
+     * FXN36
      * Mika
-     * HTML refer to FXN25 - home_page.html, FXN31
+     * HTML refer to FXN25 - home_page.html, FXN31, FXN36
      */
     @Test
     public void FXN36_Mika()
@@ -603,9 +603,9 @@ public class FoxNews2
     }
 
     /**
-     * FXN37 not finished
+     * FXN37
      * Mika
-     * HTML refer to FXN25 - home_page.html, FXN31
+     * HTML refer to FXN25 - home_page.html, FXN31, FXN37
      */
     @Test
     public void FXN37_Mika()
@@ -703,9 +703,10 @@ public class FoxNews2
     }
 
     /**
-     * FXN38 not finished
+     * FXN38
      * Mika
-     * HTML refer to FXN25 - home_page.html, FXN31
+     * HTML refer to FXN25 - home_page.html, FXN31, FXN37 - careers_my_account_page.html,
+     * careers_sign_in_page.html, careers_candidate_home_page.html, FXN38
      */
     @Test
     public void FXN38_Mika()
@@ -799,9 +800,9 @@ public class FoxNews2
     }
 
     /**
-     * FXN39 not finished
+     * FXN39
      * Mika
-     * HTML refer to FXN25 - home_page.html, FXN31
+     * HTML refer to FXN25 - home_page.html, FXN31 - search_menu.html, FXN39
      */
     @Test
     public void FXN39_Mika()
@@ -840,9 +841,9 @@ public class FoxNews2
     }
 
     /**
-     * FXN40 not finished
+     * FXN40
      * Mika
-     * HTML refer to FXN25 - home_page.html, FXN31
+     * HTML refer to FXN25 - home_page.html
      */
     @Test
     public void FXN40_Mika()
@@ -886,9 +887,9 @@ public class FoxNews2
     }
 
     /**
-     * FXN41 not finished
+     * FXN41
      * Mika
-     * HTML refer to FXN25 - home_page.html, FXN31
+     * HTML refer to FXN25 - home_page.html, FXN41
      */
     @Test
     public void FXN41_Mika()
@@ -944,9 +945,9 @@ public class FoxNews2
     }
 
     /**
-     * FXN42 not finished
+     * FXN42
      * Mika
-     * HTML refer to FXN25 - home_page.html, FXN31
+     * HTML refer to FXN25 - home_page.html, FXN42
      */
     @Test
     public void FXN42_Mika() throws InterruptedException
@@ -1016,9 +1017,9 @@ public class FoxNews2
     }
 
     /**
-     * FXN43 not finished
+     * FXN43
      * Mika
-     * HTML refer to FXN25 - home_page.html, FXN31
+     * HTML refer to FXN25 - home_page.html, FXN31 - search_menu.html, FXN41 - an_article_page.html, FXN43
      */
     @Test
     public void FXN43_Mika()
@@ -1080,9 +1081,9 @@ public class FoxNews2
     }
 
     /**
-     * FXN44 not finished
+     * FXN44
      * Mika
-     * HTML refer to FXN25 - home_page.html, FXN31
+     * HTML refer to FXN25 - home_page.html, FXN31 - search_menu.html, FXN44
      */
     @Test
     public void FXN44_Mika() throws InterruptedException
@@ -1132,9 +1133,9 @@ public class FoxNews2
     }
 
     /**
-     * FXN45 not finished
+     * FXN45
      * Mika
-     * HTML refer to FXN25 - home_page.html, FXN31
+     * HTML refer to FXN25 - home_page.html, FXN31 - search_menu.html, FXN44, FXN45
      */
     @Test
     public void FXN45_Mika() throws InterruptedException
@@ -1203,9 +1204,9 @@ public class FoxNews2
     }
 
     /**
-     * FXN46 not finished
+     * FXN46
      * Mika
-     * HTML refer to FXN25 - home_page.html, FXN31
+     * HTML refer to FXN25 - home_page.html, FXN46
      */
     @Test
     public void FXN46_Mika()
@@ -1260,9 +1261,9 @@ public class FoxNews2
     }
 
     /**
-     * FXN47 not finished
+     * FXN47
      * Mika
-     * HTML refer to FXN25 - home_page.html, FXN31
+     * HTML refer to FXN25 - home_page.html, FXN47
      */
     @Test
     public void FXN47_Mika()
@@ -1306,9 +1307,9 @@ public class FoxNews2
     }
 
     /**
-     * FXN48 not finished
+     * FXN48
      * Mika
-     * HTML refer to FXN25 - home_page.html, FXN31
+     * HTML refer to FXN25 - home_page.html
      */
     @Test
     public void FXN48_Mika()
@@ -1346,9 +1347,9 @@ public class FoxNews2
     }
 
     /**
-     * FXN49 not finished
+     * FXN49
      * Mika
-     * HTML refer to FXN25 - home_page.html, FXN31
+     * HTML refer to FXN25 - home_page.html
      */
     @Test
     public void FXN49_Mika()
@@ -1386,9 +1387,9 @@ public class FoxNews2
     }
 
     /**
-     * FXN50 not finished
+     * FXN50
      * Mika
-     * HTML refer to FXN25 - home_page.html, FXN31
+     * HTML refer to FXN25 - home_page.html
      */
     @Test
     public void FXN50_Mika()
