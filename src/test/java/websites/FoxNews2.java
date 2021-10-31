@@ -997,9 +997,8 @@ public class FoxNews2
 
         driver.findElement(By.xpath
                 ("//footer//*[@aria-label='" + categoryToChoose + " - " + articleToChoose + "']")).click();
+        Thread.sleep(3000);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h1[text()='" + titleToCheck + "']")));
-
-        Thread.sleep(1000);
 
         element = driver.findElement(By.xpath("//li[1]//*[@class='button subscribe']//a"));
         action.moveToElement(element).click().perform();
