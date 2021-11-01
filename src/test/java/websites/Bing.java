@@ -5,11 +5,16 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -41,6 +46,22 @@ public class Bing {
         wait.until(ExpectedConditions.attributeToBe(By.cssSelector("h1 > *"), "aria-label", "Bing"));
         assertTrue(driver.findElement(By.id("images")).isDisplayed());
         assertTrue(driver.findElement(By.id("video")).isDisplayed());
+        assertTrue(driver.findElement(By.id("shopping")).isDisplayed());
+        element = driver.findElement(By.cssSelector(".vs img"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , element));
     }
 
     /**
@@ -106,6 +127,30 @@ public class Bing {
     }
 
     /**
+     * BING05
+     * Tamar
+     * HTML refers to BING01, BING05
+     */
+    @Test
+    public void BING05_Tamar() {
+        driver.get("https://www.bing.com");
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".id_avatar")));
+        element = driver.findElement(By.cssSelector(".vs img"));
+        assertTrue(element.isDisplayed());
+        element.click();
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("[aria-label='Search Results']")));
+        List<WebElement> navElements = driver.findElements(By.cssSelector("[aria-label='Main menu'] a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("ALL", "NEWS", "IMAGES", "VIDEOS", "MAPS", "SHOPPING"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : navElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        driver.navigate().back();
+    }
+
+    /**
      * BING08
      * Tamar
      * HTML refers to BING01, BING08
@@ -133,4 +178,77 @@ public class Bing {
         driver.findElement(By.xpath("//*[contains(text(), 'English')]//preceding-sibling::a")).click();
         wait.until(ExpectedConditions.textToBe(By.id("id_s"), "Sign in"));
     }
+
+    /**
+     * BING09
+     * Tamar
+     * HTML refers to BING01, BING05, BING09
+     */
+    @Test
+    public void BING09_Tamar() {
+        driver.get("https://www.bing.com");
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".id_avatar")));
+        element = driver.findElement(By.cssSelector(".vs img"));
+        assertTrue(element.isDisplayed());
+        element.click();
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("[aria-label='Search Results']")));
+        List<WebElement> navElements = driver.findElements(By.cssSelector("[aria-label='Main menu'] a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("ALL", "NEWS", "IMAGES", "VIDEOS", "MAPS", "SHOPPING"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : navElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        driver.findElement(By.className("b_searchboxSubmit")).click();
+        wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath("//h2[text()='Trending on Bing']"), 0));
+    }
+
+    /**
+     * BING10
+     * Tamar
+     * HTML refers to BING01, BING05, BING09
+     */
+    @Test
+    public void BING10_Tamar() {
+        driver.get("https://www.bing.com");
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".id_avatar")));
+        element = driver.findElement(By.cssSelector(".vs img"));
+        assertTrue(element.isDisplayed());
+        element.click();
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("[aria-label='Search Results']")));
+        List<WebElement> navElements = driver.findElements(By.cssSelector("[aria-label='Main menu'] a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("ALL", "NEWS", "IMAGES", "VIDEOS", "MAPS", "SHOPPING"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : navElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+
+        driver.findElement(By.className("b_searchboxSubmit")).click();
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("sb_count")));
+        String originalCount = element.getText().split(" ")[0];
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("a[aria-label='Filtered by Any time']")));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).click().perform();
+        wait.until(ExpectedConditions.not(ExpectedConditions.attributeContains(By.xpath
+                ("//a[@aria-label='Filtered by Any time']/following-sibling::div"), "class", "b_hide")));
+        List<WebElement> optionElements = wait.until(ExpectedConditions.numberOfElementsToBe(
+                By.cssSelector("#ftrD_Any_time > a"), 5));
+        expectedTitles.clear();
+        actualTitles.clear();
+        expectedTitles = new ArrayList<>(Arrays.asList("All", "Past 24 hours", "Past week", "Past month", "Past year"));
+        actualTitles = new ArrayList<>();
+        for (WebElement element : optionElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        assertEquals("Custom range", driver.findElement(By.cssSelector("#CustomRangeFilter span")).getText());
+        optionElements.get(2).click();
+        String newCount = driver.findElement(By.className("sb_count")).getText().split(" ")[0];
+        assertTrue(Integer.parseInt(originalCount.replace(",", "")) >
+                Integer.parseInt(newCount.replace(",", "")));
+    }
+
 }
