@@ -900,6 +900,52 @@ public class Thesaurus {
     }
 
     /**
+     * SK_36
+     * Tamar
+     * HTML Refers to SK_1, SK_36
+     */
+    @Test
+    public void SK_36_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//*[text()='WORD OF THE DAY']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList
+                ("Word Of The Day", "Synonym Of The Day", "Word Of The Year"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(1).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("otd-item-wrapper__label")));
+        assertEquals("SYNONYM OF THE DAY", element.getText());
+        element = driver.findElement(By.cssSelector(".otd-item-headword__date > *"));
+        LocalDate currentDate = LocalDate.now();
+        String current = currentDate.format(DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy", Locale.ENGLISH)).toUpperCase();
+        assertEquals(current, element.getText());
+    }
+
+    /**
+     * SK_37
+     * Tamar
+     * HTML Refers to SK_1, SK_14
+     */
+    @Test
+    public void SK_37_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.id("searchbar_input"));
+        element.sendKeys("happy");
+        element.submit();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "happy"));
+        assertTrue(driver.findElement(By.id("meanings")).isDisplayed());
+    }
+
+
+    /**
      * SK_1
      * Abhijit
      * Html refer to SK_1
