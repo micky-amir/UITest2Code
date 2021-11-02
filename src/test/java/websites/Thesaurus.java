@@ -920,8 +920,7 @@ public class Thesaurus {
         assertEquals(expectedTitles, actualTitles);
         titleElements.get(1).click();
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("otd-item-wrapper__label")));
-        assertEquals("SYNONYM OF THE DAY", element.getText());
+        wait.until(ExpectedConditions.textToBe(By.className("otd-item-wrapper__label"), "SYNONYM OF THE DAY"));
         element = driver.findElement(By.cssSelector(".otd-item-headword__date > *"));
         LocalDate currentDate = LocalDate.now();
         String current = currentDate.format(DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy", Locale.ENGLISH)).toUpperCase();
@@ -942,6 +941,44 @@ public class Thesaurus {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "happy"));
         assertTrue(driver.findElement(By.id("meanings")).isDisplayed());
+    }
+
+    /**
+     * SK_38
+     * Tamar
+     * HTML Refers to SK_1, SK_14
+     */
+    @Test
+    public void SK_38_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        Actions actions = new Actions(driver);
+        actions.moveToElement(driver.findElement(By.xpath
+                ("//h2[text()='MOST SEARCHED WORDS']/ancestor::section/following-sibling::*"))).click().perform();
+        element = driver.findElement(By.xpath("//h2[text()='MOST SEARCHED WORDS']/../following-sibling::*//a"));
+        String mostSearchedWordText = element.getText();
+        element.click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), mostSearchedWordText));
+        assertTrue(driver.findElement(By.id("meanings")).isDisplayed());
+    }
+
+    /**
+     * SK_39
+     * Tamar
+     * HTML Refers to SK_1, SK_36
+     */
+    @Test
+    public void SK_39_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        List<WebElement> answersElements = driver.findElements(By.xpath("//h2[text()='SYNONYM OF THE DAY']/following-sibling::*//a/../following-sibling::*[2]//a"));
+        List<String> answers = new ArrayList<>();
+        for (WebElement answer : answersElements) {
+            answers.add(answer.getText());
+        }
+        answersElements.get(0).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.className("otd-item-wrapper__label"), "SYNONYM OF THE DAY"));
+        assertTrue(answers.contains(driver.findElement(By.cssSelector(".otd-item-headword__word h2")).getText()));
     }
 
 
