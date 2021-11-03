@@ -981,6 +981,45 @@ public class Thesaurus {
         assertTrue(answers.contains(driver.findElement(By.cssSelector(".otd-item-headword__word h2")).getText()));
     }
 
+    /**
+     * SK_40
+     * Tamar
+     * HTML Refers to SK_1, SK_17
+     */
+    @Test
+    public void SK_40_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.id("active-synonyms"));
+        element.click();
+
+        element.findElement(By.xpath("//*[text()='DEFINITIONS']")).click();
+        assertTrue(driver.findElement(By.id("active-definitions")).isDisplayed());
+        element = driver.findElement(By.id("searchbar_input"));
+        element.sendKeys("happy");
+        element.submit();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "happy"));
+        assertTrue(driver.findElement(By.id("top-definitions-section")).isDisplayed());
+    }
+
+    /**
+     * SK_41
+     * Tamar
+     * HTML Refers to SK_1, SK_41
+     */
+    @Test
+    public void SK_41_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        Actions actions = new Actions(driver);
+        actions.moveToElement(driver.findElement(By.xpath("//*[@data-testid='wotd']//following-sibling::section"))).perform();
+        element = driver.findElement(By.cssSelector("[data-testid='wotd'] a"));
+        String word = element.getText();
+        element.click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.className("otd-item-wrapper__label"), "WORD OF THE DAY"));
+        wait.until(ExpectedConditions.textToBe(By.className("otd-item-headword__word"), word));
+    }
+
 
     /**
      * SK_1
