@@ -43,6 +43,15 @@ public class Bing {
     public void BING01_Tamar() {
         driver.get("https://www.bing.com");
         WebDriverWait wait = new WebDriverWait(driver, 10);
+        By locator = By.cssSelector("a.idp_ham");
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "true"));
+        driver.findElement(By.id("hbsettings")).click();
+        wait.until(ExpectedConditions.attributeToBe(By.id("hbsettree"), "aria-hidden", "false"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#hbsettree > a[role='menuitem']:nth-child(2)"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
+                "//a[contains(text(), 'United States - English') or contains(text(), 'ארצות הברית - אנגלית')]"))).click();
+
         wait.until(ExpectedConditions.attributeToBe(By.cssSelector("h1 > *"), "aria-label", "Bing"));
         assertTrue(driver.findElement(By.id("images")).isDisplayed());
         assertTrue(driver.findElement(By.id("video")).isDisplayed());
@@ -73,11 +82,21 @@ public class Bing {
     public void BING02_Tamar() {
         driver.get("https://www.bing.com");
         WebDriverWait wait = new WebDriverWait(driver, 10);
+        By locator = By.cssSelector("a.idp_ham");
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "true"));
+        driver.findElement(By.id("hbsettings")).click();
+        wait.until(ExpectedConditions.attributeToBe(By.id("hbsettree"), "aria-hidden", "false"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#hbsettree > a[role='menuitem']:nth-child(2)"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
+                "//a[contains(text(), 'United States - English') or contains(text(), 'ארצות הברית - אנגלית')]"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English']"))).click();
+
         wait.until(ExpectedConditions.attributeToBe(By.cssSelector("h1 > *"), "aria-label", "Bing"));
         assertTrue(driver.findElement(By.id("images")).isDisplayed());
         assertTrue(driver.findElement(By.id("video")).isDisplayed());
+        assertTrue(driver.findElement(By.id("shopping")).isDisplayed());
         for (int i = 0; i < 2; i++) {
-            By locator = By.cssSelector("[aria-label='Settings and quick links']");
             driver.findElement(locator).click();
             wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "true"));
             assertTrue(driver.findElement(By.xpath("//*[text()='Customize your homepage']")).isDisplayed());
@@ -92,6 +111,7 @@ public class Bing {
             wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "false"));
             assertEquals(i, driver.findElements(By.id("images")).size());
             assertTrue(driver.findElements(By.id("video")).size() >= i);
+            assertTrue(driver.findElements(By.id("shopping")).size() >= i);
         }
     }
 
@@ -104,11 +124,21 @@ public class Bing {
     public void BING04_Tamar() {
         driver.get("https://www.bing.com");
         WebDriverWait wait = new WebDriverWait(driver, 10);
+        By locator = By.cssSelector("a.idp_ham");
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "true"));
+        driver.findElement(By.id("hbsettings")).click();
+        wait.until(ExpectedConditions.attributeToBe(By.id("hbsettree"), "aria-hidden", "false"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#hbsettree > a[role='menuitem']:nth-child(2)"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
+                "//a[contains(text(), 'United States - English') or contains(text(), 'ארצות הברית - אנגלית')]"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English']"))).click();
+
         wait.until(ExpectedConditions.attributeToBe(By.cssSelector("h1 > *"), "aria-label", "Bing"));
         assertTrue(driver.findElement(By.id("images")).isDisplayed());
         assertTrue(driver.findElement(By.id("video")).isDisplayed());
+        assertTrue(driver.findElement(By.id("shopping")).isDisplayed());
         for (int i = 0; i < 2; i++) {
-            By locator = By.cssSelector("[aria-label='Settings and quick links']");
             driver.findElement(locator).click();
             wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "true"));
             assertTrue(driver.findElement(By.xpath("//*[text()='Customize your homepage']")).isDisplayed());
@@ -135,10 +165,18 @@ public class Bing {
     public void BING05_Tamar() {
         driver.get("https://www.bing.com");
         WebDriverWait wait = new WebDriverWait(driver, 10);
+        By locator = By.cssSelector("a.idp_ham");
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "true"));
+        driver.findElement(By.id("hbsettings")).click();
+        wait.until(ExpectedConditions.attributeToBe(By.id("hbsettree"), "aria-hidden", "false"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#hbsettree > a[role='menuitem']:nth-child(2)"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
+                "//a[contains(text(), 'United States - English') or contains(text(), 'ארצות הברית - אנגלית')]"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English']"))).click();
+
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".id_avatar")));
-        element = driver.findElement(By.cssSelector(".vs img"));
-        assertTrue(element.isDisplayed());
-        element.click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".vs img"))).click();
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("[aria-label='Search Results']")));
         List<WebElement> navElements = driver.findElements(By.cssSelector("[aria-label='Main menu'] a"));
         List<String> expectedTitles = new ArrayList<>(Arrays.asList("ALL", "NEWS", "IMAGES", "VIDEOS", "MAPS", "SHOPPING"));
@@ -147,7 +185,9 @@ public class Bing {
             actualTitles.add(element.getText());
         }
         assertEquals(expectedTitles, actualTitles);
+        String url = driver.getCurrentUrl();
         driver.navigate().back();
+        assertTrue(driver.getCurrentUrl().contains("https://www.bing.com/") && !driver.getCurrentUrl().equals(url));
     }
 
     /**
@@ -188,10 +228,18 @@ public class Bing {
     public void BING09_Tamar() {
         driver.get("https://www.bing.com");
         WebDriverWait wait = new WebDriverWait(driver, 10);
+        By locator = By.cssSelector("a.idp_ham");
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "true"));
+        driver.findElement(By.id("hbsettings")).click();
+        wait.until(ExpectedConditions.attributeToBe(By.id("hbsettree"), "aria-hidden", "false"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#hbsettree > a[role='menuitem']:nth-child(2)"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
+                "//a[contains(text(), 'United States - English') or contains(text(), 'ארצות הברית - אנגלית')]"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English']"))).click();
+
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".id_avatar")));
-        element = driver.findElement(By.cssSelector(".vs img"));
-        assertTrue(element.isDisplayed());
-        element.click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".vs img"))).click();
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("[aria-label='Search Results']")));
         List<WebElement> navElements = driver.findElements(By.cssSelector("[aria-label='Main menu'] a"));
         List<String> expectedTitles = new ArrayList<>(Arrays.asList("ALL", "NEWS", "IMAGES", "VIDEOS", "MAPS", "SHOPPING"));
@@ -213,10 +261,18 @@ public class Bing {
     public void BING10_Tamar() {
         driver.get("https://www.bing.com");
         WebDriverWait wait = new WebDriverWait(driver, 10);
+        By locator = By.cssSelector("a.idp_ham");
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "true"));
+        driver.findElement(By.id("hbsettings")).click();
+        wait.until(ExpectedConditions.attributeToBe(By.id("hbsettree"), "aria-hidden", "false"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#hbsettree > a[role='menuitem']:nth-child(2)"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
+                "//a[contains(text(), 'United States - English') or contains(text(), 'ארצות הברית - אנגלית')]"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English']"))).click();
+
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".id_avatar")));
-        element = driver.findElement(By.cssSelector(".vs img"));
-        assertTrue(element.isDisplayed());
-        element.click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".vs img"))).click();
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("[aria-label='Search Results']")));
         List<WebElement> navElements = driver.findElements(By.cssSelector("[aria-label='Main menu'] a"));
         List<String> expectedTitles = new ArrayList<>(Arrays.asList("ALL", "NEWS", "IMAGES", "VIDEOS", "MAPS", "SHOPPING"));
@@ -234,12 +290,12 @@ public class Bing {
         actions.moveToElement(element).click().perform();
         wait.until(ExpectedConditions.not(ExpectedConditions.attributeContains(By.xpath
                 ("//a[@aria-label='Filtered by Any time']/following-sibling::div"), "class", "b_hide")));
-        List<WebElement> optionElements = wait.until(ExpectedConditions.numberOfElementsToBe(
-                By.cssSelector("#ftrD_Any_time > a"), 5));
+
         expectedTitles.clear();
         actualTitles.clear();
+        List<WebElement> optionElements = wait.until(ExpectedConditions.numberOfElementsToBe(
+                By.cssSelector("#ftrD_Any_time > a"), 5));
         expectedTitles = new ArrayList<>(Arrays.asList("All", "Past 24 hours", "Past week", "Past month", "Past year"));
-        actualTitles = new ArrayList<>();
         for (WebElement element : optionElements) {
             actualTitles.add(element.getText());
         }
