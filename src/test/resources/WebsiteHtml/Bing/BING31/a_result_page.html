@@ -1,0 +1,912 @@
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject mw-editable page-Jacket rootpage-Jacket skin-vector action-view skin-vector-legacy" data-new-gr-c-s-check-loaded="14.1038.0" data-gr-ext-installed=""><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+    <a id="top"></a>
+    <div id="siteNotice"><div id="centralNotice" class="cn-WikipediaAsianMonth2021">
+        <style>
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  src: local('Montserrat'), local('Montserrat'), url(https://upload.wikimedia.org/wikipedia/donate/c/cd/Montserrat.woff2) format('woff2');}
+
+/* Main banner container. Banner: background, border colour and width and adding a margin between banner and article header*/
+.cnotice {
+    position: relative;
+    overflow: hidden;
+    background: #f8f9fa;
+    border: 1px solid #a2a9b1;
+    border-radius: 2px;
+    margin-bottom: 1em;
+    cursor: pointer;
+    color: #222;
+    font-weight: 500;
+}
+
+/* Sets the minimum banner height. If img + logo-container margins > height. Banner will be larger*/
+#cnotice-main {
+    display: table;
+    width: 100%;
+    height: 80px; /* need to set height for height 100% to work on elements within it */
+}
+
+/*MOBILE - Adjust mobile height of banner*/
+body.skin-minerva #cnotice-main {
+    height: 100px;
+}
+
+/*IMPORTANT - don't touch*/
+.cnotice-message-container,
+.cnotice-logo-container,
+.cnotice-misc-container {
+    display: table-cell;
+    height: 100%;
+    vertical-align: middle;
+}
+
+/* --- Main message --- */
+.cnotice-message {
+    position: relative;
+    margin: 0;
+    line-height: 1.2;
+    padding: 5px 5px 5px 5px;
+}
+
+body.rtl .cnotice-message {
+    padding: 5px 5px 5px 5px;
+}
+
+.cnotice-message p {
+    margin: 0;
+    color: #222;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 100%;
+    opacity: 1;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+@media (min-width: 1200px) {
+    .cnotice-message p { font-size: 120%; }
+}
+
+
+/* --- Logo Image text --- */
+.cnotice-logo-container {
+    width: 10%;
+}
+
+body.rtl .cnotice-logo-container {
+    padding: 0 .25em 0 .9em;
+}
+
+.cnotice-logo-container img {
+    opacity: 1;
+    display: block;
+    margin-left: 15%;
+    margin-top: 2px;
+    margin-bottom: 1px;
+}
+
+/*Misc containter stuff starts here*/
+.cnotice-misc-container {
+    width: 10%;
+    padding-right: 40px;
+}
+
+/*Detects and adjusts for mobile skin */
+body.skin-minerva .cnotice-misc-container {
+    padding-right: 10px;
+}
+
+
+/* --- Close Options --- */
+
+#cnotice-toggle-box-options {
+    display: table-cell;
+    font-size: .8em;
+    text-transform: uppercase;
+    width: 38px;
+    height: 38px;
+    border-radius: 19px;
+    vertical-align: middle;
+}
+
+#cnotice-toggle-box {
+    cursor: pointer;
+    position: absolute;
+    top: 2px;
+    right: 3px;
+    z-index: 1;
+    opacity: .8;
+}
+
+body.rtl #cnotice-toggle-box {
+    left: 3px;
+    right: unset;
+}
+
+#cnotice-toggle-box:hover {
+    opacity: 1;
+}
+
+/* --- Full Banner Link --- */
+.cnotice a.cnotice-full-banner-click {
+    display: block;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.cnotice a.cnotice-full-banner-click:hover {
+    text-decoration: underline;
+}
+
+.cnotice-button {
+    display: inline-block;
+    border: 2px solid #36c;
+    border-radius: 2px;
+    color: #fff;
+    padding: 5px 5px;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 14px;
+    margin: 4px 2px;
+    -moz-transition-duration: 100ms; /* Firefox */
+    -webkit-transition-duration: 100ms; /* Safari */
+    transition-duration: 100ms;
+    cursor: pointer;
+    z-index: 1;
+    min-width: 100px;
+}
+
+@media (min-width: 1100px) {
+    .cnotice-button {
+        min-width: 110px;
+        width: 25%;
+        margin: auto;
+    }
+}
+
+/* --- Buttons --- */
+.cnotice a.cnotice-buttonlink {
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+}
+
+.cnotice a.cnotice-buttonlink:hover {
+    color: #fff;
+}
+
+.cnotice-button1 {
+    background-color: #36c;
+    border-color: #36c;
+    color: #fff;
+}
+
+.cnotice-button1:hover {
+    background-color: #447ff5;
+    border-color: #447ff5;
+}
+
+.cnotice-button1:active {
+    background-color: #2a4b8d;
+    border-color: #2a4b8d;
+}
+
+.rtl .cnotice-button1 {
+    left: 23px;
+    right: auto;
+    margin-left: 20px;
+}
+
+#cnotice-translation-link {
+    position: absolute;
+    right: 65px;
+    bottom: 0px;
+    font-size: 0.8em;
+    white-space: nowrap;
+}
+
+#cnotice-translation-link:hover {
+    text-decoration: underline;
+}
+
+.rtl #cnotice-translation-link {
+    text-align: left;
+    left: 65px;
+}
+</style>
+        <div class="cnotice" id="wikipedia_asian_month_2021">
+            <a class="cnotice-full - banner - click external text" href="https://meta.wikimedia.org/wiki/Wikipedia_Asian_Month_2021">
+                <div id="cnotice-main">
+                    <div class="cnotice-logo-container">
+                        <img src="//upload.wikimedia.org/wikipedia/commons/7/71/Wikipedia_Asian_Month_Logo.svg" alt="Banner logo" height="55px" width="55px">
+                    </div>
+                    <div class="cnotice-message-container">
+                        <div class="cnotice-message">
+                            <p>This November is Wikipedia Asian Month<br>Join WAM contests and win postcards from Asia.</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <div id="cnotice-translation-link">
+                [<a id="wam2021href" href="//meta.wikimedia.org/w/index.php?title=Special:Translate&amp;group=Centralnotice-tgroup-wikipedia_asian_month_2021&amp;language=en">Help with translations!</a>]
+            </div>
+            <div id="cnotice-toggle-box">
+                <a href="#" title="Hide" onclick="mw.centralNotice.hideBanner();return false;">
+                    <img border="0" src="//upload.wikimedia.org/wikipedia/donate/a/ac/Close_oojs.png" alt="Hide">
+                </a>
+            </div>
+        </div>
+
+        <script>
+  if(document.getElementById("wam2021href")) document.getElementById("wam2021href").setAttribute("href", "//meta.wikimedia.org/w/index.php?title=Special:Translate&group=Centralnotice-tgroup-wikipedia_asian_month_2021&language=" + mw.config.get('wgPageContentLanguage'));
+</script></div><!-- CentralNotice --></div>
+    <div class="mw-indicators">
+    </div>
+    <h1 id="firstHeading" class="firstHeading">Jacket</h1>
+    <div id="bodyContent" class="vector-body">
+        <div id="siteSub" class="noprint">From Wikipedia, the free encyclopedia</div>
+        <div id="contentSub"></div>
+        <div id="contentSub2"></div>
+
+        <div id="jump-to-nav"></div>
+        <a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+        <a class="mw-jump-link" href="#searchInput">Jump to search</a>
+        <div id="mw-content-text" class="mw-body-content mw-content-ltr" lang="en" dir="ltr"><div class="mw-parser-output"><div class="shortdescription nomobile noexcerpt noprint searchaux" style="display:none">Clothing for the upper body</div>
+            <style data-mw-deduplicate="TemplateStyles:r1033289096">.mw-parser-output .hatnote{font-style:italic}.mw-parser-output div.hatnote{padding-left:1.6em;margin-bottom:0.5em}.mw-parser-output .hatnote i{font-style:normal}.mw-parser-output .hatnote+link+.hatnote{margin-top:-0.5em}</style><div role="note" class="hatnote navigation-not-searchable">This article is about the garment. For other uses, see <a href="/wiki/Jacket_(disambiguation)" class="mw-disambig" title="Jacket (disambiguation)">Jacket (disambiguation)</a>.</div>
+            <div class="thumb tright"><div class="thumbinner" style="width:222px;"><a href="/wiki/File:Jacket2-1.jpg" class="image"><img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Jacket2-1.jpg/220px-Jacket2-1.jpg" decoding="async" width="220" height="285" class="thumbimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Jacket2-1.jpg/330px-Jacket2-1.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Jacket2-1.jpg/440px-Jacket2-1.jpg 2x" data-file-width="538" data-file-height="697"></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Jacket2-1.jpg" class="internal" title="Enlarge"></a></div>A man wearing a <a href="/wiki/Sports_jacket" class="mw-redirect" title="Sports jacket">sports jacket</a>, also known as a "sport(s) coat" in the United States.</div></div></div>
+            <p>A <b>jacket</b> is a garment for the upper body, usually extending below the hips.<sup id="cite_ref-1" class="reference"><a href="#cite_note-1">[1]</a></sup> A jacket typically has <a href="/wiki/Sleeve" title="Sleeve">sleeves</a>, and fastens in the front or slightly on the side. A jacket is generally lighter, tighter-fitting, and less insulating than a <a href="/wiki/Coat_(clothing)" class="mw-redirect" title="Coat (clothing)">coat</a>, which is <a href="/wiki/Outerwear" class="mw-redirect" title="Outerwear">outerwear</a>. Some jackets are <a href="/wiki/Fashion" title="Fashion">fashionable</a>, while others serve as <a href="/wiki/Protective_clothing" class="mw-redirect" title="Protective clothing">protective clothing</a>. Jackets without sleeves are <a href="/wiki/Vest" class="mw-redirect" title="Vest">vests</a>.
+            </p>
+            <div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+                <ul>
+                    <li class="toclevel-1 tocsection-1"><a href="#Etymology"><span class="tocnumber">1</span> <span class="toctext">Etymology</span></a></li>
+                    <li class="toclevel-1 tocsection-2"><a href="#List_of_jackets"><span class="tocnumber">2</span> <span class="toctext">List of jackets</span></a></li>
+                    <li class="toclevel-1 tocsection-3"><a href="#See_also"><span class="tocnumber">3</span> <span class="toctext">See also</span></a></li>
+                    <li class="toclevel-1 tocsection-4"><a href="#References"><span class="tocnumber">4</span> <span class="toctext">References</span></a></li>
+                    <li class="toclevel-1 tocsection-5"><a href="#External_links"><span class="tocnumber">5</span> <span class="toctext">External links</span></a></li>
+                </ul>
+            </div>
+
+            <h2><span class="mw-headline" id="Etymology">Etymology</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Jacket&amp;action=edit&amp;section=1" title="Edit section: Etymology">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+            <p>The word <i>jacket</i> comes from the French word <i>jaquette</i>. The term comes from the <a href="/wiki/Middle_French" title="Middle French">Middle French</a> noun <i>jaquet</i>, which refers to a small or lightweight <a href="/wiki/Tunic" title="Tunic">tunic</a>.<sup id="cite_ref-2" class="reference"><a href="#cite_note-2">[2]</a></sup> In <a href="/wiki/Modern_French" class="mw-redirect" title="Modern French">Modern French</a>, <i>jaquette</i> is synonymous with <i>jacket</i>. Speakers of <a href="/wiki/American_English" title="American English">American English</a> sometimes informally use the words <i>jacket</i> and <i>coat</i> interchangeably.<sup id="cite_ref-3" class="reference"><a href="#cite_note-3">[3]</a></sup>
+            </p>
+            <div class="thumb tright"><div class="thumbinner" style="width:222px;"><a href="/wiki/File:Bomber_jacket.jpg" class="image"><img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Bomber_jacket.jpg/220px-Bomber_jacket.jpg" decoding="async" width="220" height="280" class="thumbimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Bomber_jacket.jpg/330px-Bomber_jacket.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Bomber_jacket.jpg/440px-Bomber_jacket.jpg 2x" data-file-width="1347" data-file-height="1715"></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Bomber_jacket.jpg" class="internal" title="Enlarge"></a></div>Nylon <a href="/wiki/Bomber_jacket" class="mw-redirect" title="Bomber jacket">bomber jacket</a>, also in leather</div></div></div>
+            <h2><span class="mw-headline" id="List_of_jackets">List of jackets <span class="anchor" id="puffa"></span> <span class="anchor" id="down"></span></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Jacket&amp;action=edit&amp;section=2" title="Edit section: List of jackets">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+            <div class="thumb tright"><div class="thumbinner" style="width:222px;"><a href="/wiki/File:Amaranthe_Rockharz_2018_02.jpg" class="image"><img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/8/88/Amaranthe_Rockharz_2018_02.jpg/220px-Amaranthe_Rockharz_2018_02.jpg" decoding="async" width="220" height="330" class="thumbimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/8/88/Amaranthe_Rockharz_2018_02.jpg/330px-Amaranthe_Rockharz_2018_02.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/8/88/Amaranthe_Rockharz_2018_02.jpg/440px-Amaranthe_Rockharz_2018_02.jpg 2x" data-file-width="3840" data-file-height="5760"></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Amaranthe_Rockharz_2018_02.jpg" class="internal" title="Enlarge"></a></div>A <a href="/wiki/Leather_jacket" title="Leather jacket">leather jacket</a></div></div></div>
+            <ul><li><a href="/wiki/Atilla_(clothing)" class="mw-redirect" title="Atilla (clothing)">Atilla</a>, a fancy Hungarian shell-jacket or short coat, decorated with <a href="/wiki/Braid" title="Braid">braided</a> cord and knots</li>
+                <li><a href="/w/index.php?title=Ball_jacket&amp;action=edit&amp;redlink=1" class="new" title="Ball jacket (page does not exist)">Ball jacket</a>, often specified as a <a href="/wiki/Baseball" title="Baseball">baseball</a> jacket or <a href="/wiki/American_football" title="American football">football</a> jacket, a casual jacket with knitted cuffs, collar, and waistband and a zippered front</li>
+                <li><a href="/wiki/Bed_jacket" title="Bed jacket">Bed jacket</a>, a jacket made from lightweight material designed to be worn in bed</li>
+                <li><a href="/wiki/Blazer" title="Blazer">Blazer</a>, similar to but more casual than a suit jacket; single- or double-breasted of sturdy material, commonly with metal buttons.</li>
+                <li><a href="/wiki/Blouson" title="Blouson">Blouson</a>, a military-style waist-length jacket.</li>
+                <li><a href="/wiki/Bolero_jacket" class="mw-redirect" title="Bolero jacket">Bolero</a>, a very short jacket for everyone, originally worn by <a href="/wiki/Matador" class="mw-redirect" title="Matador">matadors</a></li>
+                <li><a href="/wiki/Bomber_jacket" class="mw-redirect" title="Bomber jacket">Bomber jacket</a>, a blouson originally designed for US aircrews in leather or nylon.</li>
+                <li><a href="/wiki/Brunswick_(clothing)" title="Brunswick (clothing)">Brunswick</a>, a two-piece woman's gown of the mid-eighteenth century.</li>
+                <li><a href="/wiki/Caraco" title="Caraco">Caraco</a>, a woman's jacket of the 18th century.</li>
+                <li><a href="/wiki/Cardigan_(sweater)" title="Cardigan (sweater)">Cardigan</a>, a sweater worn like a jacket.</li>
+                <li><a href="/wiki/Chef%27s_uniform" title="Chef's uniform">Chef's jacket</a></li>
+                <li><a href="/wiki/Dinner_jacket" class="mw-redirect" title="Dinner jacket">Dinner jacket</a>, part of the black-tie dress code of evening formal wear. Also known as a <i>Dinner suit</i> and a <i>Tuxedo</i>.</li>
+                <li><a href="/wiki/Donkey_jacket" title="Donkey jacket">Donkey jacket</a></li>
+                <li><a href="/wiki/Doublet_(clothing)" title="Doublet (clothing)">Doublet (clothing)</a></li>
+                <li><a href="/wiki/Down_jacket" title="Down jacket">Down jacket</a>, a quilted jacket filled with <a href="/wiki/Down_feather" title="Down feather">down feathers</a></li>
+                <li><a href="/wiki/Eisenhower_jacket" title="Eisenhower jacket">Eisenhower jacket</a>, a waist-length, fitted, military-inspired jacket with a waistband based on the <a href="/wiki/World_War_II" title="World War II">World War II</a> British Army's Battle Dress jacket introduced by <a href="/wiki/Dwight_D._Eisenhower" title="Dwight D. Eisenhower">General Dwight Eisenhower</a></li>
+                <li><a href="/wiki/Field_jacket_(disambiguation)" class="mw-redirect mw-disambig" title="Field jacket (disambiguation)">Field jacket</a>, a jacket that is worn by soldiers on the battlefield or doing duties in cold weather. The field jacket came about during World War II with the <a href="/wiki/US_Army" class="mw-redirect" title="US Army">US Army</a> introducing the M-1941 and the M-1943 field jacket and issued the jacket to their troops. The most well-known and the most popular type of military field jacket that is on the market today is the <a href="/wiki/M65_Jacket" class="mw-redirect" title="M65 Jacket">M-1965 or M-65 field jacket</a> which came into US military service in 1965.</li>
+                <li><a href="/wiki/Flak_jacket" title="Flak jacket">Flak jacket</a>, 20th century armoured vest</li>
+                <li><a href="/wiki/Fleece_jacket" title="Fleece jacket">Fleece jacket</a>, a casual jacket made of synthetic wool such as <a href="/wiki/Polar_Fleece" class="mw-redirect" title="Polar Fleece">Polar Fleece</a></li>
+                <li><a href="/wiki/Flight_jacket" title="Flight jacket">Flight jacket</a>, also known as a bomber jacket</li>
+                <li><a href="/wiki/Gilet" title="Gilet">Gilet</a>, a sleeveless jacket or vest.</li>
+                <li><a href="/wiki/Hacking_jacket" class="mw-redirect" title="Hacking jacket">Hacking jacket</a></li>
+                <li><a href="/wiki/Harrington_jacket" title="Harrington jacket">Harrington jacket</a>, a lightweight waist-length jacket</li>
+                <li><a href="/wiki/Hoodie" title="Hoodie">Hoodie</a>, a zippered hooded sweatshirt (non zippered can be considered a sweatshirt only)</li>
+                <li><a href="/wiki/Jean_jacket" title="Jean jacket">Jean jacket</a> or denim jacket, a jacket falling slightly below the waist, usually of <a href="/wiki/Denim" title="Denim">denim</a>, with buttoned band <a href="/wiki/Cuff" title="Cuff">cuffs</a> like a shirt and a waistband that can be adjusted by means of buttons.  Also called <i>Levi's jacket</i> (see <a href="/wiki/Levi%27s" class="mw-redirect" title="Levi's">Levi's</a>)</li>
+                <li><a href="/wiki/Jerkin_(garment)" class="mw-redirect" title="Jerkin (garment)">Jerkin</a></li>
+                <li>Kilt jacket, one of several styles of traditional <a href="/wiki/Scottish_people" title="Scottish people">Scottish</a> jacket worn with the <a href="/wiki/Kilt" title="Kilt">kilt</a>, including the Argyll jacket, the Prince Charlie jacket, and a type of <a href="/wiki/Tweed_(cloth)" class="mw-redirect" title="Tweed (cloth)">tweed</a> jacket</li>
+                <li><a href="/wiki/Leather_jacket" title="Leather jacket">Leather jacket</a>, also known as a motorcycle jacket</li>
+                <li><a href="/wiki/Letterman_(sports)#Letter_jacket" title="Letterman (sports)">Letter jacket</a></li>
+                <li><a href="/wiki/Mess_jacket" title="Mess jacket">Mess jacket</a> or <i>eton jacket</i>, similar to a tailcoat but cut off just below the waist. Worn as part of <a href="/wiki/Mess_dress" class="mw-redirect" title="Mess dress">mess dress</a> and formerly as the school uniform of boys under 5'4" at <a href="/wiki/Eton_College" title="Eton College">Eton College</a> until 1976 and at many other English schools, particularly choir schools<sup id="cite_ref-4" class="reference"><a href="#cite_note-4">[4]</a></sup></li>
+                <li><a href="/wiki/Motorcycle_leathers" class="mw-redirect" title="Motorcycle leathers">Motorcycle jacket</a>, a leather jacket, usually black, worn by <a href="/wiki/Motorcycle" title="Motorcycle">motorcycle</a> riders; originally to mid-thigh, now usually to a fitted waist</li>
+                <li><a href="/wiki/Nehru_jacket" title="Nehru jacket">Nehru jacket</a></li>
+                <li><a href="/wiki/Norfolk_jacket" title="Norfolk jacket">Norfolk jacket</a></li>
+                <li><a href="/wiki/Parka" title="Parka">Parka</a></li>
+                <li><a href="/wiki/Peplum_jacket" title="Peplum jacket">Peplum jacket</a>, a jacket featuring a short <a href="/wiki/Overskirt" title="Overskirt">overskirt</a></li>
+                <li><a href="/wiki/Puffer_jacket" class="mw-redirect" title="Puffer jacket">Puffer jacket</a> or Puffa jacket, a type of padded jacket popular in the 1990s</li>
+                <li>Rain jacket, a short <a href="/wiki/Rain_coat" class="mw-redirect" title="Rain coat">rain coat</a></li>
+                <li>Reefing jacket or reefer, a type of <a href="/wiki/Pea_coat" title="Pea coat">pea coat</a></li>
+                <li><a href="/wiki/Reversible_garment" title="Reversible garment">Reversible jacket</a></li>
+                <li>Riding jacket, part of a <a href="/wiki/Riding_habit" title="Riding habit">riding habit</a></li>
+                <li><a href="/wiki/Sailor_suit" title="Sailor suit">Sailor jacket</a></li>
+                <li>Satin jacket, a type of ball jacket made of <a href="/wiki/Satin" title="Satin">satin</a> and popular in the 1950s</li>
+                <li><a href="/w/index.php?title=Smart_jacket&amp;action=edit&amp;redlink=1" class="new" title="Smart jacket (page does not exist)">Smart jacket</a>, with built-in heating elements on the chest, hands and back. It keeps the wearer warm in cold weather. It comes with special sensors to let the wearer adjust the heat output as per his convenience.<sup id="cite_ref-5" class="reference"><a href="#cite_note-5">[5]</a></sup></li>
+                <li><a href="/wiki/Smoking_jacket" title="Smoking jacket">Smoking jacket</a></li>
+                <li><a href="/wiki/Spencer_(clothing)" title="Spencer (clothing)">Spencer</a>, a high-waisted jacket dating to the <a href="/wiki/1795%E2%80%931820_in_fashion" class="mw-redirect" title="1795–1820 in fashion">Regency period</a></li>
+                <li><a href="/wiki/Sport_coat" title="Sport coat">Sport coat</a> (US) or Sports jacket (UK), a tailored jacket, similar in cut to a suit coat but more utilitarian, originally casual wear for <a href="/wiki/Hunting" title="Hunting">hunting</a>, <a href="/wiki/Equestrianism" title="Equestrianism">riding</a>, and other outdoor sports; specific types include a shooting jacket and hacking jacket</li>
+                <li><a href="/wiki/Suit_(clothing)" class="mw-redirect" title="Suit (clothing)">Suit jacket</a></li>
+                <li><a href="/wiki/Tabard" title="Tabard">Tabard</a>, a loose sleeveless outer garment</li>
+                <li><a href="/wiki/Tunic_(military)" title="Tunic (military)">Tunic</a>, a thigh length coat or jacket worn with a wide range of military and civilian uniforms</li>
+                <li><a href="/wiki/Varsity_jacket" class="mw-redirect" title="Varsity jacket">Varsity jacket</a> also known as a letter jacket or <a href="/wiki/Letterman_(sports)" title="Letterman (sports)">letterman</a> jacket</li>
+                <li><a href="/wiki/Windbreaker" title="Windbreaker">Windbreaker</a> (N. American, Japan) or windcheater (UK)</li>
+                <li><a href="/wiki/Tracksuit" title="Tracksuit">Tracksuit</a> jacket</li>
+                <li><a href="/wiki/Wamus" title="Wamus">Wamus</a>, also called a "roundabout," a traditional American term for a short jacket.</li></ul>
+            <h2><span class="mw-headline" id="See_also">See also</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Jacket&amp;action=edit&amp;section=3" title="Edit section: See also">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+            <ul><li><a href="/wiki/Sweater" title="Sweater">Sweater</a></li></ul>
+            <h2><span class="mw-headline" id="References">References</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Jacket&amp;action=edit&amp;section=4" title="Edit section: References">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+            <style data-mw-deduplicate="TemplateStyles:r1011085734">.mw-parser-output .reflist{font-size:90%;margin-bottom:0.5em;list-style-type:decimal}.mw-parser-output .reflist .references{font-size:100%;margin-bottom:0;list-style-type:inherit}.mw-parser-output .reflist-columns-2{column-width:30em}.mw-parser-output .reflist-columns-3{column-width:25em}.mw-parser-output .reflist-columns{margin-top:0.3em}.mw-parser-output .reflist-columns ol{margin-top:0}.mw-parser-output .reflist-columns li{page-break-inside:avoid;break-inside:avoid-column}.mw-parser-output .reflist-upper-alpha{list-style-type:upper-alpha}.mw-parser-output .reflist-upper-roman{list-style-type:upper-roman}.mw-parser-output .reflist-lower-alpha{list-style-type:lower-alpha}.mw-parser-output .reflist-lower-greek{list-style-type:lower-greek}.mw-parser-output .reflist-lower-roman{list-style-type:lower-roman}</style><div class="reflist">
+                <div class="mw-references-wrap"><ol class="references">
+                    <li id="cite_note-1"><span class="mw-cite-backlink"><b><a href="#cite_ref-1" aria-label="Jump up" title="Jump up">^</a></b></span> <span class="reference-text"><style data-mw-deduplicate="TemplateStyles:r999302996">.mw-parser-output cite.citation{font-style:inherit}.mw-parser-output .citation q{quotes:"\"""\"""'""'"}.mw-parser-output .id-lock-free a,.mw-parser-output .citation .cs1-lock-free a{background:linear-gradient(transparent,transparent),url("//upload.wikimedia.org/wikipedia/commons/6/65/Lock-green.svg")right 0.1em center/9px no-repeat}.mw-parser-output .id-lock-limited a,.mw-parser-output .id-lock-registration a,.mw-parser-output .citation .cs1-lock-limited a,.mw-parser-output .citation .cs1-lock-registration a{background:linear-gradient(transparent,transparent),url("//upload.wikimedia.org/wikipedia/commons/d/d6/Lock-gray-alt-2.svg")right 0.1em center/9px no-repeat}.mw-parser-output .id-lock-subscription a,.mw-parser-output .citation .cs1-lock-subscription a{background:linear-gradient(transparent,transparent),url("//upload.wikimedia.org/wikipedia/commons/a/aa/Lock-red-alt-2.svg")right 0.1em center/9px no-repeat}.mw-parser-output .cs1-subscription,.mw-parser-output .cs1-registration{color:#555}.mw-parser-output .cs1-subscription span,.mw-parser-output .cs1-registration span{border-bottom:1px dotted;cursor:help}.mw-parser-output .cs1-ws-icon a{background:linear-gradient(transparent,transparent),url("//upload.wikimedia.org/wikipedia/commons/4/4c/Wikisource-logo.svg")right 0.1em center/12px no-repeat}.mw-parser-output code.cs1-code{color:inherit;background:inherit;border:none;padding:inherit}.mw-parser-output .cs1-hidden-error{display:none;font-size:100%}.mw-parser-output .cs1-visible-error{font-size:100%}.mw-parser-output .cs1-maint{display:none;color:#33aa33;margin-left:0.3em}.mw-parser-output .cs1-format{font-size:95%}.mw-parser-output .cs1-kern-left,.mw-parser-output .cs1-kern-wl-left{padding-left:0.2em}.mw-parser-output .cs1-kern-right,.mw-parser-output .cs1-kern-wl-right{padding-right:0.2em}.mw-parser-output .citation .mw-selflink{font-weight:inherit}</style><cite id="CITEREFPicken1999" class="citation book cs1">Picken, Mary Brooks (1999) [1957]. <a rel="nofollow" class="external text" href="https://archive.org/details/dictionaryofcost0000pick/page/185"><i>A Dictionary of Costume and Fashion</i></a>. Dover Publications. p.&nbsp;<a rel="nofollow" class="external text" href="https://archive.org/details/dictionaryofcost0000pick/page/185">185</a>. <a href="/wiki/ISBN_(identifier)" class="mw-redirect" title="ISBN (identifier)">ISBN</a>&nbsp;<a href="/wiki/Special:BookSources/978-0-486-40294-9" title="Special:BookSources/978-0-486-40294-9"><bdi>978-0-486-40294-9</bdi></a>.</cite><span title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=book&amp;rft.btitle=A+Dictionary+of+Costume+and+Fashion&amp;rft.pages=185&amp;rft.pub=Dover+Publications&amp;rft.date=1999&amp;rft.isbn=978-0-486-40294-9&amp;rft.aulast=Picken&amp;rft.aufirst=Mary+Brooks&amp;rft_id=https%3A%2F%2Farchive.org%2Fdetails%2Fdictionaryofcost0000pick%2Fpage%2F185&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3AJacket" class="Z3988"></span></span>
+                    </li>
+                    <li id="cite_note-2"><span class="mw-cite-backlink"><b><a href="#cite_ref-2" aria-label="Jump up" title="Jump up">^</a></b></span> <span class="reference-text"><link rel="mw-deduplicated-inline-style" href="mw-data:TemplateStyles:r999302996"><cite id="CITEREFHarper" class="citation web cs1">Harper, Douglas. <a rel="nofollow" class="external text" href="https://www.etymonline.com/?term=jacket">"jacket"</a>. <i><a href="/wiki/Online_Etymology_Dictionary" title="Online Etymology Dictionary">Online Etymology Dictionary</a></i><span class="reference-accessdate">. Retrieved <span class="nowrap">2011-09-07</span></span>.</cite><span title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=unknown&amp;rft.jtitle=Online+Etymology+Dictionary&amp;rft.atitle=jacket&amp;rft.aulast=Harper&amp;rft.aufirst=Douglas&amp;rft_id=https%3A%2F%2Fwww.etymonline.com%2F%3Fterm%3Djacket&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3AJacket" class="Z3988"></span></span>
+                    </li>
+                    <li id="cite_note-3"><span class="mw-cite-backlink"><b><a href="#cite_ref-3" aria-label="Jump up" title="Jump up">^</a></b></span> <span class="reference-text"><i><a href="/wiki/Oxford_English_Dictionary" title="Oxford English Dictionary">Oxford English Dictionary</a></i>, <a href="/wiki/Oxford_University_Press" title="Oxford University Press">Oxford University Press</a>, 1971</span>
+                    </li>
+                    <li id="cite_note-4"><span class="mw-cite-backlink"><b><a href="#cite_ref-4" aria-label="Jump up" title="Jump up">^</a></b></span> <span class="reference-text"><link rel="mw-deduplicated-inline-style" href="mw-data:TemplateStyles:r999302996"><cite class="citation web cs1"><a rel="nofollow" class="external text" href="https://web.archive.org/web/20080723160401/http://www.archivist.f2s.com/bsu/EtonSuit.htm">"The Eton Suit"</a>. Archived from <a rel="nofollow" class="external text" href="http://www.archivist.f2s.com/bsu/EtonSuit.htm">the original</a> on 2008-07-23<span class="reference-accessdate">. Retrieved <span class="nowrap">2008-03-22</span></span>.</cite><span title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=unknown&amp;rft.btitle=The+Eton+Suit&amp;rft_id=http%3A%2F%2Fwww.archivist.f2s.com%2Fbsu%2FEtonSuit.htm&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3AJacket" class="Z3988"></span></span>
+                    </li>
+                    <li id="cite_note-5"><span class="mw-cite-backlink"><b><a href="#cite_ref-5" aria-label="Jump up" title="Jump up">^</a></b></span> <span class="reference-text"><a rel="nofollow" class="external free" href="https://web.archive.org/web/20210214012044/https://beebom.com/cool-awesome-inventions/">https://web.archive.org/web/20210214012044/https://beebom.com/cool-awesome-inventions/</a></span>
+                    </li>
+                </ol></div></div>
+            <h2><span class="mw-headline" id="External_links">External links</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Jacket&amp;action=edit&amp;section=5" title="Edit section: External links">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+            <p><a href="/wiki/File:Commons-logo.svg" class="image"><img alt="" src="//upload.wikimedia.org/wikipedia/en/thumb/4/4a/Commons-logo.svg/12px-Commons-logo.svg.png" decoding="async" width="12" height="16" class="noviewer" srcset="//upload.wikimedia.org/wikipedia/en/thumb/4/4a/Commons-logo.svg/18px-Commons-logo.svg.png 1.5x, //upload.wikimedia.org/wikipedia/en/thumb/4/4a/Commons-logo.svg/24px-Commons-logo.svg.png 2x" data-file-width="1024" data-file-height="1376"></a> Media related to <a href="https://commons.wikimedia.org/wiki/Category:Jackets" class="extiw" title="commons:Category:Jackets">Jackets</a> at Wikimedia Commons
+            </p>
+            <ul><li><a rel="nofollow" class="external text" href="https://bbctimez.com/2021/08/04/why-wearing-a-custom-varsity-jacket-is-always-a-great-idea/">Custom varsity jackets</a> - <i>bbctimez</i></li>
+                <li><a rel="nofollow" class="external text" href="https://clothoo.com/blog/how-to-design-varsity-jacket-online/">Design a varsity jacket online </a> - <i>Clothoo</i></li></ul>
+            <div role="navigation" class="navbox" aria-labelledby="Clothing" style="padding:3px"><table class="nowraplinks mw-collapsible mw-collapsed navbox-inner mw-made-collapsible" style="border-spacing:0;background:transparent;color:inherit"><tbody><tr><th scope="col" class="navbox-title" colspan="2"><span class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-collapsed" role="button" tabindex="0" aria-expanded="false"><a class="mw-collapsible-text">show</a></span><style data-mw-deduplicate="TemplateStyles:r992953826">.mw-parser-output .navbar{display:inline;font-size:88%;font-weight:normal}.mw-parser-output .navbar-collapse{float:left;text-align:left}.mw-parser-output .navbar-boxtext{word-spacing:0}.mw-parser-output .navbar ul{display:inline-block;white-space:nowrap;line-height:inherit}.mw-parser-output .navbar-brackets::before{margin-right:-0.125em;content:"[ "}.mw-parser-output .navbar-brackets::after{margin-left:-0.125em;content:" ]"}.mw-parser-output .navbar li{word-spacing:-0.125em}.mw-parser-output .navbar-mini abbr{font-variant:small-caps;border-bottom:none;text-decoration:none;cursor:inherit}.mw-parser-output .navbar-ct-full{font-size:114%;margin:0 7em}.mw-parser-output .navbar-ct-mini{font-size:114%;margin:0 4em}.mw-parser-output .infobox .navbar{font-size:100%}.mw-parser-output .navbox .navbar{display:block;font-size:100%}.mw-parser-output .navbox-title .navbar{float:left;text-align:left;margin-right:0.5em}</style><div class="navbar plainlinks hlist navbar-mini"><ul><li class="nv-view"><a href="/wiki/Template:Clothing" title="Template:Clothing"><abbr title="View this template" style=";;background:none transparent;border:none;box-shadow:none;padding:0;;text-decoration:inherit;">v</abbr></a></li><li class="nv-talk"><a href="/wiki/Template_talk:Clothing" title="Template talk:Clothing"><abbr title="Discuss this template" style=";;background:none transparent;border:none;box-shadow:none;padding:0;;text-decoration:inherit;">t</abbr></a></li><li class="nv-edit"><a class="external text" href="https://en.wikipedia.org/w/index.php?title=Template:Clothing&amp;action=edit"><abbr title="Edit this template" style=";;background:none transparent;border:none;box-shadow:none;padding:0;;text-decoration:inherit;">e</abbr></a></li></ul></div><div id="Clothing" style="font-size:114%;margin:0 4em"><a href="/wiki/Clothing" title="Clothing">Clothing</a></div></th></tr><tr style="display: none;"><th scope="row" class="navbox-group" style="width:1%"><a href="/wiki/Headgear" title="Headgear">Headwear</a></th><td class="navbox-list navbox-odd hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px"><div style="padding:0em 0.25em">
+                <ul><li><a href="/wiki/Beret" title="Beret">Beret</a></li>
+                    <li><a href="/wiki/Cap" title="Cap">Cap</a>
+                        <ul><li><a href="/wiki/Baseball_cap" title="Baseball cap">Baseball</a></li>
+                            <li><a href="/wiki/Flat_cap" title="Flat cap">Flat</a></li>
+                            <li><a href="/wiki/Knit_cap" title="Knit cap">Knit</a></li></ul></li>
+                    <li><a href="/wiki/Hat" title="Hat">Hat</a>
+                        <ul><li><a href="/wiki/Boater" title="Boater">Boater</a></li>
+                            <li><a href="/wiki/Bowler_hat" title="Bowler hat">Bowler</a></li>
+                            <li><a href="/wiki/Fedora" title="Fedora">Fedora</a></li>
+                            <li><a href="/wiki/Homburg_hat" title="Homburg hat">Homburg</a></li>
+                            <li><a href="/wiki/Top_hat" title="Top hat">Top</a></li></ul></li>
+                    <li><a href="/wiki/Helmet" title="Helmet">Helmet</a></li>
+                    <li><a href="/wiki/Hood_(headgear)" title="Hood (headgear)">Hood</a></li>
+                    <li><a href="/wiki/Kerchief" title="Kerchief">Kerchief</a></li>
+                    <li><a href="/wiki/Turban" title="Turban">Turban</a></li>
+                    <li><a href="/wiki/Veil" title="Veil">Veil</a></li></ul>
+            </div></td></tr><tr style="display: none;"><th scope="row" class="navbox-group" style="width:1%"><a href="/wiki/Neckwear" title="Neckwear">Neckwear</a></th><td class="navbox-list navbox-even hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px"><div style="padding:0em 0.25em">
+                <ul><li><a href="/wiki/Bands_(neckwear)" title="Bands (neckwear)">Bands</a></li>
+                    <li><a href="/wiki/Choker" title="Choker">Choker</a></li>
+                    <li><a href="/wiki/Clerical_collar" title="Clerical collar">Clerical collar</a></li>
+                    <li><a href="/wiki/Neckerchief" title="Neckerchief">Neckerchief</a></li>
+                    <li><a href="/wiki/Necktie" title="Necktie">Necktie</a>
+                        <ul><li><a href="/wiki/Ascot_tie" title="Ascot tie">Ascot</a></li>
+                            <li><a href="/wiki/Bolo_tie" title="Bolo tie">Bolo</a></li>
+                            <li><a href="/wiki/Bow_tie" title="Bow tie">Bow</a></li>
+                            <li><a href="/wiki/School_tie" title="School tie">School</a></li>
+                            <li><a href="/wiki/Stock_tie" title="Stock tie">Stock</a></li></ul></li>
+                    <li><a href="/wiki/Scarf" title="Scarf">Scarf</a></li>
+                    <li><a href="/wiki/Tippet" title="Tippet">Tippet</a></li></ul>
+            </div></td></tr><tr style="display: none;"><th scope="row" class="navbox-group" style="width:1%"><a href="/wiki/Top_(clothing)" title="Top (clothing)">Tops</a></th><td class="navbox-list navbox-odd hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px"><div style="padding:0em 0.25em">
+                <ul><li><a href="/wiki/Blouse" title="Blouse">Blouse</a>
+                    <ul><li><a href="/wiki/Cache-c%C5%93ur" title="Cache-cœur">Cache-cœur</a></li>
+                        <li><a href="/wiki/Crop_top" title="Crop top">Crop top</a></li>
+                        <li><a href="/wiki/Halterneck" title="Halterneck">Halterneck</a></li>
+                        <li><a href="/wiki/Tube_top" title="Tube top">Tube top</a></li></ul></li>
+                    <li><a href="/wiki/Mackinaw_jacket" title="Mackinaw jacket">Mackinaw jacket</a></li>
+                    <li><a href="/wiki/Shirt" title="Shirt">Shirt</a>
+                        <ul><li><a href="/wiki/Dress_shirt" title="Dress shirt">Dress</a></li>
+                            <li><a href="/wiki/Henley_shirt" title="Henley shirt">Henley</a></li>
+                            <li><a href="/wiki/Polo_shirt" title="Polo shirt">Polo</a></li>
+                            <li><a href="/wiki/Sleeveless_shirt" title="Sleeveless shirt">Sleeveless</a></li>
+                            <li><a href="/wiki/T-shirt" title="T-shirt">T</a></li></ul></li>
+                    <li><a href="/wiki/Sweater" title="Sweater">Sweater</a>
+                        <ul><li><a href="/wiki/Cardigan_(sweater)" title="Cardigan (sweater)">Cardigan</a></li>
+                            <li><a href="/wiki/Guernsey_(clothing)" title="Guernsey (clothing)">Guernsey</a></li>
+                            <li><a href="/wiki/Hoodie" title="Hoodie">Hoodie</a></li>
+                            <li><a href="/wiki/Jersey_(clothing)" title="Jersey (clothing)">Jersey</a></li>
+                            <li><a href="/wiki/Polo_neck" title="Polo neck">Polo neck</a></li>
+                            <li><a href="/wiki/Shrug_(clothing)" title="Shrug (clothing)">Shrug</a></li>
+                            <li><a href="/wiki/Sweater_vest" title="Sweater vest">Sweater vest</a></li>
+                            <li><a href="/wiki/Twinset" title="Twinset">Twinset</a></li></ul></li>
+                    <li><a href="/wiki/Waistcoat" title="Waistcoat">Waistcoat</a></li></ul>
+            </div></td></tr><tr style="display: none;"><th scope="row" class="navbox-group" style="width:1%"><a href="/wiki/Trousers" title="Trousers">Trousers</a></th><td class="navbox-list navbox-even hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px"><div style="padding:0em 0.25em">
+                <ul><li><a href="/wiki/Bell-bottoms" title="Bell-bottoms">Bell-bottoms</a></li>
+                    <li><a href="/wiki/Bondage_pants" title="Bondage pants">Bondage</a></li>
+                    <li><a href="/wiki/Capri_pants" title="Capri pants">Capri</a></li>
+                    <li><a href="/wiki/Cargo_pants" title="Cargo pants">Cargo</a></li>
+                    <li><a href="/wiki/Chaps" title="Chaps">Chaps</a></li>
+                    <li><a href="/wiki/Formal_trousers" title="Formal trousers">Formal</a></li>
+                    <li><a href="/wiki/High-rise_(fashion)" title="High-rise (fashion)">High water</a></li>
+                    <li><a href="/wiki/Low-rise_(fashion)" title="Low-rise (fashion)">Lowrise</a></li>
+                    <li><a href="/wiki/Jeans" title="Jeans">Jeans</a></li>
+                    <li><a href="/wiki/Jodhpurs" title="Jodhpurs">Jodhpurs</a></li>
+                    <li><a href="/wiki/Overalls" title="Overalls">Overalls</a></li>
+                    <li><a href="/wiki/Palazzo_pants" title="Palazzo pants">Palazzo</a></li>
+                    <li><a href="/wiki/Parachute_pants" title="Parachute pants">Parachute</a></li>
+                    <li><a href="/wiki/Pedal_pushers" title="Pedal pushers">Pedal pushers</a></li>
+                    <li><a href="/wiki/Phat_pants" title="Phat pants">Phat</a></li>
+                    <li><a href="/wiki/Shorts" title="Shorts">Shorts</a>
+                        <ul><li><a href="/wiki/Bermuda_shorts" title="Bermuda shorts">Bermuda</a></li>
+                            <li><a href="/wiki/Cycling_shorts" title="Cycling shorts">Cycling</a></li>
+                            <li><a href="/wiki/Dolphin_shorts" title="Dolphin shorts">Dolphin</a></li>
+                            <li><a href="/wiki/Gym_shorts" title="Gym shorts">Gym</a></li>
+                            <li><a href="/wiki/Hotpants" title="Hotpants">Hotpants</a></li>
+                            <li><a href="/wiki/Running_shorts" title="Running shorts">Running</a></li></ul></li>
+                    <li><a href="/wiki/Slim-fit_pants" title="Slim-fit pants">Slim-fit</a></li>
+                    <li><a href="/wiki/Sweatpants" title="Sweatpants">Sweatpants</a></li>
+                    <li><a href="/wiki/Windpants" class="mw-redirect" title="Windpants">Windpants</a></li>
+                    <li><a href="/wiki/Yoga_pants" title="Yoga pants">Yoga pants</a></li></ul>
+            </div></td></tr><tr style="display: none;"><th scope="row" class="navbox-group" style="width:1%"><a href="/wiki/Suit" title="Suit">Suits</a> and<br><a href="/wiki/Uniform" title="Uniform">uniforms</a></th><td class="navbox-list navbox-odd hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px"><div style="padding:0em 0.25em">
+                <ul><li><a href="/wiki/Ceremonial_dress" title="Ceremonial dress">Ceremonial dress</a>
+                    <ul><li><a href="/wiki/Academic_dress" title="Academic dress">Academic</a></li>
+                        <li><a href="/wiki/Court_dress" title="Court dress">Court</a></li>
+                        <li><a href="/wiki/Diplomatic_uniform" title="Diplomatic uniform">Diplomatic</a></li></ul></li>
+                    <li><a href="/wiki/Folk_costume" title="Folk costume">Folk</a></li>
+                    <li><a href="/wiki/Jumpsuit" title="Jumpsuit">Jumpsuit</a></li>
+                    <li><a href="/wiki/Military_uniform" title="Military uniform">Military</a>
+                        <ul><li><a href="/wiki/Full_dress_uniform" title="Full dress uniform">Full</a></li>
+                            <li><a href="/wiki/Mess_dress_uniform" title="Mess dress uniform">Mess</a></li>
+                            <li><a href="/wiki/Service_dress_uniform" title="Service dress uniform">Service</a>
+                                <ul><li><a href="/wiki/Sailor_suit" title="Sailor suit">Sailor</a></li></ul></li>
+                            <li><a href="/wiki/Combat_uniform" title="Combat uniform">Combat</a></li></ul></li>
+                    <li><a href="/wiki/Pantsuit" title="Pantsuit">Pantsuit</a></li>
+                    <li><a href="/wiki/Religious_clothing" title="Religious clothing">Religious</a>
+                        <ul><li><a href="/wiki/Cassock" title="Cassock">Cassock</a></li>
+                            <li><a href="/wiki/Clerical_clothing" title="Clerical clothing">Clerical</a></li>
+                            <li><a href="/wiki/Vestment" title="Vestment">Vestment</a></li></ul></li>
+                    <li><a href="/wiki/School_uniform" title="School uniform">School</a></li>
+                    <li><a href="/wiki/Prison_uniform" title="Prison uniform">Prison</a></li>
+                    <li><a href="/wiki/Workwear" title="Workwear">Workwear</a>
+                        <ul><li><a href="/wiki/Boilersuit" title="Boilersuit">Boilersuit</a></li>
+                            <li><a href="/wiki/Cleanroom_suit" title="Cleanroom suit">Cleanroom</a></li>
+                            <li><a href="/wiki/Hazmat_suit" title="Hazmat suit">Hazmat</a></li>
+                            <li><a href="/wiki/Space_suit" title="Space suit">Space</a></li>
+                            <li><a href="/wiki/Scrubs_(clothing)" title="Scrubs (clothing)">Scrubs</a></li></ul></li></ul>
+            </div></td></tr><tr style="display: none;"><th scope="row" class="navbox-group" style="width:1%"><a href="/wiki/Dress" title="Dress">Dresses</a><br>and <a href="/wiki/Gown" title="Gown">gowns</a></th><td class="navbox-list navbox-odd hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px"><div style="padding:0em 0.25em"></div><table class="nowraplinks navbox-subgroup" style="border-spacing:0"><tbody><tr><th scope="row" class="navbox-group" style="width:1%">Formal, semi-<br>formal, informal</th><td class="navbox-list navbox-even" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px"><div style="padding:0em 0.25em">
+                <ul><li><a href="/wiki/Backless_dress" title="Backless dress">Backless</a></li>
+                    <li><a href="/wiki/Bouffant_gown" title="Bouffant gown">Bouffant gown</a></li>
+                    <li><a href="/wiki/Coatdress" title="Coatdress">Coatdress</a></li>
+                    <li><a href="/wiki/Cocktail_dress" title="Cocktail dress">Cocktail</a>
+                        <ul><li><a href="/wiki/Little_black_dress" title="Little black dress">Little black</a></li></ul></li>
+                    <li><a href="/wiki/Coronation_gown" title="Coronation gown">Coronation</a></li>
+                    <li><a href="/wiki/Evening_gown" title="Evening gown">Evening</a>
+                        <ul><li><a href="/wiki/Ball_gown" title="Ball gown">Ball gown</a></li>
+                            <li><a href="/wiki/D%C3%A9butante_dress" class="mw-redirect" title="Débutante dress">Debutante</a></li></ul></li>
+                    <li><a href="/wiki/Princess_line" title="Princess line">Princess line</a></li>
+                    <li><a href="/wiki/Strapless_dress" title="Strapless dress">Strapless</a></li>
+                    <li><a href="/wiki/Wedding_dress" title="Wedding dress">Wedding</a></li>
+                    <li><a href="/wiki/Wrap_dress" title="Wrap dress">Wrap</a></li></ul>
+            </div></td></tr><tr><th scope="row" class="navbox-group" style="width:1%">Casual</th><td class="navbox-list navbox-odd" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px"><div style="padding:0em 0.25em">
+                <ul><li><a href="/wiki/House_dress" title="House dress">House</a></li>
+                    <li><a href="/wiki/Jumper_(dress)" title="Jumper (dress)">Jumper</a></li>
+                    <li><a href="/wiki/Romper_suit" title="Romper suit">Romper suit</a></li>
+                    <li><a href="/wiki/Sheath_dress" title="Sheath dress">Sheath</a></li>
+                    <li><a href="/wiki/Shirtdress" title="Shirtdress">Shirtdress</a></li>
+                    <li><a href="/wiki/Slip_dress" title="Slip dress">Slip</a></li>
+                    <li><a href="/wiki/Sundress" title="Sundress">Sundress</a></li></ul>
+            </div></td></tr></tbody></table><div></div></td></tr><tr style="display: none;"><th scope="row" class="navbox-group" style="width:1%"><a href="/wiki/Skirt" title="Skirt">Skirts</a></th><td class="navbox-list navbox-even hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px"><div style="padding:0em 0.25em">
+                <ul><li><a href="/wiki/A-line_(clothing)" title="A-line (clothing)">A-line</a></li>
+                    <li><a href="/wiki/Ballerina_skirt" title="Ballerina skirt">Ballerina</a></li>
+                    <li><a href="/wiki/Denim_skirt" title="Denim skirt">Denim</a></li>
+                    <li><a href="/wiki/Men%27s_skirts" title="Men's skirts">Men's</a></li>
+                    <li><a href="/wiki/Miniskirt" title="Miniskirt">Miniskirt</a></li>
+                    <li><a href="/wiki/Pencil_skirt" title="Pencil skirt">Pencil</a></li>
+                    <li><a href="/wiki/Prairie_skirt" class="mw-redirect" title="Prairie skirt">Prairie</a></li>
+                    <li><a href="/wiki/Rah-rah_skirt" title="Rah-rah skirt">Rah-rah</a></li>
+                    <li><a href="/wiki/Sarong" title="Sarong">Sarong</a></li>
+                    <li><a href="/wiki/Skort" title="Skort">Skort</a></li>
+                    <li><a href="/wiki/Tutu_(clothing)" title="Tutu (clothing)">Tutu</a></li>
+                    <li><a href="/wiki/Wrap_(clothing)" title="Wrap (clothing)">Wrap</a></li></ul>
+            </div></td></tr><tr style="display: none;"><th scope="row" class="navbox-group" style="width:1%"><a href="/wiki/Undergarment" title="Undergarment">Underwear</a><br> and <a href="/wiki/Lingerie" title="Lingerie">lingerie</a></th><td class="navbox-list navbox-odd hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px"><div style="padding:0em 0.25em"></div><table class="nowraplinks navbox-subgroup" style="border-spacing:0"><tbody><tr><th scope="row" class="navbox-group" style="width:1%">Top</th><td class="navbox-list navbox-odd" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px"><div style="padding:0em 0.25em">
+                <ul><li><a href="/wiki/Bra" title="Bra">Bra</a></li>
+                    <li><a href="/wiki/Camisole" title="Camisole">Camisole</a></li>
+                    <li><a href="/wiki/Undershirt" title="Undershirt">Undershirt</a></li></ul>
+            </div></td></tr><tr><th scope="row" class="navbox-group" style="width:1%">Bottom</th><td class="navbox-list navbox-even" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px"><div style="padding:0em 0.25em">
+                <ul><li><a href="/wiki/Diaper" title="Diaper">Diaper</a></li>
+                    <li><a href="/wiki/Leggings" title="Leggings">Leggings</a></li>
+                    <li><a href="/wiki/Panties" title="Panties">Panties</a></li>
+                    <li><a href="/wiki/Plastic_pants" title="Plastic pants">Plastic pants</a></li>
+                    <li><a href="/wiki/Slip_(clothing)" title="Slip (clothing)">Slip</a></li>
+                    <li><a href="/wiki/Thong" title="Thong">Thong</a></li>
+                    <li><a href="/wiki/Underpants" title="Underpants">Underpants</a>
+                        <ul><li><a href="/wiki/Boxer_briefs" title="Boxer briefs">Boxer briefs</a></li>
+                            <li><a href="/wiki/Boxer_shorts" title="Boxer shorts">Boxer shorts</a></li>
+                            <li><a href="/wiki/Briefs" title="Briefs">Briefs</a></li></ul></li></ul>
+            </div></td></tr><tr><th scope="row" class="navbox-group" style="width:1%">Full</th><td class="navbox-list navbox-odd" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px"><div style="padding:0em 0.25em">
+                <ul><li><a href="/wiki/Bodysuit" title="Bodysuit">Bodysuit, adult</a></li>
+                    <li><a href="/wiki/Infant_bodysuit" title="Infant bodysuit">Bodysuit, infant</a></li>
+                    <li><a href="/wiki/Long_underwear" title="Long underwear">Long underwear</a></li>
+                    <li><a href="/wiki/See-through_clothing" title="See-through clothing">See-through</a></li>
+                    <li><a href="/wiki/Teddy_(garment)" title="Teddy (garment)">Teddy</a></li></ul>
+            </div></td></tr></tbody></table><div></div></td></tr><tr style="display: none;"><th scope="row" class="navbox-group" style="width:1%"><a href="/wiki/Coat_(clothing)" class="mw-redirect" title="Coat (clothing)">Coats</a><br>and<br><a href="/wiki/List_of_outerwear" title="List of outerwear">outerwear</a></th><td class="navbox-list navbox-odd hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px"><div style="padding:0em 0.25em"></div><table class="nowraplinks navbox-subgroup" style="border-spacing:0"><tbody><tr><td colspan="2" class="navbox-list navbox-odd" style="width:100%;padding:0px"><div style="padding:0em 0.25em"></div><table class="nowraplinks navbox-subgroup" style="border-spacing:0"><tbody><tr><th id="Overcoats" scope="row" class="navbox-group" style="width:1%"><a href="/wiki/Overcoat" title="Overcoat">Overcoats</a></th><td class="navbox-list navbox-even" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px"><div style="padding:0em 0.25em">
+                <ul><li><a href="/wiki/Car_coat" title="Car coat">Car</a></li>
+                    <li><a href="/wiki/Chesterfield_coat" title="Chesterfield coat">Chesterfield</a></li>
+                    <li><a href="/wiki/Covert_coat" title="Covert coat">Covert</a></li>
+                    <li><a href="/wiki/Duffel_coat" title="Duffel coat">Duffel</a></li>
+                    <li><a href="/wiki/Duster_(clothing)" title="Duster (clothing)">Duster</a></li>
+                    <li><a href="/wiki/Greatcoat" title="Greatcoat">Greatcoat</a>
+                        <ul><li><a href="/wiki/British_Warm" title="British Warm">British Warm</a></li>
+                            <li><a href="/wiki/Guards_Coat" title="Guards Coat">Guards Coat</a></li></ul></li>
+                    <li><a href="/wiki/Greca_(clothing)" title="Greca (clothing)">Greca</a></li>
+                    <li><a href="/wiki/Over-frock_coat" title="Over-frock coat">Over-frock</a></li>
+                    <li><a href="/wiki/Riding_coat" title="Riding coat">Riding</a>
+                        <ul><li><a href="/wiki/Shadbelly" title="Shadbelly">Shadbelly</a></li></ul></li>
+                    <li><a href="/wiki/Trench_coat" title="Trench coat">Trench</a></li>
+                    <li><a href="/wiki/Ulster_coat" title="Ulster coat">Ulster</a></li>
+                    <li><a href="/wiki/Cloak" title="Cloak">Cloak</a>
+                        <ul><li><a href="/wiki/Opera_cloak" title="Opera cloak">Opera</a></li></ul></li>
+                    <li><a href="/wiki/Paletot" title="Paletot">Paletot</a></li>
+                    <li><a href="/wiki/Pea_coat" title="Pea coat">Pea</a></li>
+                    <li><a href="/wiki/Polo_coat" title="Polo coat">Polo</a></li>
+                    <li><a href="/wiki/Raincoat" title="Raincoat">Raincoat</a>
+                        <ul><li><a href="/wiki/Mackintosh" title="Mackintosh">Mackintosh</a></li></ul></li></ul>
+            </div></td></tr><tr><th scope="row" class="navbox-group" style="width:1%">Suit coats</th><td class="navbox-list navbox-odd" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px"><div style="padding:0em 0.25em">
+                <ul><li><a href="/wiki/Frock_coat" title="Frock coat">Frock coat</a>
+                    <ul><li><a href="/wiki/Bekishe" title="Bekishe">Bekishe</a></li>
+                        <li><a href="/wiki/Rekel" title="Rekel">Rekel</a></li></ul></li>
+                    <li><a href="/wiki/Mess_jacket" title="Mess jacket">Mess jacket</a></li>
+                    <li><a href="/wiki/Suit_jacket" title="Suit jacket">Suit jacket</a>
+                        <ul><li><a href="/wiki/Blazer" title="Blazer">Blazer</a></li>
+                            <li><a href="/wiki/Smoking_jacket" title="Smoking jacket">Smoking</a></li>
+                            <li><a href="/wiki/Sport_coat" title="Sport coat">Sports</a></li>
+                            <li><a href="/wiki/Teba_jacket" title="Teba jacket">Teba</a></li></ul></li>
+                    <li><a href="/wiki/Tailcoat" title="Tailcoat">Tailcoat</a>
+                        <ul><li><a href="/wiki/White_tie#Dress_coat" title="White tie">Dress</a></li>
+                            <li><a href="/wiki/Morning_dress#Morning_coat" title="Morning dress">Morning</a></li></ul></li></ul>
+            </div></td></tr></tbody></table><div></div></td></tr><tr><th scope="row" class="navbox-group" style="width:1%">Other</th><td class="navbox-list navbox-even" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px"><div style="padding:0em 0.25em">
+                <ul><li><a href="/wiki/Apron" title="Apron">Apron</a>
+                    <ul><li><a href="/wiki/Pinafore" title="Pinafore">Pinafore</a></li></ul></li>
+                    <li><a href="/wiki/Blouson" title="Blouson">Blouson</a></li>
+                    <li><a href="/wiki/Cagoule" title="Cagoule">Cagoule</a></li>
+                    <li><a href="/wiki/Cape" title="Cape">Cape</a>
+                        <ul><li><a href="/wiki/Ferraiolo" title="Ferraiolo">Ferraiolo</a></li>
+                            <li><a href="/wiki/Inverness_cape" title="Inverness cape">Inverness</a></li>
+                            <li><a href="/wiki/Mantle_(monastic_vesture)" title="Mantle (monastic vesture)">Mantle, Monastic</a></li>
+                            <li><a href="/wiki/Mantle_(royal_garment)" title="Mantle (royal garment)">Mantle, Royal</a></li>
+                            <li><a href="/wiki/Mozzetta" title="Mozzetta">Mozzetta</a></li>
+                            <li><a href="/wiki/Pellegrina" title="Pellegrina">Pellegrina</a></li></ul></li>
+                    <li><a href="/wiki/Coatee" title="Coatee">Coatee</a></li>
+                    <li><a href="/wiki/Cut-off" title="Cut-off">Cut-off</a></li>
+                    <li><a href="/wiki/Gilet" title="Gilet">Gilet</a></li>
+                    <li><a class="mw-selflink selflink">Jacket</a>
+                        <ul><li><a href="/wiki/Flight_jacket" title="Flight jacket">Flight</a></li>
+                            <li><a href="/wiki/Goggle_jacket" title="Goggle jacket">Goggle</a></li>
+                            <li><a href="/wiki/Harrington_jacket" title="Harrington jacket">Harrington</a></li>
+                            <li><a href="/wiki/Leather_jacket" title="Leather jacket">Leather</a></li>
+                            <li><a href="/wiki/Norfolk_jacket" title="Norfolk jacket">Norfolk</a></li>
+                            <li><a href="/wiki/Safari_jacket" title="Safari jacket">Safari</a></li></ul></li>
+                    <li><a href="/wiki/Jerkin_(garment)" class="mw-redirect" title="Jerkin (garment)">Jerkin</a></li>
+                    <li><a href="/wiki/White_coat" title="White coat">Lab coat</a></li>
+                    <li><a href="/wiki/Parka" title="Parka">Parka</a></li>
+                    <li><a href="/wiki/Poncho" title="Poncho">Poncho</a></li>
+                    <li><a href="/wiki/Robe" title="Robe">Robe</a>
+                        <ul><li><a href="/wiki/Bathrobe" title="Bathrobe">Bathrobe</a></li>
+                            <li><a href="/wiki/Dressing_gown" title="Dressing gown">Dressing gown</a></li></ul></li>
+                    <li><a href="/wiki/Shawl" title="Shawl">Shawl</a></li>
+                    <li><a href="/wiki/Ski_suit" title="Ski suit">Ski suit</a></li>
+                    <li><a href="/wiki/Sleeved_blanket" title="Sleeved blanket">Sleeved blanket</a></li>
+                    <li><a href="/wiki/Windbreaker" title="Windbreaker">Windbreaker</a></li></ul>
+            </div></td></tr></tbody></table><div></div></td></tr><tr style="display: none;"><th scope="row" class="navbox-group" style="width:1%"><a href="/wiki/Nightwear" title="Nightwear">Nightwear</a></th><td class="navbox-list navbox-odd hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px"><div style="padding:0em 0.25em">
+                <ul><li><a href="/wiki/Babydoll" title="Babydoll">Babydoll</a></li>
+                    <li><a href="/wiki/Babygrow" title="Babygrow">Babygrow</a></li>
+                    <li><a href="/wiki/Blanket_sleeper" title="Blanket sleeper">Blanket sleeper</a></li>
+                    <li><a href="/wiki/Negligee" title="Negligee">Negligee</a></li>
+                    <li><a href="/wiki/Nightgown" title="Nightgown">Nightgown</a></li>
+                    <li><a href="/wiki/Nightshirt" title="Nightshirt">Nightshirt</a></li>
+                    <li><a href="/wiki/Pajamas" title="Pajamas">Pajamas</a></li></ul>
+            </div></td></tr><tr style="display: none;"><th scope="row" class="navbox-group" style="width:1%"><a href="/wiki/Swimsuit" title="Swimsuit">Swimwear</a></th><td class="navbox-list navbox-even hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px"><div style="padding:0em 0.25em">
+                <ul><li><a href="/wiki/Bikini" title="Bikini">Bikini</a></li>
+                    <li><a href="/wiki/Burkini" title="Burkini">Burkini</a></li>
+                    <li><a href="/wiki/Boardshorts" title="Boardshorts">Boardshorts</a></li>
+                    <li><a href="/wiki/Dry_suit" title="Dry suit">Dry suit</a></li>
+                    <li><a href="/wiki/Monokini" title="Monokini">Monokini</a></li>
+                    <li><a href="/wiki/One-piece_swimsuit" title="One-piece swimsuit">One-piece</a></li>
+                    <li><a href="/wiki/Rash_guard" title="Rash guard">Rash guard</a></li>
+                    <li><a href="/wiki/Sling_swimsuit" title="Sling swimsuit">Sling</a></li>
+                    <li><a href="/wiki/Square_leg_suit" class="mw-redirect" title="Square leg suit">Square leg suit</a></li>
+                    <li><a href="/wiki/Swim_briefs" title="Swim briefs">Swim briefs</a></li>
+                    <li><a href="/wiki/Swim_diaper" title="Swim diaper">Swim diaper</a></li>
+                    <li><a href="/wiki/Trunks_(clothing)" class="mw-redirect" title="Trunks (clothing)">Trunks</a></li>
+                    <li><a href="/wiki/Wetsuit" title="Wetsuit">Wetsuit</a></li></ul>
+            </div></td></tr><tr style="display: none;"><th scope="row" class="navbox-group" style="width:1%"><a href="/wiki/Footwear" title="Footwear">Footwear</a></th><td class="navbox-list navbox-odd hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px"><div style="padding:0em 0.25em">
+                <ul><li><a href="/wiki/Boot" title="Boot">Boot</a></li>
+                    <li><a href="/wiki/Court_shoe" title="Court shoe">Court shoe</a></li>
+                    <li><a href="/wiki/Dress_boot" title="Dress boot">Dress boot</a></li>
+                    <li><a href="/wiki/Dress_shoe" title="Dress shoe">Dress shoe</a></li>
+                    <li><a href="/wiki/Flip-flops" title="Flip-flops">Flip-flops</a></li>
+                    <li><a href="/wiki/Sandal" title="Sandal">Sandal</a></li>
+                    <li><a href="/wiki/Shoe" title="Shoe">Shoe</a></li>
+                    <li><a href="/wiki/Slipper" title="Slipper">Slipper</a></li>
+                    <li><a href="/wiki/Sneakers" title="Sneakers">Sneakers</a></li></ul>
+            </div></td></tr><tr style="display: none;"><th scope="row" class="navbox-group" style="width:1%"><a href="/wiki/Hosiery" title="Hosiery">Hosiery</a></th><td class="navbox-list navbox-even hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px"><div style="padding:0em 0.25em">
+                <ul><li><a href="/wiki/Sock" title="Sock">Sock</a></li>
+                    <li><a href="/wiki/Hold-ups" title="Hold-ups">Hold-ups</a></li>
+                    <li><a href="/wiki/Garter" title="Garter">Garter</a></li>
+                    <li><a href="/wiki/Pantyhose" title="Pantyhose">Pantyhose</a></li>
+                    <li><a href="/wiki/Stocking" title="Stocking">Stocking</a></li>
+                    <li><a href="/wiki/Tights" title="Tights">Tights</a></li></ul>
+            </div></td></tr><tr style="display: none;"><th scope="row" class="navbox-group" style="width:1%"><a href="/wiki/Fashion_accessory" title="Fashion accessory">Accessories</a></th><td class="navbox-list navbox-odd hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px"><div style="padding:0em 0.25em">
+                <ul><li><a href="/wiki/Belt_(clothing)" title="Belt (clothing)">Belt</a></li>
+                    <li><a href="/wiki/Boutonni%C3%A8re" title="Boutonnière">Boutonnière</a></li>
+                    <li><a href="/wiki/Coin_purse" title="Coin purse">Coin purse</a></li>
+                    <li><a href="/wiki/Cufflink" title="Cufflink">Cufflink</a></li>
+                    <li><a href="/wiki/Cummerbund" title="Cummerbund">Cummerbund</a></li>
+                    <li><a href="/wiki/Gaiters" title="Gaiters">Gaiters</a></li>
+                    <li><a href="/wiki/Glasses" title="Glasses">Glasses</a></li>
+                    <li><a href="/wiki/Glove" title="Glove">Gloves</a></li>
+                    <li><a href="/wiki/Headband" title="Headband">Headband</a></li>
+                    <li><a href="/wiki/Handbag" title="Handbag">Handbag</a></li>
+                    <li><a href="/wiki/Jewellery" title="Jewellery">Jewellery</a></li>
+                    <li><a href="/wiki/Livery" title="Livery">Livery</a></li>
+                    <li><a href="/wiki/Muff_(handwarmer)" title="Muff (handwarmer)">Muff</a></li>
+                    <li><a href="/wiki/Pocket_protector" title="Pocket protector">Pocket protector</a></li>
+                    <li><a href="/wiki/Pocket_watch" title="Pocket watch">Pocket watch</a></li>
+                    <li><a href="/wiki/Sash" title="Sash">Sash</a></li>
+                    <li><a href="/wiki/Spats_(footwear)" title="Spats (footwear)">Spats</a></li>
+                    <li><a href="/wiki/Sunglasses" title="Sunglasses">Sunglasses</a></li>
+                    <li><a href="/wiki/Suspenders" title="Suspenders">Suspenders</a></li>
+                    <li><a href="/wiki/Umbrella" title="Umbrella">Umbrella</a></li>
+                    <li><a href="/wiki/Wallet" title="Wallet">Wallet</a></li>
+                    <li><a href="/wiki/Watch" title="Watch">Watch</a></li></ul>
+            </div></td></tr><tr style="display: none;"><th scope="row" class="navbox-group" style="width:1%"><a href="/wiki/Dress_code" title="Dress code">Dress codes</a></th><td class="navbox-list navbox-odd hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px"><div style="padding:0em 0.25em"></div><table class="nowraplinks navbox-subgroup" style="border-spacing:0"><tbody><tr><th id="Western" scope="row" class="navbox-group" style="width:1%"><a href="/wiki/Western_dress_codes" title="Western dress codes">Western</a></th><td class="navbox-list navbox-even" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px"><div style="padding:0em 0.25em">
+                <ul><li><a href="/wiki/Formal_wear" title="Formal wear">Formal</a>
+                    <ul><li><a href="/wiki/Morning_dress" title="Morning dress">Morning dress</a></li>
+                        <li><a href="/wiki/White_tie" title="White tie">White tie</a></li></ul></li>
+                    <li><a href="/wiki/Semi-formal_wear" title="Semi-formal wear">Semi-formal</a>
+                        <ul><li><a href="/wiki/Black_lounge_suit" title="Black lounge suit">Black lounge suit</a></li>
+                            <li><a href="/wiki/Black_tie" title="Black tie">Black tie</a></li></ul></li>
+                    <li><a href="/wiki/Informal_wear" title="Informal wear">Informal</a></li>
+                    <li><a href="/wiki/Casual_wear" title="Casual wear">Casual</a></li></ul>
+            </div></td></tr></tbody></table><div></div></td></tr><tr style="display: none;"><th scope="row" class="navbox-group" style="width:1%">Related</th><td class="navbox-list navbox-odd hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px"><div style="padding:0em 0.25em">
+                <ul><li><a href="/wiki/Clothing_fetish" title="Clothing fetish">Clothing fetish</a></li>
+                    <li><a href="/wiki/Cross-dressing" title="Cross-dressing">Cross-dressing</a></li>
+                    <li><a href="/wiki/Fashion" title="Fashion">Fashion</a>
+                        <ul><li><a href="/wiki/Haute_couture" title="Haute couture">Haute couture</a></li>
+                            <li><a href="/wiki/Made-to-measure" title="Made-to-measure">Made-to-measure</a></li>
+                            <li><a href="/wiki/Ready-to-wear" title="Ready-to-wear">Ready-to-wear</a></li></ul></li>
+                    <li><a href="/wiki/Clothing_laws_by_country" title="Clothing laws by country">Laws</a></li>
+                    <li><a href="/wiki/Clothing_terminology" title="Clothing terminology">Terminology</a></li></ul>
+            </div></td></tr><tr style="display: none;"><td class="navbox-abovebelow" colspan="2"><div><a href="/wiki/File:Emojione_1F458.svg" class="image"><img alt="Emojione 1F458.svg" src="//upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Emojione_1F458.svg/28px-Emojione_1F458.svg.png" decoding="async" width="28" height="28" class="noviewer" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Emojione_1F458.svg/42px-Emojione_1F458.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Emojione_1F458.svg/56px-Emojione_1F458.svg.png 2x" data-file-width="512" data-file-height="512"></a>&nbsp;<a href="/wiki/Portal:Clothing" title="Portal:Clothing">Clothing portal</a></div></td></tr></tbody></table></div>
+            <div role="navigation" class="navbox authority-control" aria-labelledby="Authority_control:_National_libraries_frameless_&amp;#124;text-top_&amp;#124;10px_&amp;#124;alt=Edit_this_at_Wikidata_&amp;#124;link=https&amp;#58;//www.wikidata.org/wiki/Q849964#identifiers&amp;#124;Edit_this_at_Wikidata" style="padding:3px"><table class="nowraplinks hlist navbox-inner" style="border-spacing:0;background:transparent;color:inherit"><tbody><tr><th id="Authority_control:_National_libraries_frameless_&amp;#124;text-top_&amp;#124;10px_&amp;#124;alt=Edit_this_at_Wikidata_&amp;#124;link=https&amp;#58;//www.wikidata.org/wiki/Q849964#identifiers&amp;#124;Edit_this_at_Wikidata" scope="row" class="navbox-group" style="width:1%"><a href="/wiki/Help:Authority_control" title="Help:Authority control">Authority control: National libraries</a>  <a href="https://www.wikidata.org/wiki/Q849964#identifiers" title="Edit this at Wikidata"><img alt="Edit this at Wikidata" src="//upload.wikimedia.org/wikipedia/en/thumb/8/8a/OOjs_UI_icon_edit-ltr-progressive.svg/10px-OOjs_UI_icon_edit-ltr-progressive.svg.png" decoding="async" width="10" height="10" style="vertical-align: text-top" srcset="//upload.wikimedia.org/wikipedia/en/thumb/8/8a/OOjs_UI_icon_edit-ltr-progressive.svg/15px-OOjs_UI_icon_edit-ltr-progressive.svg.png 1.5x, //upload.wikimedia.org/wikipedia/en/thumb/8/8a/OOjs_UI_icon_edit-ltr-progressive.svg/20px-OOjs_UI_icon_edit-ltr-progressive.svg.png 2x" data-file-width="20" data-file-height="20"></a></th><td class="navbox-list navbox-odd" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px"><div style="padding:0em 0.25em">
+                <ul><li><span class="uid"><a rel="nofollow" class="external text" href="https://id.loc.gov/authorities/subjects/sh96009373">United States</a></span></li></ul>
+            </div></td></tr></tbody></table></div>
+            <!--
+            NewPP limit report
+            Parsed by mw1455
+            Cached time: 20211102195600
+            Cache expiry: 1814400
+            Reduced expiry: false
+            Complications: [vary‐revision‐sha1]
+            CPU time usage: 0.382 seconds
+            Real time usage: 0.528 seconds
+            Preprocessor visited node count: 784/1000000
+            Post‐expand include size: 67861/2097152 bytes
+            Template argument size: 478/2097152 bytes
+            Highest expansion depth: 11/40
+            Expensive parser function count: 2/500
+            Unstrip recursion depth: 1/20
+            Unstrip post‐expand size: 12162/5000000 bytes
+            Lua time usage: 0.175/10.000 seconds
+            Lua memory usage: 4846590/52428800 bytes
+            Number of Wikibase entities loaded: 1/400
+            -->
+            <!--
+            Transclusion expansion time report (%,ms,calls,template)
+            100.00%  388.182      1 -total
+             28.98%  112.488      1 Template:Reflist
+             27.41%  106.396      1 Template:Short_description
+             20.02%   77.695      1 Template:Cite_book
+             15.32%   59.480      6 Template:Navbox
+             14.20%   55.112      1 Template:Clothing
+             13.85%   53.758      1 Template:Pagetype
+             10.44%   40.520      1 Template:Authority_control
+              9.82%   38.106      3 Template:Main_other
+              9.09%   35.302      1 Template:Commons_category-inline
+            -->
+
+            <!-- Saved in parser cache with key enwiki:pcache:idhash:679878-0!canonical and timestamp 20211102195600 and revision id 1051415336. Serialized with JSON.
+             -->
+        </div><noscript><img src="//en.wikipedia.org/wiki/Special:CentralAutoLogin/start?type=1x1" alt="" title="" width="1" height="1" style="border: none; position: absolute;" /></noscript>
+            <div class="printfooter">Retrieved from "<a dir="ltr" href="https://en.wikipedia.org/w/index.php?title=Jacket&amp;oldid=1051415336">https://en.wikipedia.org/w/index.php?title=Jacket&amp;oldid=1051415336</a>"</div></div>
+        <div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/wiki/Help:Category" title="Help:Category">Categories</a>: <ul><li><a href="/wiki/Category:Jackets" title="Category:Jackets">Jackets</a></li><li><a href="/wiki/Category:History_of_clothing_(Western_fashion)" title="Category:History of clothing (Western fashion)">History of clothing (Western fashion)</a></li></ul></div><div id="mw-hidden-catlinks" class="mw-hidden-catlinks mw-hidden-cats-hidden">Hidden categories: <ul><li><a href="/wiki/Category:Articles_with_short_description" title="Category:Articles with short description">Articles with short description</a></li><li><a href="/wiki/Category:Short_description_matches_Wikidata" title="Category:Short description matches Wikidata">Short description matches Wikidata</a></li><li><a href="/wiki/Category:Commons_category_link_is_on_Wikidata" title="Category:Commons category link is on Wikidata">Commons category link is on Wikidata</a></li><li><a href="/wiki/Category:Articles_with_LCCN_identifiers" title="Category:Articles with LCCN identifiers">Articles with LCCN identifiers</a></li></ul></div></div>
+    </div>
+</div>
+<div id="mw-data-after-content">
+    <div class="read-more-container"></div>
+</div>
+
+<div id="mw-navigation">
+    <h2>Navigation menu</h2>
+    <div id="mw-head">
+        <nav id="p-personal" class="mw-portlet mw-portlet-personal vector-user-menu-legacy vector-menu" aria-labelledby="p-personal-label" role="navigation">
+            <h3 id="p-personal-label" aria-label="" class="vector-menu-heading">
+
+                <span>Personal tools</span>
+            </h3>
+            <div class="vector-menu-content">
+
+                <ul class="vector-menu-content-list"><li id="pt-anonuserpage" class="mw-list-item"><span>Not logged in</span></li><li id="pt-anontalk" class="mw-list-item"><a href="/wiki/Special:MyTalk" title="Discussion about edits from this IP address [alt-shift-n]" accesskey="n"><span>Talk</span></a></li><li id="pt-anoncontribs" class="mw-list-item"><a href="/wiki/Special:MyContributions" title="A list of edits made from this IP address [alt-shift-y]" accesskey="y"><span>Contributions</span></a></li><li id="pt-createaccount" class="mw-list-item"><a href="/w/index.php?title=Special:CreateAccount&amp;returnto=Jacket" title="You are encouraged to create an account and log in; however, it is not mandatory"><span>Create account</span></a></li><li id="pt-login" class="mw-list-item"><a href="/w/index.php?title=Special:UserLogin&amp;returnto=Jacket" title="You're encouraged to log in; however, it's not mandatory. [alt-shift-o]" accesskey="o"><span>Log in</span></a></li></ul>
+
+            </div>
+        </nav>
+
+        <div id="left-navigation">
+            <nav id="p-namespaces" class="mw-portlet mw-portlet-namespaces vector-menu vector-menu-tabs" aria-labelledby="p-namespaces-label" role="navigation">
+                <h3 id="p-namespaces-label" aria-label="" class="vector-menu-heading">
+
+                    <span>Namespaces</span>
+                </h3>
+                <div class="vector-menu-content">
+
+                    <ul class="vector-menu-content-list"><li id="ca-nstab-main" class="selected mw-list-item"><a href="/wiki/Jacket" title="View the content page [alt-shift-c]" accesskey="c"><span>Article</span></a></li><li id="ca-talk" class="mw-list-item"><a href="/wiki/Talk:Jacket" rel="discussion" title="Discuss improvements to the content page [alt-shift-t]" accesskey="t"><span>Talk</span></a></li></ul>
+
+                </div>
+            </nav>
+
+            <nav id="p-variants" class="mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown-noicon vector-menu vector-menu-dropdown" aria-labelledby="p-variants-label" role="navigation">
+                <input type="checkbox" id="p-variants-checkbox" role="button" aria-haspopup="true" data-event-name="ui.dropdown-p-variants" class="vector-menu-checkbox" aria-labelledby="p-variants-label">
+                <h3 id="p-variants-label" aria-label="Change language variant" class="vector-menu-heading">
+
+                    <span>Variants</span>
+                    <span class="vector-menu-checkbox-expanded">expanded</span>
+                    <span class="vector-menu-checkbox-collapsed">collapsed</span>
+                </h3>
+                <div class="vector-menu-content">
+
+                    <ul class="vector-menu-content-list"></ul>
+
+                </div>
+            </nav>
+
+        </div>
+        <div id="right-navigation">
+            <nav id="p-views" class="mw-portlet mw-portlet-views vector-menu vector-menu-tabs" aria-labelledby="p-views-label" role="navigation">
+                <h3 id="p-views-label" aria-label="" class="vector-menu-heading">
+
+                    <span>Views</span>
+                </h3>
+                <div class="vector-menu-content">
+
+                    <ul class="vector-menu-content-list"><li id="ca-view" class="selected mw-list-item collapsible"><a href="/wiki/Jacket"><span>Read</span></a></li><li id="ca-edit" class="mw-list-item collapsible"><a href="/w/index.php?title=Jacket&amp;action=edit" title="Edit this page [alt-shift-e]" accesskey="e"><span>Edit</span></a></li><li id="ca-history" class="mw-list-item collapsible" style="display: block;"><a href="/w/index.php?title=Jacket&amp;action=history" title="Past revisions of this page [alt-shift-h]" accesskey="h"><span>View history</span></a></li></ul>
+
+                </div>
+            </nav>
+
+            <nav id="p-cactions" class="mw-portlet mw-portlet-cactions vector-menu-dropdown-noicon vector-menu vector-menu-dropdown emptyPortlet" aria-labelledby="p-cactions-label" role="navigation" title="More options" style="">
+                <input type="checkbox" id="p-cactions-checkbox" role="button" aria-haspopup="true" data-event-name="ui.dropdown-p-cactions" class="vector-menu-checkbox" aria-labelledby="p-cactions-label">
+                <h3 id="p-cactions-label" aria-label="" class="vector-menu-heading" style="">
+
+                    <span>More</span>
+                    <span class="vector-menu-checkbox-expanded">expanded</span>
+                    <span class="vector-menu-checkbox-collapsed">collapsed</span>
+                </h3>
+                <div class="vector-menu-content">
+
+                    <ul class="vector-menu-content-list"></ul>
+
+                </div>
+            </nav>
+
+            <div id="p-search" role="search" class=" vector-search-box">
+                <div>
+                    <h3>
+                        <label for="searchInput">Search</label>
+                    </h3>
+                    <form action="/w/index.php" id="searchform" class="vector-search-box-form">
+                        <div id="simpleSearch" class="vector-search-box-inner" data-search-loc="header-navigation">
+                            <input class="vector-search-box-input" type="search" name="search" placeholder="Search Wikipedia" aria-label="Search Wikipedia" autocapitalize="sentences" title="Search Wikipedia [alt-shift-f]" accesskey="f" id="searchInput">
+                            <input type="hidden" name="title" value="Special:Search">
+                            <input id="mw-searchButton" class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search Wikipedia for this text" value="Search">
+                            <input id="searchButton" class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="mw-panel">
+        <div id="p-logo" role="banner">
+            <a class="mw-wiki-logo" href="/wiki/Main_Page" title="Visit the main page"></a>
+        </div>
+        <nav id="p-navigation" class="mw-portlet mw-portlet-navigation vector-menu vector-menu-portal portal" aria-labelledby="p-navigation-label" role="navigation">
+            <h3 id="p-navigation-label" aria-label="" class="vector-menu-heading">
+
+                <span>Navigation</span>
+            </h3>
+            <div class="vector-menu-content">
+
+                <ul class="vector-menu-content-list"><li id="n-mainpage-description" class="mw-list-item"><a href="/wiki/Main_Page" title="Visit the main page [alt-shift-z]" accesskey="z"><span>Main page</span></a></li><li id="n-contents" class="mw-list-item"><a href="/wiki/Wikipedia:Contents" title="Guides to browsing Wikipedia"><span>Contents</span></a></li><li id="n-currentevents" class="mw-list-item"><a href="/wiki/Portal:Current_events" title="Articles related to current events"><span>Current events</span></a></li><li id="n-randompage" class="mw-list-item"><a href="/wiki/Special:Random" title="Visit a randomly selected article [alt-shift-x]" accesskey="x"><span>Random article</span></a></li><li id="n-aboutsite" class="mw-list-item"><a href="/wiki/Wikipedia:About" title="Learn about Wikipedia and how it works"><span>About Wikipedia</span></a></li><li id="n-contactpage" class="mw-list-item"><a href="//en.wikipedia.org/wiki/Wikipedia:Contact_us" title="How to contact Wikipedia"><span>Contact us</span></a></li><li id="n-sitesupport" class="mw-list-item"><a href="https://donate.wikimedia.org/wiki/Special:FundraiserRedirector?utm_source=donate&amp;utm_medium=sidebar&amp;utm_campaign=C13_en.wikipedia.org&amp;uselang=en" title="Support us by donating to the Wikimedia Foundation"><span>Donate</span></a></li></ul>
+
+            </div>
+        </nav>
+
+        <nav id="p-interaction" class="mw-portlet mw-portlet-interaction vector-menu vector-menu-portal portal" aria-labelledby="p-interaction-label" role="navigation">
+            <h3 id="p-interaction-label" aria-label="" class="vector-menu-heading">
+
+                <span>Contribute</span>
+            </h3>
+            <div class="vector-menu-content">
+
+                <ul class="vector-menu-content-list"><li id="n-help" class="mw-list-item"><a href="/wiki/Help:Contents" title="Guidance on how to use and edit Wikipedia"><span>Help</span></a></li><li id="n-introduction" class="mw-list-item"><a href="/wiki/Help:Introduction" title="Learn how to edit Wikipedia"><span>Learn to edit</span></a></li><li id="n-portal" class="mw-list-item"><a href="/wiki/Wikipedia:Community_portal" title="The hub for editors"><span>Community portal</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="/wiki/Special:RecentChanges" title="A list of recent changes to Wikipedia [alt-shift-r]" accesskey="r"><span>Recent changes</span></a></li><li id="n-upload" class="mw-list-item"><a href="/wiki/Wikipedia:File_Upload_Wizard" title="Add images or other media for use on Wikipedia"><span>Upload file</span></a></li></ul>
+
+            </div>
+        </nav>
+        <nav id="p-tb" class="mw-portlet mw-portlet-tb vector-menu vector-menu-portal portal" aria-labelledby="p-tb-label" role="navigation">
+            <h3 id="p-tb-label" aria-label="" class="vector-menu-heading">
+
+                <span>Tools</span>
+            </h3>
+            <div class="vector-menu-content">
+
+                <ul class="vector-menu-content-list"><li id="t-whatlinkshere" class="mw-list-item"><a href="/wiki/Special:WhatLinksHere/Jacket" title="List of all English Wikipedia pages containing links to this page [alt-shift-j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="/wiki/Special:RecentChangesLinked/Jacket" rel="nofollow" title="Recent changes in pages linked from this page [alt-shift-k]" accesskey="k"><span>Related changes</span></a></li><li id="t-upload" class="mw-list-item"><a href="/wiki/Wikipedia:File_Upload_Wizard" title="Upload files [alt-shift-u]" accesskey="u"><span>Upload file</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="/wiki/Special:SpecialPages" title="A list of all special pages [alt-shift-q]" accesskey="q"><span>Special pages</span></a></li><li id="t-permalink" class="mw-list-item"><a href="/w/index.php?title=Jacket&amp;oldid=1051415336" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li><li id="t-info" class="mw-list-item"><a href="/w/index.php?title=Jacket&amp;action=info" title="More information about this page"><span>Page information</span></a></li><li id="t-cite" class="mw-list-item"><a href="/w/index.php?title=Special:CiteThisPage&amp;page=Jacket&amp;id=1051415336&amp;wpFormIdentifier=titleform" title="Information on how to cite this page"><span>Cite this page</span></a></li><li id="t-wikibase" class="mw-list-item"><a href="https://www.wikidata.org/wiki/Special:EntityPage/Q849964" title="Structured data on this page hosted by Wikidata [alt-shift-g]" accesskey="g"><span>Wikidata item</span></a></li></ul>
+
+            </div>
+        </nav>
+        <nav id="p-coll-print_export" class="mw-portlet mw-portlet-coll-print_export vector-menu vector-menu-portal portal" aria-labelledby="p-coll-print_export-label" role="navigation">
+            <h3 id="p-coll-print_export-label" aria-label="" class="vector-menu-heading">
+
+                <span>Print/export</span>
+            </h3>
+            <div class="vector-menu-content">
+
+                <ul class="vector-menu-content-list"><li id="coll-download-as-rl" class="mw-list-item"><a href="/w/index.php?title=Special:DownloadAsPdf&amp;page=Jacket&amp;action=show-download-screen" title="Download this page as a PDF file"><span>Download as PDF</span></a></li><li id="t-print" class="mw-list-item"><a href="/w/index.php?title=Jacket&amp;printable=yes" title="Printable version of this page [alt-shift-p]" accesskey="p"><span>Printable version</span></a></li></ul>
+
+            </div>
+        </nav>
+        <nav id="p-wikibase-otherprojects" class="mw-portlet mw-portlet-wikibase-otherprojects vector-menu vector-menu-portal portal" aria-labelledby="p-wikibase-otherprojects-label" role="navigation">
+            <h3 id="p-wikibase-otherprojects-label" aria-label="" class="vector-menu-heading">
+
+                <span>In other projects</span>
+            </h3>
+            <div class="vector-menu-content">
+
+                <ul class="vector-menu-content-list"><li class="wb-otherproject-link wb-otherproject-commons mw-list-item"><a href="https://commons.wikimedia.org/wiki/Category:Jackets" hreflang="en"><span>Wikimedia Commons</span></a></li></ul>
+
+            </div>
+        </nav>
+
+        <nav id="p-lang" class="mw-portlet mw-portlet-lang vector-menu vector-menu-portal portal" aria-labelledby="p-lang-label" role="navigation"><button class="uls-settings-trigger" title="Language settings"></button>
+            <h3 id="p-lang-label" aria-label="" class="vector-menu-heading">
+
+                <span>Languages</span>
+            </h3>
+            <div class="vector-menu-content">
+
+                <ul class="vector-menu-content-list"><li class="interlanguage-link interwiki-af mw-list-item" style="display: none;"><a href="https://af.wikipedia.org/wiki/Jas" title="Jas – Afrikaans" lang="af" hreflang="af" class="interlanguage-link-target"><span>Afrikaans</span></a></li><li class="interlanguage-link interwiki-ar mw-list-item" style=""><a href="https://ar.wikipedia.org/wiki/%D8%B3%D8%AA%D8%B1%D8%A9" title="سترة – Arabic" lang="ar" hreflang="ar" class="interlanguage-link-target"><span>العربية</span></a></li><li class="interlanguage-link interwiki-az mw-list-item" style="display: none;"><a href="https://az.wikipedia.org/wiki/G%C3%B6d%C9%99k%C3%A7%C9%99" title="Gödəkçə – Azerbaijani" lang="az" hreflang="az" class="interlanguage-link-target"><span>Azərbaycanca</span></a></li><li class="interlanguage-link interwiki-azb mw-list-item" style="display: none;"><a href="https://azb.wikipedia.org/wiki/%DA%98%D8%A7%DA%A9%D8%AA" title="ژاکت – South Azerbaijani" lang="azb" hreflang="azb" class="interlanguage-link-target"><span>تۆرکجه</span></a></li><li class="interlanguage-link interwiki-bjn mw-list-item" style="display: none;"><a href="https://bjn.wikipedia.org/wiki/Jak%C3%A9t" title="Jakét – Banjar" lang="bjn" hreflang="bjn" class="interlanguage-link-target"><span>Banjar</span></a></li><li class="interlanguage-link interwiki-bar mw-list-item" style="display: none;"><a href="https://bar.wikipedia.org/wiki/Janka" title="Janka – Bavarian" lang="bar" hreflang="bar" class="interlanguage-link-target"><span>Boarisch</span></a></li><li class="interlanguage-link interwiki-ca mw-list-item" style="display: none;"><a href="https://ca.wikipedia.org/wiki/Jaqueta" title="Jaqueta – Catalan" lang="ca" hreflang="ca" class="interlanguage-link-target"><span>Català</span></a></li><li class="interlanguage-link interwiki-cs mw-list-item" style="display: none;"><a href="https://cs.wikipedia.org/wiki/Bunda" title="Bunda – Czech" lang="cs" hreflang="cs" class="interlanguage-link-target"><span>Čeština</span></a></li><li class="interlanguage-link interwiki-sn mw-list-item" style="display: none;"><a href="https://sn.wikipedia.org/wiki/Bhachi" title="Bhachi – Shona" lang="sn" hreflang="sn" class="interlanguage-link-target"><span>ChiShona</span></a></li><li class="interlanguage-link interwiki-da mw-list-item" style="display: none;"><a href="https://da.wikipedia.org/wiki/Jakke" title="Jakke – Danish" lang="da" hreflang="da" class="interlanguage-link-target"><span>Dansk</span></a></li><li class="interlanguage-link interwiki-de mw-list-item" style="display: none;"><a href="https://de.wikipedia.org/wiki/Jacke" title="Jacke – German" lang="de" hreflang="de" class="interlanguage-link-target"><span>Deutsch</span></a></li><li class="interlanguage-link interwiki-el mw-list-item" style="display: none;"><a href="https://el.wikipedia.org/wiki/%CE%9C%CF%80%CE%BF%CF%85%CF%86%CE%AC%CE%BD" title="Μπουφάν – Greek" lang="el" hreflang="el" class="interlanguage-link-target"><span>Ελληνικά</span></a></li><li class="interlanguage-link interwiki-es mw-list-item" style=""><a href="https://es.wikipedia.org/wiki/Chaqueta" title="Chaqueta – Spanish" lang="es" hreflang="es" class="interlanguage-link-target"><span>Español</span></a></li><li class="interlanguage-link interwiki-eo mw-list-item" style="display: none;"><a href="https://eo.wikipedia.org/wiki/Jako" title="Jako – Esperanto" lang="eo" hreflang="eo" class="interlanguage-link-target"><span>Esperanto</span></a></li><li class="interlanguage-link interwiki-eu mw-list-item" style="display: none;"><a href="https://eu.wikipedia.org/wiki/Jaka_(jantzia)" title="Jaka (jantzia) – Basque" lang="eu" hreflang="eu" class="interlanguage-link-target"><span>Euskara</span></a></li><li class="interlanguage-link interwiki-fa mw-list-item" style="display: none;"><a href="https://fa.wikipedia.org/wiki/%DA%98%D8%A7%DA%A9%D8%AA" title="ژاکت – Persian" lang="fa" hreflang="fa" class="interlanguage-link-target"><span>فارسی</span></a></li><li class="interlanguage-link interwiki-fr mw-list-item" style="display: none;"><a href="https://fr.wikipedia.org/wiki/Veste" title="Veste – French" lang="fr" hreflang="fr" class="interlanguage-link-target"><span>Français</span></a></li><li class="interlanguage-link interwiki-ga mw-list-item" style="display: none;"><a href="https://ga.wikipedia.org/wiki/Ionar" title="Ionar – Irish" lang="ga" hreflang="ga" class="interlanguage-link-target"><span>Gaeilge</span></a></li><li class="interlanguage-link interwiki-gv mw-list-item" style="display: none;"><a href="https://gv.wikipedia.org/wiki/Jaggad" title="Jaggad – Manx" lang="gv" hreflang="gv" class="interlanguage-link-target"><span>Gaelg</span></a></li><li class="interlanguage-link interwiki-gl mw-list-item" style="display: none;"><a href="https://gl.wikipedia.org/wiki/Chaqueta" title="Chaqueta – Galician" lang="gl" hreflang="gl" class="interlanguage-link-target"><span>Galego</span></a></li><li class="interlanguage-link interwiki-ko mw-list-item" style="display: none;"><a href="https://ko.wikipedia.org/wiki/%EC%9E%AC%ED%82%B7" title="재킷 – Korean" lang="ko" hreflang="ko" class="interlanguage-link-target"><span>한국어</span></a></li><li class="interlanguage-link interwiki-hy mw-list-item" style="display: none;"><a href="https://hy.wikipedia.org/wiki/%D4%B2%D5%A1%D5%B3%D5%AF%D5%B8%D5%B6" title="Բաճկոն – Armenian" lang="hy" hreflang="hy" class="interlanguage-link-target"><span>Հայերեն</span></a></li><li class="interlanguage-link interwiki-id mw-list-item" style=""><a href="https://id.wikipedia.org/wiki/Jaket" title="Jaket – Indonesian" lang="id" hreflang="id" class="interlanguage-link-target"><span>Bahasa Indonesia</span></a></li><li class="interlanguage-link interwiki-ia mw-list-item" style="display: none;"><a href="https://ia.wikipedia.org/wiki/Jachetta" title="Jachetta – Interlingua" lang="ia" hreflang="ia" class="interlanguage-link-target"><span>Interlingua</span></a></li><li class="interlanguage-link interwiki-it mw-list-item" style="display: none;"><a href="https://it.wikipedia.org/wiki/Giacca" title="Giacca – Italian" lang="it" hreflang="it" class="interlanguage-link-target"><span>Italiano</span></a></li><li class="interlanguage-link interwiki-he mw-list-item" style=""><a href="https://he.wikipedia.org/wiki/%D7%96%27%D7%A7%D7%98" title="ז'קט – Hebrew" lang="he" hreflang="he" class="interlanguage-link-target"><span>עברית</span></a></li><li class="interlanguage-link interwiki-jv mw-list-item" style="display: none;"><a href="https://jv.wikipedia.org/wiki/Jak%C3%A8t" title="Jakèt – Javanese" lang="jv" hreflang="jv" class="interlanguage-link-target"><span>Jawa</span></a></li><li class="interlanguage-link interwiki-ku mw-list-item" style="display: none;"><a href="https://ku.wikipedia.org/wiki/Sako" title="Sako – Kurdish" lang="ku" hreflang="ku" class="interlanguage-link-target"><span>Kurdî</span></a></li><li class="interlanguage-link interwiki-lb mw-list-item" style="display: none;"><a href="https://lb.wikipedia.org/wiki/Jackett" title="Jackett – Luxembourgish" lang="lb" hreflang="lb" class="interlanguage-link-target"><span>Lëtzebuergesch</span></a></li><li class="interlanguage-link interwiki-mr mw-list-item" style="display: none;"><a href="https://mr.wikipedia.org/wiki/%E0%A4%9C%E0%A5%85%E0%A4%95%E0%A5%87%E0%A4%9F" title="जॅकेट – Marathi" lang="mr" hreflang="mr" class="interlanguage-link-target"><span>मराठी</span></a></li><li class="interlanguage-link interwiki-ms mw-list-item" style=""><a href="https://ms.wikipedia.org/wiki/Jaket_Biru" title="Jaket Biru – Malay" lang="ms" hreflang="ms" class="interlanguage-link-target"><span>Bahasa Melayu</span></a></li><li class="interlanguage-link interwiki-nl mw-list-item" style="display: none;"><a href="https://nl.wikipedia.org/wiki/Jas" title="Jas – Dutch" lang="nl" hreflang="nl" class="interlanguage-link-target"><span>Nederlands</span></a></li><li class="interlanguage-link interwiki-ne mw-list-item" style="display: none;"><a href="https://ne.wikipedia.org/wiki/%E0%A4%9C%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%95%E0%A5%87%E0%A4%9F" title="ज्याकेट – Nepali" lang="ne" hreflang="ne" class="interlanguage-link-target"><span>नेपाली</span></a></li><li class="interlanguage-link interwiki-ja mw-list-item" style="display: none;"><a href="https://ja.wikipedia.org/wiki/%E3%82%B8%E3%83%A3%E3%82%B1%E3%83%83%E3%83%88" title="ジャケット – Japanese" lang="ja" hreflang="ja" class="interlanguage-link-target"><span>日本語</span></a></li><li class="interlanguage-link interwiki-no mw-list-item" style="display: none;"><a href="https://no.wikipedia.org/wiki/Jakke" title="Jakke – Norwegian Bokmål" lang="nb" hreflang="nb" class="interlanguage-link-target"><span>Norsk bokmål</span></a></li><li class="interlanguage-link interwiki-nn mw-list-item" style="display: none;"><a href="https://nn.wikipedia.org/wiki/Jakke" title="Jakke – Norwegian Nynorsk" lang="nn" hreflang="nn" class="interlanguage-link-target"><span>Norsk nynorsk</span></a></li><li class="interlanguage-link interwiki-pl mw-list-item" style=""><a href="https://pl.wikipedia.org/wiki/Kurtka" title="Kurtka – Polish" lang="pl" hreflang="pl" class="interlanguage-link-target"><span>Polski</span></a></li><li class="interlanguage-link interwiki-pt mw-list-item" style="display: none;"><a href="https://pt.wikipedia.org/wiki/Jaqueta" title="Jaqueta – Portuguese" lang="pt" hreflang="pt" class="interlanguage-link-target"><span>Português</span></a></li><li class="interlanguage-link interwiki-ro mw-list-item" style=""><a href="https://ro.wikipedia.org/wiki/Geac%C4%83" title="Geacă – Romanian" lang="ro" hreflang="ro" class="interlanguage-link-target"><span>Română</span></a></li><li class="interlanguage-link interwiki-ru mw-list-item" style=""><a href="https://ru.wikipedia.org/wiki/%D0%9A%D1%83%D1%80%D1%82%D0%BA%D0%B0" title="Куртка – Russian" lang="ru" hreflang="ru" class="interlanguage-link-target"><span>Русский</span></a></li><li class="interlanguage-link interwiki-sco mw-list-item" style="display: none;"><a href="https://sco.wikipedia.org/wiki/Jaiket" title="Jaiket – Scots" lang="sco" hreflang="sco" class="interlanguage-link-target"><span>Scots</span></a></li><li class="interlanguage-link interwiki-scn mw-list-item" style="display: none;"><a href="https://scn.wikipedia.org/wiki/Giacca" title="Giacca – Sicilian" lang="scn" hreflang="scn" class="interlanguage-link-target"><span>Sicilianu</span></a></li><li class="interlanguage-link interwiki-sd mw-list-item" style="display: none;"><a href="https://sd.wikipedia.org/wiki/%D8%AC%D8%A7%DA%AA%D9%8A%D9%BD" title="جاڪيٽ – Sindhi" lang="sd" hreflang="sd" class="interlanguage-link-target"><span>سنڌي</span></a></li><li class="interlanguage-link interwiki-sr mw-list-item" style="display: none;"><a href="https://sr.wikipedia.org/wiki/%D0%88%D0%B0%D0%BA%D0%BD%D0%B0" title="Јакна – Serbian" lang="sr" hreflang="sr" class="interlanguage-link-target"><span>Српски / srpski</span></a></li><li class="interlanguage-link interwiki-sv mw-list-item" style="display: none;"><a href="https://sv.wikipedia.org/wiki/Jacka" title="Jacka – Swedish" lang="sv" hreflang="sv" class="interlanguage-link-target"><span>Svenska</span></a></li><li class="interlanguage-link interwiki-th mw-list-item" style="display: none;"><a href="https://th.wikipedia.org/wiki/%E0%B9%80%E0%B8%AA%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%84%E0%B8%A5%E0%B8%B8%E0%B8%A1" title="เสื้อคลุม – Thai" lang="th" hreflang="th" class="interlanguage-link-target"><span>ไทย</span></a></li><li class="interlanguage-link interwiki-tr mw-list-item" style="display: none;"><a href="https://tr.wikipedia.org/wiki/Ceket" title="Ceket – Turkish" lang="tr" hreflang="tr" class="interlanguage-link-target"><span>Türkçe</span></a></li><li class="interlanguage-link interwiki-uk mw-list-item" style="display: none;"><a href="https://uk.wikipedia.org/wiki/%D0%9A%D1%83%D1%80%D1%82%D0%BA%D0%B0" title="Куртка – Ukrainian" lang="uk" hreflang="uk" class="interlanguage-link-target"><span>Українська</span></a></li><li class="interlanguage-link interwiki-vec mw-list-item" style="display: none;"><a href="https://vec.wikipedia.org/wiki/Xaca" title="Xaca – Venetian" lang="vec" hreflang="vec" class="interlanguage-link-target"><span>Vèneto</span></a></li><li class="interlanguage-link interwiki-vi mw-list-item" style="display: none;"><a href="https://vi.wikipedia.org/wiki/Veston" title="Veston – Vietnamese" lang="vi" hreflang="vi" class="interlanguage-link-target"><span>Tiếng Việt</span></a></li><li class="interlanguage-link interwiki-wuu mw-list-item" style="display: none;"><a href="https://wuu.wikipedia.org/wiki/%E8%8C%84%E5%85%8B" title="茄克 – Wu Chinese" lang="wuu" hreflang="wuu" class="interlanguage-link-target"><span>吴语</span></a></li><li class="interlanguage-link interwiki-zh-yue mw-list-item" style="display: none;"><a href="https://zh-yue.wikipedia.org/wiki/%E8%96%84%E8%A4%B8" title="薄褸 – Cantonese" lang="yue" hreflang="yue" class="interlanguage-link-target"><span>粵語</span></a></li><li class="interlanguage-link interwiki-diq mw-list-item" style="display: none;"><a href="https://diq.wikipedia.org/wiki/%C3%87aket" title="Çaket – Zazaki" lang="diq" hreflang="diq" class="interlanguage-link-target"><span>Zazaki</span></a></li><li class="interlanguage-link interwiki-zh mw-list-item" style=""><a href="https://zh.wikipedia.org/wiki/%E5%A4%BE%E5%85%8B" title="夾克 – Chinese" lang="zh" hreflang="zh" class="interlanguage-link-target"><span>中文</span></a></li><button class="mw-interlanguage-selector mw-ui-button" title="All languages (initial selection from common choices by you and others)">45 more</button></ul>
+                <div class="after-portlet after-portlet-lang"><span class="wb-langlinks-edit wb-langlinks-link"><a href="https://www.wikidata.org/wiki/Special:EntityPage/Q849964#sitelinks-wikipedia" title="Edit interlanguage links" class="wbc-editpage">Edit links</a></span></div>
+            </div>
+        </nav>
+
+    </div>
+
+</div>
+<footer id="footer" class="mw-footer" role="contentinfo">
+    <ul id="footer-info">
+        <li id="footer-info-lastmod"> This page was last edited on 23 October 2021, at 10:59<span class="anonymous-show">&nbsp;(UTC)</span>.</li>
+        <li id="footer-info-copyright">Text is available under the <a rel="license" href="//en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License">Creative Commons Attribution-ShareAlike License</a><a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/" style="display:none;"></a>;
+            additional terms may apply.  By using this site, you agree to the <a href="//foundation.wikimedia.org/wiki/Terms_of_Use">Terms of Use</a> and <a href="//foundation.wikimedia.org/wiki/Privacy_policy">Privacy Policy</a>. Wikipedia® is a registered trademark of the <a href="//www.wikimediafoundation.org/">Wikimedia Foundation, Inc.</a>, a non-profit organization.</li>
+    </ul>
+
+    <ul id="footer-places">
+        <li id="footer-places-privacy"><a href="https://foundation.wikimedia.org/wiki/Privacy_policy" class="extiw" title="wmf:Privacy policy">Privacy policy</a></li>
+        <li id="footer-places-about"><a href="/wiki/Wikipedia:About" title="Wikipedia:About">About Wikipedia</a></li>
+        <li id="footer-places-disclaimer"><a href="/wiki/Wikipedia:General_disclaimer" title="Wikipedia:General disclaimer">Disclaimers</a></li>
+        <li id="footer-places-contact"><a href="//en.wikipedia.org/wiki/Wikipedia:Contact_us">Contact Wikipedia</a></li>
+        <li id="footer-places-mobileview"><a href="//en.m.wikipedia.org/w/index.php?title=Jacket&amp;mobileaction=toggle_view_mobile" class="noprint stopMobileRedirectToggle">Mobile view</a></li>
+        <li id="footer-places-developers"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/How_to_contribute">Developers</a></li>
+        <li id="footer-places-statslink"><a href="https://stats.wikimedia.org/#/en.wikipedia.org">Statistics</a></li>
+        <li id="footer-places-cookiestatement"><a href="https://foundation.wikimedia.org/wiki/Cookie_statement">Cookie statement</a></li>
+        <li style="display: none;"><a href="#">Edit preview settings</a></li></ul>
+
+    <ul id="footer-icons" class="noprint">
+        <li id="footer-copyrightico"><a href="https://wikimediafoundation.org/"><img src="/static/images/footer/wikimedia-button.png" srcset="/static/images/footer/wikimedia-button-1.5x.png 1.5x, /static/images/footer/wikimedia-button-2x.png 2x" width="88" height="31" alt="Wikimedia Foundation" loading="lazy"></a></li>
+        <li id="footer-poweredbyico"><a href="https://www.mediawiki.org/"><img src="/static/images/footer/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/static/images/footer/poweredby_mediawiki_132x47.png 1.5x, /static/images/footer/poweredby_mediawiki_176x62.png 2x" width="88" height="31" loading="lazy"></a></li>
+    </ul>
+
+</footer>
+
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgPageParseReport":{"limitreport":{"cputime":"0.382","walltime":"0.528","ppvisitednodes":{"value":784,"limit":1000000},"postexpandincludesize":{"value":67861,"limit":2097152},"templateargumentsize":{"value":478,"limit":2097152},"expansiondepth":{"value":11,"limit":40},"expensivefunctioncount":{"value":2,"limit":500},"unstrip-depth":{"value":1,"limit":20},"unstrip-size":{"value":12162,"limit":5000000},"entityaccesscount":{"value":1,"limit":400},"timingprofile":["100.00%  388.182      1 -total"," 28.98%  112.488      1 Template:Reflist"," 27.41%  106.396      1 Template:Short_description"," 20.02%   77.695      1 Template:Cite_book"," 15.32%   59.480      6 Template:Navbox"," 14.20%   55.112      1 Template:Clothing"," 13.85%   53.758      1 Template:Pagetype"," 10.44%   40.520      1 Template:Authority_control","  9.82%   38.106      3 Template:Main_other","  9.09%   35.302      1 Template:Commons_category-inline"]},"scribunto":{"limitreport-timeusage":{"value":"0.175","limit":"10.000"},"limitreport-memusage":{"value":4846590,"limit":52428800},"limitreport-logs":"table#1 {\n}\n"},"cachereport":{"origin":"mw1455","timestamp":"20211102195600","ttl":1814400,"transientcontent":false}}});});</script>
+<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"Article","name":"Jacket","url":"https:\/\/en.wikipedia.org\/wiki\/Jacket","sameAs":"http:\/\/www.wikidata.org\/entity\/Q849964","mainEntity":"http:\/\/www.wikidata.org\/entity\/Q849964","author":{"@type":"Organization","name":"Contributors to Wikimedia projects"},"publisher":{"@type":"Organization","name":"Wikimedia Foundation, Inc.","logo":{"@type":"ImageObject","url":"https:\/\/www.wikimedia.org\/static\/images\/wmf-hor-googpub.png"}},"datePublished":"2004-05-25T19:19:00Z","dateModified":"2021-10-23T10:59:38Z","image":"https:\/\/upload.wikimedia.org\/wikipedia\/commons\/3\/3e\/Jacket2-1.jpg","headline":"clothing for the upper body"}</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":137,"wgHostname":"mw1451"});});</script>
+<a accesskey="v" href="https://en.wikipedia.org/wiki/Jacket?action=edit" class="oo-ui-element-hidden"></a></body>
