@@ -38,7 +38,6 @@ public class Bing {
     /**
      * BING01
      * Tamar
-     * HTML refers to BING01, BING08
      */
     @Test
     public void BING01_Tamar() {
@@ -84,7 +83,7 @@ public class Bing {
     /**
      * BING02
      * Tamar
-     * HTML refers to BING01, BING08
+     * HTML refers to BING01
      */
     @Test
     public void BING02_Tamar() {
@@ -134,9 +133,70 @@ public class Bing {
     }
 
     /**
+     * BING03
+     * Tamar
+     * HTML refers to BING01
+     */
+    @Test
+    public void BING03_Tamar() {
+        driver.get("https://www.bing.com");
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        By locator = By.cssSelector("a.idp_ham");
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "true"));
+        driver.findElement(By.id("hbsettings")).click();
+        wait.until(ExpectedConditions.attributeToBe(By.id("hbsettree"), "aria-hidden", "false"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#hbsettree > a[role='menuitem']:nth-child(2)"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
+                "//a[contains(text(), 'United States - English') or contains(text(), 'ארצות הברית - אנגלית')]"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='English']"))).click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "true"));
+        driver.findElement(By.id("hbsettings")).click();
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(By.xpath("//*[text()='Country/Region']/../following-sibling::*"), "")));
+        assertTrue(driver.findElement(By.xpath("//*[text()='Country/Region']/../following-sibling::*")).getText().contains("United States - English"));
+        assertEquals("English", driver.findElement(By.xpath("//*[text()='Language']/../following-sibling::*")).getText());
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "false"));
+
+
+        wait.until(ExpectedConditions.attributeToBe(By.cssSelector("h1 > *"), "aria-label", "Bing"));
+        assertTrue(driver.findElement(By.id("images")).isDisplayed());
+        assertTrue(driver.findElement(By.id("video")).isDisplayed());
+        assertTrue(driver.findElement(By.id("shopping")).isDisplayed());
+        for (int i = 0; i < 2; i++) {
+            driver.findElement(locator).click();
+            wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "true"));
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='Customize your homepage']")));
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='Show news and interests']")));
+            locator = By.xpath("//*[text()='Show news and interests']//following-sibling::*");
+            assertTrue(driver.findElement(locator).getAttribute("class").contains("toggle_ctrl"));
+            wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+            assertEquals("problem in" + i, i != 0, driver.findElement(By.xpath("//*[text()='Show news and interests']//following-sibling::*//*"))
+                    .getAttribute("class").contains("toggle_on"));
+            locator = By.cssSelector("[aria-label='Settings and quick links']");
+            driver.findElement(locator).click();
+            wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "false"));
+            assertEquals(i != 0, ((JavascriptExecutor) driver).executeScript(
+                    "var elem = arguments[0],                 " +
+                            "  box = elem.getBoundingClientRect(),    " +
+                            "  cx = box.left + box.width / 2,         " +
+                            "  cy = box.top + box.height / 2,         " +
+                            "  e = document.elementFromPoint(cx, cy); " +
+                            "for (; e; e = e.parentElement) {         " +
+                            "  if (e === elem)                        " +
+                            "    return true;                         " +
+                            "}                                        " +
+                            "return false;                            "
+                    , driver.findElement(By.cssSelector(".vs img"))));
+        }
+    }
+
+    /**
      * BING04
      * Tamar
-     * HTML refers to BING04, BING08
+     * HTML refers to BING01
      */
     @Test
     public void BING04_Tamar() {
@@ -187,7 +247,7 @@ public class Bing {
     /**
      * BING05
      * Tamar
-     * HTML refers to BING01, BING05, BING08
+     * HTML refers to BING01, BING05
      */
     @Test
     public void BING05_Tamar() {
@@ -229,9 +289,121 @@ public class Bing {
     }
 
     /**
+     * BING06
+     * Tamar
+     * HTML refers to BING01
+     */
+    @Test
+    public void BING06_Tamar() {
+        driver.get("https://www.bing.com");
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        By locator = By.cssSelector("a.idp_ham");
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "true"));
+        driver.findElement(By.id("hbsettings")).click();
+        wait.until(ExpectedConditions.attributeToBe(By.id("hbsettree"), "aria-hidden", "false"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#hbsettree > a[role='menuitem']:nth-child(1)"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
+                "//*[contains(text(), 'English')]//preceding-sibling::a"))).click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "true"));
+        driver.findElement(By.id("hbsettings")).click();
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(By.xpath("//*[text()='Country/Region']/../following-sibling::*"), "")));
+        assertEquals("English", driver.findElement(By.xpath("//*[text()='Language']/../following-sibling::*")).getText());
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "false"));
+
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".id_avatar")));
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".musCard .icon_text")));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.className("musCardCont"))));
+        assertTrue(driver.findElement(By.cssSelector("[aria-label='Share to Facebook']")).isDisplayed());
+        assertTrue(driver.findElement(By.cssSelector("[aria-label='Share to Twitter']")).isDisplayed());
+        element = driver.findElement(By.cssSelector(".share .downloadLink"));
+        assertTrue(element.isDisplayed());
+        actions.moveToElement(element).perform();
+        assertEquals("Download this image. Use of this image is restricted to wallpaper only.", element.getAttribute("title"));
+    }
+
+    /**
+     * BING07
+     * Tamar
+     * HTML refers to BING01, BING09
+     */
+    @Test
+    public void BING07_Tamar() {
+        driver.get("https://www.bing.com");
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        By locator = By.cssSelector("a.idp_ham");
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "true"));
+        driver.findElement(By.id("hbsettings")).click();
+        wait.until(ExpectedConditions.attributeToBe(By.id("hbsettree"), "aria-hidden", "false"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#hbsettree > a[role='menuitem']:nth-child(2)"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
+                "//a[contains(text(), 'United States - English') or contains(text(), 'ארצות הברית - אנגלית')]"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English']"))).click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "true"));
+        driver.findElement(By.id("hbsettings")).click();
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(By.xpath("//*[text()='Country/Region']/../following-sibling::*"), "")));
+        assertTrue(driver.findElement(By.xpath("//*[text()='Country/Region']/../following-sibling::*")).getText().contains("United States - English"));
+        assertEquals("English", driver.findElement(By.xpath("//*[text()='Language']/../following-sibling::*")).getText());
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "false"));
+
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".id_avatar")));
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".musCard .icon_text")));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.className("musCardCont"))));
+        assertTrue(driver.findElement(By.cssSelector("[aria-label='Share to Facebook']")).isDisplayed());
+        assertTrue(driver.findElement(By.cssSelector("[aria-label='Share to Twitter']")).isDisplayed());
+        element = driver.findElement(By.cssSelector(".musCardCont .title"));
+        assertTrue(element.isDisplayed());
+        element.click();
+
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("[aria-label='Search Results']")));
+        List<WebElement> navElements = driver.findElements(By.cssSelector("[aria-label='Main menu'] > ul > [data-menuurl] > a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("ALL", "NEWS", "IMAGES", "VIDEOS", "MAPS", "SHOPPING"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : navElements) {
+            actualTitles.add(element.getText());
+        }
+        assertTrue(actualTitles.containsAll(expectedTitles));
+    }
+
+    /**
      * BING08
      * Tamar
-     * HTML refers to BING01, BING08
+     * HTML refers to BING01
      */
     @Test
     public void BING08_Tamar() {
@@ -260,7 +432,7 @@ public class Bing {
     /**
      * BING09
      * Tamar
-     * HTML refers to BING01, BING05, BING08, BING09
+     * HTML refers to BING01, BING05, BING09
      */
     @Test
     public void BING09_Tamar() {
@@ -302,7 +474,7 @@ public class Bing {
     /**
      * BING10
      * Tamar
-     * HTML refers to BING01, BING05, BING08, BING09
+     * HTML refers to BING01, BING05, BING09
      */
     @Test
     public void BING10_Tamar() throws InterruptedException {
