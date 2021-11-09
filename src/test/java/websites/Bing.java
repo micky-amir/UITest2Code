@@ -946,4 +946,127 @@ public class Bing {
         assertEquals(expectedTitles, actualTitles);
     }
 
+    /**
+     * BING18
+     * Tamar
+     * HTML refers to BING01, BING05, BING17, BING18
+     */
+    @Test
+    public void BING18_Tamar() {
+        driver.get("https://www.bing.com");
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        By locator = By.cssSelector("a.idp_ham");
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "true"));
+        driver.findElement(By.id("hbsettings")).click();
+        wait.until(ExpectedConditions.attributeToBe(By.id("hbsettree"), "aria-hidden", "false"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#hbsettree > a[role='menuitem']:nth-child(2)"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
+                "//a[contains(text(), 'United States - English') or contains(text(), 'ארצות הברית - אנגלית')]"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English']"))).click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "true"));
+        driver.findElement(By.id("hbsettings")).click();
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(By.xpath("//*[text()='Country/Region']/../following-sibling::*"), "")));
+        assertTrue(driver.findElement(By.xpath("//*[text()='Country/Region']/../following-sibling::*")).getText().contains("United States - English"));
+        assertEquals("English", driver.findElement(By.xpath("//*[text()='Language']/../following-sibling::*")).getText());
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "false"));
+
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".id_avatar")));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".vs img"))).click();
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("[aria-label='Search Results']")));
+        List<WebElement> navElements = driver.findElements(By.cssSelector("[aria-label='Main menu'] > ul > [data-menuurl] > a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("ALL", "NEWS", "IMAGES", "VIDEOS", "MAPS", "SHOPPING"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : navElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        navElements.get(4).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("b_entityTP")));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[aria-label='Nearby']")));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[aria-label='Directions']"))).click();
+
+        wait.until(ExpectedConditions.attributeToBe(By.cssSelector(".directionsPopOut a"), "aria-expanded", "true"));
+        element = driver.findElement(By.cssSelector(".directionsPopOut .bm_dropdownEntry"));
+        assertEquals("Directions to here", element.getText());
+        assertEquals("Directions from here", driver.findElement(By.cssSelector(".directionsPopOut .bm_dropdownEntry:nth-child(2)")).getText());
+        element.click();
+        wait.until(ExpectedConditions.textToBe(By.cssSelector(".cardTitleText h2"), "Directions"));
+        wait.until(ExpectedConditions.attributeToBeNotEmpty(driver.findElement(By.cssSelector("[title='From']")), "style"));
+        wait.until(ExpectedConditions.not(ExpectedConditions.attributeToBeNotEmpty(driver.findElement(By.cssSelector("[title='To']")), "style")));
+
+        driver.navigate().back();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[aria-label='Nearby']")));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[aria-label='Directions']"))).click();
+        wait.until(ExpectedConditions.attributeToBe(By.cssSelector(".directionsPopOut a"), "aria-expanded", "true"));
+        driver.findElement(By.cssSelector(".directionsPopOut .bm_dropdownEntry:nth-child(2)")).click();
+        wait.until(ExpectedConditions.textToBe(By.cssSelector(".cardTitleText h2"), "Directions"));
+        wait.until(ExpectedConditions.attributeToBeNotEmpty(driver.findElement(By.cssSelector("[title='To']")), "style"));
+        wait.until(ExpectedConditions.not(ExpectedConditions.attributeToBeNotEmpty(driver.findElement(By.cssSelector("[title='From']")), "style")));
+    }
+
+    /**
+     * BING19
+     * Tamar
+     * HTML refers to BING01, BING05, BING19
+     */
+    @Test
+    public void BING19_Tamar() {
+        driver.get("https://www.bing.com");
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        By locator = By.cssSelector("a.idp_ham");
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "true"));
+        driver.findElement(By.id("hbsettings")).click();
+        wait.until(ExpectedConditions.attributeToBe(By.id("hbsettree"), "aria-hidden", "false"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#hbsettree > a[role='menuitem']:nth-child(2)"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
+                "//a[contains(text(), 'United States - English') or contains(text(), 'ארצות הברית - אנגלית')]"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English']"))).click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "true"));
+        driver.findElement(By.id("hbsettings")).click();
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(By.xpath("//*[text()='Country/Region']/../following-sibling::*"), "")));
+        assertTrue(driver.findElement(By.xpath("//*[text()='Country/Region']/../following-sibling::*")).getText().contains("United States - English"));
+        assertEquals("English", driver.findElement(By.xpath("//*[text()='Language']/../following-sibling::*")).getText());
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "false"));
+
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".id_avatar")));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".vs img"))).click();
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("[aria-label='Search Results']")));
+        List<WebElement> navElements = driver.findElements(By.cssSelector("[aria-label='Main menu'] > ul > [data-menuurl] > a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("ALL", "NEWS", "IMAGES", "VIDEOS", "MAPS", "SHOPPING"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : navElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        navElements.get(4).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("b_entityTP")));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[aria-label='Directions']")));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[aria-label='Nearby']"))).click();
+
+        element = driver.findElement(By.id("maps_sb"));
+        assertEquals(element, driver.switchTo().activeElement());
+        expectedTitles.clear();
+        actualTitles.clear();
+        List<WebElement> suggestionElements = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("suggestLink")));
+        expectedTitles = new ArrayList<>(Arrays.asList("Parking", "Hotels", "Restaurants", "Coffee", "Gas stations"));
+        for (WebElement element : suggestionElements) {
+            actualTitles.add(element.getText());
+        }
+        assertTrue(actualTitles.containsAll(expectedTitles));
+
+        suggestionElements.get(2).click();
+        wait.until(ExpectedConditions.textToBe(By.className("cardTitleText"), "restaurants"));
+    }
 }
