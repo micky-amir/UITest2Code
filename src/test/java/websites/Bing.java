@@ -570,6 +570,7 @@ public class Bing {
 
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".id_avatar")));
+        wait.until(ExpectedConditions.urlContains("https://www.bing.com/"));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".vs img"))).click();
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("[aria-label='Search Results']")));
         List<WebElement> navElements = driver.findElements(By.cssSelector("[aria-label='Main menu'] a"));
@@ -623,6 +624,7 @@ public class Bing {
 
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".id_avatar")));
+        wait.until(ExpectedConditions.urlContains("https://www.bing.com/"));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".vs img"))).click();
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("[aria-label='Search Results']")));
         List<WebElement> navElements = driver.findElements(By.cssSelector("[aria-label='Main menu'] > ul > [data-menuurl] > a"));
@@ -683,6 +685,7 @@ public class Bing {
 
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".id_avatar")));
+        wait.until(ExpectedConditions.urlContains("https://www.bing.com/"));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".vs img"))).click();
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("[aria-label='Search Results']")));
         List<WebElement> navElements = driver.findElements(By.cssSelector("[aria-label='Main menu'] > ul > [data-menuurl] > a"));
@@ -739,6 +742,7 @@ public class Bing {
 
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".id_avatar")));
+        wait.until(ExpectedConditions.urlContains("https://www.bing.com/"));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".vs img"))).click();
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("[aria-label='Search Results']")));
         List<WebElement> navElements = driver.findElements(By.cssSelector("[aria-label='Main menu'] > ul > [data-menuurl] > a"));
@@ -792,6 +796,7 @@ public class Bing {
 
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".id_avatar")));
+        wait.until(ExpectedConditions.urlContains("https://www.bing.com/"));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".vs img"))).click();
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("[aria-label='Search Results']")));
         List<WebElement> navElements = driver.findElements(By.cssSelector("[aria-label='Main menu'] > ul > [data-menuurl] > a"));
@@ -867,6 +872,7 @@ public class Bing {
 
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".id_avatar")));
+        wait.until(ExpectedConditions.urlContains("https://www.bing.com/"));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".vs img"))).click();
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("[aria-label='Search Results']")));
         List<WebElement> navElements = driver.findElements(By.cssSelector("[aria-label='Main menu'] > ul > [data-menuurl] > a"));
@@ -912,6 +918,7 @@ public class Bing {
 
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".id_avatar")));
+        wait.until(ExpectedConditions.urlContains("https://www.bing.com/"));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".vs img"))).click();
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("[aria-label='Search Results']")));
         List<WebElement> navElements = driver.findElements(By.cssSelector("[aria-label='Main menu'] > ul > [data-menuurl] > a"));
@@ -976,6 +983,7 @@ public class Bing {
 
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".id_avatar")));
+        wait.until(ExpectedConditions.urlContains("https://www.bing.com/"));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".vs img"))).click();
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("[aria-label='Search Results']")));
         List<WebElement> navElements = driver.findElements(By.cssSelector("[aria-label='Main menu'] > ul > [data-menuurl] > a"));
@@ -1040,6 +1048,7 @@ public class Bing {
 
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".id_avatar")));
+        wait.until(ExpectedConditions.urlContains("https://www.bing.com/"));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".vs img"))).click();
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("[aria-label='Search Results']")));
         List<WebElement> navElements = driver.findElements(By.cssSelector("[aria-label='Main menu'] > ul > [data-menuurl] > a"));
@@ -1068,5 +1077,107 @@ public class Bing {
 
         suggestionElements.get(2).click();
         wait.until(ExpectedConditions.textToBe(By.className("cardTitleText"), "restaurants"));
+    }
+
+    /**
+     * BING20
+     * Tamar
+     * HTML refers to BING01, BING05, BING17
+     * not finished
+     */
+    @Test
+    public void BING20_Tamar() {
+        driver.get("https://www.bing.com");
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        By locator = By.cssSelector("a.idp_ham");
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "true"));
+        driver.findElement(By.id("hbsettings")).click();
+        wait.until(ExpectedConditions.attributeToBe(By.id("hbsettree"), "aria-hidden", "false"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#hbsettree > a[role='menuitem']:nth-child(2)"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
+                "//a[contains(text(), 'United States - English') or contains(text(), 'ארצות הברית - אנגלית')]"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English']"))).click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "true"));
+        driver.findElement(By.id("hbsettings")).click();
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(By.xpath("//*[text()='Country/Region']/../following-sibling::*"), "")));
+        assertTrue(driver.findElement(By.xpath("//*[text()='Country/Region']/../following-sibling::*")).getText().contains("United States - English"));
+        assertEquals("English", driver.findElement(By.xpath("//*[text()='Language']/../following-sibling::*")).getText());
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "false"));
+
+
+//        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".id_avatar")));
+        wait.until(ExpectedConditions.urlContains("https://www.bing.com/"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".vs img"))).click();
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("[aria-label='Search Results']")));
+        List<WebElement> navElements = driver.findElements(By.cssSelector("[aria-label='Main menu'] > ul > [data-menuurl] > a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("ALL", "NEWS", "IMAGES", "VIDEOS", "MAPS", "SHOPPING"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : navElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        navElements.get(4).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("inner-container")));
+        expectedTitles.clear();
+        actualTitles.clear();
+        List<WebElement> optionElements = wait.until(ExpectedConditions.numberOfElementsToBe(
+                By.cssSelector(".actions  li:not([style='display: none;']) > a .actionLabel"), 5));
+        expectedTitles = new ArrayList<>(Arrays.asList("Directions", "Traffic", "Local", "My Places", "More"));
+        for (WebElement element : optionElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        optionElements.get(1).findElement(By.xpath(".//ancestor::a")).click();
+
+        wait.until(ExpectedConditions.textToBe(By.className("cardTitleText"), "Traffic"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#cameraToggleInput[checked]")));
+//        assertTrue(driver.findElement(By.cssSelector("#cameraToggleInput[checked]")).isDisplayed());
+    }
+
+    /**
+     * BING21
+     * Tamar
+     * HTML refers to BING01, BING09, BING21
+     */
+    @Test
+    public void BING21_Tamar() {
+        driver.get("https://www.bing.com");
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        By locator = By.cssSelector("a.idp_ham");
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "true"));
+        driver.findElement(By.id("hbsettings")).click();
+        wait.until(ExpectedConditions.attributeToBe(By.id("hbsettree"), "aria-hidden", "false"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#hbsettree > a[role='menuitem']:nth-child(2)"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
+                "//a[contains(text(), 'United States - English') or contains(text(), 'ארצות הברית - אנגלית')]"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='English']"))).click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "true"));
+        driver.findElement(By.id("hbsettings")).click();
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(By.xpath("//*[text()='Country/Region']/../following-sibling::*"), "")));
+        assertTrue(driver.findElement(By.xpath("//*[text()='Country/Region']/../following-sibling::*")).getText().contains("United States - English"));
+        assertEquals("English", driver.findElement(By.xpath("//*[text()='Language']/../following-sibling::*")).getText());
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "false"));
+
+
+        wait.until(ExpectedConditions.urlContains("https://www.bing.com/"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".vs img")));
+        element = driver.findElement(By.cssSelector("[type='search']"));
+        element.sendKeys("Jacket");
+        element.submit();
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("[aria-label='Search Results']")));
+        assertEquals("page", driver.findElement(By.xpath("//*[text()='All']")).getAttribute("aria-current"));
+        driver.findElement(By.xpath("//*[text()='Shopping']")).click();
+        wait.until(ExpectedConditions.textToBe(By.className("br-breadcrumbs"), "Bing Shopping > jacket"));
+        assertTrue(driver.findElement(By.xpath("//h2[text()='Brand']")).isDisplayed());
+        assertTrue(driver.findElement(By.xpath("//h2[text()='Price']")).isDisplayed());
     }
 }
