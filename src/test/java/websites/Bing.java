@@ -1180,4 +1180,140 @@ public class Bing {
         assertTrue(driver.findElement(By.xpath("//h2[text()='Brand']")).isDisplayed());
         assertTrue(driver.findElement(By.xpath("//h2[text()='Price']")).isDisplayed());
     }
+
+    /**
+     * BING22
+     * Tamar
+     * HTML refers to BING01, BING09, BING21, BING22
+     */
+    @Test
+    public void BING22_Tamar() {
+        driver.get("https://www.bing.com");
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        By locator = By.cssSelector("a.idp_ham");
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "true"));
+        driver.findElement(By.id("hbsettings")).click();
+        wait.until(ExpectedConditions.attributeToBe(By.id("hbsettree"), "aria-hidden", "false"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#hbsettree > a[role='menuitem']:nth-child(2)"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
+                "//a[contains(text(), 'United States - English') or contains(text(), 'ארצות הברית - אנגלית')]"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='English']"))).click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "true"));
+        driver.findElement(By.id("hbsettings")).click();
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(By.xpath("//*[text()='Country/Region']/../following-sibling::*"), "")));
+        assertTrue(driver.findElement(By.xpath("//*[text()='Country/Region']/../following-sibling::*")).getText().contains("United States - English"));
+        assertEquals("English", driver.findElement(By.xpath("//*[text()='Language']/../following-sibling::*")).getText());
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "false"));
+
+
+        wait.until(ExpectedConditions.urlContains("https://www.bing.com/"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".vs img")));
+        element = driver.findElement(By.cssSelector("[type='search']"));
+        element.sendKeys("Jacket");
+        element.submit();
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("[aria-label='Search Results']")));
+        assertEquals("page", driver.findElement(By.xpath("//*[text()='All']")).getAttribute("aria-current"));
+        driver.findElement(By.xpath("//*[text()='Shopping']")).click();
+
+        List<WebElement> navElements = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("np-tabttltxt")));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("SHOPPING HOME", "DEPARTMENTS", "STORES",
+                "EDITOR'S PICKS", "DEALS", "TRENDING PRODUCTS", "PRICE DROPS", "MY COLLECTIONS"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : navElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        Actions actions = new Actions(driver);
+        actions.moveToElement(navElements.get(1)).perform();
+
+        expectedTitles.clear();
+        actualTitles.clear();
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(By.cssSelector("#Departments_Key .b_hList strong"), "")));
+        List<WebElement> categoryElements = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("#Departments_Key .b_hList strong")));
+        expectedTitles = new ArrayList<>(Arrays.asList(
+                "Home Furnishings", "Clothing & Shoes", "Toys", "Lawn & Garden", "Tools & Hardware"));
+        for (WebElement element : categoryElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        driver.findElement(By.xpath("//*[text()='Games']")).click();
+
+        wait.until(ExpectedConditions.textToBe(By.className("hpcb-ttl"), "Games"));
+        assertTrue(driver.findElements(By.cssSelector("[alt='Product Image']")).size() > 1);
+        assertTrue(driver.findElement(By.id("sb_form_q")).getAttribute("value").isEmpty());
+    }
+
+    /**
+     * BING23
+     * Tamar
+     * HTML refers to BING01, BING09, BING21, BING23
+     */
+    @Test
+    public void BING23_Tamar() {
+        driver.get("https://www.bing.com");
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        By locator = By.cssSelector("a.idp_ham");
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "true"));
+        driver.findElement(By.id("hbsettings")).click();
+        wait.until(ExpectedConditions.attributeToBe(By.id("hbsettree"), "aria-hidden", "false"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#hbsettree > a[role='menuitem']:nth-child(2)"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
+                "//a[contains(text(), 'United States - English') or contains(text(), 'ארצות הברית - אנגלית')]"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='English']"))).click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "true"));
+        driver.findElement(By.id("hbsettings")).click();
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(By.xpath("//*[text()='Country/Region']/../following-sibling::*"), "")));
+        assertTrue(driver.findElement(By.xpath("//*[text()='Country/Region']/../following-sibling::*")).getText().contains("United States - English"));
+        assertEquals("English", driver.findElement(By.xpath("//*[text()='Language']/../following-sibling::*")).getText());
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.attributeToBe(locator, "aria-expanded", "false"));
+
+
+        wait.until(ExpectedConditions.urlContains("https://www.bing.com/"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".vs img")));
+        element = driver.findElement(By.cssSelector("[type='search']"));
+        element.sendKeys("Jacket");
+        element.submit();
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("[aria-label='Search Results']")));
+        assertEquals("page", driver.findElement(By.xpath("//*[text()='All']")).getAttribute("aria-current"));
+        driver.findElement(By.xpath("//*[text()='Shopping']")).click();
+
+        List<WebElement> navElements = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("np-tabttltxt")));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("SHOPPING HOME", "DEPARTMENTS", "STORES",
+                "EDITOR'S PICKS", "DEALS", "TRENDING PRODUCTS", "PRICE DROPS", "MY COLLECTIONS"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : navElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        navElements.get(2).click();
+
+        List<WebElement> letterElements = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(".sf-filter_N")));
+        for (int i = 0; i < letterElements.size(); i++) {
+            char letter = letterElements.get(i).getText().charAt(0);
+            assertEquals(i + 65, (int) letter); // ASCII
+        }
+        letterElements.get(0).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h2"), "POPULAR STORES IN 'A'"));
+        List<WebElement> shopsElements = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("ps-cardttl")));
+        for (WebElement shop : shopsElements) {
+            assertTrue(shop.getText().startsWith("A"));
+        }
+        String shopName = shopsElements.get(0).getText();
+        shopsElements.get(0).click();
+        while (true) {
+            if (driver.getWindowHandles().size() != 1) break;
+        }
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        wait.until(ExpectedConditions.textToBe(By.className("csf-ttl"), shopName));
+//        assertEquals(shopName, driver.findElement(By.tagName("h1")).getText());
+    }
 }
