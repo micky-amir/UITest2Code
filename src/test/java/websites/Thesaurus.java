@@ -1077,15 +1077,96 @@ public class Thesaurus {
         driver.findElement(By.cssSelector("[title='Words that start with d']")).click();
         wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "WORDS THAT START WITH “D”"));
 
-        List<WebElement> words = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(".list a > span")));
-        for (int i = 0; i < 11; i++) {
-            assertTrue(words.get(i).getText().startsWith("d"));
+        List<WebElement> sections = driver.findElements(By.cssSelector(".word-finder-widgets .section__body"));
+        for (WebElement sectionElement : sections) {
+            List<WebElement> words = sectionElement.findElements(By.cssSelector(".list--words li > a"));
+            for (WebElement wordElement : words) {
+                String word = wordElement.getText();
+                if (!word.isEmpty())
+                    assertTrue(word.startsWith("d"));
+            }
         }
 
-        String firstWord = words.get(0).getText();
-        words.get(0).findElement(By.xpath(".//..")).click();
+        element = sections.get(0).findElement(By.cssSelector(".list--words li > a"));
+        String firstWord = element.getText();
+        element.click();
         wait.until(ExpectedConditions.textToBe(By.tagName("h1"), firstWord));
         assertTrue(driver.findElement(By.id("top-definitions-section")).isDisplayed());
+    }
+
+    /**
+     * SK_44
+     * Tamar
+     * HTML Refers to SK_1, SK_42
+     */
+    @Test
+    public void SK_44_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//button[text()='GAMES']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Word Puzzle", "Quizzes", "Crossword Solver",
+                "Scrabble Word Finder", "Words With Friends Cheat", "Daily Crossword Puzzle"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(3).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Scrabble Word Finder"));
+        assertTrue(driver.findElement(By.xpath("//h4[contains(text(), 'Word length:')]")).isDisplayed());
+
+        List<WebElement> buttons = driver.findElements(By.cssSelector("[title$='-letter']"));
+        assertEquals(14, buttons.size());
+        for (int i = 0; i < buttons.size(); i++) {
+            assertEquals(i + 2, Integer.parseInt(buttons.get(i).getText().split("-")[0]));
+        }
+    }
+
+    /**
+     * SK_45
+     * Tamar
+     * HTML Refers to SK_1, SK_42, SK_45
+     */
+    @Test
+    public void SK_45_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//button[text()='GAMES']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Word Puzzle", "Quizzes", "Crossword Solver",
+                "Scrabble Word Finder", "Words With Friends Cheat", "Daily Crossword Puzzle"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(3).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Scrabble Word Finder"));
+        assertTrue(driver.findElement(By.xpath("//h4[contains(text(), 'Word length:')]")).isDisplayed());
+
+        driver.findElement(By.cssSelector("[title='4-letter']")).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "WORDS WITH LENGTH “4”"));
+        List<WebElement> sectionTitlesElements = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
+                By.cssSelector(".word-finder-widgets .section__title")));
+        for (int i = 0; i < sectionTitlesElements.size(); i++) {
+            String text = sectionTitlesElements.get(i).getText();
+            assertEquals((char) (i + 65), text.charAt(text.length() - 1));
+            List<WebElement> words = sectionTitlesElements.get(i).findElements(
+                    By.xpath(".//ancestor::*[@class='section__group-inner']//li/a"));
+            String startsWithLetter = String.valueOf((char) (i + 97));
+            for (WebElement wordElement : words) {
+                String word = wordElement.getText();
+                if (!word.isEmpty()) {
+                    assertTrue("problem in word " + word + " letter " + startsWithLetter, word.startsWith(startsWithLetter));
+                    assertEquals(4, word.length());
+                }
+            }
+        }
     }
 
     /**
