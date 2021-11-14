@@ -1170,6 +1170,94 @@ public class Thesaurus {
     }
 
     /**
+     * SK_46
+     * Tamar
+     * HTML Refers to SK_1, SK_42, SK_46
+     */
+    @Test
+    public void SK_46_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//button[text()='GAMES']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Word Puzzle", "Quizzes", "Crossword Solver",
+                "Scrabble Word Finder", "Words With Friends Cheat", "Daily Crossword Puzzle"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(3).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Scrabble Word Finder"));
+        assertTrue(driver.findElement(By.className("scrabble-form")).isDisplayed());
+        driver.findElement(By.cssSelector(".form__controls input")).sendKeys("abl");
+        driver.findElement(By.cssSelector("[value='find']")).click();
+
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector(".word-finder-widgets .section__head h3"), "results for ABL"));
+        List<WebElement> wordElements = driver.findElements(By.cssSelector(".list--words a"));
+        for (WebElement element : wordElements) {
+            String word = element.getText();
+            assertTrue(word.matches("^(?!.*?(.).*?\\1)[abl?]*$"));
+        }
+    }
+
+    /**
+     * SK_47
+     * Tamar
+     * HTML Refers to SK_1, SK_42, SK_46
+     */
+    @Test
+    public void SK_47_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//button[text()='GAMES']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Word Puzzle", "Quizzes", "Crossword Solver",
+                "Scrabble Word Finder", "Words With Friends Cheat", "Daily Crossword Puzzle"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(3).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Scrabble Word Finder"));
+        assertTrue(driver.findElement(By.className("scrabble-form")).isDisplayed());
+        driver.findElement(By.cssSelector(".form__controls input")).sendKeys("blagin");
+
+        driver.findElement(By.cssSelector("a.advanced-toggle")).click();
+        assertNotEquals("none", driver.findElement(By.cssSelector(".form__row--advanced")).getCssValue("display"));
+        expectedTitles.clear();
+        actualTitles.clear();
+        List<WebElement> inputElements = driver.findElements(By.cssSelector(
+                ".scrabble-form:first-of-type .form__controls--advanced input"));
+        expectedTitles = new ArrayList<>(Arrays.asList("Starts with", "Includes", "Ends with", "Apply"));
+        for (WebElement element : inputElements) {
+            String placeHolder = element.getAttribute("placeholder");
+            if (placeHolder.isEmpty())
+                actualTitles.add(element.getAttribute("value"));
+            else
+                actualTitles.add(placeHolder);
+        }
+        assertEquals(expectedTitles, actualTitles);
+        inputElements.get(0).sendKeys("b");
+        inputElements.get(1).sendKeys("i");
+        inputElements.get(2).sendKeys("g");
+        inputElements.get(3).click();
+
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector(".word-finder-widgets .section__head h3"), "results for BLAGIN"));
+        List<WebElement> wordElements = driver.findElements(By.cssSelector(".list--words a"));
+        for (WebElement element : wordElements) {
+            String word = element.getText();
+            assertTrue(word.matches("^(?!.*?(.).*?\\1)[blagin?]*$"));
+            assertTrue(word.matches("^[b].*[i].*[g]$"));
+        }
+    }
+
+    /**
      * SK_1
      * Abhijit
      * Html refer to SK_1
