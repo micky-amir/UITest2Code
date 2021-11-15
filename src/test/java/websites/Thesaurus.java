@@ -1329,6 +1329,115 @@ public class Thesaurus {
     }
 
     /**
+     * SK_50
+     * Tamar
+     * HTML Refers to SK_1, SK_48
+     */
+    @Test
+    public void SK_50_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//button[text()='LEARN']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Word Lists", "Online Tutors", "New Words",
+                "Trending Words", "All About English", "Science And Technology", "Literature And Arts"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(0).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Word Lists & Flashcards"));
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(
+                By.xpath("//*[text()='Would you like to contribute to the community?']")));
+        element = element.findElement(By.xpath(".//following-sibling::*/button"));
+        assertEquals("Create A List", element.getText());
+        element.click();
+
+        wait.until(ExpectedConditions.textToBe(By.tagName("h3"), "Build Your Own Word Lists!"));
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("button[aria-label='sign up']")));
+        assertEquals("rgba(0, 36, 139, 1)", element.getCssValue("background-color"));
+    }
+
+    /**
+     * SK_51
+     * Tamar
+     * HTML Refers to SK_1, SK_51
+     */
+    @Test
+    public void SK_51_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//button[text()='GAMES']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Word Puzzle", "Quizzes", "Crossword Solver",
+                "Scrabble Word Finder", "Words With Friends Cheat", "Daily Crossword Puzzle"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(1).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Quizzes"));
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-testid='quiz-hub-card-featured']")));
+        String quizName = element.getText().toUpperCase(Locale.ROOT);
+        if (!quizName.matches("^[a-zA-Z0-9]"))
+            quizName = quizName.substring(2).trim();
+        element.click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), quizName));
+        By statusLocator = By.xpath("//*[contains(text(), 'Question')]");
+        String status = driver.findElement(statusLocator).getText();
+        int numberOfQuestions = Integer.parseInt(status.substring(status.lastIndexOf(' ') + 1));
+        for (int i = 0; i < numberOfQuestions; i++) {
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-quiz-answer]"))).click();
+            if (i == numberOfQuestions - 1)
+                wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text() = 'SEE RESULTS']"))).click();
+            else {
+                wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-next-question-button]"))).click();
+                wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(statusLocator, status)));
+                status = driver.findElement(statusLocator).getText();
+            }
+        }
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(text(), ' / " + numberOfQuestions + "')]")));
+        assertTrue(element.getText(), element.getText().trim().matches("^\\d.*"));
+    }
+
+    /**
+     * SK_52
+     * Tamar
+     * HTML Refers to SK_1, SK_48, SK_51
+     */
+    @Test
+    public void SK_52_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//button[text()='GAMES']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Word Puzzle", "Quizzes", "Crossword Solver",
+                "Scrabble Word Finder", "Words With Friends Cheat", "Daily Crossword Puzzle"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(1).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Quizzes"));
+        element = driver.findElement(By.cssSelector("[data-testid='Word Lists-test']"));
+        assertTrue(element.isDisplayed());
+        assertTrue(driver.findElement(By.cssSelector("[data-testid='Quizzes-test']")).isDisplayed());
+        element.click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Word Lists & Flashcards"));
+    }
+
+    /**
      * SK_1
      * Abhijit
      * Html refer to SK_1
