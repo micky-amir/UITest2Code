@@ -1258,6 +1258,77 @@ public class Thesaurus {
     }
 
     /**
+     * SK_48
+     * Tamar
+     * HTML Refers to SK_1, SK_48
+     */
+    @Test
+    public void SK_48_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//button[text()='LEARN']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Word Lists", "Online Tutors", "New Words",
+                "Trending Words", "All About English", "Science And Technology", "Literature And Arts"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(0).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Word Lists & Flashcards"));
+        assertTrue(driver.findElement(By.xpath("//h3[text()='Featured Lists']")).isDisplayed());
+        List<WebElement> featuredLists = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
+                By.cssSelector("[data-testid='word-list-hub-card-featured']")));
+        assertEquals(3, featuredLists.size());
+        String listName = featuredLists.get(0).findElement(By.tagName("div")).getText();
+        featuredLists.get(0).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), listName));
+        assertTrue(driver.findElement(By.cssSelector("[data-testid='word-wrapper']")).isDisplayed());
+    }
+
+    /**
+     * SK_49
+     * Tamar
+     * HTML Refers to SK_1, SK_48
+     */
+    @Test
+    public void SK_49_Tamar() throws InterruptedException {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//button[text()='LEARN']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Word Lists", "Online Tutors", "New Words",
+                "Trending Words", "All About English", "Science And Technology", "Literature And Arts"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(0).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Word Lists & Flashcards"));
+        assertTrue(driver.findElement(By.xpath("//h3[text()='All Lists']")).isDisplayed());
+        driver.findElement(By.tagName("select")).click();
+        driver.findElement(By.xpath("//*[text()='A - Z']")).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-testid='word-list-hub-show-more-button']"))).click();
+        Thread.sleep(2000);
+        List<WebElement> listElements = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
+                By.cssSelector("[data-testid='word-list-hub-card']")));
+        for (int i = 0; i < listElements.size() - 1; i++) {
+            String currentText = listElements.get(i).findElement(By.tagName("div")).getText().replaceAll(" ", "");
+            String nextText = listElements.get(i + 1).findElement(By.tagName("div")).getText().replaceAll(" ", "");
+            assertTrue(currentText + ", " + nextText, currentText.compareTo(nextText) < 0);
+        }
+    }
+
+    /**
      * SK_1
      * Abhijit
      * Html refer to SK_1
