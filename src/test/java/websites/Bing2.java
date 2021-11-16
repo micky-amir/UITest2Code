@@ -345,7 +345,7 @@ public class Bing2
     }
 
     /**
-     * BING32
+     * BING32 not finished
      * Mika
      * HTML refer to
      */
@@ -418,5 +418,203 @@ public class Bing2
         action.moveToElement(element).click().perform();
 
         wait.until(ExpectedConditions.numberOfWindowsToBe(2));
+    }
+
+    /**
+     * BING33 not finished
+     * Mika
+     * HTML refer to
+     */
+    @Test
+    public void BING33_Mika() throws InterruptedException
+    {
+        String textToSearch = "House";
+        String resultsNumString;
+
+        driver.get("https://www.bing.com");
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        Actions action = new Actions(driver);
+
+        wait.until(ExpectedConditions.urlToBe("https://www.bing.com/"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@aria-label='Bing']")));
+        Thread.sleep(1000);
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@class, 'idp_ham')]")));
+        action.click(element).pause(500).click(element).perform();
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("hbsettings"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Language' or text()='שפה']/../.."))).click();
+        element = wait.until(ExpectedConditions.presenceOfElementLocated
+                (By.xpath("//a[text()='אנגלית']")));
+        action.moveToElement(element).click().perform();
+
+        element = driver.findElement(By.xpath("//*[@aria-label='Enter your search term']"));
+        action.click(element).sendKeys(textToSearch).perform();
+        driver.findElement(By.id("search_icon")).click();
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("sb_count")));
+        resultsNumString = element.getText();
+
+        element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'idp_ham')]")));
+        element.click();
+        action.click(element).pause(500).click(element).perform();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='SafeSearch']"))).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[text()='Settings']")));
+        assertTrue(driver.findElement(By.id("adlt_set_moderate")).isSelected());
+        driver.findElement(By.id("adlt_set_off")).click();
+
+        element = driver.findElement(By.xpath("//*[@value='Save']"));
+        assertTrue(element.isDisplayed());
+        assertTrue(driver.findElement(By.id("cancel_changes_button")).isDisplayed());
+        element.click();
+
+        assertTrue(driver.findElement(By.xpath("//*[text()='Turning off SafeSearch requires age verification']"))
+                .isDisplayed());
+        driver.findElement(By.xpath("//*[text()='Agree']")).click();
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("sb_count")));
+        assertNotEquals(resultsNumString, element.getText());
+
+        element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'idp_ham')]")));
+        element.click();
+        action.click(element).pause(500).click(element).perform();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='SafeSearch']"))).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[text()='Settings']")));
+        driver.findElement(By.id("adlt_set_moderate")).click();
+        driver.findElement(By.xpath("//*[@value='Save']")).click();
+    }
+
+    /**
+     * BING34 not finished
+     * Mika
+     * HTML refer to
+     */
+    @Test
+    public void BING34_Mika() throws InterruptedException
+    {
+        String textToSearch = "House";
+        String menuCategory = "Search history";
+
+        driver.get("https://www.bing.com");
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        Actions action = new Actions(driver);
+
+        wait.until(ExpectedConditions.urlToBe("https://www.bing.com/"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@aria-label='Bing']")));
+        Thread.sleep(1000);
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@class, 'idp_ham')]")));
+        action.click(element).pause(500).click(element).perform();
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("hbsettings"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Language' or text()='שפה']/../.."))).click();
+        element = wait.until(ExpectedConditions.presenceOfElementLocated
+                (By.xpath("//a[text()='אנגלית']")));
+        action.moveToElement(element).click().perform();
+
+        element = driver.findElement(By.xpath("//*[@aria-label='Enter your search term']"));
+        action.click(element).sendKeys(textToSearch).perform();
+        driver.findElement(By.id("search_icon")).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("sb_count")));
+
+        element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'idp_ham')]")));
+        element.click();
+        action.click(element).pause(500).click(element).perform();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='" + menuCategory + "']"))).click();
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='" + menuCategory + "']")));
+        assertTrue(element.findElement(By.xpath("..")).getAttribute("class").contains("selected"));
+        assertTrue(driver.findElement(By.xpath("//*[text()='Insights']")).isDisplayed());
+        assertTrue(driver.findElement(By.xpath("//*[contains(@class, 'donut-chart')]")).isDisplayed());
+
+        element = driver.findElement(By.xpath("(//*[contains(@class, 'query-list__requery-link')])[1]"));
+        action.moveToElement(element).perform();
+        assertTrue((Boolean) js.executeScript
+                ("var elem = arguments[0],                 " +
+                                "  box = elem.getBoundingClientRect(),    " +
+                                "  cx = box.left + box.width / 2,         " +
+                                "  cy = box.top + box.height / 2,         " +
+                                "  e = document.elementFromPoint(cx, cy); " +
+                                "for (; e; e = e.parentElement) {         " +
+                                "  if (e === elem)                        " +
+                                "    return true;                         " +
+                                "}                                        " +
+                                "return false;                            "
+                        , element));
+        assertEquals(textToSearch, element.getText());
+    }
+
+    /**
+     * BING35 not finished
+     * Mika
+     * HTML refer to
+     */
+    @Test
+    public void BING35_Mika() throws InterruptedException
+    {
+        String textToSearch = "House";
+        String menuCategory = "Search history";
+        int searchedContentsNum;
+
+        driver.get("https://www.bing.com");
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        Actions action = new Actions(driver);
+
+        wait.until(ExpectedConditions.urlToBe("https://www.bing.com/"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@aria-label='Bing']")));
+        Thread.sleep(1000);
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@class, 'idp_ham')]")));
+        action.click(element).pause(500).click(element).perform();
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("hbsettings"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Language' or text()='שפה']/../.."))).click();
+        element = wait.until(ExpectedConditions.presenceOfElementLocated
+                (By.xpath("//a[text()='אנגלית']")));
+        action.moveToElement(element).click().perform();
+
+        element = driver.findElement(By.xpath("//*[@aria-label='Enter your search term']"));
+        action.click(element).sendKeys(textToSearch).perform();
+        driver.findElement(By.id("search_icon")).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("sb_count")));
+
+        element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'idp_ham')]")));
+        element.click();
+        action.click(element).pause(500).click(element).perform();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='" + menuCategory + "']"))).click();
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='" + menuCategory + "']")));
+        assertTrue(element.findElement(By.xpath("..")).getAttribute("class").contains("selected"));
+        assertTrue(driver.findElement(By.xpath("//*[text()='Insights']")).isDisplayed());
+        assertTrue(driver.findElement(By.xpath("//*[contains(@class, 'donut-chart')]")).isDisplayed());
+
+        element = driver.findElement(By.xpath("(//*[contains(@class, 'query-list__requery-link')])[1]"));
+        action.moveToElement(element).perform();
+        assertTrue((Boolean) js.executeScript
+                ("var elem = arguments[0],                 " +
+                                "  box = elem.getBoundingClientRect(),    " +
+                                "  cx = box.left + box.width / 2,         " +
+                                "  cy = box.top + box.height / 2,         " +
+                                "  e = document.elementFromPoint(cx, cy); " +
+                                "for (; e; e = e.parentElement) {         " +
+                                "  if (e === elem)                        " +
+                                "    return true;                         " +
+                                "}                                        " +
+                                "return false;                            "
+                        , element));
+        assertEquals(textToSearch, element.getText());
+
+        searchedContentsNum = driver.findElements(By.xpath("//*[@class='query-list__query-row']")).size();
+        driver.findElement(By.xpath("(//*[@class='query-list__query-row'])[1]//*[@role='checkbox']")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='Clear']"))).click();
+
+        assertNotEquals(searchedContentsNum,
+                driver.findElements(By.xpath("//*[@class='query-list__query-row']")).size());
     }
 }
