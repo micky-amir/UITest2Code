@@ -343,4 +343,80 @@ public class Bing2
         wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath("//*[text()='All']"), 0));
         assertEquals(1, driver.getWindowHandles().size());
     }
+
+    /**
+     * BING32
+     * Mika
+     * HTML refer to
+     */
+    @Test
+    public void BING32_Mika()
+    {
+        String textToSearch = "Jacket";
+
+        driver.get("https://www.bing.com");
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        Actions action = new Actions(driver);
+
+        wait.until(ExpectedConditions.urlToBe("https://www.bing.com/"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@aria-label='Bing']")));
+
+        wait.until(ExpectedConditions.elementToBeClickable
+                (By.xpath("//*[contains(@class, 'idp_ham')]"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("hbsettings"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Language' or text()='שפה']/../.."))).click();
+        element = wait.until(ExpectedConditions.presenceOfElementLocated
+                (By.xpath("//a[text()='אנגלית']")));
+        action.moveToElement(element).click().perform();
+
+        wait.until(ExpectedConditions.elementToBeClickable
+                (By.xpath("//*[contains(@class, 'idp_ham')]"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("hbsettings"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='More']/../.."))).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[text()='Settings']")));
+        element = driver.findElement(By.xpath("//*[text()='Open links from news results in a new tab or window']" +
+                "/preceding-sibling::*[@type='checkbox']"));
+        assertTrue(element.isSelected());
+        action.moveToElement(element).click().perform();
+        element = driver.findElement(By.xpath("//*[@value='Save']"));
+        assertTrue(element.isDisplayed());
+        assertTrue(wait.until(ExpectedConditions.presenceOfElementLocated(By.id("cancel_changes_button"))).isDisplayed());
+        element.click();
+
+        wait.until(ExpectedConditions.urlToBe("https://www.bing.com/"));
+        element = driver.findElement(By.xpath("//*[@aria-label='Enter your search term']"));
+        action.click(element).sendKeys(textToSearch).perform();
+        driver.findElement(By.id("search_icon")).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='News']"))).click();
+        element = driver.findElement(By.xpath("//*[contains(@class, 'news-card')]"));
+        action.moveToElement(element).click().perform();
+
+        wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath("//*[text()='News']"), 0));
+        assertEquals(1, driver.getWindowHandles().size());
+
+        driver.navigate().back();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='News']")));
+
+        wait.until(ExpectedConditions.elementToBeClickable
+                (By.xpath("//*[contains(@class, 'idp_ham')]"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("hbsettings"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='More']/../.."))).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[text()='Settings']")));
+        element = driver.findElement(By.xpath("//*[text()='Open links from news results in a new tab or window']" +
+                "/preceding-sibling::*[@type='checkbox']"));
+        action.moveToElement(element).click().perform();
+        element = driver.findElement(By.xpath("//*[@value='Save']"));
+        assertTrue(element.isDisplayed());
+        assertTrue(driver.findElement(By.id("cancel_changes_button")).isDisplayed());
+        element.click();
+
+        element = driver.findElement(By.xpath("//*[contains(@class, 'news-card')]"));
+        action.moveToElement(element).click().perform();
+
+        wait.until(ExpectedConditions.numberOfWindowsToBe(2));
+    }
 }
