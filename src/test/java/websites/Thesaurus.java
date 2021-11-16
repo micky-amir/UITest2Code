@@ -1541,6 +1541,79 @@ public class Thesaurus {
     }
 
     /**
+     * SK_56
+     * Tamar
+     * HTML Refers to SK_1, SK_26
+     */
+    @Test
+    public void SK_56_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.id("searchbar_input"));
+        element.sendKeys("people");
+        element.submit();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "people"));
+        assertTrue(driver.findElement(By.id("meanings")).isDisplayed());
+        element = driver.findElement(By.xpath("//*[contains(text(), 'See also synonyms for:')]//a"));
+        String expectedTitle = element.getText();
+        element.click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), expectedTitle));
+        assertTrue(driver.findElement(By.id("meanings")).isDisplayed());
+    }
+
+    /**
+     * SK_57
+     * Tamar
+     * HTML Refers to SK_1, SK_57
+     */
+    @Test
+    public void SK_57_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        Actions actions = new Actions(driver);
+        actions.moveToElement(driver.findElement(By.tagName("footer"))).perform();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        driver.findElement(By.cssSelector("#about-click a")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("section-about-intro")));
+
+        element = driver.findElement(By.className("section-about-chart"));
+        actions.moveToElement(element).perform();
+        assertEquals(5, element.findElements(By.cssSelector(".lines > li")).size());
+    }
+
+    /**
+     * SK_58
+     * Tamar
+     * HTML Refers to SK_1, SK_58
+     */
+    @Test
+    public void SK_58_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.id("searchbar_input"));
+        element.sendKeys("people");
+        element.submit();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "people"));
+        assertTrue(driver.findElement(By.id("meanings")).isDisplayed());
+
+        element = driver.findElement(By.id("example-creator"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        assertEquals("TRY USING people", element.findElement(By.tagName("h2")).getText());
+        element = element.findElement(By.tagName("input"));
+        assertTrue(element.isDisplayed());
+        element.sendKeys("The people are here");
+        driver.findElement(By.xpath("//button[text()='TRY NOW']")).click();
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-test-example-sentences]")));
+        assertEquals("Showing examples for the selected word:", element.findElement(By.tagName("span")).getText());
+        List<WebElement> sentences = driver.findElements(By.cssSelector("[data-test-swapped-sentence]"));
+        for (WebElement sentence : sentences) {
+            assertTrue(sentence.getText().matches("The .+ are here"));
+        }
+        assertTrue(driver.findElement(By.xpath("//a[text()='GIVE FEEDBACK']")).isDisplayed());
+    }
+
+    /**
      * SK_1
      * Abhijit
      * Html refer to SK_1
