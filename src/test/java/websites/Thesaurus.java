@@ -1614,6 +1614,143 @@ public class Thesaurus {
     }
 
     /**
+     * SK_59
+     * Tamar
+     * HTML Refers to SK_1, SK_59
+     */
+    @Test
+    public void SK_59_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        Actions actions = new Actions(driver);
+        element = driver.findElement(By.xpath("//*[text()='DOWNLOAD OUR APPS']"));
+        actions.moveToElement(driver.findElement(By.tagName("footer"))).perform();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , element));
+        assertEquals("Our apps also have more than 1.5 million definitions and synonyms plus access to our " +
+                        "trusted reference articles. Look up the words anywhere anytime-we work offline too!",
+                element.findElement(By.xpath(".//../following-sibling::p")).getText());
+
+        driver.findElement(By.id("android-appstore")).click();
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[aria-label='Google Play Logo']")));
+        assertEquals("Dictionary.com English Word Meanings & Definitions", driver.findElement(By.tagName("h1")).getText());
+    }
+
+    /**
+     * SK_60
+     * Tamar
+     * HTML Refers to SK_1, SK_60
+     */
+    @Test
+    public void SK_60_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        Actions actions = new Actions(driver);
+        element = driver.findElement(By.xpath("//*[text()='DOWNLOAD OUR APPS']"));
+        actions.moveToElement(driver.findElement(By.tagName("footer"))).perform();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , element));
+        assertEquals("Our apps also have more than 1.5 million definitions and synonyms plus access to our " +
+                        "trusted reference articles. Look up the words anywhere anytime-we work offline too!",
+                element.findElement(By.xpath(".//../following-sibling::p")).getText());
+
+        driver.findElement(By.id("apple-appstore")).click();
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        wait.until(ExpectedConditions.textToBe(By.cssSelector("[data-test-we-localnav-store-title]"), "App Store"));
+        assertTrue(driver.findElement(By.tagName("h1")).getText().contains("Dictionary.com: English Words"));
+    }
+
+    /**
+     * SK_61
+     * Tamar
+     * HTML Refers to SK_1, SK_61
+     */
+    @Test
+    public void SK_61_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        driver.findElement(By.id("dictionary-nav-tab")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.cssSelector(".header-tab-active"), "DICTIONARY.COM"));
+        assertTrue(driver.findElement(By.cssSelector("[data-testid='wotd']")).isDisplayed());
+
+        driver.findElement(By.id("thesaurus-nav-tab")).click();
+        wait.until(ExpectedConditions.textToBe(By.cssSelector(".header-tab-active"), "THESAURUS.COM"));
+        assertTrue(driver.findElement(By.cssSelector("[data-testid='synonym-of-the-day']")).isDisplayed());
+    }
+
+    /**
+     * SK_62
+     * Tamar
+     * HTML Refers to SK_1, SK_14
+     */
+    @Test
+    public void SK_62_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        Actions actions = new Actions(driver);
+        element = driver.findElement(By.xpath("//*[text()='SYNONYMS FOR OVERUSED WORDS']/ancestor::section"));
+        actions.moveToElement(element).perform();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , element));
+        assertEquals("We've found the most overused words and the synonyms you should be using instead.",
+                element.findElement(By.cssSelector(".heading-description")).getText());
+
+        List<WebElement> wordBlocks = driver.findElements(By.cssSelector("[data-testid='synonyms-block-word']"));
+        assertEquals(3, wordBlocks.size());
+        List<String> wordsInFirstBlock = new ArrayList<>();
+        for (int i = 0; i < wordBlocks.size(); i++) {
+            List<WebElement> words = wordBlocks.get(i).findElements(By.tagName("a"));
+            assertEquals(4, words.size());
+            if (i == 0) {
+                for (WebElement wordElement : words) {
+                    wordsInFirstBlock.add(wordElement.getText());
+                }
+            }
+        }
+        wordBlocks.get(0).findElement(By.tagName("a")).click();
+
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), wordsInFirstBlock.get(0)));
+        element = driver.findElement(By.id("meanings"));
+        assertTrue(element.isDisplayed());
+        for (int i = 1; i < wordsInFirstBlock.size(); i++) {
+            assertTrue(element.findElement(By.xpath(".//*[text()='" + wordsInFirstBlock.get(i) + "']")).isDisplayed());
+        }
+    }
+
+    /**
      * SK_1
      * Abhijit
      * Html refer to SK_1
