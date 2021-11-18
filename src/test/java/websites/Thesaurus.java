@@ -1861,6 +1861,118 @@ public class Thesaurus {
     }
 
     /**
+     * SK_67
+     * Tamar
+     * HTML Refers to SK_1, SK_65, SK_67
+     */
+    @Test
+    public void SK_67_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        Actions actions = new Actions(driver);
+        actions.moveToElement(driver.findElement(By.tagName("footer"))).perform();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        driver.findElement(By.cssSelector("#contactUs-click a")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".main-contact")));
+        assertEquals("Want to suggest a word or have a comment about one of our definitions or synonyms?",
+                driver.findElement(By.xpath("(//strong[text()])[2]")).getText());
+
+        driver.findElement(By.xpath("//a[text()='Fill out this form']")).click();
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(
+                By.className("freebirdFormviewerViewNavigationPasswordWarning"), "Google Forms"));
+        assertEquals("Dictionary.com & Thesaurus.com Lexicography Feedback",
+                driver.findElement(By.cssSelector(".freebirdFormviewerViewHeaderTitle")).getText());
+    }
+
+    /**
+     * SK_68
+     * Tamar
+     * HTML Refers to SK_1, SK_65
+     */
+    @Test
+    public void SK_68_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        Actions actions = new Actions(driver);
+        actions.moveToElement(driver.findElement(By.tagName("footer"))).perform();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        driver.findElement(By.cssSelector("#contactUs-click a")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".main-contact")));
+        assertEquals("Can’t find the answer in our Help Center?",
+                driver.findElement(By.xpath("(//strong[text()])[3]")).getText());
+
+        element = driver.findElement(By.cssSelector("form[id*='gform']"));
+        actions.moveToElement(element).perform();
+        Hashtable<String, String> elementsTextAndKind = new Hashtable<String, String>() {{
+            put("Department", "select");
+            put("Subject", "select");
+            put("Name", "input");
+            put("Email Address", "input");
+            put("Message", "textarea");
+        }};
+        elementsTextAndKind.forEach((name, kind) -> assertTrue(element.findElement(By.xpath
+                ("//*[text()='" + name + "']/following-sibling::*/" + kind)).isDisplayed()));
+        assertTrue(element.findElement(By.xpath("//*[text()='CAPTCHA']")).isDisplayed());
+        assertTrue(element.findElement(By.cssSelector("[type='submit']")).isDisplayed());
+    }
+
+    /**
+     * SK_69
+     * Tamar
+     * HTML Refers to SK_1, SK_69
+     */
+    @Test
+    public void SK_69_Tamar() throws InterruptedException {
+        driver.get("https://www.thesaurus.com/");
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        driver.findElement(By.cssSelector("#termAndPrivacy-click a")).click();
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(By.tagName("h1"), "Terms of Service & Privacy Policy"));
+
+        List<WebElement> titleElements = driver.findElements(By.cssSelector(".article__entry > ul a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Privacy & Cookie Policy", "Children’s Privacy",
+                "Contact Information", "Terms of Service", "Thesaurus Gift Card Terms and Conditions"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement title : titleElements) {
+            actualTitles.add(title.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+
+        titleElements.get(1).click();
+        Thread.sleep(2000);
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.xpath("//b[text()='Children’s Privacy.']"))));
+    }
+    /**
+     * SK_70
+     * Tamar
+     * HTML Refers to SK_1, SK_17, SK_61
+     */
+    @Test
+    public void SK_70_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        driver.findElement(By.id("dictionary-nav-tab")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.cssSelector(".header-tab-active"), "DICTIONARY.COM"));
+        assertTrue(driver.findElement(By.cssSelector("[data-testid='wotd']")).isDisplayed());
+
+        element = driver.findElement(By.cssSelector(".trending-words-word-block"));
+        String word = element.findElement(By.tagName("span")).getText();
+        element.click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), word));
+        assertTrue(driver.findElement(By.id("top-definitions-section")).isDisplayed());
+    }
+
+
+    /**
      * SK_1
      * Abhijit
      * Html refer to SK_1
