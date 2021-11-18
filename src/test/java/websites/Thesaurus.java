@@ -1751,6 +1751,116 @@ public class Thesaurus {
     }
 
     /**
+     * SK_63
+     * Tamar
+     * HTML Refers to SK_1, SK_63
+     */
+    @Test
+    public void SK_63_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        Actions actions = new Actions(driver);
+        element = driver.findElement(By.cssSelector("[data-browse-az]"));
+        actions.moveToElement(element).perform();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , element.findElement(By.xpath("//*[text()='BROWSE THESAURUS.COM']"))));
+        List<WebElement> buttons = driver.findElements(By.cssSelector("[data-browse-az] div:nth-of-type(2) a"));
+
+        for (int i = 1; i < buttons.size(); i++) {
+            assertEquals((char) (i + 64) + "" + (char) (i + 96), buttons.get(i).getText());
+        }
+        buttons.get(3).click();
+
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "BROWSE THESAURUS: LETTER \"C\""));
+        List<WebElement> words = driver.findElements(By.cssSelector("[data-testid='list-az-results'] a"));
+        for (WebElement word : words) {
+            assertTrue(word.getText().toLowerCase(Locale.ROOT).startsWith("c"));
+        }
+    }
+
+    /**
+     * SK_64
+     * Tamar
+     * HTML Refers to SK_1, SK_64
+     */
+    @Test
+    public void SK_64_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        Actions actions = new Actions(driver);
+        actions.moveToElement(driver.findElement(By.tagName("footer"))).perform();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        driver.findElement(By.cssSelector("#careers-click a")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("section-careers-intro")));
+
+        element = driver.findElement(By.id("twitter-widget-0"));
+        actions.moveToElement(element).perform();
+        driver.switchTo().frame(element);
+        assertEquals("Tweets by @Dictionarycom", driver.findElement(By.tagName("h1")).getText());
+    }
+
+    /**
+     * SK_65
+     * Tamar
+     * HTML Refers to SK_1, SK_65
+     */
+    @Test
+    public void SK_65_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        Actions actions = new Actions(driver);
+        actions.moveToElement(driver.findElement(By.tagName("footer"))).perform();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        driver.findElement(By.cssSelector("#contactUs-click a")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".main-contact")));
+        assertEquals("How can we help you?", driver.findElement(By.tagName("h1")).getText());
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("contact-search-bar__input")));
+        element.sendKeys("date");
+        element.submit();
+
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(By.tagName("h1"), "results for \"date\""));
+    }
+
+    /**
+     * SK_66
+     * Tamar
+     * HTML Refers to SK_1, SK_65, SK_66
+     */
+    @Test
+    public void SK_66_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        Actions actions = new Actions(driver);
+        actions.moveToElement(driver.findElement(By.tagName("footer"))).perform();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        driver.findElement(By.cssSelector("#contactUs-click a")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".main-contact")));
+        assertEquals("Quick Links:", driver.findElement(By.xpath("//strong[text()]")).getText());
+
+        List<WebElement> titleElements = driver.findElements(By.className("contact-quick-link"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("iPhone Apps", "Android Apps", "Accounts",
+                "Word of the Day", "Grammar Coach Subscription", "Dictionary Academy Tutors"));
+        List<String> actualTitles = new ArrayList<>();
+        for (int i = 0; i < titleElements.size() - 1; i++) {
+            actualTitles.add(titleElements.get(i).getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(0).click();
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(By.tagName("h1"), "iPhone Mobile Apps"));
+        assertTrue(driver.findElement(By.className("article-list-link")).isDisplayed());
+    }
+
+    /**
      * SK_1
      * Abhijit
      * Html refer to SK_1
