@@ -2188,6 +2188,147 @@ public class Thesaurus {
     }
 
     /**
+     * SK_78
+     * Tamar
+     * HTML Refers to SK_1, SK_78
+     */
+    @Test
+    public void SK_78_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//*[text()='WORD OF THE DAY']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList
+                ("Word Of The Day", "Synonym Of The Day", "Word Of The Year"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(2).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "The Dictionary.com Word Of The Year For 2020 Is …"));
+        assertEquals("pandemic:", driver.findElement(By.cssSelector("h3 strong")).getText().split(" ")[0]);
+    }
+
+    /**
+     * SK_79
+     * Tamar
+     * HTML Refers to SK_1, SK_79
+     */
+    @Test
+    public void SK_79_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.xpath("//h4[text()='CHECK OUT OUR OTHER PRODUCTS']"))));
+
+        driver.findElement(By.id("alexaskill")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[aria-label='Amazon']")));
+        assertEquals("Dictionary.com Word of the Day", driver.findElement(By.tagName("h1")).getText());
+    }
+
+    /**
+     * SK_80
+     * Tamar
+     * HTML Refers to SK_1, SK_80
+     */
+    @Test
+    public void SK_80_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.xpath("//h4[text()='CHECK OUT OUR OTHER PRODUCTS']"))));
+
+        driver.findElement(By.id("lexico-es")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[alt='Lexico logo']")));
+        assertEquals("SPANISH", driver.findElement(By.className("sbSelector")).getText());
+    }
+
+    /**
+     * SK_81
+     * Tamar
+     * HTML Refers to SK_1, SK_80
+     */
+    @Test
+    public void SK_81_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.xpath("//h4[text()='CHECK OUT OUR OTHER PRODUCTS']"))));
+
+        driver.findElement(By.id("lexico-en")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[alt='Lexico logo']")));
+        assertEquals("UK DICTIONARY", driver.findElement(By.className("sbSelector")).getText());
+    }
+
+    /**
+     * SK_82
+     * Tamar
+     * HTML Refers to SK_1, SK_61
+     */
+    @Test
+    public void SK_82_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.xpath("//h4[text()='CHECK OUT OUR OTHER PRODUCTS']"))));
+
+        driver.findElement(By.id("dcom")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.cssSelector(".header-tab-active"), "DICTIONARY.COM"));
+        assertTrue(driver.findElement(By.cssSelector(".trending-words-word-block")).isDisplayed());
+    }
+
+    /**
      * SK_1
      * Abhijit
      * Html refer to SK_1
