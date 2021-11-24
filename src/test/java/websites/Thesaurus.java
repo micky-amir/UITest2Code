@@ -2329,6 +2329,274 @@ public class Thesaurus {
     }
 
     /**
+     * SK_83
+     * Tamar
+     * HTML Refers to SK_1, SK_17, SK_83
+     */
+    @Test
+    public void SK_83_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        driver.findElement(By.id("dictionary-nav-tab")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.cssSelector(".header-tab-active"), "DICTIONARY.COM"));
+        assertTrue(driver.findElement(By.cssSelector(".trending-words-word-block")).isDisplayed());
+
+        element = driver.findElement(By.xpath("//*[text()='ONLINE TUTORING HELP! ']/ancestor::section"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        List<WebElement> stepElements = element.findElements(By.tagName("h3"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("English Tutors", "Math Tutors", "Test Prep"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : stepElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        stepElements.get(0).click();
+
+        wait.until(ExpectedConditions.titleIs("Appointy"));
+        wait.until(ExpectedConditions.textToBe(By.cssSelector(".info p"),
+                "Welcome to Dictionary Academy Tutors, where our teacher-trained certified tutors are " +
+                        "waiting to engage your learner! Click the subject and grade level of your learner. Next, you’ll " +
+                        "select the time that works for you and choose from our list of expert tutors. It's that easy!"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".page-services")));
+    }
+
+    /**
+     * SK_84
+     * Tamar
+     * HTML Refers to SK_1, SK_17, SK_63, SK_84
+     */
+    @Test
+    public void SK_84_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        driver.findElement(By.id("dictionary-nav-tab")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.cssSelector(".header-tab-active"), "DICTIONARY.COM"));
+        assertTrue(driver.findElement(By.cssSelector(".trending-words-word-block")).isDisplayed());
+
+        Actions actions = new Actions(driver);
+        element = driver.findElement(By.cssSelector("[data-browse-az]"));
+        actions.moveToElement(element).perform();
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , element.findElement(By.xpath("//*[text()='BROWSE DICTIONARY.COM']"))));
+        List<WebElement> buttons = driver.findElements(By.cssSelector("[data-browse-az] div:nth-of-type(2) a"));
+        assertEquals("#", buttons.get(0).getText());
+        for (int i = 1; i < buttons.size(); i++) {
+            assertEquals((char) (i + 64) + "" + (char) (i + 96), buttons.get(i).getText());
+        }
+        buttons.get(3).click();
+
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "BROWSE DICTIONARY: LETTER \"C\""));
+        List<WebElement> words = driver.findElements(By.cssSelector("[data-testid='list-az-results'] li > a:first-child"));
+        for (WebElement word : words) {
+            assertTrue(word.getText().toLowerCase(Locale.ROOT).startsWith("c"));
+        }
+    }
+
+    /**
+     * SK_85
+     * Tamar
+     * HTML Refers to SK_1, SK_17
+     */
+    @Test
+    public void SK_85_Tamar() throws InterruptedException {
+        driver.get("https://www.thesaurus.com/");
+        driver.findElement(By.id("dictionary-nav-tab")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.cssSelector(".header-tab-active"), "DICTIONARY.COM"));
+        assertTrue(driver.findElement(By.cssSelector(".trending-words")).isDisplayed());
+        By locator = By.cssSelector("[alt*='ticker']");
+        driver.findElement(locator).click();
+        assertEquals("play ticker", driver.findElement(locator).getAttribute("alt"));
+
+        List<WebElement> originalBlocks = driver.findElements(By.cssSelector(".trending-words-word-block"));
+        List<Integer> originalPositions = new ArrayList<>();
+        for (WebElement element : originalBlocks) {
+            originalPositions.add(element.getLocation().x);
+        }
+        Thread.sleep(3000);
+        List<WebElement> newBlocks = driver.findElements(By.cssSelector(".trending-words-word-block"));
+        List<Integer> newPositions = new ArrayList<>();
+        for (WebElement element : newBlocks) {
+            newPositions.add(element.getLocation().x);
+        }
+        assertEquals(originalPositions, newPositions);
+    }
+
+    /**
+     * SK_86
+     * Tamar
+     * HTML Refers to SK_1, SK_86
+     */
+    @Test
+    public void SK_86_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//button[text()='MEANINGS']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList(
+                "Emoji", "Slang", "Acronyms", "Pop Culture", "Memes", "Gender And Sexuality", "Mixed-Up Meanings"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(2).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "ACRONYMS DICTIONARY"));
+        assertEquals("FEATURED TERMS", driver.findElement(By.tagName("h2")).getText());
+        element = driver.findElement(By.cssSelector(".slick-track .word-item h2 a"));
+        String title = element.getText();
+        element.click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), title));
+    }
+
+    /**
+     * SK_87
+     * Tamar
+     * HTML Refers to SK_1, SK_86
+     */
+    @Test
+    public void SK_87_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//button[text()='MEANINGS']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList(
+                "Emoji", "Slang", "Acronyms", "Pop Culture", "Memes", "Gender And Sexuality", "Mixed-Up Meanings"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(2).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "ACRONYMS DICTIONARY"));
+        assertEquals("Home / Acronyms", driver.findElement(By.className("breadcrumbs")).getText());
+        element = driver.findElement(By.cssSelector(".slick-track .word-item h2 a"));
+        String title = element.getText();
+        element.click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("article-word")));
+        assertTrue(driver.findElement(By.className("breadcrumbs")).getText().endsWith(title));
+    }
+
+    /**
+     * SK_88
+     * Tamar
+     * HTML Refers to SK_1, SK_86
+     */
+    @Test
+    public void SK_88_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//button[text()='MEANINGS']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList(
+                "Emoji", "Slang", "Acronyms", "Pop Culture", "Memes", "Gender And Sexuality", "Mixed-Up Meanings"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(2).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "ACRONYMS DICTIONARY"));
+        assertEquals("MORE FROM ACRONYMS", driver.findElement(By.cssSelector("#just-added h2")).getText());
+        assertEquals(60, driver.findElements(By.cssSelector("#just-added .list a")).size());
+        assertEquals("1", driver.findElement(By.cssSelector("#just-added ol")).getAttribute("start"));
+
+        driver.findElement(By.className("paging-next")).click();
+        assertEquals(60, driver.findElements(By.cssSelector("#just-added .list a")).size());
+        assertEquals("61", driver.findElement(By.cssSelector("#just-added ol")).getAttribute("start"));
+    }
+
+    /**
+     * SK_89
+     * Tamar
+     * HTML Refers to SK_1, SK_86
+     */
+    @Test
+    public void SK_89_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//button[text()='MEANINGS']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList(
+                "Emoji", "Slang", "Acronyms", "Pop Culture", "Memes", "Gender And Sexuality", "Mixed-Up Meanings"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(2).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "ACRONYMS DICTIONARY"));
+        assertEquals("MORE FROM ACRONYMS", driver.findElement(By.cssSelector("#just-added h2")).getText());
+        List<WebElement> links = driver.findElements(By.cssSelector("#just-added .list a"));
+        assertEquals(60, links.size());
+        String title = links.get(0).getText();
+        links.get(0).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), title));
+    }
+
+    /**
+     * SK_90
+     * Tamar
+     * HTML Refers to SK_1, SK_53, SK_86
+     */
+    @Test
+    public void SK_90_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//button[text()='MEANINGS']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList(
+                "Emoji", "Slang", "Acronyms", "Pop Culture", "Memes", "Gender And Sexuality", "Mixed-Up Meanings"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(2).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "ACRONYMS DICTIONARY"));
+
+        expectedTitles.clear();
+        actualTitles.clear();
+        List<WebElement> categories = driver.findElements(By.cssSelector(".section-atw-categories a"));
+        expectedTitles = new ArrayList<>(Arrays.asList("ACRONYMS", "EMOJI", "FAMOUS PEOPLE", "FASHION",
+                "FICTIONAL CHARACTERS", "GENDER & SEXUALITY", "HISTORICAL & CURRENT EVENTS", "MEMES", "POLITICS",
+                "POP CULTURE", "RELIGION", "SLANG", "TECH & SCIENCE", "TRANSLATIONS"));
+        for (WebElement element : categories) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        categories.get(1).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "EMOJI DICTIONARY"));
+    }
+
+
+    /**
      * SK_1
      * Abhijit
      * Html refer to SK_1
