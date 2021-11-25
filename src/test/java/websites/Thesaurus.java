@@ -2595,6 +2595,245 @@ public class Thesaurus {
         wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "EMOJI DICTIONARY"));
     }
 
+    /**
+     * SK_91
+     * Tamar
+     * HTML Refers to SK_1, SK_14
+     */
+    @Test
+    public void SK_91_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.id("searchbar_input"));
+        element.sendKeys("happy");
+        element.submit();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "happy"));
+        assertTrue(driver.findElement(By.id("meanings")).isDisplayed());
+
+        driver.findElement(By.xpath("//*[text()='Compare Synonyms']/..")).click();
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[aria-label='Compare similar synonym words']")));
+        assertTrue(element.findElement(By.xpath("//h3[text()='Select up to 3 synonyms to compare']")).isDisplayed());
+        List<String> chosenSynonyms = new ArrayList<>(Arrays.asList("lively", "blessed", "exultant"));
+        for (String synonym : chosenSynonyms) {
+            wait.until(ExpectedConditions.elementToBeClickable(element.findElement(By.xpath(".//button[text()='" + synonym + "']")))).click();
+        }
+        element.findElement(By.xpath(".//a[text()='Compare Synonyms']")).click();
+
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Compare Synonyms of happy"));
+        List<WebElement> cards = driver.findElements(By.xpath("//h2/../.."));
+        for (int i = 0; i < cards.size(); i++) {
+            String synonym = chosenSynonyms.get(i);
+            assertEquals(synonym, cards.get(i).findElement(By.tagName("h2")).getText());
+            List<WebElement> subtitles = cards.get(i).findElements(By.tagName("h3"));
+            List<String> expectedTitles = new ArrayList<>(
+                    Arrays.asList("Definitions(s)", "Shared synonyms between " + synonym + " and happy",
+                            "Shared antonyms between " + synonym + " and happy"));
+            List<String> actualTitles = new ArrayList<>();
+            for (WebElement element : subtitles) {
+                actualTitles.add(element.getText());
+            }
+            assertEquals(expectedTitles, actualTitles);
+        }
+    }
+
+    /**
+     * SK_92
+     * Tamar
+     * HTML Refers to SK_1, SK_14, SK_41
+     */
+    @Test
+    public void SK_92_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.id("searchbar_input"));
+        element.sendKeys("happy");
+        element.submit();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "happy"));
+        assertTrue(driver.findElement(By.id("meanings")).isDisplayed());
+
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        element = driver.findElement(By.cssSelector("[data-testid='wotd']"));
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , element));
+        String name = element.findElement(By.cssSelector(".wotd-word")).getText();
+        element.click();
+        wait.until(ExpectedConditions.textToBe(By.className("otd-item-wrapper__label"), "WORD OF THE DAY"));
+        wait.until(ExpectedConditions.textToBe(By.className("otd-item-headword__word"), name));
+    }
+
+    /**
+     * SK_93
+     * Tamar
+     * HTML Refers to SK_1, SK_41, SK_93
+     */
+    @Test
+    public void SK_93_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//*[text()='WORD OF THE DAY']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList
+                ("Word Of The Day", "Synonym Of The Day", "Word Of The Year"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(0).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.className("otd-item-wrapper__label"), "WORD OF THE DAY"));
+
+
+        element = driver.findElement(By.cssSelector("[title='Search for:']"));
+        element.sendKeys("micro");
+        element.submit();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h2"), "Search Results for: micro"));
+        List<WebElement> articles = driver.findElements(By.className("article__content"));
+        for (int i = 0; i < 6; i++) {
+            assertTrue(articles.get(i).getText().toLowerCase(Locale.ROOT).contains("micro"));
+        }
+    }
+
+    /**
+     * SK_94
+     * Tamar
+     * HTML Refers to SK_1, SK_17, SK_41
+     */
+    @Test
+    public void SK_94_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//*[text()='WORD OF THE DAY']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList
+                ("Word Of The Day", "Synonym Of The Day", "Word Of The Year"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(0).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.className("otd-item-wrapper__label"), "WORD OF THE DAY"));
+
+        String word = driver.findElement(By.className("otd-item-headword__word")).getText();
+        driver.findElement(By.xpath("//a[contains(text(), 'Look it up')]")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("top-definitions-section")));
+        assertEquals(word, driver.findElement(By.tagName("h1")).getText());
+    }
+
+    /**
+     * SK_95
+     * Tamar
+     * HTML Refers to SK_1, SK_41
+     */
+    @Test
+    public void SK_95_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//*[text()='WORD OF THE DAY']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList
+                ("Word Of The Day", "Synonym Of The Day", "Word Of The Year"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(0).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.className("otd-item-wrapper__label"), "WORD OF THE DAY"));
+
+        driver.findElement(By.cssSelector("[data-cy='otd-podcast-play']")).click();
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(By.className("current-time"), "00:00")));
+    }
+
+    /**
+     * SK_96
+     * Tamar
+     * HTML Refers to SK_1, SK_14, SK_36
+     */
+    @Test
+    public void SK_96_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//*[text()='WORD OF THE DAY']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList
+                ("Word Of The Day", "Synonym Of The Day", "Word Of The Year"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(1).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.className("otd-item-wrapper__label"), "SYNONYM OF THE DAY"));
+
+        String word = driver.findElement(By.tagName("h2")).getText();
+        word = word.substring(word.lastIndexOf(' ') + 1);
+        driver.findElement(By.xpath("//a[contains(text(), 'See all synonyms for')]")).click();
+
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), word));
+        assertTrue(driver.findElement(By.id("meanings")).isDisplayed());
+    }
+
+    /**
+     * SK_97
+     * Tamar
+     * HTML Refers to SK_1, SK_36
+     */
+    @Test
+    public void SK_97_Tamar() throws InterruptedException {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//*[text()='WORD OF THE DAY']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList
+                ("Word Of The Day", "Synonym Of The Day", "Word Of The Year"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(1).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.className("otd-item-wrapper__label"), "SYNONYM OF THE DAY"));
+
+        element = driver.findElement(By.cssSelector(".otd-widget__nav--sotd a"));
+        String dateNumber = element.findElement(By.tagName("span")).getText().split(" ")[1];
+        element.click();
+        Thread.sleep(1000);
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.xpath("//*[@class='otd-item-headword__date']/*[contains(text(), '" + dateNumber + "')]"))));
+    }
 
     /**
      * SK_1
