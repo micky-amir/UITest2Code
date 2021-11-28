@@ -2836,6 +2836,139 @@ public class Thesaurus {
     }
 
     /**
+     * SK_98
+     * Tamar
+     * HTML Refers to SK_1, SK_104
+     */
+    @Test
+    public void SK_98_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.id("searchbar_input"));
+        element.sendKeys("100");
+        element.submit();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "0 results for 100"));
+    }
+
+    /**
+     * SK_99
+     * Tamar
+     * HTML Refers to SK_1, SK_14, SK_63
+     */
+    @Test
+    public void SK_99_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.id("searchbar_input"));
+        element.sendKeys("happy");
+        element.submit();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "happy"));
+        assertTrue(driver.findElement(By.id("meanings")).isDisplayed());
+
+        Actions actions = new Actions(driver);
+        actions.moveToElement(driver.findElement(By.tagName("footer"))).perform();
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.xpath("//*[contains(text(), 'Browse the')]"))));
+        List<WebElement> letters = driver.findElements(By.cssSelector("[id^='azFooter']"));
+        assertEquals("#", letters.get(0).getText());
+        for (int i = 1; i < letters.size(); i++) {
+            assertEquals(String.valueOf((char) (i + 64)), letters.get(i).getText());
+        }
+
+        letters.get(3).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "BROWSE THESAURUS: LETTER \"C\""));
+    }
+
+    /**
+     * SK_100
+     * Tamar
+     * HTML Refers to SK_1, SK_14, SK_100
+     */
+    @Test
+    public void SK_100_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.id("searchbar_input"));
+        element.sendKeys("happy");
+        element.submit();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "happy"));
+        assertTrue(driver.findElement(By.id("meanings")).isDisplayed());
+
+        Actions actions = new Actions(driver);
+        actions.moveToElement(driver.findElement(By.tagName("footer"))).perform();
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.xpath("//*[contains(text(), 'Browse by')]"))));
+        List<WebElement> categories = driver.findElements(By.cssSelector("[id^='atwFooter']"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Slang", "Emoji", "Acronyms", "Pop Culture", "More"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : categories) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        categories.get(1).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("sitemap")));
+        assertEquals("EMOJI", driver.findElement(By.tagName("h1")).getText());
+    }
+
+    /**
+     * SK_104
+     * Tamar
+     * HTML Refers to SK_1, SK_14, SK_104
+     */
+    @Test
+    public void SK_104_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.id("searchbar_input"));
+        element.sendKeys("heppy");
+        element.submit();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "0 results for heppy"));
+        element = driver.findElement(By.xpath("//a[text()='happy']"));
+        assertTrue(element.isDisplayed());
+        element.click();
+
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "happy"));
+        assertTrue(driver.findElement(By.id("meanings")).isDisplayed());
+    }
+
+    /**
+     * SK_105
+     * Tamar
+     * HTML Refers to SK_1, SK_14
+     */
+    @Test
+    public void SK_105_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.id("searchbar_input"));
+        element.sendKeys("10");
+        element.submit();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "10"));
+        assertTrue(driver.findElement(By.id("meanings")).isDisplayed());
+    }
+
+    /**
      * SK_1
      * Abhijit
      * Html refer to SK_1
