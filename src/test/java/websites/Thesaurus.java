@@ -2932,6 +2932,170 @@ public class Thesaurus {
     }
 
     /**
+     * SK_101
+     * Tamar
+     * HTML Refers to SK_1, SK_14, SK_77, SK_101
+     */
+    @Test
+    public void SK_101_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.id("searchbar_input"));
+        element.sendKeys("happy");
+        element.submit();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "happy"));
+        assertTrue(driver.findElement(By.id("meanings")).isDisplayed());
+
+        Actions actions = new Actions(driver);
+        actions.moveToElement(driver.findElement(By.tagName("footer"))).perform();
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.xpath("//*[contains(text(), 'Browse by')]"))));
+        List<WebElement> categories = driver.findElements(By.cssSelector("[id^='atwFooter']"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Slang", "Emoji", "Acronyms", "Pop Culture", "More"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : categories) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        categories.get(4).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("sitemap")));
+        assertEquals("WORD FACTS", driver.findElement(By.tagName("h1")).getText());
+
+        element = driver.findElement(By.cssSelector(".sitemap-listing a"));
+        String title = element.getText();
+        element.click();
+        wait.until(ExpectedConditions.textToBe(By.className("article__title"), title));
+    }
+
+    /**
+     * SK_102
+     * Tamar
+     * HTML Refers to SK_1, SK_14, SK_55, SK_101, SK_102
+     */
+    @Test
+    public void SK_102_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.id("searchbar_input"));
+        element.sendKeys("happy");
+        element.submit();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "happy"));
+        assertTrue(driver.findElement(By.id("meanings")).isDisplayed());
+
+        Actions actions = new Actions(driver);
+        actions.moveToElement(driver.findElement(By.tagName("footer"))).perform();
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.xpath("//*[contains(text(), 'Browse by')]"))));
+        List<WebElement> categories = driver.findElements(By.cssSelector("[id^='atwFooter']"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Slang", "Emoji", "Acronyms", "Pop Culture", "More"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : categories) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        categories.get(4).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("sitemap")));
+        assertEquals("WORD FACTS", driver.findElement(By.tagName("h1")).getText());
+
+        expectedTitles.clear();
+        actualTitles.clear();
+        List<WebElement> subcategories = driver.findElements(By.cssSelector(".sitemap-header__listing a"));
+        expectedTitles = new ArrayList<>(Arrays.asList(
+                "EDUCATION", "FUN", "POP CULTURE", "TRENDING WORDS", "UNCATEGORIZED", "WORD FACTS"));
+        for (WebElement element : subcategories) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        subcategories.get(1).click();
+
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), expectedTitles.get(1)));
+        element = driver.findElement(By.cssSelector(".sitemap-listing a"));
+        String title = element.getText();
+        assertEquals("Dictionary.com’s Ideas For Olympic Events", title);
+        element.click();
+        wait.until(ExpectedConditions.textToBe(By.className("article__title"), title));
+    }
+
+    /**
+     * SK_103
+     * Tamar
+     * HTML Refers to SK_1, SK_14, SK_101, SK_103
+     */
+    @Test
+    public void SK_103_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.id("searchbar_input"));
+        element.sendKeys("happy");
+        element.submit();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "happy"));
+        assertTrue(driver.findElement(By.id("meanings")).isDisplayed());
+
+        Actions actions = new Actions(driver);
+        actions.moveToElement(driver.findElement(By.tagName("footer"))).perform();
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.xpath("//*[contains(text(), 'Browse by')]"))));
+        List<WebElement> categories = driver.findElements(By.cssSelector("[id^='atwFooter']"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Slang", "Emoji", "Acronyms", "Pop Culture", "More"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : categories) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        categories.get(4).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("sitemap")));
+        assertEquals("WORD FACTS", driver.findElement(By.tagName("h1")).getText());
+
+        expectedTitles.clear();
+        actualTitles.clear();
+        List<WebElement> subcategories = driver.findElements(By.cssSelector(".sitemap-header__dropdown option"));
+        expectedTitles = new ArrayList<>(Arrays.asList(
+                "Official Dictionary Site Map", "Everything After Z Site Map", "About This Word Sitemap"));
+        for (WebElement element : subcategories) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        driver.findElement(By.className("sitemap-header__dropdown")).click();
+        subcategories.get(2).click();
+
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "SLANG"));
+        assertEquals(expectedTitles.get(2), driver.findElement(By.cssSelector("option[selected]")).getText());
+    }
+
+    /**
      * SK_104
      * Tamar
      * HTML Refers to SK_1, SK_14, SK_104
