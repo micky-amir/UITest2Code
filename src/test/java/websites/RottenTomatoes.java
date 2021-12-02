@@ -5,6 +5,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -257,4 +258,219 @@ public class RottenTomatoes {
             assertTrue(date.getText().startsWith("Available"));
         }
     }
+
+    /**
+     * RT_11
+     * Tamar
+     * HTML refers to RT_1, RT_11
+     */
+    @Test
+    public void RT_11_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//h2[text()='New & Upcoming Movies']/following-sibling::a"));
+        assertEquals("VIEW ALL", element.getText());
+        element.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(By.tagName("h1"), "COMING SOON"));
+        By locator = By.cssSelector("btn.view-icon:nth-of-type(2)");
+        driver.findElement(locator).click();
+        wait.until(ExpectedConditions.attributeContains(locator, "class", "active"));
+        assertTrue(driver.findElement(By.cssSelector(".mb-movies")).getAttribute("class").contains("list-view"));
+    }
+
+    /**
+     * RT_12
+     * Tamar
+     * HTML refers to RT_1, RT_10
+     */
+    @Test
+    public void RT_12_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//h2[text()='New & Upcoming Movies']/following-sibling::a"));
+        assertEquals("VIEW ALL", element.getText());
+        element.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(By.tagName("h1"), "COMING SOON"));
+
+        Actions actions = new Actions(driver);
+        element = driver.findElement(By.id("tomatometerFilter"));
+        actions.moveToElement(element).perform();
+        assertNotEquals("none", element.findElement(By.className("dropdown-menu")).getCssValue("display"));
+        assertTrue(element.findElement(By.cssSelector(".slider")).isDisplayed());
+        element = element.findElement(By.cssSelector(".certified-fresh-checkbox input"));
+        assertTrue(element.isDisplayed());
+        element.click();
+
+        wait.until(ExpectedConditions.textToBe(By.cssSelector(".tomatometerScore"), "70% — 100%"));
+        List<WebElement> scores = driver.findElements(By.cssSelector(".movie_info .tMeterScore"));
+        for (WebElement score : scores) {
+            int scoreNumber = Integer.parseInt(score.getText().replace("%", ""));
+            assertTrue(scoreNumber >= 70 && scoreNumber <= 100);
+        }
+    }
+
+    /**
+     * RT_13
+     * Tamar
+     * HTML refers to RT_1, RT_10
+     */
+    @Test
+    public void RT_13_Tamar() throws InterruptedException {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//h2[text()='New & Upcoming Movies']/following-sibling::a"));
+        assertEquals("VIEW ALL", element.getText());
+        element.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(By.tagName("h1"), "COMING SOON"));
+
+        Actions actions = new Actions(driver);
+        element = driver.findElement(By.id("tomatometerFilter"));
+        actions.moveToElement(element).perform();
+        assertNotEquals("none", element.findElement(By.className("dropdown-menu")).getCssValue("display"));
+        assertTrue(element.findElement(By.cssSelector(".slider")).isDisplayed());
+        assertTrue(element.findElement(By.cssSelector(".certified-fresh-checkbox")).isDisplayed());
+
+        element = element.findElement(By.className("noUi-origin"));
+        actions.dragAndDrop(element, driver.findElement(By.cssSelector(".slider"))).perform();
+
+        wait.until(ExpectedConditions.textToBe(By.cssSelector(".tomatometerScore"), "50% — 100%"));
+        Thread.sleep(500);
+        List<WebElement> scores = driver.findElements(By.cssSelector(".movie_info .tMeterScore"));
+        for (WebElement score : scores) {
+            int scoreNumber = Integer.parseInt(score.getText().replace("%", ""));
+            assertTrue(scoreNumber >= 50 && scoreNumber <= 100);
+        }
+    }
+
+    /**
+     * RT_14
+     * Tamar
+     * HTML refers to RT_1, RT_2
+     */
+    @Test
+    public void RT_14_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//h2[text()='Popular Streaming Movies']//ancestor::section"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+
+        element = element.findElement(By.cssSelector("[slot='list-items'] li"));
+        String title = element.findElement(By.cssSelector(".dynamic-text-list__item-title")).getText();
+        String score = element.findElement(By.cssSelector("[slot='tomatometer-value']")).getText();
+        element.findElement(By.tagName("a")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-qa='movie-main-column']")));
+        assertEquals(title.toUpperCase(Locale.ROOT), driver.findElement(By.tagName("h1")).getText());
+        assertEquals(score.replace("%", ""), driver.findElement(By.tagName("score-board")).getAttribute("tomatometerscore"));
+    }
+
+    /**
+     * RT_15
+     * Tamar
+     * HTML refers to RT_1
+     */
+    @Test
+    public void RT_15_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//h2[text()='Popular Streaming Movies']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element.findElement(By.xpath("./.."))).perform();
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , element));
+
+        List<WebElement> movies = element.findElements(By.cssSelector("[slot='list-items'] li"));
+        for (WebElement movie : movies) {
+            assertTrue(movie.findElement(By.cssSelector(".dynamic-text-list__item-title")).isDisplayed());
+            assertTrue(movie.findElement(By.cssSelector("[slot='tomatometer-value']")).isDisplayed());
+            assertTrue(movie.findElement(By.cssSelector("[slot='tomatometer-icon']")).isDisplayed());
+        }
+    }
+
+    /**
+     * RT_16
+     * Tamar
+     * HTML refers to RT_1, RT_16
+     */
+    @Test
+    public void RT_16_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//h2[text()='Best Series on Netflix']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element.findElement(By.xpath("./.."))).perform();
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , element));
+
+        element.findElement(By.xpath("./following-sibling::a[@data-track='showmore']")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(
+                By.tagName("h1"), "BEST NETFLIX SERIES TO WATCH RIGHT NOW"));
+        String expectedNumberOfSeries = driver.findElement(By.tagName("h1")).getText().split(" ")[1];
+        List<WebElement> seriesRatingNumber = driver.findElements(By.className("countdown-index"));
+        assertEquals(Integer.parseInt(expectedNumberOfSeries), seriesRatingNumber.size());
+        for (int i = 0; i < seriesRatingNumber.size(); i++) {
+            assertEquals(String.valueOf(seriesRatingNumber.size() - i),
+                    seriesRatingNumber.get(i).getText().replace("#", ""));
+        }
+    }
+
+    /**
+     * RT_17
+     * Tamar
+     * HTML refers to RT_1, RT_17
+     */
+    @Test
+    public void RT_17_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//h2[text()='Best Series on Netflix']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element.findElement(By.xpath("./.."))).perform();
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , element));
+
+        element = element.findElement(By.xpath(".//ancestor::section[@id='dynamic-poster-list']//tile-dynamic"));
+        String title = element.findElement(By.className("p--small")).getText();
+        String score = element.findElement(By.tagName("score-pairs")).getAttribute("criticsscore");
+        element.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.cssSelector("[data-qa='score-panel-series-title']"), title.toUpperCase(Locale.ROOT)));
+        assertEquals(score, driver.findElement(By.cssSelector("[data-qa='tomatometer']")).getText().replace("%", ""));
+        assertEquals("Netflix", driver.findElement(By.cssSelector("[data-qa='series-details-network']")).getText());
+    }
+
 }
