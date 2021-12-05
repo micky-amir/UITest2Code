@@ -1,0 +1,1893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body class="body no-touch js-mptd-layout" style="">
+<script>//--[2016-11-07] Attach pixel ad after page loads
+  mps._queue.gptloaded.push(function() {
+    mps._ready(function(){
+      if(mps._select('#main_container')) {
+        mps._d('[mps+RT] Inserted pixel slot');
+        mps.insertAd('#main_container','pixel');
+      } else {
+        mps._d('[mps+RT] Inserted pixel slot [mps+RT] Failed to insert pixel slot - missing container.');
+      }
+    });
+  });
+
+</script>
+
+<script>window.console && console.log('--[executed]--> MPS Header Additions (2)');</script>
+<script>typeof mps._postscribe == "object" && mps._postscribe.enable();</script>
+<script>typeof mps._postscribe == "object" && mps._postscribe.disable();</script>
+<div id="consent_blackbar"></div>
+
+
+<div id="emptyPlaceholder"></div>
+
+<script>
+                    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function()
+                    {n.callMethod? n.callMethod.apply(n,arguments):n.queue.push(arguments)}
+                    ;if(!f._fbq)f._fbq=n;
+                        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+                        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+                            document,'script','https://connect.facebook.net/en_US/fbevents.js');
+                    fbq('init', '1147905821962466');
+                    fbq('track', 'PageView');
+
+</script>
+
+<noscript>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=1147905821962466&ev=PageView&noscript=1"/>
+</noscript>
+
+
+<script async="" src="//assets.adobedtm.com/launch-EN549327edc13e414a9beb5d61bfd9aac6.min.js"></script>
+
+
+<!--BEGIN QUALTRICS WEBSITE FEEDBACK SNIPPET-->
+<script type="text/javascript">
+  (function(){var g=function(e,h,f,g){
+  this.get=function(a){for(var a=a+"=",c=document.cookie.split(";"),b=0,e=c.length;b<e;b++){for(var d=c[b];" "==d.charAt(0);)d=d.substring(1,d.length);if(0==d.indexOf(a))return d.substring(a.length,d.length)}return null};
+  this.set=function(a,c){var b="",b=new Date;b.setTime(b.getTime()+6048E5);b="; expires="+b.toGMTString();document.cookie=a+"="+c+b+"; path=/; "};
+  this.check=function(){var a=this.get(f);if(a)a=a.split(":");else if(100!=e)"v"==h&&(e=Math.random()>=e/100?0:100),a=[h,e,0],this.set(f,a.join(":"));else return!0;var c=a[1];if(100==c)return!0;switch(a[0]){case "v":return!1;case "r":return c=a[2]%Math.floor(100/c),a[2]++,this.set(f,a.join(":")),!c}return!0};
+  this.go=function(){if(this.check()){var a=document.createElement("script");a.type="text/javascript";a.src=g;document.body&&document.body.appendChild(a)}};
+  this.start=function(){var t=this;"complete"!==document.readyState?window.addEventListener?window.addEventListener("load",function(){t.go()},!1):window.attachEvent&&window.attachEvent("onload",function(){t.go()}):t.go()};};
+  try{(new g(100,"r","QSI_S_ZN_6SDb0uWojRgLmmN","https://zn6sdb0uwojrglmmn-fandango.siteintercept.qualtrics.com/SIE/?Q_ZID=ZN_6SDb0uWojRgLmmN")).start()}catch(i){}})();
+
+</script>
+<div id="ZN_6SDb0uWojRgLmmN"><!--DO NOT REMOVE-CONTENTS PLACED HERE--></div>
+<!--END WEBSITE FEEDBACK SNIPPET-->
+
+
+<div class="container roma-layout__body">
+    <div id="header_and_leaderboard">
+
+
+    </div>
+
+    <!-- salt=mastheader-not-grendel -->
+    <header class="masthead">
+
+        <nav id="navbar" class="masthead__navbar" aria-label="navigation bar" data-qa="header-nav-bar">
+            <a href="#main-page-content" class="skip-link">Skip to Main Content</a>
+            <a href="#masthead-dropdown-menus" class="skip-link">Skip to Dropdowns</a>
+            <h2 class="unset masthead__logo-container">
+                <a href="/">
+                    <img id="masthead-logo" class="masthead__logo" src="/assets/pizza-pie/images/rtlogo.9b892cff3fd.png"
+                         alt="Rotten Tomatoes" data-qa="header-logo">
+                    <span class="masthead--hide">Rotten Tomatoes</span>
+                </a>
+            </h2>
+
+
+            <ul class="list-inline masthead__inline-links">
+                <li><a href="/about#whatisthetomatometer" class="masthead__header-link"
+                       data-qa="header:link-whats-tmeter">What's the Tomatometer®?</a></li>
+                <li><a href="/critics" class="masthead__header-link" data-qa="header:link-critics-home">Critics</a></li>
+                <li class="js-masthead-account-links-login masthead__auth-group">
+                    <ul class="list-inline">
+                        <li>
+                            <button id="masthead-show-registration-btn"
+                                    class="js-cognito-signup masthead__link-btn button--link"
+                                    data-qa="header:sign-up-btn">Sign up
+                            </button>
+                        </li>
+                        <li class="masthead__log-in-wrap">
+                            <button id="masthead-show-login-btn"
+                                    class="js-cognito-signin masthead__link-btn button--link"
+                                    data-qa="header:login-btn">Log in
+                            </button>
+                        </li>
+                    </ul>
+                </li>
+                <li class="js-masthead-account-links-user" data-qa="header:user"></li>
+            </ul>
+            <search-algolia>
+                <search-algolia-controls slot="search-controls">
+                    <input class="search-text" aria-label="Search" data-qa="search-input"
+                           placeholder="Search movies, TV, actors, more..." slot="search-input" type="text">
+                    <button class="search-clear" data-qa="search-clear" slot="search-clear">
+                        <rt-icon icon="close" image=""></rt-icon>
+                    </button>
+                    <a class="search-submit" aria-label="Submit search" data-qa="search-submit" href="/search"
+                       slot="search-submit">
+                        <rt-icon icon="search" image=""></rt-icon>
+                    </a>
+                    <button class="search-cancel" data-qa="search-cancel" slot="search-cancel">
+                        Cancel
+                    </button>
+                </search-algolia-controls>
+                <search-algolia-results slot="search-results" data-qa="search-results-overlay" hidden="true">
+                    <search-algolia-results-category slot="content" data-qa="search-results-category" hidden="">
+                        <h2 slot="title" data-qa="search-category-header">Movies / TV</h2>
+                        <ul slot="results"></ul>
+                    </search-algolia-results-category>
+                    <search-algolia-results-category slot="celebrity" data-qa="search-results-category" hidden="">
+                        <h2 slot="title" data-qa="search-category-header">Celebrity</h2>
+                        <ul slot="results"></ul>
+                    </search-algolia-results-category>
+                    <search-algolia-results-category slot="none" hidden="">
+                        <h2 slot="title" data-qa="search-no-results">No Results Found</h2>
+                    </search-algolia-results-category>
+                    <a slot="view-all" href="/" data-qa="search-view-all">View All</a>
+                </search-algolia-results>
+            </search-algolia>
+            <mobile-search-algolia logoselector="#navbar .masthead__logo-container" navselector="#navbar"
+                                   data-qa="mobile-search-algolia"></mobile-search-algolia>
+
+            <div id="masthead-dropdown-menus" class="masthead__dropdown-menus">
+                <a href="#trending-bar-start" class="skip-link">Skip to Trending Bar</a>
+                <ul class="masthead__dropdown-menus list-inline">
+                    <li class="masthead__menu-header js-masthead-menu-header" data-content="_moviesAndDvds"
+                        data-qa="masthead:movies-dvds">
+                        <a class="masthead__menu-header-title" href="/browse/opening/"
+                           data-qa="masthead:movies-dvds-link">Movies</a>
+                    </li>
+                    <li class="masthead__menu-header js-masthead-menu-header" data-content="_tv" data-qa="masthead:tv">
+                        <a class="masthead__menu-header-title" href="https://www.rottentomatoes.com/top-tv"
+                           data-qa="masthead:tv-link">TV Shows</a>
+                    </li>
+                    <li class="masthead__menu-header masthead__menu-header--podcast masthead__no-content js-masthead-menu-header">
+                        <temporary-display key="podcast" element="#podcast-link" event="click">
+                            <rt-badge theme="light">New</rt-badge>
+                        </temporary-display>
+                        <a class="masthead__menu-header-title"
+                           href="https://editorial.rottentomatoes.com/article/rotten-tomatoes-is-wrong-a-podcast-from-rotten-tomatoes/"
+                           id="podcast-link" data-qa="masthead:podcast-link">RT Podcast</a>
+                    </li>
+                    <li class="masthead__menu-header js-masthead-menu-header" data-content="_news"
+                        data-qa="masthead:news">
+                        <a class="masthead__menu-header-title" href="https://editorial.rottentomatoes.com/"
+                           data-qa="masthead:news-link">News</a>
+                    </li>
+                    <li class="masthead__menu-header masthead__no-content js-masthead-menu-header">
+                        <a href="/showtimes" class="masthead__menu-header-title"
+                           data-qa="masthead:tickets-showtimes-link">Showtimes</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <section class="trending-bar">
+
+
+            <div id="trending_bar_ad" style="display: none;">
+                <div id="div-gpt-trendinggraphic-51779886" class="mps-slot" data-mps-slot="trendinggraphic"
+                     data-mps-loadset="0">
+                    <script>mps._execAd("trendinggraphic");</script>
+                </div>
+            </div>
+            <script>
+        var mps = mps||{}; mps._queue = mps._queue||{}; mps._queue.gptloaded = mps._queue.gptloaded||[];
+        mps._queue.gptloaded.push(function () {
+            if (mps.getResponsiveSet() != '0') { //DESKTOP or TABLET
+                mps.insertAd('#trending_bar_ad','trendinggraphic');
+            }
+        });
+
+            </script>
+
+
+            <div id="trending-bar-start" class="trending-list-wrap" data-qa="trending-bar">
+                <ul class="list-inline trending-bar__list" data-curation="rt-nav-trending" data-qa="trending-bar-list">
+                    <li class="trending-bar__header">Trending on RT</li>
+
+                    <li><a class="trending-bar__link"
+                           href="https://editorial.rottentomatoes.com/article/ultimate-binge-guide/"
+                           data-qa="trending-bar-item"> The Ultimate Binge Guide </a></li>
+
+                    <li><a class="trending-bar__link"
+                           href="https://editorial.rottentomatoes.com/guide/best-christmas-movies/"
+                           data-qa="trending-bar-item"> Best Christmas Movies </a></li>
+
+                    <li><a class="trending-bar__link"
+                           href="https://editorial.rottentomatoes.com/article/2021-2022-awards-leaderboard/"
+                           data-qa="trending-bar-item"> Awards Leaderboard </a></li>
+
+                    <li><a class="trending-bar__link"
+                           href="https://editorial.rottentomatoes.com/article/nightmare-alley-first-reviews-a-winning-cast-and-gorgeous-visuals-make-guillermo-del-toros-thriller-shine/"
+                           data-qa="trending-bar-item"> Nightmare Alley Reviews </a></li>
+
+                </ul>
+                <div class="list-inline trending-bar__social" data-qa="trending-bar-social-list">
+                    <a id="header-facebook-social-link"
+                       class="trending-bar__social-link rt-icon rt-icon__facebook-squared"
+                       href="//www.facebook.com/rottentomatoes" target="_blank" rel="noopener" aria-label="Facebook"
+                       data-qa="trending-bar-social-facebook"></a>
+                    <a id="header-twitter-social-link" class="trending-bar__social-link rt-icon rt-icon__twitter"
+                       href="//twitter.com/rottentomatoes" target="_blank" rel="noopener" aria-label="Twitter"
+                       data-qa="trending-bar-social-twitter"></a>
+                    <a id="header-instagram-social-link" class="trending-bar__social-link rt-icon rt-icon__instagram"
+                       href="//www.instagram.com/rottentomatoes/" target="_blank" rel="noopener" aria-label="Instagram"
+                       data-qa="trending-bar-social-instagram"></a>
+                    <a id="header-snapchat-social-link" class="trending-bar__social-link rt-icon rt-icon__snapchat"
+                       href=" https://www.snapchat.com/add/rottentomatoes" target="_blank" rel="noopener"
+                       aria-label="Snapchat" data-qa="trending-bar-social-snapchat"></a>
+                    <a id="header-youtube-social-link" class="trending-bar__social-link rt-icon rt-icon__youtube-play"
+                       href="//www.youtube.com/user/rottentomatoes" target="_blank" rel="noopener" aria-label="Youtube"
+                       data-qa="trending-bar-social-youtube"></a>
+                </div>
+            </div>
+        </section>
+
+    </header>
+
+    <main id="main_container" class="container roma-layout__content">
+        <div id="main-page-content">
+
+
+            <div class="layout layout__mobile--full">
+                <article class="layout__column about-column--main">
+                    <section>
+                        <div class="about-main__content about-main">
+                            <section>
+                                <h1>About Rotten Tomatoes<sup>®</sup></h1>
+                                <p>
+                                    Rotten Tomatoes and the Tomatometer score are the world’s most trusted
+                                    recommendation
+                                    resources for quality entertainment. As the leading online aggregator of movie and
+                                    TV show reviews from critics, we provide fans with a comprehensive guide to what’s
+                                    Fresh – and what’s Rotten – in theaters and at home. And the Tomatometer is just the
+                                    beginning. We also serve movie and TV fans with original editorial content on our
+                                    site
+                                    and through social channels, produce fun and informative video series, and hold live
+                                    events for fans across the country, with our ‘Your Opinion Sucks’ live shows. If
+                                    you’re
+                                    an entertainment fan looking for a recommendation, or to share an opinion, you’ve
+                                    come to the right place.
+                                </p>
+                                <hr>
+                            </section>
+
+                            <section>
+                                <h2 id="whatisthetomatometer">What is the Tomatometer®?</h2>
+                                <p>
+                                    The Tomatometer score – based on the opinions of hundreds of film and
+                                    television critics – is a trusted measurement of critical recommendation
+                                    for millions of fans.
+                                </p>
+                                <p>
+                                    Back in the days of the open theaters, when a play was particularly atrocious,
+                                    the audience expressed their dissatisfaction by not only booing and hissing at
+                                    the stage, but also throwing whatever was at hand – vegetables and fruits included.
+                                </p>
+                                <p>
+                                    The Tomatometer score represents the percentage of professional critic reviews
+                                    that are positive for a given film or television show. A Tomatometer score is
+                                    calculated for a movie or TV show after it receives at least five reviews.
+                                </p>
+
+                                <div class="about-main__icon-row">
+                                    <div class="about-main__icon-wrap">
+                                        <span class="icon icon--big icon__fresh"></span>
+                                        <span class="sr-only">Fresh red tomato</span>
+                                    </div>
+                                    <div class="about-main__icon-text">
+                                        <p>
+                                            When at least 60% of reviews for a movie or TV show are positive, a red
+                                            tomato is displayed to
+                                            indicate its Fresh status.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="about-main__icon-row">
+                                    <div class="about-main__icon-wrap">
+                                        <span class="icon icon--big icon__rotten"></span>
+                                        <span class="sr-only">Green splat tomato</span>
+                                    </div>
+                                    <div class="about-main__icon-text">
+                                        <p>
+                                            When less than 60% of reviews for a movie or TV show are positive, a green
+                                            splat
+                                            is displayed to indicate its Rotten status.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="about-main__icon-row">
+                                    <div class="about-main__icon-wrap">
+                                        <span class="icon icon--big icon__tomatometer-empty"></span>
+                                        <span class="sr-only">Faded tomato</span>
+                                    </div>
+                                    <div class="about-main__icon-text">
+                                        <p>
+                                            When there is no Tomatometer® score available, which could be because the
+                                            Title hasn’t released
+                                            yet or there are not enough ratings to generate a score.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <hr>
+                            </section>
+
+                            <section>
+                                <h2 id="whatiscertifiedfresh">What is Certified Fresh?</h2>
+
+                                <div class="about-main__icon-row">
+                                    <div class="about-main__icon-wrap">
+                                        <span class="icon icon--big icon__certified-fresh"></span>
+                                        <span class="sr-only">Tomato with banners reads "Certified Fresh"</span>
+                                    </div>
+                                    <div class="about-main__icon-text">
+                                        <p>
+                                            Certified Fresh status is a special distinction awarded to the best-reviewed
+                                            movies and TV shows. In order to qualify, movies or TV shows must meet the
+                                            following requirements:
+                                        </p>
+                                        <ul class="ul">
+                                            <li>A consistent Tomatometer score of 75% or higher.</li>
+                                            <li>At least five reviews from Top Critics.</li>
+                                            <li>Films in wide release must have a minimum of 80 reviews. This also
+                                                applies for films going from limited to wide release.
+                                            </li>
+                                            <li>Films in limited release must have a minimum of 40 reviews.</li>
+                                            <li>Only individual seasons of a TV show are eligible, and each must have a
+                                                minimum of 20 reviews.
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <p>
+                                    The above requirements for Certified Fresh status are only the bare minimum a film
+                                    must achieve to qualify for the distinction. A film does not automatically become
+                                    Certified Fresh when it meets those requirements. The Tomatometer score must be
+                                    consistent
+                                    and unlikely to deviate significantly before a film or TV show is marked Certified
+                                    Fresh.
+                                </p>
+                                <p>
+                                    A Certified Fresh movie or TV season whose score drops and remains consistently
+                                    below 70%
+                                    will lose the Certified Fresh designation. The certification removal might not
+                                    happen as soon
+                                    as the score drops below 70%; as with CF designation, removal will take place when
+                                    the score settles.
+                                </p>
+                                <p>
+                                    A movie or TV season that loses Certified Fresh status can regain it by reaching a
+                                    consistent score
+                                    of 75% or more and meeting the other minimum requirements.
+                                </p>
+                                <hr>
+                            </section>
+
+                            <section>
+                                <h2 id="curation">Curation</h2>
+                                <p>
+                                    Rotten Tomatoes has assembled a team of curators whose job it is to read thousands
+                                    of
+                                    movie and TV reviews weekly. The team collects movie and TV reviews from
+                                    Tomatometer-approved critics and publications every day, generating Tomatometer
+                                    scores.
+                                    Our curators carefully read these reviews, noting if the reviews are Fresh or
+                                    Rotten,
+                                    and choose a representative pull-quote. Tomatometer-approved critics can also
+                                    self-submit their reviews.
+                                </p>
+                                <hr>
+                            </section>
+
+                            <section>
+                                <h2 id="whatistheaudiencescore">What is the Audience Score?</h2>
+                                <p>
+                                    The Audience Score, denoted by a popcorn bucket, represents the percentage of users
+                                    who have
+                                    rated a movie or TV show positively. With films for which we can verify users have
+                                    bought a ticket,
+                                    the default Audience Score we show is made up of “Verified Ratings,” which
+                                    represents the percentage
+                                    of users who have rated a movie or TV show positively who we can verify bought a
+                                    ticket; it is displayed
+                                    once enough of those Verified Ratings are in to form a score. For all other titles,
+                                    we display an “All
+                                    Audience Score” that includes ratings from people regardless of whether or not we
+                                    can currently verify they
+                                    have seen the movie or show. Titles eligible for Verified Ratings have an All
+                                    Audience Score, too: To see it,
+                                    just click on the popcorn bucket and you can toggle between both the Verified
+                                    Audience Score and the All Audience
+                                    Score. You can read more about recent changes to the score
+                                    box <a
+                                        href="https://editorial.rottentomatoes.com/article/weve-updated-our-score-boxes/">HERE</a>.
+                                </p>
+
+                                <div class="about-main__icon-row">
+                                    <div class="about-main__icon-wrap">
+                                        <span class="icon icon--big icon__upright"></span>
+                                        <span class="sr-only">Full popcorn bucket</span>
+                                    </div>
+                                    <div class="about-main__icon-text">
+                                        <p>
+                                            When at least 60% of users give a movie or TV show a star rating of 3.5 or
+                                            higher,
+                                            a full popcorn bucket is displayed to indicate its Fresh status.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="about-main__icon-row">
+                                    <div class="about-main__icon-wrap">
+                                        <span class="icon icon--big icon__spilled"></span>
+                                        <span class="sr-only">Spilled popcorn bucket</span>
+                                    </div>
+                                    <div class="about-main__icon-text">
+                                        <p>
+                                            When less than 60% of users give a movie or TV show a star rating of 3.5 or
+                                            higher,
+                                            a tipped over popcorn bucket is displayed to indicate its Rotten status.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="about-main__icon-row">
+                                    <div class="about-main__icon-wrap">
+                                        <span class="icon icon--big icon__audience-empty"></span>
+                                        <span class="sr-only">Faded popcorn bucket</span>
+                                    </div>
+                                    <div class="about-main__icon-text">
+                                        <p>
+                                            When there is no Audience Score available, which could be because the Title
+                                            hasn’t released yet or
+                                            there are not enough ratings to generate a score.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="about-main__icon-row">
+                                    <div class="about-main__icon-wrap">
+                                        <span class="icon icon--big icon__verified"></span>
+                                        <span class="sr-only">Checkmark icon</span>
+                                    </div>
+                                    <div class="about-main__icon-text">
+                                        <p>
+                                            When you see this next to a review it means we’ve confirmed the user
+                                            bought a ticket to the movie.
+                                            <a href="http://editorial.rottentomatoes.com/article/introducing-verified-audience-score/">Learn
+                                                More</a>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <hr>
+                            </section>
+
+                            <section>
+                                <h2 id="communitycodeofconduct">Community Code of Conduct</h2>
+                                <p>
+                                    We’re all about debate and discussion at Rotten Tomatoes, and want to know what our
+                                    fans
+                                    think. For our community code of conduct, click <a
+                                        href="https://editorial.rottentomatoes.com/otg-article/community-code-of-conduct">here.</a>
+                                </p>
+                            </section>
+                        </div>
+                    </section>
+
+                </article>
+                <aside class="layout__column layout__column--sidebar about-column--sidebar">
+                    <section id="contact-us" class="contact-us">
+
+                        <h2 class="contact-us__h2">Contact Us</h2>
+
+                        <section>
+
+                            <div class="contact-us__info-group">
+                                <h3 class="contact-us__h3">Customer Support</h3>
+                                <p>Visit our <a class="a" href="/faq" data-qa="contact-us-faq">FAQs</a> or fill out our
+                                    <a class="a"
+                                       href="https://support.fandango.com/en_us/contact/contact-us-fandango-rkksORSDO?from=RT"
+                                       data-qa="contact-us-email-form">Email Form</a>.</p>
+                            </div>
+
+                            <div class="contact-us__info-group">
+                                <h3 class="contact-us__h3">Licensing or Partnership Inquiries</h3>
+                                <p>Fill out our <a class="a"
+                                                   href="https://fandango.az1.qualtrics.com/jfe/form/SV_0ieuKEYpn4S7nnM"
+                                                   target="_blank" data-qa="contact-us-business-proposal-form">Business
+                                    Proposal Form</a>.</p>
+                            </div>
+
+                            <div class="contact-us__info-group">
+                                <h3 class="contact-us__h3">Submit Movie Information</h3>
+                                <p><a class="a"
+                                      href="https://support.fandango.com/en_us/contact/contact-us-fandango-rkksORSDO?from=RT"
+                                      data-qa="contact-us-incorrect-missing-data">Tell us</a> about missing or incorrect
+                                    movie or TV information. </p>
+                            </div>
+
+                            <div class="contact-us__info-group">
+                                <h3 class="contact-us__h3">Advertise</h3>
+                                <p>Review <a class="a" href="//www.fandango.com/Advertising.aspx"
+                                             data-qa="contact-us-fandango-advertising">Fandango Advertising
+                                    Opportunities</a>.</p>
+                            </div>
+
+                            <div class="contact-us__info-group">
+                                <h3 class="contact-us__h3">Follow Us</h3>
+                                <div class="contact-us__social-group">
+                                    <a class="rt-icon rt-icon__twitter" href="//twitter.com/rottentomatoes"
+                                       data-qa="contact-us-twitter"></a>
+                                    <a class="rt-icon rt-icon__facebook-squared"
+                                       href="//www.facebook.com/rottentomatoes" data-qa="contact-us-facebook"></a>
+                                    <a class="rt-icon rt-icon__youtube-play"
+                                       href="//www.youtube.com/user/rottentomatoes" data-qa="contact-us-youtube"></a>
+                                    <a class="rt-icon rt-icon__tumblr" href="" data-qa="contact-us-tumblr"></a>
+                                </div>
+                            </div>
+
+                        </section>
+
+                    </section>
+
+                </aside>
+            </div>
+
+        </div>
+        <div id="div-gpt-pixel-51779886" class="mps-slot" data-mps-slot="pixel" data-mps-loadset="0">
+            <script>mps._execAd("pixel");</script>
+        </div>
+    </main>
+
+
+    <footer class="footer container">
+        <div class="footer__content-desktop-block" data-qa="footer:section">
+            <div class="footer__content-group">
+                <ul class="footer__links-list">
+                    <li class="footer__links-list-item">
+                        <a href="/help_desk" data-qa="footer:link-helpdesk">Help</a>
+                    </li>
+                    <li class="footer__links-list-item">
+                        <a href="/about" data-qa="footer:link-about">About Rotten Tomatoes</a>
+                    </li>
+                    <li class="footer__links-list-item">
+                        <a href="/about#whatisthetomatometer" data-qa="footer:link-whats-tmeter">What's the
+                            Tomatometer<sup>®</sup>?</a>
+                    </li>
+                    <li id="footer-feedback" class="footer__links-list-item">
+
+                    </li>
+                </ul>
+            </div>
+            <div class="footer__content-group">
+                <ul class="footer__links-list">
+                    <li class="footer__links-list-item">
+                        <a href="/critics/criteria" data-qa="footer:link-critic-submission">Critic Submission</a>
+                    </li>
+                    <li class="footer__links-list-item">
+                        <a href="/help_desk/licensing" data-qa="footer:link-licensing">Licensing</a>
+                    </li>
+                    <li class="footer__links-list-item">
+                        <a href="//www.fandango.com/Advertising.aspx" target="_blank" data-qa="footer:link-ads">Advertise</a>
+                    </li>
+                    <li class="footer__links-list-item">
+                        <a href="//www.fandango.com/careers" target="_blank" data-qa="footer:link-careers">Careers</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer__content-group footer__newsletter-block">
+                <p class="h3 footer__content-group-title"><span
+                        class="rt-icon rt-icon__mail footer__newsletter-icon"></span>Join The Newsletter</p>
+                <p class="footer__newsletter-copy">Get the freshest reviews, news, and more delivered right to your
+                    inbox!</p>
+                <button class="js-cognito-join-newsletter button footer__newsletter-btn"
+                        data-qa="footer:newsletter-btn">Join The Newsletter
+                </button>
+                <a href="https://optout.services.fandango.com/rottentomatoes" class="button footer__newsletter-btn hide"
+                   data-qa="footer:newsletter-btn-signed-in"><span>Join The Newsletter</span></a>
+            </div>
+            <div class="footer__content-group footer__social-block" data-qa="footer:social">
+                <p class="h3 footer__content-group-title">Follow Us</p>
+                <ul class="footer__links-list list-inline">
+                    <li class="footer__links-list-item">
+                        <a href="//www.facebook.com/rottentomatoes" aria-label="Facebook"
+                           class="icon-social rt-icon rt-icon__facebook-squared" target="_blank"
+                           data-qa="footer:social-fb"></a>
+                    </li>
+                    <li class="footer__links-list-item">
+                        <a href="//twitter.com/rottentomatoes" aria-label="Twitter"
+                           class="icon-social rt-icon rt-icon__twitter" target="_blank"
+                           data-qa="footer:social-twitter"></a>
+                    </li>
+                    <li class="footer__links-list-item">
+                        <a href="//www.instagram.com/rottentomatoes/" aria-label="Instagram"
+                           class="icon-social rt-icon rt-icon__instagram" target="_blank"
+                           data-qa="footer:social-instagram"></a>
+                    </li>
+                    <li class="footer__links-list-item">
+                        <a href="https://www.snapchat.com/add/rottentomatoes" aria-label="Snapchat"
+                           class="icon-social rt-icon rt-icon__snapchat" target="_blank"
+                           data-qa="footer:social-snapchat"></a>
+                    </li>
+                    <li class="footer__links-list-item">
+                        <a href="//www.youtube.com/user/rottentomatoes" aria-label="YouTube"
+                           class="icon-social rt-icon rt-icon__youtube-play" target="_blank"
+                           data-qa="footer:social-yt"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer__content-mobile-block" data-qa="mfooter:section">
+            <div class="footer__content-group">
+                <p class="footer__copyright-legal" data-qa="mfooter:copyright">Copyright © Fandango. All rights
+                    reserved.</p>
+                <button class="button footer__newsletter-btn" data-qa="mfooter:newsletter-btn">Join Newsletter</button>
+                <a href="https://optout.services.fandango.com/rottentomatoes" class="button footer__newsletter-btn hide"
+                   data-qa="mfooter:newsletter-btn-signed-in">Join Newsletter</a>
+                <ul class="footer__links-list list-inline">
+                    <li class="footer__links-list-item">
+                        <a href="//www.fandango.com/policies/privacy-policy" data-qa="mfooter:link-privacy-policy">
+                            Privacy Policy
+                        </a>
+                    </li>
+                    <li class="footer__links-list-item">
+                        <a href="//www.fandango.com/policies/terms-and-policies" data-qa="mfooter:link-terms-policies">Terms
+                            and Policies</a>
+                    </li>
+                    <li class="footer__links-list-item">
+                        <a href="//www.fandango.com/donotsellmyinfo" data-qa="mfooter:link-ccpa">Do Not Sell My Info</a>
+                    </li>
+                    <li class="footer__links-list-item">
+                        <a href="//www.fandango.com/policies/cookies-and-tracking#cookie_management"
+                           data-qa="mfooter:link-adChoices">AdChoices</a>
+                    </li>
+                    <li id="footer-feedback-mobile" class="footer__links-list-item">
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer__copyright">
+            <ul class="footer__links-list list-inline list-inline--separator" data-qa="footer:links-list-privacy">
+                <li class="footer__links-list-item legal">
+                    <span class="footer__copyright-legal" data-qa="footer:copyright">Copyright © Fandango. All rights reserved.</span>
+                </li>
+                <li class="footer__links-list-item version" data-qa="footer:version">
+                    <span>V3.1</span>
+                </li>
+                <li class="footer__links-list-item">
+                    <a href="//www.fandango.com/policies/privacy-policy" data-qa="footer:link-privacy-policy">
+                        Privacy Policy
+                    </a>
+                </li>
+                <li class="footer__links-list-item">
+                    <a href="//www.fandango.com/policies/terms-and-policies" data-qa="footer:link-terms-policies">Terms
+                        and Policies</a>
+                </li>
+                <li class="footer__links-list-item">
+                    <a href="//www.fandango.com/donotsellmyinfo" data-qa="footer:link-ccpa">Do Not Sell My Info</a>
+                </li>
+                <li class="footer__links-list-item">
+                    <a href="//www.fandango.com/policies/cookies-and-tracking#cookie_management"
+                       data-qa="footer:link-adChoices">AdChoices</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+
+    <nav id="mobile-nav" class="js-mobile-nav__body mobile-nav mobile-visible">
+        <ul id="nav-list" class="mobile-nav__list" data-qa="nav-list">
+            <li class="mobile-nav__item">
+                <a href="/" class="mobile-nav__link " data-qa="mfooternav:home">
+                    <span class="rt-icon rt-icon__home mobile-nav__icon"></span>
+                    Home
+                </a>
+            </li>
+            <li class="mobile-nav__item">
+                <a href="/browse/in-theaters/" class="mobile-nav__link " data-qa="mfooternav:box-office">
+                    <span class="rt-icon rt-icon__boxoffice mobile-nav__icon"></span>
+                    Movies
+                </a>
+            </li>
+
+            <li class="mobile-nav__item">
+                <a href="/browse/tv-list-2" class="mobile-nav__link " data-qa="mfooternav:tv">
+                    <span class="rt-icon rt-icon__tv2-1 mobile-nav__icon"></span>
+                    TV Shows
+                </a>
+            </li>
+            <li class="mobile-nav__item mobile-nav__item">
+                <temporary-display key="podcast" element="#podcast-mobile-link" event="click">
+                    <rt-badge theme="light">New</rt-badge>
+                </temporary-display>
+                <a href="https://editorial.rottentomatoes.com/article/rotten-tomatoes-is-wrong-a-podcast-from-rotten-tomatoes/"
+                   class="mobile-nav__link" id="podcast-mobile-link" data-qa="mfooternav:podcast">
+                    <span class="rt-icon rt-icon__podcast mobile-nav__icon"></span>
+                    RT Podcast
+                </a>
+            </li>
+            <li class="mobile-nav__item">
+                <button id="menu-btn" class="mobile-nav__link js-mobile-nav__more-btn button--link"
+                        data-qa="mfooternav:more">
+                    <span class="rt-icon rt-icon__more mobile-nav__icon"></span>
+                    MORE
+                </button>
+            </li>
+        </ul>
+        <div id="mobile-nav-overlay" class="mobile-nav__overlay">
+            <!--mobile dropdown-->
+            <ul class="mobile-nav__menu-popup" data-qa="mfooternav:menu-drawer">
+                <li class="mobile-nav__item mobile-nav__item--popup">
+                    <a class="mobile-nav__inherit-color" href="//editorial.rottentomatoes.com"
+                       data-qa="mfooternav:link-news">News</a>
+                </li>
+                <li class="mobile-nav__item mobile-nav__item--popup hide js-mobile-nav__menu-my-account">
+                    <a class="mobile-nav__inherit-color" href="#" data-qa="mfooternav:my-account">My Account</a>
+                </li>
+                <li class="mobile-nav__item mobile-nav__item--popup mobile-nav__login-social-wrap">
+                    <button id="mobile-nav-sign-up" class="mobile-nav__popup-btn" data-qa="mfooternav:signup">sign up
+                    </button>
+                    <button id="mobile-nav-login-btn" class="mobile-nav__popup-btn" data-qa="mfooternav:login">log in
+                    </button>
+                    <button id="mobile-nav-logout-btn" class="mobile-nav__popup-btn hide" data-qa="mfooternav:logout">
+                        log out
+                    </button>
+                    <section>
+                        <a class="mobile-nav__inherit-color" href="" data-qa="mfooternav:social-fb">
+                            <span class="rt-icon rt-icon__facebook-squared mobile-nav__popup-icon"></span>
+                        </a>
+                        <a class="mobile-nav__inherit-color" href="" data-qa="mfooternav:social-twitter">
+                            <span class="rt-icon rt-icon__twitter mobile-nav__popup-icon"></span>
+                        </a>
+                    </section>
+                </li>
+            </ul>
+            <!--mobile dropdown end-->
+        </div>
+    </nav>
+
+
+    <aside id="social-tools" class="social-tools" aria-hidden="true">
+        <div class="social-tools__facebook-like-btn" id="social-tools-like-btn">
+            <div class="fb-like fb_iframe_widget" data-href="https://www.rottentomatoes.com/about" data-layout="button"
+                 data-action="like" data-size="small" data-show-faces="true" data-share="false"
+                 fb-xfbml-state="rendered"
+                 fb-iframe-plugin-query="action=like&amp;app_id=326803741017&amp;container_width=57&amp;href=https%3A%2F%2Fwww.rottentomatoes.com%2Fabout&amp;layout=button&amp;locale=en_US&amp;sdk=joey&amp;share=false&amp;show_faces=true&amp;size=small">
+                <span style="vertical-align: bottom; width: 60px; height: 28px;"><iframe name="f1ebe1460cfdc14"
+                                                                                         width="1000px" height="1000px"
+                                                                                         data-testid="fb:like Facebook Social Plugin"
+                                                                                         title="fb:like Facebook Social Plugin"
+                                                                                         frameborder="0"
+                                                                                         allowtransparency="true"
+                                                                                         allowfullscreen="true"
+                                                                                         scrolling="no"
+                                                                                         allow="encrypted-media"
+                                                                                         src="https://www.facebook.com/v6.0/plugins/like.php?action=like&amp;app_id=326803741017&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df30cbe02ae66c38%26domain%3Dwww.rottentomatoes.com%26is_canvas%3Dfalse%26origin%3Dhttps%253A%252F%252Fwww.rottentomatoes.com%252Ffb6d44f54aa9c%26relation%3Dparent.parent&amp;container_width=57&amp;href=https%3A%2F%2Fwww.rottentomatoes.com%2Fabout&amp;layout=button&amp;locale=en_US&amp;sdk=joey&amp;share=false&amp;show_faces=true&amp;size=small"
+                                                                                         style="border: none; visibility: visible; width: 60px; height: 28px;"
+                                                                                         class=""></iframe></span></div>
+        </div>
+        <ul>
+            <li><a class="js-social-tools-btn social-tools__btn social-tools__btn--facebook" title="Facebook Share"
+                   data-name="facebookShare"></a></li>
+            <li><a class="js-social-tools-btn social-tools__btn social-tools__btn--twitter" title="Twitter"
+                   data-name="twitter"></a></li>
+            <li><a class="js-social-tools-btn social-tools__btn social-tools__btn--pinterest" title="Pinterest"
+                   data-name="pinterest"></a></li>
+            <li><a class="js-social-tools-btn social-tools__btn social-tools__btn--stumbleupon" title="StumbleUpon"
+                   data-name="stumbleUpon"></a></li>
+        </ul>
+    </aside>
+
+</div>
+<script>
+var _disruptive = {
+  loadScript: function(c, a) {
+    var b = document.createElement("script");
+    b.type = "text/javascript";
+    if(a && typeof a=='function'){
+      if (b.readyState) {
+        b.onreadystatechange = function() {
+          if (b.readyState === "loaded" || b.readyState === "complete") {
+            b.onreadystatechange = null;
+            a()
+          }
+        }
+      } else {
+        b.onload = function() {
+          a()
+        }
+      }
+    }
+    b.src = c;
+    document.getElementsByTagName("head")[0].appendChild(b)
+  },
+  addImage: function(src){
+    var img = new Image();
+    img.src = src;
+  }
+};
+
+</script>
+<script>
+/*
+ * ADOBE SYSTEMS INCORPORATED
+ * Copyright 2018 Adobe Systems Incorporated
+ * All Rights Reserved.
+
+ * NOTICE:  Adobe permits you to use, modify, and distribute this file in accordance with the
+ * terms of the Adobe license agreement accompanying it.  If you have received this file from a
+ * source other than Adobe, then your use, modification, or distribution of it requires the prior
+ * written permission of Adobe.
+ */
+'use strict';
+(function() {
+
+  if (typeof ADB === 'undefined') {
+    if (window && window.console && window.console.warn) {
+      console.warn('MediaHeartbeat exports are not found. \
+Make sure to include the Launch library to index.html and \
+configure Adobe Analytics for Video extension to export APIs to window object named \"ADB\".');
+      return;
+    }
+  }
+  var MediaHeartbeat = ADB.MediaHeartbeat;
+  var MediaHeartbeatDelegate = ADB.MediaHeartbeatDelegate;
+
+  // The VA Launch extension returns a Promise based API to create an instance of MediaHeartbeat.
+  // This helper tries to reuse existing code by queuing events till the Promise completes.
+  // Use the Promise based API directly for more control on handling errors.
+  var MediaHeartbeatAdapter = (function(MediaHeartbeat) {
+    function MediaHeartbeatAdapter(delegate, config) {
+      this._queuedAPICalls = [];
+      this._tracker = null;
+      this._creatingTracker = true;
+      this._internalError = false;
+
+      var self = this;
+      MediaHeartbeat.getInstance(delegate, config).then(function(tracker) {
+        console.log('MediaHeartbeat getInstance fired', tracker);
+        self._creatingTracker = false;
+        self._tracker = tracker;
+
+        self._queuedAPICalls.forEach(function(apiCall) {
+          console.log('queuedAPICalls', apiCall, self);
+          self[apiCall.name].apply(self, apiCall.arguments);
+        });
+      }).catch(function(error) {
+        console.log(error);
+        self._internalError = true;
+      });
+    }
+
+    var apis = ['trackSessionStart', 'trackSessionEnd', 'trackComplete', 'trackPlay', 'trackPause', 'trackEvent', 'trackError'];
+    apis.forEach(function(api) {
+      MediaHeartbeatAdapter.prototype[api] = function() {
+        if (this._internalError) {
+          console.log('Error creating MediaHeartbeat instance. API call is dropped.');
+          return;
+        }
+
+        if (this._creatingTracker) {
+          console.log('Creating MediaHeartbeat instance ['+api+']. Queuing current API call.');
+          this._queuedAPICalls.push({
+            name : api,
+            arguments : arguments
+          });
+          return;
+        }
+
+        this._tracker[api].apply(this._tracker, arguments);
+      };
+    });
+    return MediaHeartbeatAdapter;
+  })(MediaHeartbeat);
+
+  function VideoAnalyticsProvider(player) {
+    if (!player) {
+      throw new Error('Illegal argument. Player reference cannot be null.');
+    }
+    this._player = player;
+
+    function SampleMediaHeartbeatDelegate(player) {
+      this._player = player;
+    }
+    // Implement the sample MediaHeartbeatDelegate to provide Playhead information and QoS information from the player
+    SampleMediaHeartbeatDelegate.prototype = Object.create(MediaHeartbeatDelegate.prototype);
+    SampleMediaHeartbeatDelegate.prototype.constructor = SampleMediaHeartbeatDelegate;
+
+    SampleMediaHeartbeatDelegate.prototype.getCurrentPlaybackTime = function() {
+      return this._player.getCurrentPlaybackTime();
+    };
+
+    SampleMediaHeartbeatDelegate.prototype.getQoSObject = function() {
+      var qosInfo = this._player.getQoSInfo();
+      return null;
+      // return MediaHeartbeat.createQoSObject(qosInfo.bitrate,
+      //   qosInfo.startupTime,
+      //   qosInfo.fps,
+      //   qosInfo.droppedFrames);
+    };
+
+    this._mediaHeartbeat = new MediaHeartbeatAdapter(new SampleMediaHeartbeatDelegate(this._player));
+
+    this._installEventListeners();
+  }
+
+  VideoAnalyticsProvider.prototype.destroy = function() {
+    if (this._player) {
+      this._mediaHeartbeat = null;
+      this._player = null;
+      this._uninstallEventListeners();
+    }
+  };
+
+
+  /////////
+  // Notification handlers
+  /////////
+
+  VideoAnalyticsProvider.prototype._onLoad = function() {
+    console.log('Player event: VIDEO_LOAD');
+    var videoInfo = this._player.getVideoInfo();
+    console.info('VideoAnalyticsProvider _onload', videoInfo);
+    var mediaInfo = MediaHeartbeat.createMediaObject(videoInfo.name,
+      videoInfo.id,
+      videoInfo.length,
+      MediaHeartbeat.StreamType.VOD,
+      MediaHeartbeat.MediaType.Video);
+
+    //Set to true if this is a resume playback scenario (not starting from playhead 0)
+    //mediaInfo.setValue(MediaHeartbeat.MediaObjectKey.VideoResumed, true);
+
+    // Set standard Video Metadata
+    // mediaInfo.setValue(MediaHeartbeat.MediaObjectKey.StandardVideoMetadata, standardVideoMetadata);
+
+    console.log('Player meta: ', this._player._meta);
+    this._mediaHeartbeat.trackSessionStart(mediaInfo, this._player._meta);
+  };
+
+  VideoAnalyticsProvider.prototype._onUnload = function() {
+    console.log('Player event: VIDEO_UNLOAD');
+    this._mediaHeartbeat.trackSessionEnd();
+    this.destroy();
+  };
+
+  VideoAnalyticsProvider.prototype._onPlay = function() {
+    console.log('Player event: PLAY');
+    this._mediaHeartbeat.trackPlay();
+  };
+
+  VideoAnalyticsProvider.prototype._onPause = function() {
+    console.log('Player event: PAUSE');
+    this._mediaHeartbeat.trackPause();
+  };
+
+  VideoAnalyticsProvider.prototype._onSeekStart = function() {
+    console.log('Player event: SEEK_START');
+    this._mediaHeartbeat.trackEvent(MediaHeartbeat.Event.SeekStart);
+  };
+
+  VideoAnalyticsProvider.prototype._onSeekComplete = function() {
+    console.log('Player event: SEEK_COMPLETE');
+    this._mediaHeartbeat.trackEvent(MediaHeartbeat.Event.SeekComplete);
+  };
+
+  VideoAnalyticsProvider.prototype._onBufferStart = function() {
+    console.log('Player event: BUFFER_START');
+    this._mediaHeartbeat.trackEvent(MediaHeartbeat.Event.BufferStart);
+  };
+
+  VideoAnalyticsProvider.prototype._onBufferComplete = function() {
+    console.log('Player event: BUFFER_COMPLETE');
+    this._mediaHeartbeat.trackEvent(MediaHeartbeat.Event.BufferComplete);
+  };
+
+  VideoAnalyticsProvider.prototype._onAdStart = function() {
+    console.log('Player event: AD_START');
+    console.log(this._player.getAdBreakInfo());
+    console.log(this._player.getVideoInfo());
+
+    var videoInfo = this._player.getVideoInfo();
+    var mediaInfo = MediaHeartbeat.createMediaObject(videoInfo.name,
+      videoInfo.id,
+      videoInfo.length,
+      MediaHeartbeat.StreamType.VOD,
+      MediaHeartbeat.MediaType.Video
+    );
+
+    this._mediaHeartbeat.trackSessionStart(mediaInfo, this._player._meta);
+
+    // AdBreak Info - getting the adBreakInfo from player and creating AdBreakInfo Object from MediaHeartbeat
+    var _adBreakInfo = this._player.getAdBreakInfo();
+    var adBreakInfo = MediaHeartbeat.createAdBreakObject(_adBreakInfo.name, _adBreakInfo.position, _adBreakInfo.startTime);
+
+    // Ad Info - getting the adInfo from player and creating AdInfo Object from MediaHeartbeat
+    var _adInfo = this._player.getAdInfo();
+    var adInfo = MediaHeartbeat.createAdObject(_adInfo.name, _adInfo.id, _adInfo.position, _adInfo.length);
+
+    // video info
+    var _videoInfo = this._player.getVideoInfo();
+    var adContextData = {
+      'videoId': this._player.videoId,
+      'videoName': this._player.videoName,
+      'movieId': this._player.movieId,
+      'movieName': this._player.movieName,
+      'classification1': this._player.classification1,
+      'classification2': this._player.classification2,
+      'classification1': this._player.classification1,
+      'classification3': this._player.classification3,
+      'playlistId': this._player.playlistId,
+      'genre': this._player.genre,
+      'videoSeries': this._player.videoSeries
+    }
+
+    // Set standard Ad Metadata
+    // var standardAdMetadata = {};
+    // standardAdMetadata[MediaHeartbeat.AdMetadataKeys.ADVERTISER] = 'Sample Advertiser';
+    // standardAdMetadata[MediaHeartbeat.AdMetadataKeys.CAMPAIGN_ID] = 'Sample Campaign';
+    // adInfo.setValue(MediaHeartbeat.MediaObjectKey.StandardAdMetadata, standardAdMetadata);
+
+    this._mediaHeartbeat.trackEvent(MediaHeartbeat.Event.AdBreakStart, adBreakInfo);
+    this._mediaHeartbeat.trackEvent(MediaHeartbeat.Event.AdStart, adInfo, adContextData);
+  };
+
+  VideoAnalyticsProvider.prototype._onAdComplete = function() {
+    console.log('Player event: AD_COMPLETE');
+    this._mediaHeartbeat.trackEvent(MediaHeartbeat.Event.AdComplete);
+    this._mediaHeartbeat.trackEvent(MediaHeartbeat.Event.AdBreakComplete);
+  };
+
+  VideoAnalyticsProvider.prototype._onComplete = function() {
+    console.log('Player event: COMPLETE');
+    this._mediaHeartbeat.trackComplete();
+    this.destroy();
+  };
+
+
+  /////////
+  // Private helper functions
+  /////////
+
+  VideoAnalyticsProvider.prototype._installEventListeners = function() {
+    // We register as observers to various VideoPlayer events.
+    NotificationCenter().addEventListener(PlayerEvent.VIDEO_LOAD, this._onLoad, this);
+    NotificationCenter().addEventListener(PlayerEvent.VIDEO_UNLOAD, this._onUnload, this);
+    NotificationCenter().addEventListener(PlayerEvent.PLAY, this._onPlay, this);
+    NotificationCenter().addEventListener(PlayerEvent.PAUSE, this._onPause, this);
+    NotificationCenter().addEventListener(PlayerEvent.SEEK_START, this._onSeekStart, this);
+    NotificationCenter().addEventListener(PlayerEvent.SEEK_COMPLETE, this._onSeekComplete, this);
+    NotificationCenter().addEventListener(PlayerEvent.BUFFER_START, this._onBufferStart, this);
+    NotificationCenter().addEventListener(PlayerEvent.BUFFER_COMPLETE, this._onBufferComplete, this);
+    NotificationCenter().addEventListener(PlayerEvent.AD_START, this._onAdStart, this);
+    NotificationCenter().addEventListener(PlayerEvent.AD_COMPLETE, this._onAdComplete, this);
+    NotificationCenter().addEventListener(PlayerEvent.COMPLETE, this._onComplete, this);
+  };
+
+  VideoAnalyticsProvider.prototype._uninstallEventListeners = function() {
+    // We register as observers to various VideoPlayer events.
+    NotificationCenter().removeEventListener(PlayerEvent.VIDEO_LOAD, this._onLoad, this);
+    NotificationCenter().removeEventListener(PlayerEvent.VIDEO_UNLOAD, this._onUnload, this);
+    NotificationCenter().removeEventListener(PlayerEvent.PLAY, this._onPlay, this);
+    NotificationCenter().removeEventListener(PlayerEvent.PAUSE, this._onPause, this);
+    NotificationCenter().removeEventListener(PlayerEvent.SEEK_START, this._onSeekStart, this);
+    NotificationCenter().removeEventListener(PlayerEvent.SEEK_COMPLETE, this._onSeekComplete, this);
+    NotificationCenter().removeEventListener(PlayerEvent.BUFFER_START, this._onBufferStart, this);
+    NotificationCenter().removeEventListener(PlayerEvent.BUFFER_COMPLETE, this._onBufferComplete, this);
+    NotificationCenter().removeEventListener(PlayerEvent.AD_START, this._onAdStart, this);
+    NotificationCenter().removeEventListener(PlayerEvent.AD_COMPLETE, this._onAdComplete, this);
+    NotificationCenter().removeEventListener(PlayerEvent.COMPLETE, this._onComplete, this);
+  };
+
+  // Export symbols.
+  window.VideoAnalyticsProvider = VideoAnalyticsProvider;
+})();
+
+/*
+ * ADOBE SYSTEMS INCORPORATED
+ * Copyright 2018 Adobe Systems Incorporated
+ * All Rights Reserved.
+
+ * NOTICE:  Adobe permits you to use, modify, and distribute this file in accordance with the
+ * terms of the Adobe license agreement accompanying it.  If you have received this file from a
+ * source other than Adobe, then your use, modification, or distribution of it requires the prior
+ * written permission of Adobe.
+ */
+'use strict';
+
+(function() {
+  var PlayerEvent = {
+    VIDEO_LOAD: 'video_load',
+    VIDEO_UNLOAD: 'video_unload',
+    PLAY: 'play',
+    PAUSE: 'pause',
+    COMPLETE: 'COMPLETE',
+    BUFFER_START: 'buffer_start',
+    BUFFER_COMPLETE: 'buffer_complete',
+    SEEK_START: 'seek_start',
+    SEEK_COMPLETE: 'seek_complete',
+    AD_START: 'ad_start',
+    AD_COMPLETE: 'ad_complete'
+  };
+
+  function VideoPlayer(player) {
+    this._playerName = player.playerName || 'Rotten Tomatoes Player';
+    this._videoId = player.videoId;
+    this._videoName = player.videoName;
+    this._duration = player.duration;
+    this._currentTime = player.currentTime || 0;
+    this._currentAdTime = 0;
+    this._videoLoaded = false;
+    this._qosInfo = {};
+    this._clock = null;
+    this._adClock = null;
+    this._state = null;
+    this._meta = player;
+    this._monitor_time_interval = 500;
+    var self = this;
+  }
+
+  VideoPlayer.prototype.getCurrentPlaybackTime = function() {
+    return this._currentTime;
+  };
+
+  VideoPlayer.prototype.setCurrentPlaybackTime = function(time) {
+    this._currentTime = time;
+  };
+
+  VideoPlayer.prototype.incrementCurrentPlaybackTime = function(ms) {
+    this._currentTime += (ms / 1000);
+  };
+
+  VideoPlayer.prototype.getCurrentAdPlaybackTime = function() {
+    return this._currentAdTime;
+  };
+
+  VideoPlayer.prototype.setCurrentAdPlaybackTime = function(time) {
+    this._currentAdTime = time;
+  };
+
+  VideoPlayer.prototype.incrementCurrentAdPlaybackTime = function(ms) {
+    this._currentAdTime += (ms / 1000);
+  };
+
+  VideoPlayer.prototype.getVideoInfo = function() {
+    return this._videoInfo;
+  };
+
+  VideoPlayer.prototype.getAdBreakInfo = function() {
+    return this._adBreakInfo;
+  };
+
+  VideoPlayer.prototype.getAdInfo = function() {
+    return this._adInfo;
+  };
+
+  VideoPlayer.prototype.getQoSInfo = function() {
+    return this._qosInfo;
+  };
+
+  VideoPlayer.prototype.getDuration = function() {
+    return this._duration;
+  };
+
+  VideoPlayer.prototype.getPlayhead = function() {
+    var playhead = this._currentTime;
+    return playhead ? playhead : 0;
+  };
+
+  VideoPlayer.prototype._onPlay = function(e) {
+    this._state = 'playing';
+    this._openVideoIfNecessary();
+    NotificationCenter().dispatchEvent(PlayerEvent.PLAY);
+  };
+
+  VideoPlayer.prototype.playVideo = function(){
+    this._onPlay();
+  }
+
+  VideoPlayer.prototype._onPause = function(e) {
+    this._state = 'paused';
+    NotificationCenter().dispatchEvent(PlayerEvent.PAUSE);
+  };
+
+  VideoPlayer.prototype.pauseVideo = function(time){
+    this._currentTime = time;
+    this._onPause();
+  }
+
+  VideoPlayer.prototype.bufferStart = function(time){
+    this._currentTime = time;
+    this._state = 'buffering';
+    NotificationCenter().dispatchEvent(PlayerEvent.BUFFER_START);
+  }
+
+  VideoPlayer.prototype.bufferComplete = function(time){
+    this._currentTime = time;
+    this._state = 'playing';
+    NotificationCenter().dispatchEvent(PlayerEvent.BUFFER_COMPLETE);
+  }
+
+  VideoPlayer.prototype._onSeekStart = function(time) {
+    this._state = 'seeking';
+    this._currentTime = time;
+    this._openVideoIfNecessary();
+    NotificationCenter().dispatchEvent(PlayerEvent.SEEK_START);
+  };
+
+  VideoPlayer.prototype._onSeekComplete = function(time) {
+    this._state = 'playing';
+    this._currentTime = time;
+    this._doPostSeekComputations();
+    NotificationCenter().dispatchEvent(PlayerEvent.SEEK_COMPLETE);
+  };
+
+  VideoPlayer.prototype._onComplete = function(e) {
+    this._state = 'completed';
+    this._completeVideo();
+  };
+
+  VideoPlayer.prototype.completeVideo = function() {
+    this._onComplete();
+  };
+
+  VideoPlayer.prototype._openVideoIfNecessary = function(start) {
+    if (!this._videoLoaded) {
+      this._resetInternalState();
+
+      if(typeof start == 'undefined')
+         start = true;
+      if(start)
+        this._startVideo();
+
+      // Start the monitor timer.
+      var self = this;
+      this._clock = setInterval(function() {
+        if (this._state == 'seeking' || this._state == 'paused') {
+          return;
+        }
+        if(self._state == 'playing'){
+          self.incrementCurrentPlaybackTime(self._monitor_time_interval);
+        }
+        if(self._currentTime >= self._duration){
+          self.completeVideo();
+        }
+      }, this._monitor_time_interval);
+    }
+  };
+
+  VideoPlayer.prototype._completeVideo = function() {
+    if (this._videoLoaded) {
+      this._state = 'complete';
+      NotificationCenter().dispatchEvent(PlayerEvent.COMPLETE);
+      this._unloadVideo();
+    }
+  };
+
+  VideoPlayer.prototype._unloadVideo = function() {
+    console.log('unload video');
+    NotificationCenter().dispatchEvent(PlayerEvent.VIDEO_UNLOAD);
+    clearInterval(this._clock);
+
+    this._resetInternalState();
+  };
+
+  VideoPlayer.prototype._resetInternalState = function() {
+    this._videoLoaded = false;
+    this._clock = null;
+    this._state = null;
+  };
+
+  VideoPlayer.prototype._startVideo = function() {
+    // Prepare the main video info.
+    this._videoInfo = {};
+    this._videoInfo.id = this._videoId;
+    this._videoInfo.name = this._videoName;
+    this._videoInfo.playerName = this._playerName;
+    this._videoInfo.length = this.getDuration();
+    this._videoInfo.playhead = this.getPlayhead();
+
+    this._videoLoaded = true;
+    this._state = 'playing';
+
+    NotificationCenter().dispatchEvent(PlayerEvent.VIDEO_LOAD);
+  };
+
+  VideoPlayer.prototype._startAd = function(ad) {
+    // Prepare the ad break info.
+    this._adBreakInfo = {};
+    this._adBreakInfo.name = 'pre-roll';
+    this._adBreakInfo.position = 1;
+    this._adBreakInfo.playerName = this._playerName;
+    this._adBreakInfo.startTime = 0;
+
+    // Prepare the ad info.
+    this._adInfo = {};
+    this._adInfo.id = ad.videoAdID;
+    this._adInfo.name = 'ad';
+    this._adInfo.length = ad.adDuration;
+    this._adInfo.position = 0;
+
+    this._videoInfo = this._videoInfo || {};
+    if(!this._videoInfo.id){
+      this._videoInfo = {};
+      this._videoInfo.id = this._videoId;
+      this._videoInfo.name = this._videoName;
+      this._videoInfo.playerName = this._playerName;
+      this._videoInfo.length = this.duration;
+    }
+
+    // Start the monitor timer.
+    var self = this;
+    this._adClock = setInterval(function() {
+      self.incrementCurrentAdPlaybackTime(self._monitor_time_interval);
+      if(self._currentAdTime >= self._duration){
+        self._completeAd();
+      }
+    }, this._monitor_time_interval);
+  };
+
+  VideoPlayer.prototype._completeAd = function() {
+    // Complete the ad.
+    NotificationCenter().dispatchEvent(PlayerEvent.AD_COMPLETE);
+
+    // Clear the ad and ad-break info.
+    this._adInfo = null;
+    this._adBreakInfo = null;
+    clearInterval(this._adClock);
+    this._adClock = null;
+  };
+
+  VideoPlayer.prototype._doPostSeekComputations = function() {
+    var vTime = this.getPlayhead();
+  };
+
+  // Export symbols.
+  window.PlayerEvent = PlayerEvent;
+  window.VideoPlayer = VideoPlayer;
+})();
+
+/*
+ * ADOBE SYSTEMS INCORPORATED
+ * Copyright 2018 Adobe Systems Incorporated
+ * All Rights Reserved.
+
+ * NOTICE:  Adobe permits you to use, modify, and distribute this file in accordance with the
+ * terms of the Adobe license agreement accompanying it.  If you have received this file from a
+ * source other than Adobe, then your use, modification, or distribution of it requires the prior
+ * written permission of Adobe.
+ */
+'use strict';
+(function() {
+
+  /**
+     * A generic event dispatcher.
+     *
+     * @constructor
+     */
+  function EventDispatcher() {
+    this._events = {};
+  }
+
+  /**
+     * Register an event-listener method to the event dispatcher.
+     *
+     * @param {string} name Unique string value identifying the event.
+     *
+     * @param {Function} listener Function that will be called when the event is dispatched.
+     *
+     * @param {Object} context Context in which the listener method is called.
+     *
+     */
+  EventDispatcher.prototype.addEventListener = function(name, listener, context) {
+    if (!name || !listener) return;
+    context = context || window;
+
+    this._events[name] = (this._events[name] || []);
+    this._events[name].push({cb: listener, ctx: context});
+  };
+
+  /**
+     * Un-register an event-listener method to the event dispatcher.
+     *
+     * NOTE: for an event listener to be removed all the three coordinates must match
+     * (name, listener and context) with the values provided during registration.
+     *
+     * @param {string} name Unique string value identifying the event.
+     *
+     * @param {Function} listener Function that will be called when the event is dispatched.
+     *
+     * @param {Object} context Context in which the listener method is called.
+     */
+  EventDispatcher.prototype.removeEventListener = function(name, listener, context) {
+    if (!name || !listener) return;
+    context = context || window;
+
+    // Check to see if the event name was registered with us.
+    var i;
+    var key;
+    var isNameRegistered = false;
+    for (key in this._events) {
+      if (name === key) {
+        isNameRegistered = true;
+        break;
+      }
+    }
+
+    // This event name was not registered with us. Just exit.
+    if (!isNameRegistered) return;
+
+    // Search for the target event listener
+    for (i = this._events[key].length - 1; i >= 0; i--) {
+      var _listener = this._events[key][i];
+      if (listener === _listener.cb && context === _listener.ctx) {
+        this._events[key].splice(i, 1);
+      }
+    }
+
+    // If we are left with an empty list of listeners for a particular
+    // event name, we delete it.
+    if (!this._events[key].length) delete this._events[key];
+  };
+
+  /**
+     * Dispatch en event. It goes through the entire list of listener methods that are registered
+     * for the target event and calls that function in the specified context.
+     *
+     * @param {string} name The name of the event.
+     */
+  EventDispatcher.prototype.dispatchEvent = function(name) {
+    if (!name) return;
+
+    var key;
+    var i;
+    for (key in this._events) {
+      if (this._events.hasOwnProperty(key) && name === key) {
+        var listeners = this._events[key];
+        var copyOnWrite = listeners.slice(0);
+        var length = copyOnWrite.length;
+
+        for (i = 0; i < length; i++) {
+          copyOnWrite[i].cb.call(copyOnWrite[i].ctx);
+        }
+        break;
+      }
+    }
+  };
+
+  function NotificationCenter() {
+    // Provide a singleton EventDispatcher
+    if (!NotificationCenter.prototype._instance) {
+      NotificationCenter.prototype._instance = new EventDispatcher();
+    }
+
+    return NotificationCenter.prototype._instance;
+  }
+
+  // Export symbols.
+  window.NotificationCenter = NotificationCenter;
+})();
+
+</script>
+<script>
+function isEmpty(val) {
+    return (val === undefined || val == null || val.length <= 0) ? true : false;
+}
+
+function key(obj) {
+    return Object.keys(obj).map(function (k) {
+        return k + "" + obj[k];
+    }).join("");
+}
+
+function distinct(arr) {
+    var result = arr.reduce(function (acc, e) {
+        acc[key(e)] = e;
+        return acc;
+    }, {});
+    return Object.keys(result).map(function (k) {
+        return result[k];
+    });
+}
+
+document.addEventListener(adobe.target.event.REQUEST_SUCCEEDED, function (e) {
+    window.ttMETA = typeof (window.ttMETA) != "undefined" ? window.ttMETA : [];
+    var tokens = e.detail.responseTokens;
+    if (isEmpty(tokens)) {
+        return;
+    }
+    var uniqueTokens = distinct(tokens);
+    uniqueTokens.forEach(function (token) {
+        window.ttMETA.push({
+            'CampaignName': token["activity.name"],
+            'CampaignId': token["activity.id"],
+            'RecipeName': token["experience.name"],
+            'RecipeId': token["experience.id"],
+            'OfferId': token["option.id"],
+            'OfferName': token["option.name"]
+        });
+    });
+});
+
+</script>
+
+
+<!-- Blue Kai -->
+
+<iframe name="__bkframe" height="0" width="0" frameborder="0"
+        style="display:none;position:absolute;clip:rect(0px 0px 0px 0px)" src="about:blank"></iframe>
+<script type="text/javascript" src="//tags.bkrtx.com/js/bk-coretag.js"></script>
+
+
+<!-- End Blue Kai -->
+
+<!-- PDK -->
+<script src="//pdk.theplatform.com/current/pdk/tpPdkController.js"></script>
+<!-- End PDK -->
+
+
+<script type="text/javascript">
+(function (root) {
+/* -- Data -- */
+root.RottenTomatoes || (root.RottenTomatoes = {});
+root.RottenTomatoes.context = {"_routes":{"adminManagePeople":{"path":"https:\u002F\u002Fadmin.flixster.com\u002Fadmin\u002Fmanage-people?id=:id","tokens":[{"literal":"https:\u002F\u002Fadmin.flixster.com\u002Fadmin\u002Fmanage-people?id="},{"key":"id"}]},"adminMerge":{"path":"https:\u002F\u002Fadmin.flixster.com\u002Factor\u002Fmerge?from=:id","tokens":[{"literal":"https:\u002F\u002Fadmin.flixster.com\u002Factor\u002Fmerge?from="},{"key":"id"}]},"baseCanonicalUrl":{"path":"https:\u002F\u002Fwww.rottentomatoes.com","tokens":[{"literal":"https:\u002F\u002Fwww.rottentomatoes.com"}]},"webCriticSourceReviewsNapi":{"path":"\u002Fnapi\u002Fcritics\u002Fsource\u002F:publicationId\u002F:filter(movies|tv)","tokens":[{"literal":"\u002Fnapi\u002Fcritics\u002Fsource\u002F"},{"key":"publicationId"},{"literal":"\u002F"},{"key":"filter"}]},"editorialPageCodeOfConduct":{"path":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Fotg-article\u002Fcommunity-code-of-conduct","tokens":[{"literal":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Fotg-article\u002Fcommunity-code-of-conduct"}]},"editorialPageProductBlog":{"path":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Frt-product-blog","tokens":[{"literal":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Frt-product-blog"}]},"flixsterGeoLocationApi":{"path":"https:\u002F\u002Fapi.flixster.com\u002Fticketing\u002Fapi\u002Fv1\u002Fgeoip","tokens":[{"literal":"https:\u002F\u002Fapi.flixster.com\u002Fticketing\u002Fapi\u002Fv1\u002Fgeoip"}]},"commonAccountForgotPWNapi":{"path":"\u002Fnapi\u002Faccount\u002FforgotPassword\u002F","tokens":[{"literal":"\u002Fnapi\u002Faccount\u002FforgotPassword\u002F"}]},"commonAccountLoginNapi":{"path":"\u002Fnapi\u002Faccount\u002Flogin\u002F","tokens":[{"literal":"\u002Fnapi\u002Faccount\u002Flogin\u002F"}]},"commonAccountLoginFacebookOauthNapi":{"path":"\u002Fnapi\u002Faccount\u002FloginFacebookOauth\u002F","tokens":[{"literal":"\u002Fnapi\u002Faccount\u002FloginFacebookOauth\u002F"}]},"commonAccountLogoutNapi":{"path":"\u002Fnapi\u002Faccount\u002Flogout\u002F","tokens":[{"literal":"\u002Fnapi\u002Faccount\u002Flogout\u002F"}]},"commonAccountRegisterNapi":{"path":"\u002Fnapi\u002Faccount\u002Fregister\u002F","tokens":[{"literal":"\u002Fnapi\u002Faccount\u002Fregister\u002F"}]},"commonAccountThemePreferencesNapi":{"path":"\u002Fnapi\u002Fpreferences\u002Fthemes","tokens":[{"literal":"\u002Fnapi\u002Fpreferences\u002Fthemes"}]},"commonAccountVerifyTokenNapi":{"path":"\u002Fnapi\u002Faccount\u002FverifyToken\u002F","tokens":[{"literal":"\u002Fnapi\u002Faccount\u002FverifyToken\u002F"}]},"adminMovieDetailMenuNapi":{"path":"\u002Fnapi\u002Fadmin\u002FmovieDetailPage\u002F:id\u002Fmenu","tokens":[{"literal":"\u002Fnapi\u002Fadmin\u002FmovieDetailPage\u002F"},{"key":"id"},{"literal":"\u002Fmenu"}]},"adminTvEpisodeDetailMenuNapi":{"path":"\u002Fnapi\u002Fadmin\u002FtvEpisodeDetailPage\u002F:episodeId\u002F:seasonId\u002F:seriesId\u002Fmenu","tokens":[{"literal":"\u002Fnapi\u002Fadmin\u002FtvEpisodeDetailPage\u002F"},{"key":"episodeId"},{"literal":"\u002F"},{"key":"seasonId"},{"literal":"\u002F"},{"key":"seriesId"},{"literal":"\u002Fmenu"}]},"adminTvSeasonDetailMenuNapi":{"path":"\u002Fnapi\u002Fadmin\u002FtvSeasonDetailPage\u002F:seasonId\u002F:seriesId\u002Fmenu","tokens":[{"literal":"\u002Fnapi\u002Fadmin\u002FtvSeasonDetailPage\u002F"},{"key":"seasonId"},{"literal":"\u002F"},{"key":"seriesId"},{"literal":"\u002Fmenu"}]},"adminTvSeriesDetailMenuNapi":{"path":"\u002Fnapi\u002Fadmin\u002FtvSeasonDetailPage\u002F:seriesId\u002Fmenu","tokens":[{"literal":"\u002Fnapi\u002Fadmin\u002FtvSeasonDetailPage\u002F"},{"key":"seriesId"},{"literal":"\u002Fmenu"}]},"adminFranchiseDetailMenuNapi":{"path":"\u002Fnapi\u002Fadmin\u002FfranchiseDetailPage\u002F:franchiseId\u002Fmenu","tokens":[{"literal":"\u002Fnapi\u002Fadmin\u002FfranchiseDetailPage\u002F"},{"key":"franchiseId"},{"literal":"\u002Fmenu"}]},"commonAutocompleteNapi":{"path":"\u002Fnapi\u002Flocation\u002Fautocomplete\u002F:text","tokens":[{"literal":"\u002Fnapi\u002Flocation\u002Fautocomplete\u002F"},{"key":"text"}]},"commonReviewFlagNapi":{"path":"\u002Fnapi\u002Freview\u002Fflag\u002F","tokens":[{"literal":"\u002Fnapi\u002Freview\u002Fflag\u002F"}]},"commonGetLocationFromTextNapi":{"path":"\u002Fnapi\u002Flocation\u002Ftext","tokens":[{"literal":"\u002Fnapi\u002Flocation\u002Ftext"}]},"webShowtimesMoviesNapi":{"path":"\u002Fnapi\u002Fmovies\u002F:ids","tokens":[{"literal":"\u002Fnapi\u002Fmovies\u002F"},{"key":"ids"}]},"webShowtimesMovieCalendarNapi":{"path":"\u002Fnapi\u002FmovieCalendar\u002F:title-:id(\\d+)","tokens":[{"literal":"\u002Fnapi\u002FmovieCalendar\u002F"},{"key":"title"},{"literal":"-"},{"key":"id"}]},"webBrowseMovieListDvdAllNapi":{"path":"\u002Fnapi\u002FmovieList\u002FdvdAll","tokens":[{"literal":"\u002Fnapi\u002FmovieList\u002FdvdAll"}]},"webBrowseMovieListOpeningNapi":{"path":"\u002Fnapi\u002FmovieList\u002FOpening","tokens":[{"literal":"\u002Fnapi\u002FmovieList\u002FOpening"}]},"webBrowseMovieListUpcomingNapi":{"path":"\u002Fnapi\u002FmovieList\u002FUpcoming","tokens":[{"literal":"\u002Fnapi\u002FmovieList\u002FUpcoming"}]},"webBrowseMovieListDvdUpcomingNapi":{"path":"\u002Fnapi\u002FmovieList\u002FdvdUpcoming","tokens":[{"literal":"\u002Fnapi\u002FmovieList\u002FdvdUpcoming"}]},"webBrowseMovieListDvdCertifiedNapi":{"path":"\u002Fnapi\u002FmovieList\u002FdvdCertified","tokens":[{"literal":"\u002Fnapi\u002FmovieList\u002FdvdCertified"}]},"webShowtimesMovieShowtimeGroupingsNapi":{"path":"\u002Fnapi\u002FtheaterShowtimeGroupings\u002F:id(\\d+)\u002F:startDate","tokens":[{"literal":"\u002Fnapi\u002FtheaterShowtimeGroupings\u002F"},{"key":"id"},{"literal":"\u002F"},{"key":"startDate"}]},"webMovieReviewsGetAudienceReviewNapi":{"path":"\u002Fnapi\u002Fmovie\u002F:movieId\u002Freviews\u002F:type(user|verified_audience)","tokens":[{"literal":"\u002Fnapi\u002Fmovie\u002F"},{"key":"movieId"},{"literal":"\u002Freviews\u002F"},{"key":"type"}]},"webMovieReviewsGetCriticsReviewNapi":{"path":"\u002Fnapi\u002Fmovie\u002F:movieId\u002FcriticsReviews\u002F:type(all|top_critics)","tokens":[{"literal":"\u002Fnapi\u002Fmovie\u002F"},{"key":"movieId"},{"literal":"\u002FcriticsReviews\u002F"},{"key":"type"}]},"commonTrackingFreewheelPixelSyncNapi":{"path":"\u002Fnapi\u002Ftracking\u002Ffreewheel\u002Fpixelsync","tokens":[{"literal":"\u002Fnapi\u002Ftracking\u002Ffreewheel\u002Fpixelsync"}]},"webTvEpisodeGetReviewsNapi":{"path":"\u002Fnapi\u002Ftv\u002F:vanity\u002F:tvSeason\u002F:tvEpisode\u002Freviews\u002F:type(all|top_critics)","tokens":[{"literal":"\u002Fnapi\u002Ftv\u002F"},{"key":"vanity"},{"literal":"\u002F"},{"key":"tvSeason"},{"literal":"\u002F"},{"key":"tvEpisode"},{"literal":"\u002Freviews\u002F"},{"key":"type"}]},"webSeasonReviewsGetReviewsNapi":{"path":"\u002Fnapi\u002Ftv\u002F:vanity\u002Fseason\u002F:seasonEmsId\u002Freviews\u002F:type(user)","tokens":[{"literal":"\u002Fnapi\u002Ftv\u002F"},{"key":"vanity"},{"literal":"\u002Fseason\u002F"},{"key":"seasonEmsId"},{"literal":"\u002Freviews\u002F"},{"key":"type"}]},"webSeasonReviewsGetCriticsReviewsNapi":{"path":"\u002Fnapi\u002Ftv\u002F:vanity\u002Fseason\u002F:seasonEmsId\u002FcriticsReviews\u002F:type(all|top_critics)","tokens":[{"literal":"\u002Fnapi\u002Ftv\u002F"},{"key":"vanity"},{"literal":"\u002Fseason\u002F"},{"key":"seasonEmsId"},{"literal":"\u002FcriticsReviews\u002F"},{"key":"type"}]},"commonSearchNapi":{"path":"\u002Fnapi\u002Fsearch\u002Fall","tokens":[{"literal":"\u002Fnapi\u002Fsearch\u002Fall"}]},"commonSearchAllCategoriesNapi":{"path":"\u002Fnapi\u002Fsearch\u002F","tokens":[{"literal":"\u002Fnapi\u002Fsearch\u002F"}]},"commonSearchTopMoviesDefaultListNapi":{"path":"\u002Fnapi\u002Fsearch\u002Fdefault-list","tokens":[{"literal":"\u002Fnapi\u002Fsearch\u002Fdefault-list"}]},"webShowtimesTheatersWithShowtimesNapi":{"path":"\u002Fnapi\u002FtheatersShowtimes\u002F:location\u002F:date","tokens":[{"literal":"\u002Fnapi\u002FtheatersShowtimes\u002F"},{"key":"location"},{"literal":"\u002F"},{"key":"date"}]},"webTvSeasonGetEpisodesNapi":{"path":"\u002Fnapi\u002Ftv\u002F:vanity\u002F:tvSeason\u002Fepisodes","tokens":[{"literal":"\u002Fnapi\u002Ftv\u002F"},{"key":"vanity"},{"literal":"\u002F"},{"key":"tvSeason"},{"literal":"\u002Fepisodes"}]},"commonUserEmailConfirmationNapi":{"path":"\u002Fnapi\u002Faccount\u002FemailConfirmation","tokens":[{"literal":"\u002Fnapi\u002Faccount\u002FemailConfirmation"}]},"commonUserEmailStatusNapi":{"path":"\u002Fnapi\u002Faccount\u002FemailStatus","tokens":[{"literal":"\u002Fnapi\u002Faccount\u002FemailStatus"}]},"webMovieDetailsUserMovieRatingNapi":{"path":"\u002Fnapi\u002Fuser\u002Frating\u002Fmovie\u002F:movieId(\\d+)\u002F","tokens":[{"literal":"\u002Fnapi\u002Fuser\u002Frating\u002Fmovie\u002F"},{"key":"movieId"},{"literal":"\u002F"}]},"webTvSeasonUserTvRatingNapi":{"path":"\u002Fnapi\u002Fuser\u002Frating\u002Ftv\u002F:tvId(\\d+)\u002F","tokens":[{"literal":"\u002Fnapi\u002Fuser\u002Frating\u002Ftv\u002F"},{"key":"tvId"},{"literal":"\u002F"}]},"webTvSeasonUserUpdateTvRatingNapi":{"path":"\u002Fnapi\u002Fuser\u002Frating\u002Ftv\u002FupdateRating\u002F:tvId(\\d+)\u002F","tokens":[{"literal":"\u002Fnapi\u002Fuser\u002Frating\u002Ftv\u002FupdateRating\u002F"},{"key":"tvId"},{"literal":"\u002F"}]},"commonUserWTSCreateNapi":{"path":"\u002Fnapi\u002Fuser\u002Fwts","tokens":[{"literal":"\u002Fnapi\u002Fuser\u002Fwts"}]},"commonUserWTSDeleteNapi":{"path":"\u002Fnapi\u002Fuser\u002Fwts\u002Fdelete","tokens":[{"literal":"\u002Fnapi\u002Fuser\u002Fwts\u002Fdelete"}]},"commonUserRatingCreateNapi":{"path":"\u002Fnapi\u002Fuser\u002Frating","tokens":[{"literal":"\u002Fnapi\u002Fuser\u002Frating"}]},"commonUserGetWTSNapi":{"path":"\u002Fnapi\u002Fuser\u002Fwts","tokens":[{"literal":"\u002Fnapi\u002Fuser\u002Fwts"}]},"commonUserInfoNapi":{"path":"\u002Fnapi\u002Fuser","tokens":[{"literal":"\u002Fnapi\u002Fuser"}]},"commonUserGetRatingNapi":{"path":"\u002Fnapi\u002Fuser\u002Frating","tokens":[{"literal":"\u002Fnapi\u002Fuser\u002Frating"}]},"webUserProfileMovieRatingsNapi":{"path":"\u002Fnapi\u002FuserProfile\u002FmovieRatings\u002F:userId(\\d+)","tokens":[{"literal":"\u002Fnapi\u002FuserProfile\u002FmovieRatings\u002F"},{"key":"userId"}]},"webUserProfileTVRatingsNapi":{"path":"\u002Fnapi\u002FuserProfile\u002FtvRatings\u002F:userId(\\d+)","tokens":[{"literal":"\u002Fnapi\u002FuserProfile\u002FtvRatings\u002F"},{"key":"userId"}]},"webUserProfileWTSNapi":{"path":"\u002Fnapi\u002FuserProfile\u002Fwts\u002F:userId(\\d+)","tokens":[{"literal":"\u002Fnapi\u002FuserProfile\u002Fwts\u002F"},{"key":"userId"}]},"mediaHoundRecommendations":{"path":"https:\u002F\u002Fapi.mediahound.net\u002Fgraph\u002Frelate","tokens":[{"literal":"https:\u002F\u002Fapi.mediahound.net\u002Fgraph\u002Frelate"}]},"resetClient":{"path":"\u002Freset-client","tokens":[{"literal":"\u002Freset-client"}]},"tvSeasonCriticAddArticle":{"path":"https:\u002F\u002Fwww.rottentomatoes.com\u002Fcritics\u002Ftools\u002Ftv\u002F?reviewableId=:seasonId","tokens":[{"literal":"https:\u002F\u002Fwww.rottentomatoes.com\u002Fcritics\u002Ftools\u002Ftv\u002F?reviewableId="},{"key":"seasonId"}]},"userAccount":{"path":"https:\u002F\u002Fwww.rottentomatoes.com\u002Fuser\u002Faccount\u002F","tokens":[{"literal":"https:\u002F\u002Fwww.rottentomatoes.com\u002Fuser\u002Faccount\u002F"}]},"userAccountEmailPrefs":{"path":"https:\u002F\u002Foptout.services.fandango.com\u002Frottentomatoes","tokens":[{"literal":"https:\u002F\u002Foptout.services.fandango.com\u002Frottentomatoes"}]},"webBrowseTheatersTopBoxOffice":{"path":"\u002Fbrowse\u002Fin-theaters\u002F","tokens":[{"literal":"\u002Fbrowse\u002Fin-theaters\u002F"}]},"webCritic":{"path":"\u002Fcritics\u002F:vanity\u002F:type(movies|tv)","tokens":[{"literal":"\u002Fcritics\u002F"},{"key":"vanity"},{"literal":"\u002F"},{"key":"type"}]},"webCriticLanding":{"path":"\u002Fcritics\u002F:vanity","tokens":[{"literal":"\u002Fcritics\u002F"},{"key":"vanity"}]},"webSearchResults":{"path":"\u002Fsearch\u002F","tokens":[{"literal":"\u002Fsearch\u002F"}]},"webShowtimes":{"path":"\u002Fshowtimes","tokens":[{"literal":"\u002Fshowtimes"}]},"webCriticSource":{"path":"\u002Fcritics\u002Fsource\u002F:publicationId","tokens":[{"literal":"\u002Fcritics\u002Fsource\u002F"},{"key":"publicationId"}]}}};
+root.RottenTomatoes.context || (root.RottenTomatoes.context = {});
+root.RottenTomatoes.context.layout = {"header":{"editorial":{"bestAndWorstNews":[{"title":"Sidney Poitier&#8217;s 7 Most Memorable Performances","link":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Farticle\u002Fsidney-poitiers-7-most-memorable-performances\u002F","featured_image":{"source":"https:\u002F\u002Fprd-rteditorial.s3.us-west-2.amazonaws.com\u002Fwp-content\u002Fuploads\u002F2018\u002F01\u002F09155023\u002FSidney-Poitier-Memorable.jpg"}},{"title":"All Harry Potter Movies Ranked Worst to Best by Tomatometer","link":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Fguide\u002Fall-harry-potter-movies-ranked-by-tomatometer\u002F","featured_image":{"source":"https:\u002F\u002Fprd-rteditorial.s3.us-west-2.amazonaws.com\u002Fwp-content\u002Fuploads\u002F2011\u002F07\u002F09155748\u002FHarry-Potter-Movies.jpg"}}],"guides":[{"title":"Fall TV","link":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Frt-hub\u002Ffall-tv\u002F","featured_image":{"source":"https:\u002F\u002Fprd-rteditorial.s3.us-west-2.amazonaws.com\u002Fwp-content\u002Fuploads\u002F2019\u002F11\u002F24171414\u002FRT_fall-tv-2021_600X314.jpg"}},{"title":"Celebrating Hispanic Heritage","link":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Frt-hub\u002Fhispanic-heritage\u002F","featured_image":{"source":"https:\u002F\u002Fprd-rteditorial.s3.us-west-2.amazonaws.com\u002Fwp-content\u002Fuploads\u002F2021\u002F09\u002F14143917\u002FRT_HHM_600x314.jpg"}}],"newsItems":[{"title":"Nicolas Cage Will Vamp It Up as Universal&#8217;s Count Dracula, and More Movie News","link":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Farticle\u002Fnicolas-cage-will-vamp-it-up-as-universals-count-dracula-and-more-movie-news\u002F","featured_image":{"source":"https:\u002F\u002Fprd-rteditorial.s3.us-west-2.amazonaws.com\u002Fwp-content\u002Fuploads\u002F2021\u002F12\u002F03143443\u002FNic_Cage_Dracula_Ketchup-Rep.jpg"}},{"title":"Oscar Winners Alfonso Cuarón, Cate Blanchett, and Kevin Kline Teaming for \u003Cem\u003EDisclaimer\u003C\u002Fem\u003E","link":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Farticle\u002Falfonso-cuaron-cate-blanchett-and-kevin-kline-team-ana-de-armas-casting-more-tv-and-streaming-news\u002F","featured_image":{"source":"https:\u002F\u002Fprd-rteditorial.s3.us-west-2.amazonaws.com\u002Fwp-content\u002Fuploads\u002F2021\u002F12\u002F03112955\u002Fdisclaimer-trio-600x314-1.jpg"}}]},"trendingTarsSlug":"rt-nav-trending","trending":[{"header":"The Ultimate Binge Guide","url":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Farticle\u002Fultimate-binge-guide\u002F"},{"header":"Best Christmas Movies","url":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Fguide\u002Fbest-christmas-movies\u002F"},{"header":"Awards Leaderboard","url":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Farticle\u002F2021-2022-awards-leaderboard\u002F"},{"header":"Nightmare Alley Reviews","url":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Farticle\u002Fnightmare-alley-first-reviews-a-winning-cast-and-gorgeous-visuals-make-guillermo-del-toros-thriller-shine\u002F"}],"certifiedMedia":{"certifiedFreshTvSeason":{"header":null,"media":{"url":"\u002Ftv\u002Flupin\u002Fs02","name":"Lupin: Season 2","score":96,"posterImg":"https:\u002F\u002Fresizing.flixster.com\u002Fk-_agZCQ6e6eCeAOCed04YVPJts=\u002Ffit-in\u002F180x240\u002Fv2\u002Fhttps:\u002F\u002Fflxt.tmsimg.com\u002Fassets\u002Fp19970155_b_v8_aa.jpg"},"tarsSlug":"rt-nav-list-cf-picks"},"certifiedFreshMovieInTheater":{"header":null,"media":{"url":"\u002Fm\u002Fblack_widow_2021","name":"Black Widow","score":79,"posterImg":"https:\u002F\u002Fresizing.flixster.com\u002F2Pb2GucTgjUF2PdRJZ2jdCynmTk=\u002Ffit-in\u002F180x240\u002Fv2\u002Fhttps:\u002F\u002Fresizing.flixster.com\u002F8Cps_AWwNbk0bMzDtqzwRhccnY0=\u002Fems.ZW1zLXByZC1hc3NldHMvbW92aWVzLzRkMWJjZjI2LWE0MDktNDczZC05ZmNiLTIzMTQ0NTE5MGJiMC5qcGc="}},"certifiedFreshMovieInTheater4":{"header":null,"media":{"url":"\u002Fm\u002Ffear_street_part_one_1994","name":"Fear Street Part One: 1994","score":83,"posterImg":"https:\u002F\u002Fresizing.flixster.com\u002FoKd2m-d1XbPYTnSHS1gtU46_NrU=\u002Ffit-in\u002F180x240\u002Fv2\u002Fhttps:\u002F\u002Fresizing.flixster.com\u002FnKBIQdS2aFb1E91-7AAPN2mjEn8=\u002Fems.ZW1zLXByZC1hc3NldHMvbW92aWVzLzc3YTBmOTNjLWJmYTAtNDAxMy1hNGFhLTk5N2I0MjdhN2FmMi5qcGc="}},"certifiedFreshMovieAtHome":{"header":null,"media":{"url":"\u002Fm\u002F2001_a_space_odyssey","name":"2001: A Space Odyssey","score":92,"posterImg":"https:\u002F\u002Fresizing.flixster.com\u002FB0XhHX49YgZxHc4xUc6wObl5yg4=\u002Ffit-in\u002F180x240\u002Fv2\u002Fhttps:\u002F\u002Fflxt.tmsimg.com\u002FNowShowing\u002F43074\u002F43074_aa.jpg"}},"tarsSlug":"rt-nav-list-cf-picks"},"tvLists":{"newTvTonight":{"tarsSlug":"rt-hp-text-list-new-tv-this-week","title":"New TV Tonight","shows":[{"title":"Landscapers: Season 1","tomatometer":{"tomatometer":100,"state":"fresh","certifiedFresh":false},"tvPageUrl":"\u002Ftv\u002Flandscapers\u002Fs01"},{"title":"The Expanse: Season 6","tomatometer":{"tomatometer":undefined,"state":"","certifiedFresh":false},"tvPageUrl":"\u002Ftv\u002Fthe_expanse\u002Fs06"},{"title":"And Just Like That...: Season 1","tomatometer":{"tomatometer":undefined,"state":"","certifiedFresh":false},"tvPageUrl":"\u002Ftv\u002Fand_just_like_that\u002Fs01"},{"title":"Joe Pickett: Season 1","tomatometer":{"tomatometer":undefined,"state":"","certifiedFresh":false},"tvPageUrl":"\u002Ftv\u002Fjoe_pickett\u002Fs01"},{"title":"Abbott Elementary: Season 1","tomatometer":{"tomatometer":undefined,"state":"","certifiedFresh":false},"tvPageUrl":"\u002Ftv\u002Fabbott_elementary\u002Fs01"},{"title":"Bloods: Season 1","tomatometer":{"tomatometer":100,"state":"fresh","certifiedFresh":false},"tvPageUrl":"\u002Ftv\u002Fbloods\u002Fs01"},{"title":"Anne Boleyn: Season 1","tomatometer":{"tomatometer":57,"state":"rotten","certifiedFresh":false},"tvPageUrl":"\u002Ftv\u002Fanne_boleyn\u002Fs01"},{"title":"Beforeigners: Season 1","tomatometer":{"tomatometer":undefined,"state":"","certifiedFresh":false},"tvPageUrl":"\u002Ftv\u002Fbeforeigners\u002Fs01"},{"title":"Saturday Morning All Star Hits!: Season 1","tomatometer":{"tomatometer":undefined,"state":"","certifiedFresh":false},"tvPageUrl":"\u002Ftv\u002Fsaturday_morning_all_star_hits\u002Fs01"},{"title":"Crossing Swords: Season 2","tomatometer":{"tomatometer":undefined,"state":"","certifiedFresh":false},"tvPageUrl":"\u002Ftv\u002Fcrossing_swords\u002Fs02"}]},"mostPopularTvOnRt":{"tarsSlug":"rt-hp-text-list-most-popular-tv-on-rt","title":"Most Popular TV on RT","shows":[{"title":"Santa Inc.: Season 1","tomatometer":{"tomatometer":undefined,"state":"","certifiedFresh":false},"tvPageUrl":"\u002Ftv\u002Fsanta_inc\u002Fs01"},{"title":"Arcane: League of Legends: Season 1","tomatometer":{"tomatometer":100,"state":"fresh","certifiedFresh":false},"tvPageUrl":"\u002Ftv\u002Farcane_league_of_legends\u002Fs01"},{"title":"The Wheel of Time: Season 1","tomatometer":{"tomatometer":84,"state":"certified_fresh","certifiedFresh":true},"tvPageUrl":"\u002Ftv\u002Fthe_wheel_of_time\u002Fs01"},{"title":"Hawkeye: Season 1","tomatometer":{"tomatometer":92,"state":"certified_fresh","certifiedFresh":true},"tvPageUrl":"\u002Ftv\u002Fhawkeye\u002Fs01"},{"title":"Lost in Space: Season 3","tomatometer":{"tomatometer":undefined,"state":"","certifiedFresh":false},"tvPageUrl":"\u002Ftv\u002Flost_in_space\u002Fs03"},{"title":"Hellbound: Season 1","tomatometer":{"tomatometer":96,"state":"certified_fresh","certifiedFresh":true},"tvPageUrl":"\u002Ftv\u002Fhellbound\u002Fs01"},{"title":"Cowboy Bebop: Season 1","tomatometer":{"tomatometer":46,"state":"rotten","certifiedFresh":false},"tvPageUrl":"\u002Ftv\u002Fcowboy_bebop_2021\u002Fs01"},{"title":"Yellowjackets: Season 1","tomatometer":{"tomatometer":100,"state":"certified_fresh","certifiedFresh":true},"tvPageUrl":"\u002Ftv\u002Fyellowjackets\u002Fs01"},{"title":"True Story: Season 1","tomatometer":{"tomatometer":53,"state":"rotten","certifiedFresh":false},"tvPageUrl":"\u002Ftv\u002Ftrue_story_2021\u002Fs01"},{"title":"Money Heist: Season 5","tomatometer":{"tomatometer":83,"state":"fresh","certifiedFresh":false},"tvPageUrl":"\u002Ftv\u002Fmoney_heist\u002Fs05"}]}},"legacyItems":{"tarsSlug":"rt-nav-list-tv-episodic-reviews","tv":{"mediaLists":[{},{},{},{"title":"Episodic Reviews","shows":[{"link":"\u002Ftv\u002Famerican_horror_stories\u002Fs01","showTitle":"American Horror Stories: Season 1"},{"link":"\u002Ftv\u002Floki\u002Fs01","showTitle":"Loki: Season 1"},{"link":"\u002Ftv\u002Fstar_wars_the_bad_batch\u002Fs01","showTitle":"Star Wars: The Bad Batch: Season 1"},{"link":"\u002Ftv\u002Fthe_falcon_and_the_winter_soldier\u002Fs01","showTitle":"The Falcon and the Winter Soldier: Season 1"},{"link":"\u002Ftv\u002Fthe_walking_dead\u002Fs10","showTitle":"The Walking Dead: Season 10"}]}]}}},"links":{"moviesInTheaters":{"openingThisWeek":"\u002Fbrowse\u002Fopening\u002F","topBoxOffice":"\u002Fbrowse\u002Fin-theaters\u002F","comingSoon":"\u002Fbrowse\u002Fupcoming\u002F","weekendEarnings":"\u002Fbrowse\u002Fbox-office\u002F","certifiedFresh":"\u002Fbrowse\u002Fcf-in-theaters\u002F"},"onDvdAndStreaming":{"all":"\u002Fbrowse\u002Fdvd-streaming-all\u002F","top":"\u002Fbrowse\u002Ftop-dvd-streaming\u002F","certifiedFresh":"\u002Fbrowse\u002Fcf-dvd-streaming-all\u002F"},"moreMovies":{"topMovies":"\u002Ftop","trailers":"\u002Ftrailers"},"tvTonight":"\u002Fbrowse\u002Ftv-list-1","tvPopular":"\u002Fbrowse\u002Ftv-list-2","moreTv":{"topTv":"https:\u002F\u002Fwww.rottentomatoes.com\u002Ftop-tv","certifiedFresh":"\u002Fbrowse\u002Ftv-list-3"},"editorial":{"allTimeLists":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Fall-time-lists\u002F","bingeGuide":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Fbinge-guide\u002F","comicsOnTv":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Fcomics-on-tv\u002F","countdown":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Fcountdown\u002F","criticsConsensus":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Fcritics-consensus\u002F","fiveFavoriteFilms":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Ffive-favorite-films\u002F","guidesHome":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Frt-hubs\u002F","home":"https:\u002F\u002Feditorial.rottentomatoes.com\u002F","news":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Fnews\u002F","nowStreaming":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Fnow-streaming\u002F","parentalGuidance":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Fparental-guidance\u002F","podcast":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Farticle\u002Frotten-tomatoes-is-wrong-a-podcast-from-rotten-tomatoes\u002F","redCarpetRoundup":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Fred-carpet-roundup\u002F","scorecards":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Fmovie-tv-scorecards\u002F","subCult":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Fsub-cult\u002F","theZeros":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Fthe-zeros\u002F","totalRecall":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Ftotal-recall\u002F","twentyFourFrames":"https:\u002F\u002Feditorial.rottentomatoes.com\u002F24-frames\u002F","videoInterviews":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Fvideo-interviews\u002F","weekendBoxOffice":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Fweekend-box-office\u002F","weeklyKetchup":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Fweekly-ketchup\u002F","whatToWatch":"https:\u002F\u002Feditorial.rottentomatoes.com\u002Fwhat-to-watch\u002F"}}};
+root.BK = {"PageName":"http:\u002F\u002Fwww.rottentomatoes.com\u002Fabout","SiteID":37528,"SiteSection":""};
+root.RottenTomatoes.thirdParty = {"chartBeat":{"auth":"64558","domain":"rottentomatoes.com"},"facebook":{"appId":"326803741017","version":"v6.0","appName":"flixstertomatoes"},"mpx":{"accountPid":"NGweTC","playerPid":"y__7B0iQTi4P","playerPidPDK6":"pdk6_y__7B0iQTi4P","accountId":"2474312077"},"algoliaSearch":{"aId":"79FRDP12PN","sId":"175588f6e5f8319b27702e4cc4013561"},"cognito":{"upId":"us-west-2_4L0ZX4b1U","clientId":"7pu48v8i2n25t4vhes0edck31c"}};
+root.RottenTomatoes.serviceWorker = {"isServiceWokerOn":true};
+root.RottenTomatoes.dtmData = {"webVersion":"node","clicktale":true,"rtVersion":3.1,"loggedInStatus":"","customerId":"","pageName":"rt | about"};
+root.RottenTomatoes.context.useCognito = false;
+root.RottenTomatoes.context.disableFeatureDetection = true;
+root.RottenTomatoes.context.reCaptchaConfig = {"COMPACT_BREAKPOINT":355,"SCRIPT_SRC":"https:\u002F\u002Fwww.google.com\u002Frecaptcha\u002Fenterprise.js","SITEKEY":"6LdNO4IaAAAAADfSdANONQ1m73X8LoX9rhDlX-6q","THEME":"light","WHICH":"enterprise"};
+root.RottenTomatoes.context.req = {"params":{},"queries":{},"route":{},"url":"\u002Fabout","secure":false,"buildVersion":undefined};
+root.RottenTomatoes.context.config = {};
+}(this));
+
+</script>
+
+<!--[if IE]>
+<script src="/assets/pizza-pie/javascripts/roma/common/polyfills.js"></script>
+<![endif]-->
+
+<script src="/assets/pizza-pie/javascripts/bundles/roma/vendors.3b4c93a4652.js"></script>
+
+
+<script src="/assets/pizza-pie/javascripts/bundles/roma/micromodal.0554523c3ba.js"></script>
+
+
+<script src="/assets/pizza-pie/javascripts/bundles/roma/templates.a146ff8b546.js"></script>
+
+<script src="/assets/pizza-pie/javascripts/bundles/roma/default.4c6fb247b02.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="/assets/pizza-pie/javascripts/bundles/roma/search-algolia.b133a7164fe.js"></script>
+
+
+<script src="/assets/pizza-pie/javascripts/bundles/roma/blueKai.361b26dbc6d.js"></script>
+
+
+<script src="/assets/pizza-pie/javascripts/bundles/roma/chartbeat.692f1df566a.js"></script>
+
+
+<script>
+                if (window.mps && typeof window.mps.writeFooter === 'function') {
+                    window.mps.writeFooter();
+                }
+
+</script>
+
+
+<script>
+            window._satellite && _satellite.pageBottom();
+
+</script>
+<script>_satellite["__runScript1"](function(event, target) {
+var trackerCounter = 0;
+var trackerInterval = setInterval(function(){
+  trackerCounter++;
+  try {
+    jQuery('a[data-mpx-fwsite]').each(function(){
+      var fwsite = jQuery(this).attr('data-mpx-fwsite');
+      if(!fwsite.match(/adobe_mc/)){
+        fwsite = _satellite.getVisitorId().appendVisitorIDsTo(fwsite);
+        fwsite = fwsite.replace(/\?/g,'&');
+        jQuery(this).attr('data-mpx-fwsite', fwsite);
+      }
+    });
+  }
+  catch(e){}
+  if(trackerCounter == 10)
+    clearInterval(trackerInterval);
+}, 500);
+});
+</script>
+
+
+<script type="text/javascript" src="/W73vUz/mv7dsy/Cr3/mNKCc/SEDVBbU/JariLmhz/UiJhaTcD/Vmd9OS/8_CRYB"></script>
+
+<script id="facebook-jssdk" src="//connect.facebook.net/en_US/sdk.js"></script>
+<script id="facebook-jssdk" src="//connect.facebook.net/en_US/sdk.js"></script>
+<script type="text/javascript" id="">
+    console.log("Loading Comscore (GTM)");var _comscore=_comscore||[];_comscore.push({c1:"2",c2:"3000013"});(function(){var a=document.createElement("script"),b=document.getElementsByTagName("script")[0];a.async=!0;a.src=("https:"==document.location.protocol?"https://sb":"http://b")+".scorecardresearch.com/beacon.js";b.parentNode.insertBefore(a,b)})();
+</script>
+<noscript><img src="http://b.scorecardresearch.com/p?c1=2&amp;c2=3000013&amp;cv=2.0&amp;cj=1"></noscript>
+<style>
+  #truste-consent-track {
+    background-color:white;
+    color:#343434;
+    border-bottom: solid black 1px;
+  }
+  #truste-consent-text {
+  	display:inline-block;
+  }
+  #truste-consent-buttons {
+    display:inline-block;
+  }
+  #truste-consent-buttons button {
+    margin-left:10px;
+    background-color:#0c89ca;
+    color:#fff;
+
+    /* copied from bootstrap .btn */
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 16px;
+    line-height: 1.25;
+    border-radius: 5px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  #truste-consent-content:before {
+    background-image: url(http://d1rjibvava1hwe.cloudfront.net/static/images/logos/rtlogo.png);
+    background-size: 100px;
+    content: "";
+    display: block;
+    width: 100px;
+    background-repeat: no-repeat;
+    float: left;
+    margin-right: 10px;
+    margin-left: 30px;
+  }
+
+
+</style>
+
+<script type="text/javascript" id="">function getScript(e,c){var a=document.createElement("script"),b=document.getElementsByTagName("script")[0];a.async=1;a.onload=a.onreadystatechange=function(b,d){if(d||!a.readyState||/loaded|complete/.test(a.readyState))a.onload=a.onreadystatechange=null,a=void 0,d||c&&c()};a.src=e;b.parentNode.insertBefore(a,b)}var child=document.createElement("div");child.setAttribute("id","consent_blackbar");document.body.insertBefore(child,document.body.firstChild);var child2=document.createElement("div");
+child2.setAttribute("id","teconsent");child2.setAttribute("style","display: none");document.body.appendChild(child2);getScript("//consent.truste.com/notice?domain\x3dfandango.com\x26c\x3dteconsent\x26js\x3dbb\x26noticeType\x3dbb",function(){console.log("Loading Truste Banner JS")});
+</script>
+<div id="teconsent" style="display: none"></div>
+<script type="text/javascript" id="">var rawHtml='\x3cli\x3e\x3ca class\x3d"unstyled articleLink" href\x3d"https://editorial.rottentomatoes.com/24-frames/" data-pageheader\x3d"24 Frames"\x3e24 Frames\x3c/a\x3e\x3c/li\x3e \x3cli\x3e\x3ca class\x3d"unstyled articleLink" href\x3d"https://editorial.rottentomatoes.com/all-time-lists/" data-pageheader\x3d"All-Time Lists"\x3eAll-Time Lists\x3c/a\x3e\x3c/li\x3e \x3cli\x3e\x3ca class\x3d"unstyled articleLink" href\x3d"https://editorial.rottentomatoes.com/binge-guide/" data-pageheader\x3d"Binge Guide"\x3eBinge Guide\x3c/a\x3e\x3c/li\x3e \x3cli\x3e\x3ca class\x3d"unstyled articleLink" href\x3d"https://editorial.rottentomatoes.com/comics-on-tv/" data-pageheader\x3d"Comics on TV"\x3eComics on TV\x3c/a\x3e\x3c/li\x3e \x3cli\x3e\x3ca class\x3d"unstyled articleLink" href\x3d"https://editorial.rottentomatoes.com/countdown/" data-pageheader\x3d"Countdown"\x3eCountdown\x3c/a\x3e\x3c/li\x3e \x3cli\x3e\x3ca class\x3d"unstyled articleLink" href\x3d"https://editorial.rottentomatoes.com/critics-consensus/" data-pageheader\x3d"Critics Consensus"\x3eCritics Consensus\x3c/a\x3e\x3c/li\x3e \x3cli\x3e\x3ca class\x3d"unstyled articleLink" href\x3d"https://editorial.rottentomatoes.com/five-favorite-films/" data-pageheader\x3d"Five Favorite Films"\x3eFive Favorite Films\x3c/a\x3e\x3c/li\x3e \x3cli\x3e\x3ca class\x3d"unstyled articleLink" href\x3d"https://editorial.rottentomatoes.com/now-streaming/" data-pageheader\x3d"Now Streaming"\x3eNow Streaming\x3c/a\x3e\x3c/li\x3e \x3cli\x3e\x3ca class\x3d"unstyled articleLink" href\x3d"https://editorial.rottentomatoes.com/parental-guidance/" data-pageheader\x3d"Parental Guidance"\x3eParental Guidance\x3c/a\x3e\x3c/li\x3e \x3cli\x3e\x3ca class\x3d"unstyled articleLink" href\x3d"https://editorial.rottentomatoes.com/red-carpet-roundup/" data-pageheader\x3d"Red Carpet Roundup"\x3eRed Carpet Roundup\x3c/a\x3e\x3c/li\x3e',
+rawHtml2='\x3cli\x3e\x3ca class\x3d"unstyled articleLink" href\x3d"https://editorial.rottentomatoes.com/movie-tv-scorecards/" data-pageheader\x3d"Scorecards"\x3eScorecards\x3c/a\x3e\x3c/li\x3e \x3cli\x3e\x3ca class\x3d"unstyled articleLink" href\x3d"https://editorial.rottentomatoes.com/sub-cult/" data-pageheader\x3d"Sub-Cult"\x3eSub-Cult\x3c/a\x3e\x3c/li\x3e \x3cli\x3e\x3ca class\x3d"unstyled articleLink" href\x3d"https://editorial.rottentomatoes.com/total-recall/" data-pageheader\x3d"Total Recall"\x3eTotal Recall\x3c/a\x3e\x3c/li\x3e \x3cli\x3e\x3ca class\x3d"unstyled articleLink" href\x3d"https://editorial.rottentomatoes.com/video-interviews/" data-pageheader\x3d"Video Interviews"\x3eVideo Interviews\x3c/a\x3e\x3c/li\x3e \x3cli\x3e\x3ca class\x3d"unstyled articleLink" href\x3d"https://editorial.rottentomatoes.com/weekend-box-office/" data-pageheader\x3d"Weekend Box Office"\x3eWeekend Box Office\x3c/a\x3e\x3c/li\x3e \x3cli\x3e\x3ca class\x3d"unstyled articleLink" href\x3d"https://editorial.rottentomatoes.com/weekly-ketchup/" data-pageheader\x3d"Weekly Ketchup"\x3eWeekly Ketchup\x3c/a\x3e\x3c/li\x3e \x3cli\x3e\x3ca class\x3d"unstyled articleLink" href\x3d"https://editorial.rottentomatoes.com/what-to-watch/" data-pageheader\x3d"What to Watch"\x3eWhat to Watch\x3c/a\x3e\x3c/li\x3e \x3cli\x3e\x3ca class\x3d"unstyled articleLink" href\x3d"https://editorial.rottentomatoes.com/the-zeros/" data-pageheader\x3d"The Zeros"\x3eThe Zeros\x3c/a\x3e\x3c/li\x3e';
+$("#header-news-columns ul").html(rawHtml);$("#header-news-columns ul").append(rawHtml2);
+</script>
+<script type="text/javascript" id="">
+    (function(a){a(".about-main__list-item:eq(5)").remove();a(".about-main__list-item:eq(2)").remove()})(window.jQuery);
+</script>
+<script type="text/javascript" id="">(function(){var b="https://s3-us-west-2.amazonaws.com/flx-editorial-wordpress/wp-content/uploads/2020/07/06084856/RT_BINGE_CENTRAL_SPONSORED_HBOMAX_600X314.jpg",c="V3"!==document.querySelector(".version").textContent;if(c)b=document.querySelector('.js-masthead-menu-header[data-content\x3d"_news"]'),b.addEventListener("mouseenter",function(){a||(a=document.querySelector('.masthead__news-photo[alt\x3d"Binge Central"]'),a.setAttribute("data-src","https://s3-us-west-2.amazonaws.com/flx-editorial-wordpress/wp-content/uploads/2020/07/06084856/RT_BINGE_CENTRAL_SPONSORED_HBOMAX_600X314.jpg"),
+a.src="https://s3-us-west-2.amazonaws.com/flx-editorial-wordpress/wp-content/uploads/2020/07/06084856/RT_BINGE_CENTRAL_SPONSORED_HBOMAX_600X314.jpg")});else{var a=document.querySelector('a[href\x3d"https://editorial.rottentomatoes.com/rt-hub/binge-central/"] .newsPhoto');a.classList.remove("js-lazyLoad");a.style="background-image: url("+b+");"}})();
+</script>
+<script>mendeleyWebImporter = {
+  downloadPdfs(t,e) { return this._call('downloadPdfs', [t,e]); },
+  open() { return this._call('open', []); },
+  setLoginToken(t) { return this._call('setLoginToken', [t]); },
+  _call(methodName, methodArgs) {
+    const id = Math.random();
+    window.postMessage({ id, token: '0.36790851449899553', methodName, methodArgs }, 'https://www.rottentomatoes.com');
+    return new Promise(resolve => {
+      const listener = window.addEventListener('message', event => {
+        const data = event.data;
+        if (typeof data !== 'object' || !('result' in data) || data.id !== id) return;
+        window.removeEventListener('message', listener);
+        resolve(data.result);
+      });
+    });
+  }
+};
+</script>
+<script>_satellite["__runScript2"](function(event, target) {
+!function(){window._uxa=window._uxa||[];try{void 0!==_satellite.getVar&&void 0!==_satellite.getVar("Page Level 2")&&window._uxa.push(["setCustomVariable",1,"pageLevel2",_satellite.getVar("Page Level 2"),3])}catch(e){}if("undefined"==typeof CS_CONF){window._uxa.push(["setPath",window.location.pathname+window.location.hash.replace("#","?__")]);var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//t.contentsquare.net/uxa/7ebff8e6-e164-4289-a6dd-bbba9ede7903.js",document.getElementsByTagName("head")[0].appendChild(e)}else window._uxa.push(["trackPageview",window.location.pathname+window.location.hash.replace("#","?__")])}();
+});
+</script>
+<!-- NO MPS OMNITURE TEMPLATE MAPPING DEFINED FOR SITE (skipping) -->
+
+<!-- page fair is no longer active <script id="mps-load-pagefair">(function(){function a(b){var a="https:"==document.location.protocol?"https://":"http://",c=document.createElement("script");c.src=a+b;b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(c,b)}bm_website_code="146FADDBB69C4EAB";jQuery(document).ready(function(){a("asset.pagefair.com/measure.min.js")});jQuery(document).ready(function(){a("asset.pagefair.net/ads.min.js")})})();</script>-->
+<script id="mps-load-admiral" type="text/javascript">
+    !(function(o,n,t){t=o.createElement(n),o=o.getElementsByTagName(n)[0],t.async=1,t.src="https://honorableland.com/v2xglf05UGcVvzEUFlB6672D6fDwhuTsalYNh9J8Q6zzvZToUzEeznRfzQK-ELINP",o.parentNode.insertBefore(t,o)})(document,"script"),(function(o,n){o[n]=o[n]||function(){(o[n].q=o[n].q||[]).push(arguments)}})(window,"admiral");!(function(c,e,o,t,n){function r(o,t){(function n(){try{return 0<(localStorage.getItem("v4ac1eiZr0")||"").split(",")[4]}catch(o){}return!1})()&&(t=c[e].pubads())&&t.setTargeting("admiral-engaged","true")}(n=c[e]=c[e]||{}).cmd=n.cmd||[],typeof n.pubads===o?r():typeof n.cmd.unshift===o?n.cmd.unshift(r):n.cmd.push(r)})(window,"googletag","function");
+</script>
+
+
+<script>window.console && console.log('--[executed]--> MPS Footer Additions (3)');</script>
+
+<script>typeof mps._postscribe == "object" && mps._postscribe.enable();</script>
+
+<!--0-PATCHES-{@bodyfooter}: SHARED PATCHES (foot)-->
+<script>/* PATCHES (footer) SHARED ACROSS SITES */ mps.__patchfoot=1;
+
+</script>
+
+
+<!--{@bodyfooter}-poststitial: Poststitial Ads-->
+<script>//--[2018-03-05] Poststitial Ad Execution (requires site config component)
+mps.poststitial=mps.poststitial||{}; mps._queue.gptloaded=mps._queue.gptloaded||[]; mps._queue.adload=mps._queue.adload||[]; mps._queue.abdetect=mps._queue.abdetect||[];
+mps.poststitial._intercepting=0; mps.poststitial._showstate=0; mps.poststitial._ab=0;
+mps._queue.abdetect.push(function(abstatus){
+  if(abstatus) {
+    mps._d('[mps/poststitial] SKIPPING '+mps.poststitial.slot+' (ad block)');
+    mps.poststitial._ab=1;
+  }
+});
+mps._queue.gptloaded.push(function() {
+  if(!mps._ext._qsparams || !mps._ext._qsparams.adtest || mps._ext._qsparams.adtest.indexOf("poststitial")<0) return false; // REMOVE FOR PROD
+  if(mps.poststitial.disable) return false;
+  mps.poststitial=mps.poststitial||{};
+  mps.poststitial.show = function(slot,href){
+    if(!slot||!href) return false;
+    if(!mps.adslots[slot]) {
+      mps._d('[mps/poststitial] FAILED: slot ('+slot+') unavailable');
+      return false;
+    }
+    mps.poststitial.href = href;
+    mps._d('[mps/poststitial] show('+slot+','+href+')');
+    mps._append('body','<style>#poststitial-overlay{background:#000;width:100%;height:100%;top:0;left:0;position:fixed;text-align:center;z-index:2147483644!important;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-flex:1;-webkit-flex:10 auto;-ms-flex:10 auto;flex:10 auto;-webkit-flex-flow:rowwrap;-ms-flex-flow:rowwrap;flex-flow:rowwrap;-ms-flex-direction:column;justify-content:center;align-items:center} #poststitial-overlay-ad{box-sizing:border-box;max-width:100%} #poststitial-overlay-close{position:fixed;top:3%;right:0;width:120px;border:1px solid #CCC;padding: 8px 0px 8px 15px;cursor:pointer;z-index: 2147483647;background: #000;} .poststitial-overlay-close-text{color:#FFF;font:700 17px/120% Arial,Helvetica,sans-serif}</style><div id="poststitial-overlay" style="display:none;"><div id="poststitial-overlay-ad"></div></div>');
+    mps._select('#poststitial-overlay').setAttribute("style", "");
+    mps._select('body').setAttribute("style", "overflow:hidden;");
+    mps.insertAd('#poststitial-overlay-ad',slot);
+    mps._queue.adload.push(function(eo) {
+      if(eo._mps._slot!=slot) return false;
+      mps._d('[mps/poststitial] Ad Loaded',eo);
+      if(eo.isEmpty) {
+        mps.poststitial.close();
+      } else {
+        mps.poststitial._showstate = 2;
+      }
+    });
+    mps._queue.adrender.push(function(eo) {
+      if(eo._mps._slot!=slot) return false;
+      setTimeout(function(){
+        mps._append('body','<div id="poststitial-overlay-close"><span class="poststitial-overlay-close-text">Close Ad &nbsp;&#x2715;</span></div>');
+        mps._select('#poststitial-overlay-close').setAttribute("onclick", "mps.poststitial.close()");
+      },1000);
+    });
+    mps.poststitial._showstate = 1;
+    if(mps.poststitial.autoclose) setTimeout(function(){mps.poststitial.close()},mps.poststitial.autoclose*1000);
+    if(typeof(mps.poststitial.showCallback)=='function') mps.poststitial.showCallback(slot,href);
+  }
+
+  mps.poststitial.intercept = function() {
+    if(mps.poststitial._intercepting) return false;
+    if(mps.poststitial._ab) return false;
+    mps.poststitial._intercepting = 1;
+    function _interceptClickEvent(e) {
+        var href;
+        var target = e.target || e.srcElement;
+        if (target.tagName === 'A') {
+          href = target.getAttribute('href');
+          if(mps.poststitial._checkLink(href)) {
+            if(!mps.poststitial._checkFrequency()) {
+              mps._d('[mps/poststitial] SKIPPING '+mps.poststitial.slot+' (frequency cap)');
+              return false;
+            }
+            e.preventDefault();
+            mps.poststitial.show(mps.poststitial.slot,href);
+          }
+        }
+    }
+    if(document.addEventListener) {
+      return document.addEventListener('click', _interceptClickEvent);
+    } else if (document.attachEvent) {
+      return document.attachEvent('onclick', _interceptClickEvent);
+    }
+    if(typeof(mps.poststitial.interceptCallback)=='function') mps.poststitial.interceptCallback();
+    return false;
+  }
+
+  mps.poststitial.close = function() {
+    if(!mps.poststitial.href) window.location.reload();
+    window.location.href=mps.poststitial.href;
+    if(typeof(mps.poststitial.closeCallback)=='function') mps.poststitial.closeCallback();
+  }
+
+  mps.poststitial._checkLink = function(href){
+    if(typeof(href)!='string') return false;
+    mps.poststitial._link = document.createElement('a');
+    mps.poststitial._link.href = href;
+    for(var i in mps.poststitial.ignorepaths) {
+      if(mps.poststitial._link.pathname.indexOf(mps.poststitial.ignorepaths[i]) === 0) {
+        return false;
+      }
+    }
+    if(mps.poststitial.skipexternal && mps.poststitial._tld(document.location.hostname) != mps.poststitial._tld(mps.poststitial._link.hostname)) return false;
+    if(mps.poststitial._link.pathname == window.location.pathname) return false;
+    return true;
+  }
+
+  mps.poststitial._checkFrequency = function() {
+    if(mps.poststitial.freqhops) {
+      var hop = parseInt(mps._ck.r('mps_poststitial_hop'));
+      hop = (!hop) ? 1 : hop+1;
+      mps._d('[mps/poststitial] Frequency (hops): '+mps.poststitial.freqhops+' (current: '+hop+')');
+      mps._ck.w('mps_poststitial_hop', hop, 90);
+      if((hop % mps.poststitial.freqhops)!==1) return false;
+    }
+    if(mps.poststitial.freqsecs) {
+      var ck = parseInt(mps._ck.r('mps_poststitial_time'));
+      if(!ck) return true;
+      var elapsed = (mps.poststitial._mktime() - ck);
+      mps._d('[mps/poststitial] Frequency (time): '+mps.poststitial.freqsecs+' secs (elapsed: '+elapsed+')');
+      if(parseInt(mps.poststitial.freqsecs) > elapsed) return false;
+      mps._ck.w('mps_poststitial_time', mps.poststitial._mktime(), 90);
+    }
+    return true;
+  }
+
+  mps.poststitial._mktime=function(){return Math.floor(Date.now()/1E3)};
+  mps.poststitial._tld=function(hostname){
+    if(!hostname) return false;
+    if(hostname.indexOf('.')<0) return hostname;
+    var hostname=hostname.split('.');
+    var topdom = hostname.pop();
+    return hostname.pop()+'.'+topdom;
+  };
+
+  mps.poststitial.intercept();
+  //mps.poststitial.show('poststitial','http://mps.nbcuni.com');
+});
+
+</script>
+
+
+<!--{@bodyfooter}-poststitial-site-config: Poststitial Site Config-->
+<script>//--[2018-02-15] Poststitial Site Config
+  mps.poststitial=mps.poststitial||{};
+  mps.poststitial.disable = 0; // disable poststitial execution (0 or 1)
+  mps.poststitial.slot = 'poststitial'; // mps ad slot
+  mps.poststitial.ignorepaths = ['/example','/partial/match']; // partial match
+  mps.poststitial.skipexternal = 1; // skip links to other sites (0 or 1)
+  //mps.poststitial.freqhops = 2;
+  //mps.poststitial.freqsecs = 10; // secs
+  //mps.poststitial.autoclose = 10; // secs
+
+</script>
+<script>typeof mps._postscribe == "object" && mps._postscribe.disable();</script>
+<script type="text/javascript"
+        src="https://zn6sdb0uwojrglmmn-fandango.siteintercept.qualtrics.com/SIE/?Q_ZID=ZN_6SDb0uWojRgLmmN"></script>
+<script language="javascript" type="text/javascript" src="//static.chartbeat.com/js/chartbeat.js"></script>
+<div id="fb-root" class=" fb_reset">
+    <div style="position: absolute; top: -10000px; width: 0px; height: 0px;">
+        <div></div>
+    </div>
+</div>
+<img width="1" height="1"
+     src="https://pix.nbcuni.com/x.gif?mpsid=51779886&amp;mpspath=%252Fabout&amp;site=rottentomatoes-web&amp;authusr=&amp;errtype=Script&amp;errmsg=Load%20Error%20-%20https%253A%252F%252Fz.moatads.com%252Fnbcuyieldheader7581548001%252Fyi.js"><img
+        width="1" height="1"
+        src="https://pix.nbcuni.com/x.gif?mpsid=51779886&amp;mpspath=%252Fabout&amp;site=rottentomatoes-web&amp;authusr=&amp;errtype=Script&amp;errmsg=Load%20Error%20-%20https%253A%252F%252Fjs-sec.indexww.com%252Fht%252Fp%252F185796-219213027941318.js">
+</body>
+</html>

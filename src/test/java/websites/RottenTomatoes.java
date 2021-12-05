@@ -12,6 +12,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -473,4 +475,136 @@ public class RottenTomatoes {
         assertEquals("Netflix", driver.findElement(By.cssSelector("[data-qa='series-details-network']")).getText());
     }
 
+    /**
+     * RT_18
+     * Tamar
+     * HTML refers to RT_1, RT_18
+     */
+    @Test
+    public void RT_18_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        driver.findElement(By.cssSelector("[data-qa='header:link-whats-tmeter']")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".about-main")));
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.id("whatisthetomatometer"))));
+    }
+
+    /**
+     * RT_19
+     * Tamar
+     * HTML refers to RT_1, RT_19
+     */
+    @Test
+    public void RT_19_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        driver.findElement(By.cssSelector("[data-qa='header:link-critics-home']")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Who are the Tomatometer-approved critics?"));
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("critics-home-spotlight")));
+        assertEquals(4, element.findElements(By.className("critics-home-spotlight__li")).size());
+        element = element.findElement(By.cssSelector("[data-qa='critic-social-link']"));
+        String handle = element.getText();
+        element.click();
+
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(text(), 'Twitter, Inc.')]")));
+        assertEquals(handle, driver.findElement(By.cssSelector("[data-testid='UserName'] [dir='ltr']")).getText());
+    }
+
+    /**
+     * RT_20
+     * Tamar
+     * HTML refers to RT_1, RT_20
+     */
+    @Test
+    public void RT_20_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//h2[text()='Top Headlines']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element.findElement(By.xpath("./.."))).perform();
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , element));
+        assertEquals(8, driver.findElements(By.className("top-headlines-item")).size());
+        element.findElement(By.xpath("./following-sibling::a[text()='View All']")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(By.tagName("h1"), "TOP HEADLINES"));
+        assertTrue(driver.findElement(By.className("publication-row")).isDisplayed());
+    }
+
+
+    /**
+     * RT_21
+     * Tamar
+     * HTML refers to RT_1
+     */
+    @Test
+    public void RT_21_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//a[text()='Movies']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+
+        List<WebElement> titleElements = element.findElements(By.tagName("h3"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList(
+                "MOVIES IN THEATERS", "ON DVD & STREAMING", "MORE", "CERTIFIED FRESH PICKS"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+    }
+
+    /**
+     * RT_22
+     * Tamar
+     * HTML refers to RT_1, RT_2
+     */
+    @Test
+    public void RT_22_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//a[text()='Movies']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+
+        List<WebElement> movieElements = element.findElements(By.xpath("//h3[text()='Certified Fresh Picks']/following-sibling::*//a"));
+        assertEquals(3, movieElements.size());
+        element = movieElements.get(0);
+        String title = element.findElement(By.cssSelector(".masthead__certified-fresh-pick-text.clamp")).getText();
+        String score = element.findElement(By.tagName("score-icon-critic")).getAttribute("percentage");
+        element.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), title.toUpperCase(Locale.ROOT)));
+        assertEquals(score, driver.findElement(By.tagName("score-board")).getAttribute("tomatometerscore"));
+    }
 }
