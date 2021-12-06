@@ -607,4 +607,150 @@ public class RottenTomatoes {
         wait.until(ExpectedConditions.textToBe(By.tagName("h1"), title.toUpperCase(Locale.ROOT)));
         assertEquals(score, driver.findElement(By.tagName("score-board")).getAttribute("tomatometerscore"));
     }
+
+    /**
+     * RT_23
+     * Tamar
+     * HTML refers to RT_1, RT_23
+     */
+    @Test
+    public void RT_23_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//a[text()='Movies']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+
+        driver.findElement(By.xpath("//a[text()='Top Movies']")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "TOP MOVIES"));
+        List<WebElement> titles = driver.findElements(By.cssSelector("h2.panel-heading"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("BEST MOVIES OF 2021", "TOP 100 MOVIES BY GENRE",
+                "BEST MOVIES OF ALL TIME", "BEST MOVIES OF 2020", "MOVIE AWARD WINNERS", "BEST MOVIES BY YEAR",
+                "BEST MOVIES OF 2019", "TODAY'S TOP RATED MOVIES", "MOVIE GUIDES"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titles) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+    }
+
+    /**
+     * RT_24
+     * Tamar
+     * HTML refers to RT_1, RT_23, RT_24
+     */
+    @Test
+    public void RT_24_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//a[text()='Movies']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+
+        driver.findElement(By.xpath("//a[text()='Top Movies']")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "TOP MOVIES"));
+        element = driver.findElement(By.xpath("//*[text()='Best Movies of 2021']"));
+        assertTrue(element.isDisplayed());
+        element.findElement(By.xpath(".//ancestor::section//*[text()='View All']/..")).click();
+
+        wait.until(ExpectedConditions.textToBe(By.className("panel-heading"), "TOP 100 MOVIES OF 2021"));
+
+        List<WebElement> movieTitles = driver.findElements(By.cssSelector("tbody .articleLink"));
+        assertEquals(100, movieTitles.size());
+        for (WebElement element : movieTitles) {
+            assertTrue(element.getText().endsWith("(2021)"));
+        }
+    }
+
+    /**
+     * RT_25
+     * Tamar
+     * HTML refers to RT_1, RT_23, RT_24
+     */
+    @Test
+    public void RT_25_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//a[text()='Movies']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+
+        driver.findElement(By.xpath("//a[text()='Top Movies']")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "TOP MOVIES"));
+        element = driver.findElement(By.xpath("//*[text()='Best Movies of 2021']"));
+        assertTrue(element.isDisplayed());
+        element.findElement(By.xpath(".//ancestor::section//*[text()='View All']/..")).click();
+
+        wait.until(ExpectedConditions.textToBe(By.className("panel-heading"), "TOP 100 MOVIES OF 2021"));
+        List<WebElement> movieTitles = driver.findElements(By.cssSelector("tbody .articleLink"));
+        assertEquals(100, movieTitles.size());
+        for (WebElement element : movieTitles) {
+            assertTrue(element.getText().endsWith("(2021)"));
+        }
+
+        driver.findElement(By.cssSelector("#top_movies_main .dropdown-toggle")).click();
+        element = driver.findElement(By.cssSelector("ul.dropdown-menu"));
+        assertNotEquals("none", element.getCssValue("display"));
+        List<WebElement> yearOptions = element.findElements(By.tagName("a"));
+        for (int i = 0; i < yearOptions.size(); i++) {
+            assertEquals(String.valueOf(2021 - i), yearOptions.get(i).getText());
+        }
+
+        yearOptions.get(3).click();
+
+        wait.until(ExpectedConditions.textToBe(By.className("panel-heading"), "TOP 100 MOVIES OF 2018"));
+        movieTitles.clear();
+        movieTitles = driver.findElements(By.cssSelector("tbody .articleLink"));
+        assertEquals(100, movieTitles.size());
+        for (WebElement element : movieTitles) {
+            assertTrue(element.getText().endsWith("(2018)"));
+        }
+    }
+
+    /**
+     * RT_26
+     * Tamar
+     * HTML refers to RT_1, RT_23, RT_24
+     */
+    @Test
+    public void RT_26_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//a[text()='Movies']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+
+        driver.findElement(By.xpath("//a[text()='Top Movies']")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "TOP MOVIES"));
+        element = driver.findElement(By.xpath("//*[text()='Best Movies of 2021']"));
+        assertTrue(element.isDisplayed());
+        element.findElement(By.xpath(".//ancestor::section//*[text()='View All']/..")).click();
+
+        wait.until(ExpectedConditions.textToBe(By.className("panel-heading"), "TOP 100 MOVIES OF 2021"));
+
+        actions.moveToElement(driver.findElement(By.cssSelector("[rel='tooltip'].glyphicon"))).perform();
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".tooltip")));
+        assertEquals("Each critic from our discrete list gets one vote, weighted equally. " +
+                "A movie must have 40 or more rated reviews to be considered. " +
+                "The 'Adjusted Score' comes from a weighted formula (Bayesian) that we use that accounts " +
+                "for variation in the number of reviews per movie.", element.getText());
+       actions.moveToElement(driver.findElement(By.tagName("section"))).perform();
+       wait.until(ExpectedConditions.numberOfElementsToBe(By.cssSelector(".tooltip"), 0));
+    }
 }
