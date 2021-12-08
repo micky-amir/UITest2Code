@@ -855,4 +855,263 @@ public class RottenTomatoes {
         String newNumberOfResultsText = newText.substring(newText.lastIndexOf(' ') + 1);
         assertTrue(Integer.parseInt(newNumberOfResultsText) < Integer.parseInt(originalNumberOfResultsText));
     }
+
+
+    /**
+     * RT_30
+     * Tamar
+     * HTML refers to RT_1, RT_27, RT_30
+     */
+    @Test
+    public void RT_30_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//a[text()='Movies']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+        driver.findElement(By.xpath("//a[text()='Browse All']")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[contains(text(), 'Movies & DVDs')]")));
+        actions.moveToElement(element).perform();
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+
+        driver.findElement(By.xpath("//h2[text()='On Dvd & Streaming']/..")).click();
+        List<WebElement> titles = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("panel-heading")));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("NEW ON DVD", "UPCOMING DVDS", "CERTIFIED FRESH PICK",
+                "WHAT'S HOT ON RT", "TOP RENTALS", "CRITICS' BUZZ", "GALLERIES", "NEWS & FEATURES"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titles) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+    }
+
+    /**
+     * RT_31
+     * Tamar
+     * HTML refers to RT_1, RT_27, RT_30, RT_31
+     */
+    @Test
+    public void RT_31_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//a[text()='Movies']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+        driver.findElement(By.xpath("//a[text()='Browse All']")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[contains(text(), 'Movies & DVDs')]")));
+        actions.moveToElement(element).perform();
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+
+        driver.findElement(By.xpath("//h2[text()='On Dvd & Streaming']/..")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[text()='Galleries']")));
+        driver.findElement(By.cssSelector("#picture_galleries .media:nth-child(2) a")).click();
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("gallery")));
+        assertTrue(element.findElement(By.tagName("h2")).getText().endsWith("PHOTOS"));
+    }
+
+    /**
+     * RT_32
+     * Tamar
+     * HTML refers to RT_1, RT_27, RT_30
+     */
+    @Test
+    public void RT_32_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//a[text()='Movies']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+        driver.findElement(By.xpath("//a[text()='Browse All']")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[contains(text(), 'Movies & DVDs')]")));
+        actions.moveToElement(element).perform();
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+
+        driver.findElement(By.xpath("//h2[text()='On Dvd & Streaming']/..")).click();
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("newondvd")));
+        assertTrue(element.findElement(By.id("movies_carousel")).isDisplayed());
+
+        element = element.findElement(By.cssSelector(".slick-active > a"));
+        String title = element.getAttribute("title");
+        actions.moveToElement(element).perform();
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".poster_caption:not([style='display: none;'])")));
+        assertEquals(title, element.findElement(By.tagName("a")).getText());
+    }
+
+    /**
+     * RT_33
+     * Tamar
+     * HTML refers to RT_1, RT_27, RT_30
+     */
+    @Test
+    public void RT_33_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//a[text()='Movies']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+        driver.findElement(By.xpath("//a[text()='Browse All']")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[contains(text(), 'Movies & DVDs')]")));
+        actions.moveToElement(element).perform();
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+
+        driver.findElement(By.xpath("//h2[text()='On Dvd & Streaming']/..")).click();
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("newondvd")));
+        assertTrue(element.findElement(By.id("movies_carousel")).isDisplayed());
+
+        List<WebElement> currentActives = element.findElements(By.cssSelector(".slick-active > a"));
+        element.findElement(By.cssSelector("button.slick-next")).click();
+
+        List<WebElement> newActives = element.findElements(By.cssSelector(".slick-active > a"));
+        assertEquals(currentActives.size(), newActives.size());
+        for (int i = 0; i < newActives.size(); i++) {
+            assertNotEquals(currentActives.get(i).getAttribute("title"), newActives.get(i).getAttribute("title"));
+        }
+    }
+
+    /**
+     * RT_34
+     * Tamar
+     * HTML refers to RT_1, RT_27, RT_30, RT_34
+     */
+    @Test
+    public void RT_34_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//a[text()='Movies']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+        driver.findElement(By.xpath("//a[text()='Browse All']")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[contains(text(), 'Movies & DVDs')]")));
+        actions.moveToElement(element).perform();
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+
+        driver.findElement(By.xpath("//h2[text()='On Dvd & Streaming']/..")).click();
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='More News & Interview ']")));
+        int halfOfHeight = element.getSize().getHeight() / 2;
+        int offset = halfOfHeight - 3;
+        actions.moveToElement(element).moveByOffset(0, offset).click().perform();
+
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "NEWS & INTERVIEWS"));
+    }
+
+    /**
+     * RT_35
+     * Tamar
+     * HTML refers to RT_1, RT_27, RT_30, RT_34
+     */
+    @Test
+    public void RT_35_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//a[text()='Movies']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+        driver.findElement(By.xpath("//a[text()='Browse All']")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[contains(text(), 'Movies & DVDs')]")));
+        actions.moveToElement(element).perform();
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+
+        driver.findElement(By.xpath("//h2[text()='On Dvd & Streaming']/..")).click();
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='More News & Interview ']")));
+        int halfOfHeight = element.getSize().getHeight() / 2;
+        int offset = halfOfHeight - 3;
+        actions.moveToElement(element).moveByOffset(0, offset).click().perform();
+
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "NEWS & INTERVIEWS"));
+        List<WebElement> currentTitles = driver.findElements(By.cssSelector(".article_body .title"));
+        List<String> currentTitlesText = new ArrayList<>();
+        for (WebElement title : currentTitles) {
+            currentTitlesText.add(title.getText());
+        }
+        driver.findElement(By.xpath("//a[text()='Next']")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[text()='Previous']")));
+        List<WebElement> newTitles = driver.findElements(By.cssSelector(".article_body .title"));
+        assertEquals(currentTitlesText.size(), newTitles.size());
+        for (int i = 0; i < currentTitlesText.size(); i++) {
+            assertNotEquals(currentTitlesText.get(i), newTitles.get(i).getText());
+        }
+    }
+
+    /**
+     * RT_36
+     * Tamar
+     * HTML refers to RT_1, RT_27, RT_30, RT_34
+     */
+    @Test
+    public void RT_36_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//a[text()='Movies']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+        driver.findElement(By.xpath("//a[text()='Browse All']")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[contains(text(), 'Movies & DVDs')]")));
+        actions.moveToElement(element).perform();
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+
+        driver.findElement(By.xpath("//h2[text()='On Dvd & Streaming']/..")).click();
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='More News & Interview ']")));
+        int halfOfHeight = element.getSize().getHeight() / 2;
+        int offset = halfOfHeight - 3;
+        actions.moveToElement(element).moveByOffset(0, offset).click().perform();
+
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "NEWS & INTERVIEWS"));
+        List<WebElement> currentTitles = driver.findElements(By.cssSelector(".article_body .title"));
+        List<String> currentTitlesText = new ArrayList<>();
+        for (WebElement title : currentTitles) {
+            currentTitlesText.add(title.getText());
+        }
+
+        element = driver.findElement(By.tagName("select"));
+        element.click();
+        String numberOfPages = element.findElement(By.xpath("./..")).getText();
+        numberOfPages = numberOfPages.substring(numberOfPages.indexOf("of") + 3);
+        int intNumberOfPages = Integer.parseInt(numberOfPages);
+        List<WebElement> optionsElements = element.findElements(By.tagName("option"));
+        assertEquals(intNumberOfPages, optionsElements.size());
+        for (int i = 0; i < intNumberOfPages; i++) {
+            assertEquals(String.valueOf(i + 1), optionsElements.get(i).getText());
+        }
+        optionsElements.get(1).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[text()='Previous']")));
+        List<WebElement> newTitles = driver.findElements(By.cssSelector(".article_body .title"));
+        assertEquals(currentTitlesText.size(), newTitles.size());
+        for (int i = 0; i < currentTitlesText.size(); i++) {
+            assertNotEquals(currentTitlesText.get(i), newTitles.get(i).getText());
+        }
+        assertEquals("2", driver.findElement(By.cssSelector("option[selected]")).getText());
+    }
 }
