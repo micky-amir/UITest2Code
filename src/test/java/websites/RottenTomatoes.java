@@ -555,7 +555,6 @@ public class RottenTomatoes {
         assertTrue(driver.findElement(By.className("publication-row")).isDisplayed());
     }
 
-
     /**
      * RT_21
      * Tamar
@@ -1113,5 +1112,138 @@ public class RottenTomatoes {
             assertNotEquals(currentTitlesText.get(i), newTitles.get(i).getText());
         }
         assertEquals("2", driver.findElement(By.cssSelector("option[selected]")).getText());
+    }
+
+    /**
+     * RT_37
+     * Tamar
+     * HTML refers to RT_1
+     */
+    @Test
+    public void RT_37_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//a[text()='TV Shows']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+
+        List<WebElement> titleElements = element.findElements(By.tagName("h3"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList(
+                "NEW TV TONIGHT", "MOST POPULAR TV ON RT", "MORE", "EPISODIC REVIEWS", "CERTIFIED FRESH PICK"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+    }
+
+    /**
+     * RT_38
+     * Tamar
+     * HTML refers to RT_1, RT_38
+     */
+    @Test
+    public void RT_38_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//a[text()='TV Shows']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+
+        element = element.findElement(By.xpath("//h3[text()='New TV Tonight']"));
+        assertTrue(element.isDisplayed());
+        List<WebElement> articleElements = element.findElements(By.xpath("./../table//td[1]/a"));
+        int chosenIndex = 0;
+        String title = "", score = "";
+        for (int i = 0; i < articleElements.size(); i++) {
+            element = articleElements.get(i).findElement(By.cssSelector("score-icon-critic[percentage]"));
+            assertTrue(element.isDisplayed());
+            String percentageAttribute = element.getAttribute("percentage");
+            if (!percentageAttribute.isEmpty() && title.isEmpty()) {
+                title = element.findElement(By.xpath("./ancestor::tr//a[@data-qa='list-item-link']")).getText();
+                score = percentageAttribute;
+                chosenIndex = i;
+            }
+        }
+        articleElements.get(chosenIndex).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("season-body")));
+        assertTrue(driver.findElement(By.tagName("h1")).getText().startsWith(title.toUpperCase(Locale.ROOT)));
+        assertEquals(score, driver.findElement(By.cssSelector("[data-qa='tomatometer']")).getText().replace("%", ""));
+    }
+
+    /**
+     * RT_39
+     * Tamar
+     * HTML refers to RT_1, RT_39
+     */
+    @Test
+    public void RT_39_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//a[text()='TV Shows']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+
+        element = element.findElement(By.xpath("//h3[text()='New TV Tonight']"));
+        assertTrue(element.isDisplayed());
+        List<WebElement> articleElements = element.findElements(By.xpath("./../table//td[1]/a"));
+        int chosenIndex = 0;
+        String title = "";
+        for (int i = 0; i < articleElements.size(); i++) {
+            element = articleElements.get(i).findElement(By.cssSelector("score-icon-critic[percentage]"));
+            assertTrue(element.isDisplayed());
+            String percentageAttribute = element.getAttribute("percentage");
+            if (percentageAttribute.isEmpty() && title.isEmpty()) {
+                title = element.findElement(By.xpath("./ancestor::tr//a[@data-qa='list-item-link']")).getText();
+                chosenIndex = i;
+            }
+        }
+        articleElements.get(chosenIndex).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("season-body")));
+        assertTrue(driver.findElement(By.tagName("h1")).getText().startsWith(title.toUpperCase(Locale.ROOT)));
+        assertEquals("Not enough ratings to\ncalculate a score.",
+                driver.findElement(By.cssSelector("[data-qa='tomatometer-container'] p")).getText());
+    }
+
+
+    /**
+     * RT_40
+     * Tamar
+     * HTML refers to RT_1, RT_40
+     */
+    @Test
+    public void RT_40_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//a[text()='TV Shows']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+
+        element = element.findElement(By.xpath("//h3[text()='New TV Tonight']"));
+        assertTrue(element.isDisplayed());
+        element.findElement(By.xpath("./following-sibling::a[text()='View All']")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "NEW TV TONIGHT"));
+        assertEquals("New TV Tonight", driver.findElement(By.cssSelector("#navigation-column .active")).getText());
+
+        List<WebElement> scores = driver.findElements(By.cssSelector(".movie_info .tMeterScore"));
+        for (int i = 0; i < scores.size() - 1; i++) {
+            int currentScoreNumber = Integer.parseInt(scores.get(i).getText().replace("%", ""));
+            int nextScoreNumber = Integer.parseInt(scores.get(i + 1).getText().replace("%", ""));
+            assertTrue(currentScoreNumber >= nextScoreNumber);
+        }
     }
 }
