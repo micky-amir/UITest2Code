@@ -1246,4 +1246,197 @@ public class RottenTomatoes {
             assertTrue(currentScoreNumber >= nextScoreNumber);
         }
     }
+
+    /**
+     * RT_41
+     * Tamar
+     * HTML refers to RT_1, RT_40
+     */
+    @Test
+    public void RT_41_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//a[text()='TV Shows']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+
+        element = element.findElement(By.xpath("//h3[text()='New TV Tonight']"));
+        assertTrue(element.isDisplayed());
+        element.findElement(By.xpath("./following-sibling::a[text()='View All']")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "NEW TV TONIGHT"));
+        assertEquals("New TV Tonight", driver.findElement(By.cssSelector("#navigation-column .active")).getText());
+        for (int i = 0; i < 3; i++) {
+            if (i != 0) {
+                By locator = By.cssSelector(".view-icon:nth-of-type(" + (3 - i) + ")");
+                driver.findElement(locator).click();
+                assertTrue(driver.findElement(locator).getAttribute("class").contains("active"));
+                assertEquals(i == 1, driver.findElement(By.cssSelector(".mb-movies")).getAttribute("class").contains("list-view"));
+            }
+            List<WebElement> scores = driver.findElements(By.cssSelector(".movie_info .tMeterScore"));
+            for (int j = 0; j < scores.size() - 1; j++) {
+                int currentScoreNumber = Integer.parseInt(scores.get(j).getText().replace("%", ""));
+                int nextScoreNumber = Integer.parseInt(scores.get(j + 1).getText().replace("%", ""));
+                assertTrue(currentScoreNumber >= nextScoreNumber);
+            }
+        }
+    }
+
+    /**
+     * RT_42
+     * Tamar
+     * HTML refers to RT_1, RT_42
+     */
+    @Test
+    public void RT_42_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//a[text()='TV Shows']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+        element.findElement(By.xpath("//a[text()='Top TV Shows']")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "TOP TV SHOWS"));
+        By locator = By.cssSelector(".carousel-inner .item.active");
+        String currentActiveText = driver.findElement(locator).getText();
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(locator, currentActiveText)));
+    }
+
+    /**
+     * RT_43
+     * Tamar
+     * HTML refers to RT_1, RT_42
+     */
+    @Test
+    public void RT_43_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//a[text()='TV Shows']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+        element.findElement(By.xpath("//a[text()='Top TV Shows']")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "TOP TV SHOWS"));
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(
+                By.xpath("//*[text()='Popular Shows Available on Streaming']/..")));
+        List<WebElement> mediaElements = element.findElements(By.className("media"));
+        int countDisplayed = 0;
+        for (WebElement media : mediaElements) {
+            if (media.isDisplayed())
+                countDisplayed++;
+        }
+        assertEquals(7, countDisplayed);
+        element.findElement(By.xpath(".//a[contains(text(), 'View All')]")).click();
+        countDisplayed = 0;
+        for (WebElement media : mediaElements) {
+            if (media.isDisplayed())
+                countDisplayed++;
+        }
+        assertEquals(16, countDisplayed);
+    }
+
+    /**
+     * RT_44
+     * Tamar
+     * HTML refers to RT_1, RT_42, RT_44
+     */
+    @Test
+    public void RT_44_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//a[text()='TV Shows']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+        element.findElement(By.xpath("//a[text()='Top TV Shows']")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "TOP TV SHOWS"));
+        driver.findElement(By.xpath("//h3[@class='panel-heading' and text()='Premiere Dates']")).click();
+
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "TV PREMIERE DATES 2021"));
+        List<WebElement> datesTitles = driver.findElements(
+                By.xpath("//h2/strong[text()='December']/../following-sibling::p//*[contains(text(), 'Dec.')]"));
+        for (int i = 0; i < datesTitles.size(); i++) {
+            assertTrue(datesTitles.get(i).getText().endsWith("Dec. " + (i + 1)));
+        }
+    }
+
+    /**
+     * RT_45
+     * Tamar
+     * HTML refers to RT_1, RT_42, RT_44
+     */
+    @Test
+    public void RT_45_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//a[text()='TV Shows']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+        element.findElement(By.xpath("//a[text()='Top TV Shows']")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "TOP TV SHOWS"));
+        driver.findElement(By.xpath("//h3[@class='panel-heading' and text()='Premiere Dates']")).click();
+
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "TV PREMIERE DATES 2021"));
+        driver.findElement(By.xpath("//a[text()='December']")).click();
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.xpath("//h2/strong[text()='December']"))));
+    }
+
+    /**
+     * RT_46
+     * Tamar
+     * HTML refers to RT_1, RT_42, RT_44
+     */
+    @Test
+    public void RT_46_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//a[text()='TV Shows']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+        element.findElement(By.xpath("//a[text()='Top TV Shows']")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "TOP TV SHOWS"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//h3[@class='panel-heading' and text()='Premiere Dates']"))).click();
+
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "TV PREMIERE DATES 2021"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(), 'Archive')]/following-sibling::a[text()='January']"))).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "TV PREMIERE DATES 2021 ARCHIVE"));
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.xpath("//h2/strong[text()='January']"))));
+    }
 }
