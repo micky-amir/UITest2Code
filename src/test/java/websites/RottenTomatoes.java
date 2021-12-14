@@ -1439,4 +1439,163 @@ public class RottenTomatoes {
                         "return false;                            "
                 , driver.findElement(By.xpath("//h2/strong[text()='January']"))));
     }
+
+    /**
+     * RT_47
+     * Tamar
+     * HTML refers to RT_1, RT_42, RT_44, RT_47
+     */
+    @Test
+    public void RT_47_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//a[text()='TV Shows']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+        element.findElement(By.xpath("//a[text()='Top TV Shows']")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "TOP TV SHOWS"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//h3[@class='panel-heading' and text()='Premiere Dates']"))).click();
+
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "TV PREMIERE DATES 2021"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='Renewed & Cancelled']"))).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "RENEWED AND CANCELLED TV SHOWS 2021"));
+
+        List<WebElement> links = driver.findElements(By.cssSelector(".alpha-menu > a"));
+        assertEquals("#", links.get(0).getText());
+        for (int i = 1; i < links.size(); i++) {
+            assertEquals(String.valueOf((char) (i + 64)), links.get(i).getText());
+        }
+        links.get(7).click();
+
+        element = driver.findElement(By.xpath("//*[@name='g']/following-sibling::*"));
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , element));
+        assertEquals("youtube-container", element.findElement(By.xpath("./../following-sibling::*")).getAttribute("class"));
+        List<WebElement> shows = element.findElements(By.xpath("./../following-sibling::p[1]/span"));
+        for (WebElement showIndication : shows) {
+            String indication = showIndication.getText();
+            assertTrue(indication.equals("Renewed") || indication.equals("Cancelled"));
+        }
+
+        element.findElement(By.xpath("./../following-sibling::a[text()='Back to Top']")).click();
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.className("alpha-menu"))));
+    }
+
+    /**
+     * RT_48
+     * Tamar
+     * HTML refers to RT_1, RT_38
+     */
+    @Test
+    public void RT_48_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//a[text()='TV Shows']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+
+        element = element.findElement(By.xpath("//h3[contains(text(), 'Episodic Reviews')]"));
+        assertTrue(element.isDisplayed());
+        element = element.findElement(By.xpath("./following-sibling::*//a"));
+        String title = element.getText();
+        element.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("season-body")));
+        assertTrue(driver.findElement(By.tagName("h1")).getText().startsWith(title.toUpperCase(Locale.ROOT)));
+
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.xpath("//*[@id='desktopEpisodeList']/h2[text()='Episodes']"))));
+    }
+
+    /**
+     * RT_49
+     * Tamar
+     * HTML refers to RT_1, RT_49
+     */
+    @Test
+    public void RT_49_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        driver.findElement(By.id("podcast-link")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"),
+                "\"ROTTEN TOMATOES IS WRONG\" (A PODCAST FROM ROTTEN TOMATOES)"));
+        assertTrue(driver.findElement(By.className("youtube-container")).isDisplayed());
+        assertTrue(driver.findElement(By.cssSelector("[src*='spotify']")).isDisplayed());
+        assertTrue(driver.findElement(By.cssSelector("[src*='apple']")).isDisplayed());
+    }
+
+    /**
+     * RT_50
+     * Tamar
+     * HTML refers to RT_1, RT_49, RT_50
+     */
+    @Test
+    public void RT_50_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        driver.findElement(By.id("podcast-link")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"),
+                "\"ROTTEN TOMATOES IS WRONG\" (A PODCAST FROM ROTTEN TOMATOES)"));
+        element = driver.findElement(By.cssSelector(".youtube-container iframe"));
+        driver.switchTo().frame(element);
+        driver.findElement(By.cssSelector(".ytp-large-play-button")).click();
+        By locator = By.className("ytp-time-current");
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(locator, "")));
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(locator, "0:00")));
+    }
+
+    /**
+     * RT_51
+     * Tamar
+     * HTML refers to RT_1, RT_49
+     */
+    @Test
+    public void RT_51_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        driver.findElement(By.id("podcast-link")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"),
+                "\"ROTTEN TOMATOES IS WRONG\" (A PODCAST FROM ROTTEN TOMATOES)"));
+        element = driver.findElement(By.cssSelector("iframe[src*='spotify']"));
+        driver.switchTo().frame(element);
+        driver.findElement(By.id("play-button")).click();
+        wait.until(ExpectedConditions.not(ExpectedConditions.attributeToBe(
+                By.id("progress-bar-slider"), "style", "left: 0%;")));
+    }
 }
