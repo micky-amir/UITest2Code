@@ -1598,4 +1598,105 @@ public class RottenTomatoes {
         wait.until(ExpectedConditions.not(ExpectedConditions.attributeToBe(
                 By.id("progress-bar-slider"), "style", "left: 0%;")));
     }
+
+    /**
+     * RT_52
+     * Tamar
+     * HTML refers to RT_1, RT_49, RT_52
+     */
+    @Test
+    public void RT_52_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        driver.findElement(By.id("podcast-link")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"),
+                "\"ROTTEN TOMATOES IS WRONG\" (A PODCAST FROM ROTTEN TOMATOES)"));
+
+        driver.findElement(By.linkText("On an Apple device? Follow Rotten Tomatoes on Apple News")).click();
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "This channel is only available in Apple News."));
+    }
+
+    /**
+     * RT_53
+     * Tamar
+     * HTML refers to RT_1, RT_49
+     */
+    @Test
+    public void RT_53_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        driver.findElement(By.id("podcast-link")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"),
+                "\"ROTTEN TOMATOES IS WRONG\" (A PODCAST FROM ROTTEN TOMATOES)"));
+
+        List<WebElement> episodes = driver.findElements(By.cssSelector(".articleContentBody ul li"));
+        for (WebElement episodeLine : episodes) {
+            assertTrue(episodeLine.getText().contains("“Rotten Tomatoes Is Wrong”"));
+        }
+        element = episodes.get(3).findElement(By.tagName("a"));
+        String linkText = element.getText().replaceAll("[“”]", "\"").replaceAll("…", "...");
+        element.click();
+
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), linkText.toUpperCase(Locale.ROOT)));
+    }
+
+
+    /**
+     * RT_54
+     * Tamar
+     * HTML refers to RT_1, RT_49, RT_54
+     * not finished
+     */
+    @Test
+    public void RT_54_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        driver.findElement(By.id("podcast-link")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"),
+                "\"ROTTEN TOMATOES IS WRONG\" (A PODCAST FROM ROTTEN TOMATOES)"));
+        element = driver.findElement(By.xpath("//h2[text()='Tag Cloud']"));
+        assertTrue(element.isDisplayed());
+
+        List<WebElement> words = element.findElements(By.xpath("./..//a"));
+        String expectedStyleSize = element.findElement(By.xpath("./..a[contains(@aria-label, '(1 item)')]")).getAttribute("style");
+        for (WebElement wordLink : words) {
+            if (wordLink.getAttribute("aria-label").endsWith("(1 item)"))
+                assertEquals(expectedStyleSize, wordLink.getAttribute("style"));
+        }
+
+        String chosenWord = words.get(3).getText();
+        String chosenWordNumberOfItems = words.get(3).getAttribute("aria-label");
+        chosenWordNumberOfItems = chosenWordNumberOfItems.substring(
+                chosenWordNumberOfItems.indexOf("("), chosenWordNumberOfItems.indexOf("item") - 2);
+        words.get(3).click();
+
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "TAG > " + chosenWord.toUpperCase(Locale.ROOT)));
+        assertEquals(Integer.parseInt(chosenWordNumberOfItems), driver.findElements(By.cssSelector(".newsItem")).size());
+    }
+
+    /**
+     * RT_55
+     * Tamar
+     * HTML refers to RT_1
+     */
+    @Test
+    public void RT_55_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//a[text()='News']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+
+        List<WebElement> titleElements = element.findElements(By.tagName("h3"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("COLUMNS", "BEST AND WORST", "GUIDES", "RT NEWS"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+    }
 }
