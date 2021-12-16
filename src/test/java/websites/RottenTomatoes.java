@@ -1647,7 +1647,6 @@ public class RottenTomatoes {
      * RT_54
      * Tamar
      * HTML refers to RT_1, RT_49, RT_54
-     * not finished
      */
     @Test
     public void RT_54_Tamar() {
@@ -1660,20 +1659,20 @@ public class RottenTomatoes {
         assertTrue(element.isDisplayed());
 
         List<WebElement> words = element.findElements(By.xpath("./..//a"));
-        String expectedStyleSize = element.findElement(By.xpath("./..a[contains(@aria-label, '(1 item)')]")).getAttribute("style");
+        String expectedStyleSize = element.findElement(By.xpath("./..//a[contains(@aria-label, '(1 item)')]")).getAttribute("style");
         for (WebElement wordLink : words) {
             if (wordLink.getAttribute("aria-label").endsWith("(1 item)"))
                 assertEquals(expectedStyleSize, wordLink.getAttribute("style"));
         }
 
-        String chosenWord = words.get(3).getText();
-        String chosenWordNumberOfItems = words.get(3).getAttribute("aria-label");
+        String chosenWord = words.get(1).getText();
+        String chosenWordNumberOfItems = words.get(1).getAttribute("aria-label");
         chosenWordNumberOfItems = chosenWordNumberOfItems.substring(
-                chosenWordNumberOfItems.indexOf("("), chosenWordNumberOfItems.indexOf("item") - 2);
-        words.get(3).click();
+                chosenWordNumberOfItems.indexOf("(") + 1, chosenWordNumberOfItems.indexOf("item") - 1);
+        words.get(1).click();
 
         wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "TAG > " + chosenWord.toUpperCase(Locale.ROOT)));
-        assertEquals(Integer.parseInt(chosenWordNumberOfItems), driver.findElements(By.cssSelector(".newsItem")).size());
+        assertEquals(Integer.parseInt(chosenWordNumberOfItems), driver.findElements(By.cssSelector(".article_body .newsItem")).size());
     }
 
     /**
@@ -1698,5 +1697,258 @@ public class RottenTomatoes {
             actualTitles.add(element.getText());
         }
         assertEquals(expectedTitles, actualTitles);
+    }
+
+    /**
+     * RT_56
+     * Tamar
+     * HTML refers to RT_1, RT_34
+     */
+    @Test
+    public void RT_56_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//a[text()='News']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+        element = element.findElement(By.xpath("//h3[text()='Columns']"));
+        assertTrue(element.isDisplayed());
+
+        List<WebElement> links = element.findElements(By.xpath("./following-sibling::*//a"));
+        assertEquals(18, links.size());
+        String linkText = links.get(0).getText();
+        links.get(0).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), linkText.toUpperCase(Locale.ROOT)));
+        assertTrue(driver.findElement(By.cssSelector(".article_body .newsItem")).isDisplayed());
+    }
+
+    /**
+     * RT_57
+     * Tamar
+     * HTML refers to RT_1, RT_57
+     */
+    @Test
+    public void RT_57_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//a[text()='News']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+        element = element.findElement(By.xpath("//h3[text()='Best and Worst']"));
+        assertTrue(element.isDisplayed());
+
+        List<WebElement> links = element.findElements(By.xpath("./../following-sibling::*"));
+        assertEquals(2, links.size());
+        String linkText = "";
+        for (WebElement link : links) {
+            linkText = link.getText();
+            assertTrue(linkText.toLowerCase(Locale.ROOT).endsWith("ranked worst to best by tomatometer"));
+        }
+
+        links.get(1).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.titleContains(linkText.substring(0, linkText.indexOf("Ranked") - 1)));
+
+        List<WebElement> seriesRatingNumber = driver.findElements(By.className("countdown-index"));
+        for (int i = 0; i < seriesRatingNumber.size(); i++) {
+            assertEquals(String.valueOf(seriesRatingNumber.size() - i),
+                    seriesRatingNumber.get(i).getText().replace("#", ""));
+        }
+    }
+
+    /**
+     * RT_58
+     * Tamar
+     * HTML refers to RT_1, RT_58
+     */
+    @Test
+    public void RT_58_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//a[text()='News']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+        element = element.findElement(By.xpath("//h3[text()='Guides']/../following-sibling::a"));
+        assertTrue(element.isDisplayed());
+        assertEquals("Fall TV", element.getText());
+        element.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.titleContains("Fall TV"));
+        List<WebElement> navigationElements = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
+                By.cssSelector(".hub-subnav-bar a")));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Home", "Premiere Dates", "News & Guides", "Renewed/Cancelled"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : navigationElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        assertTrue(driver.findElement(By.cssSelector("[data-ride='carousel']")).isDisplayed());
+        assertTrue(driver.findElement(By.id("homepage-spotlight1")).isDisplayed());
+        assertTrue(driver.findElement(By.id("homepage-spotlight2")).isDisplayed());
+        assertTrue(driver.findElement(By.xpath("//h2[text()='More Fall TV']")).isDisplayed());
+        driver.switchTo().frame(driver.findElement(By.id("twitter-widget-0")));
+        assertEquals("Tweets by @RottenTomatoes", driver.findElement(By.tagName("h1")).getText());
+    }
+
+    /**
+     * RT_59
+     * Tamar
+     * HTML refers to RT_1
+     */
+    @Test
+    public void RT_59_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//a[text()='News']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+        element = element.findElement(By.xpath("//h3[text()='RT News']"));
+        assertTrue(element.isDisplayed());
+        element = element.findElement(By.xpath("./../following-sibling::a"));
+        String title = element.getText().replace('’', '\'');
+        element.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("article_main_body")));
+        assertEquals(title.toUpperCase(Locale.ROOT), driver.findElement(By.tagName("h1")).getText());
+    }
+
+    /**
+     * RT_60
+     * Tamar
+     * HTML refers to RT_1, RT_34
+     */
+    @Test
+    public void RT_60_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//a[text()='News']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+        element = element.findElement(By.xpath("//h3[text()='RT News']"));
+        assertTrue(element.isDisplayed());
+        element.findElement(By.xpath("./following-sibling::a[text()='View All']")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "NEWS & INTERVIEWS"));
+        element = driver.findElement(By.xpath
+                ("//h2[text()='Featured on RT']/following-sibling::*/a[contains(@class, 'articleLink')]"));
+        String title = element.findElement(By.xpath(".//*[contains(@class, 'title')]")).getText().replace('’', '\'');
+        element.click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("article_main_body")));
+        assertEquals(title.toUpperCase(Locale.ROOT), driver.findElement(By.tagName("h1")).getText());
+    }
+
+    /**
+     * RT_61
+     * Tamar
+     * HTML refers to RT_1, RT_34
+     */
+    @Test
+    public void RT_61_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        element = driver.findElement(By.xpath("//a[text()='News']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+
+        element = element.findElement(By.xpath(".//following-sibling::*[@role='menu']"));
+        assertNotEquals("none", element.getCssValue("display"));
+        element = element.findElement(By.xpath("//h3[text()='RT News']"));
+        assertTrue(element.isDisplayed());
+        element.findElement(By.xpath("./following-sibling::a[text()='View All']")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "NEWS & INTERVIEWS"));
+        element = driver.findElement(By.xpath("(//h2[text()='Top Headlines']/following-sibling::*//a)[2]"));
+        String title = element.getText();
+        element.click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("article_main_body")));
+        assertEquals(title.toUpperCase(Locale.ROOT), driver.findElement(By.tagName("h1")).getText());
+    }
+
+    /**
+     * RT_62
+     * Tamar
+     * HTML refers to RT_1, RT_62
+     */
+    @Test
+    public void RT_62_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        driver.findElement(By.xpath("//a[text()='Showtimes']")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.titleContains("Movie Showtimes"));
+
+        driver.findElement(By.id("location-picker__change-button")).click();
+        wait.until(ExpectedConditions.not(ExpectedConditions.attributeContains(
+                By.id("location-picker__form"), "class", "hide")));
+        driver.findElement(By.id("location-picker__search-field")).sendKeys("New York");
+        driver.findElement(By.className("location-picker__submit-button")).click();
+        wait.until(ExpectedConditions.textToBe(By.className("location-picker__text"), "TICKETS & SHOWTIMES NEAR NEW YORK"));
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(".movie")));
+    }
+
+    /**
+     * RT_63
+     * Tamar
+     * HTML refers to RT_1, RT_62
+     */
+    @Test
+    public void RT_63_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        driver.findElement(By.xpath("//a[text()='Showtimes']")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.titleContains("Movie Showtimes"));
+
+        driver.findElement(By.id("location-picker__change-button")).click();
+        wait.until(ExpectedConditions.not(ExpectedConditions.attributeContains(
+                By.id("location-picker__form"), "class", "hide")));
+        driver.findElement(By.id("location-picker__search-field")).sendKeys("10001");
+        driver.findElement(By.className("location-picker__submit-button")).click();
+        wait.until(ExpectedConditions.textToBe(By.className("location-picker__text"), "TICKETS & SHOWTIMES NEAR 10001"));
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(".movie")));
+    }
+
+    /**
+     * RT_64
+     * Tamar
+     * HTML refers to RT_1, RT_62, RT_64
+     */
+    @Test
+    public void RT_64_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        driver.findElement(By.xpath("//a[text()='Showtimes']")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.titleContains("Movie Showtimes"));
+
+        element = driver.findElement(By.cssSelector("#moviesFilters__container li:nth-of-type(2) .showtimes-filters__checkbox"));
+        String expectedTitle = element.findElement(By.xpath("./..")).getText();
+        element.click();
+
+        element = wait.until(ExpectedConditions.numberOfElementsToBe(By.className("movie_title"), 1)).get(0);
+        String movieTitle = element.getText();
+        assertTrue(expectedTitle.toUpperCase(Locale.ROOT).startsWith(movieTitle));
+        String tomatometerScore = driver.findElement(By.className("tmeterpanel")).getText().replace("%", "");
+        String audienceScore = driver.findElement(By.className("audiencepanel")).getText().replace("%", "");
+        element.click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-qa='movie-main-column']")));
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), movieTitle));
+        element = driver.findElement(By.tagName("score-board"));
+        assertEquals(tomatometerScore, element.getAttribute("tomatometerscore"));
+        assertEquals(audienceScore, element.getAttribute("audiencescore"));
     }
 }
