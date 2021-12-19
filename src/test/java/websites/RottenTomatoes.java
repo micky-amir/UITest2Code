@@ -2153,4 +2153,55 @@ public class RottenTomatoes {
         assertEquals(currentActiveDate + " AT " + time, dateAndTime);
     }
 
+    /**
+     * RT_71
+     * Tamar
+     * HTML refers to RT_1, RT_71
+     */
+    @Test
+    public void RT_71_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        driver.findElement(By.id("header-facebook-social-link")).click();
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+
+        WebDriverWait wait = new WebDriverWait(driver, 100);
+        wait.until(ExpectedConditions.attributeToBe(By.tagName("html"), "id", "facebook"));
+        assertEquals("Rotten Tomatoes", driver.findElement(By.tagName("h1")).getText());
+    }
+
+    /**
+     * RT_72
+     * Tamar
+     * HTML refers to RT_1, RT_72
+     */
+    @Test
+    public void RT_72_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        driver.findElement(By.id("header-snapchat-social-link")).click();
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+
+        WebDriverWait wait = new WebDriverWait(driver, 100);
+        wait.until(ExpectedConditions.titleIs("Snapchat"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='rottentomatoes']")));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[alt='Snapcode']")));
+    }
+
+    /**
+     * RT_73
+     * Tamar
+     * HTML refers to RT_1, RT_73
+     */
+    @Test
+    public void RT_73_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        driver.findElement(By.id("header-youtube-social-link")).click();
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+
+        WebDriverWait wait = new WebDriverWait(driver, 100);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("yt-icon")));
+        assertEquals("Rotten Tomatoes", driver.findElement(By.cssSelector(".style-scope.ytd-channel-name")).getText());
+    }
 }
