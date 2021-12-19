@@ -1951,4 +1951,206 @@ public class RottenTomatoes {
         assertEquals(tomatometerScore, element.getAttribute("tomatometerscore"));
         assertEquals(audienceScore, element.getAttribute("audiencescore"));
     }
+
+    /**
+     * RT_65
+     * Tamar
+     * HTML refers to RT_1, RT_62, RT_64
+     */
+    @Test
+    public void RT_65_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        driver.findElement(By.xpath("//a[text()='Showtimes']")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.titleContains("Movie Showtimes"));
+
+        driver.findElement(By.id("moviesFilters__dropdown-button")).click();
+        assertNotEquals("none", driver.findElement(By.id("moviesFilters__dropdown")).getCssValue("display"));
+        element = driver.findElement(By.className("showtimes-filters__additional-item"));
+        String expectedTitle = element.getText();
+        element.click();
+
+        element = wait.until(ExpectedConditions.numberOfElementsToBe(By.className("movie_title"), 1)).get(0);
+        String movieTitle = element.getText();
+        assertTrue(expectedTitle.toUpperCase(Locale.ROOT).startsWith(movieTitle));
+        String tomatometerScore = driver.findElement(By.className("tmeterpanel")).getText().replace("%", "");
+        String audienceScore = driver.findElement(By.className("audiencepanel")).getText().replace("%", "");
+        element.click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-qa='movie-main-column']")));
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), movieTitle));
+        element = driver.findElement(By.tagName("score-board"));
+        assertEquals(tomatometerScore, element.getAttribute("tomatometerscore"));
+        assertEquals(audienceScore, element.getAttribute("audiencescore"));
+    }
+
+    /**
+     * RT_66
+     * Tamar
+     * HTML refers to RT_1, RT_62
+     */
+    @Test
+    public void RT_66_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        driver.findElement(By.xpath("//a[text()='Showtimes']")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.titleContains("Movie Showtimes"));
+
+        driver.findElement(By.id("location-picker__change-button")).click();
+        wait.until(ExpectedConditions.not(ExpectedConditions.attributeContains(
+                By.id("location-picker__form"), "class", "hide")));
+        element = driver.findElement(By.id("location-picker__search-field"));
+        element.sendKeys("New York");
+        element.submit();
+        wait.until(ExpectedConditions.textToBe(By.className("location-picker__text"), "TICKETS & SHOWTIMES NEAR NEW YORK"));
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(
+                By.cssSelector("#theatersList__nearby .showtimes-filters__checkbox")));
+        String expectedTitle = element.findElement(By.xpath("./..")).getText();
+        element.click();
+
+        element = wait.until(ExpectedConditions.numberOfElementsToBe(By.className("theater-header__title"), 1)).get(0);
+        assertEquals(expectedTitle.toUpperCase(Locale.ROOT), element.getText());
+    }
+
+    /**
+     * RT_67
+     * Tamar
+     * HTML refers to RT_1, RT_62
+     */
+    @Test
+    public void RT_67_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        driver.findElement(By.xpath("//a[text()='Showtimes']")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.titleContains("Movie Showtimes"));
+
+        driver.findElement(By.id("location-picker__change-button")).click();
+        wait.until(ExpectedConditions.not(ExpectedConditions.attributeContains(
+                By.id("location-picker__form"), "class", "hide")));
+        element = driver.findElement(By.id("location-picker__search-field"));
+        element.sendKeys("New York");
+        element.submit();
+        wait.until(ExpectedConditions.textToBe(By.className("location-picker__text"), "TICKETS & SHOWTIMES NEAR NEW YORK"));
+
+        int originalNumberOfResults = driver.findElements(By.cssSelector(".movie")).size();
+        driver.findElement(By.id("theatersList__loadMoreButton")).click();
+
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".movie"), originalNumberOfResults));
+    }
+
+    /**
+     * RT_68
+     * Tamar
+     * HTML refers to RT_1, RT_62
+     */
+    @Test
+    public void RT_68_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        driver.findElement(By.xpath("//a[text()='Showtimes']")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.titleContains("Movie Showtimes"));
+
+        driver.findElement(By.id("location-picker__change-button")).click();
+        wait.until(ExpectedConditions.not(ExpectedConditions.attributeContains(
+                By.id("location-picker__form"), "class", "hide")));
+        element = driver.findElement(By.id("location-picker__search-field"));
+        element.sendKeys("New York");
+        element.submit();
+        wait.until(ExpectedConditions.textToBe(By.className("location-picker__text"), "TICKETS & SHOWTIMES NEAR NEW YORK"));
+
+        By locator = By.cssSelector(".showtimes-calendar__item.active .day-of-month");
+        String currentActiveDate = driver.findElement(locator).getText();
+        List<WebElement> originalMoviesElements = driver.findElements(By.cssSelector(".movie__title"));
+        List<String> originalTitles = new ArrayList<>();
+        for (WebElement title : originalMoviesElements) {
+            originalTitles.add(title.getText());
+        }
+
+        driver.findElement(By.cssSelector(".showtimes-calendar__item:not(.active)")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("showtimesList--loading")));
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(locator, currentActiveDate)));
+
+        List<WebElement> newMoviesElements = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
+                By.cssSelector(".movie__title")));
+        List<String> newTitles = new ArrayList<>();
+        for (WebElement title : newMoviesElements) {
+            newTitles.add(title.getText());
+        }
+        assertNotEquals(originalTitles, newTitles);
+    }
+
+    /**
+     * RT_69
+     * Tamar
+     * HTML refers to RT_1, RT_62
+     */
+    @Test
+    public void RT_69_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        driver.findElement(By.xpath("//a[text()='Showtimes']")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.titleContains("Movie Showtimes"));
+
+        By locator = By.cssSelector(".showtimes-calendar .showtimes-calendar__item.slick-active .day-of-month");
+        List<WebElement> originalDates = driver.findElements(locator);
+        List<String> originalDatesText = new ArrayList<>();
+        for (WebElement date : originalDates) {
+            originalDatesText.add(date.getText());
+        }
+
+        driver.findElement(By.cssSelector("[data-qa='carousel-right-btn']")).click();
+
+        List<WebElement> newDates = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
+        List<String> newDatesText = new ArrayList<>();
+        for (WebElement title : newDates) {
+            newDatesText.add(title.getText());
+        }
+
+        for (int i = 0; i < newDatesText.size() - 1; i++) {
+            assertEquals(originalDatesText.get(i + 1), newDatesText.get(i));
+        }
+        String[] originalFinalDateArr = originalDatesText.get(6).split(" ");
+        String originalFinalDateMonth = originalFinalDateArr[0];
+        int originalFinalDateDay = Integer.parseInt(originalFinalDateArr[1]);
+        assertEquals(originalFinalDateMonth + " " + (originalFinalDateDay + 1), newDatesText.get(6));
+    }
+
+    /**
+     * RT_70
+     * Tamar
+     * HTML refers to RT_1, RT_62, RT_70
+     */
+    @Test
+    public void RT_70_Tamar() {
+        driver.get("https://www.rottentomatoes.com/");
+        driver.findElement(By.xpath("//a[text()='Showtimes']")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.titleContains("Movie Showtimes"));
+
+        driver.findElement(By.id("location-picker__change-button")).click();
+        wait.until(ExpectedConditions.not(ExpectedConditions.attributeContains(
+                By.id("location-picker__form"), "class", "hide")));
+        element = driver.findElement(By.id("location-picker__search-field"));
+        element.sendKeys("New York");
+        element.submit();
+        wait.until(ExpectedConditions.textToBe(By.className("location-picker__text"), "TICKETS & SHOWTIMES NEAR NEW YORK"));
+
+        String currentActiveDate = driver.findElement(By.cssSelector(
+                ".showtimes-calendar__item.active .day-of-month")).getText();
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".movie")));
+        String title = element.findElement(By.className("movie__title")).getText();
+        element = element.findElement(By.cssSelector(".btn-showtime--active"));
+        String time = element.getText().toUpperCase(Locale.ROOT);
+        element.click();
+
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Buy Tickets"));
+        String actualTitle = driver.findElement(By.cssSelector("[data-test='movie-title']")).getText();
+        assertEquals(title, actualTitle.substring(0, actualTitle.indexOf("(") - 1));
+        String dayDateTimeLine = driver.findElement(By.cssSelector("[data-test='show-date-time']")).getText();
+        String dateAndTime = dayDateTimeLine.substring(dayDateTimeLine.indexOf(",") + 2).toUpperCase(Locale.ROOT);
+        dateAndTime = dateAndTime.substring(0, dateAndTime.length() - 3) + dateAndTime.substring(dateAndTime.length() - 2);
+        assertEquals(currentActiveDate + " AT " + time, dateAndTime);
+    }
+
 }
