@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="">
+<div id="main">
+    <div class="content">
+
+        <div class="inner-content has-icon">
+
+            <img class="app-icon" src="/images/Appicon_v6.png" alt="Apple News" srcset="/images/Appicon_v6.png 1x, /images/Appicon_v6@2x.png 2x,
+         /images/Appicon_v6@3x.png 3x">
+
+            <h1>This channel is only available in <span class="nobr">Apple News.</span></h1>
+            <p>To view this channel, open the link on an iPhone or iPad with <span class="nobr">iOS 9</span> or later or a Mac with <span class="nobr">macOS 10.14</span> or later and <span class="nobr">Apple News.</span></p>
+            <p><a class="more" href="https://www.apple.com/news/">Learn more about Apple News</a></p>
+        </div>
+    </div>
+    <div class="footer">
+        <ul class="menu policies">
+            <li class="item first">
+                <span class="icon icon-before icon-apple"></span>
+            </li>
+            <li class="item">
+                <a href="https://www.apple.com/privacy/">Privacy Policy</a>
+            </li>
+            <li class="item last">
+                <a href="https://www.apple.com/legal/internet-services/terms/site.html">Terms and Conditions</a>
+            </li>
+        </ul>
+        <div class="copyright">
+            Copyright © 2021 Apple Inc. All Rights Reserved.
+        </div>
+    </div>
+</div>
+
+
+
+<script>mendeleyWebImporter = {
+  downloadPdfs(e,t) { return this._call('downloadPdfs', [e,t]); },
+  open() { return this._call('open', []); },
+  setLoginToken(e) { return this._call('setLoginToken', [e]); },
+  _call(methodName, methodArgs) {
+    const id = Math.random();
+    window.postMessage({ id, token: '0.9247090543212768', methodName, methodArgs }, 'https://apple.news');
+    return new Promise(resolve => {
+      const listener = window.addEventListener('message', event => {
+        const data = event.data;
+        if (typeof data !== 'object' || !('result' in data) || data.id !== id) return;
+        window.removeEventListener('message', listener);
+        resolve(data.result);
+      });
+    });
+  }
+};</script></body>
+</html>

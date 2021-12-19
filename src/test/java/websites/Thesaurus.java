@@ -1951,6 +1951,7 @@ public class Thesaurus {
                         "return false;                            "
                 , driver.findElement(By.xpath("//b[text()='Children’s Privacy.']"))));
     }
+
     /**
      * SK_70
      * Tamar
@@ -1971,6 +1972,1165 @@ public class Thesaurus {
         assertTrue(driver.findElement(By.id("top-definitions-section")).isDisplayed());
     }
 
+    /**
+     * SK_71
+     * Tamar
+     * HTML Refers to SK_1, SK_71
+     */
+    @Test
+    public void SK_71_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        driver.findElement(By.cssSelector("[data-grammar-coach-promo] button")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Grammar Coach™"));
+        assertEquals("Your Key to Brilliant Writing", driver.findElement(By.tagName("h2")).getText());
+        assertEquals("Our AI-backed writing tool helps writers of all kinds produce high-quality, " +
+                        "error-free work. From grammar corrections to Thesaurus.com-powered synonym suggestions, " +
+                        "Grammar Coach™ ensures every essay, email, and application letter is perfectly written.",
+                driver.findElement(By.cssSelector("[data-hero-paragraph]")).getText());
+        element = driver.findElement(By.cssSelector("[data-signed-out-grammar-coach]"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        element.findElement(By.cssSelector("[role='textbox']")).sendKeys("He went home.");
+        wait.until(ExpectedConditions.textToBe(By.cssSelector("[data-check-grammar-message]"), "No grammar mistakes!"));
+        assertEquals("0", element.findElement(By.cssSelector("[data-notification-count]")).getText());
+    }
+
+    /**
+     * SK_72
+     * Tamar
+     * HTML Refers to SK_1, SK_72
+     */
+    @Test
+    public void SK_72_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        driver.findElement(By.cssSelector("[data-grammar-coach-promo] button")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Grammar Coach™"));
+        assertEquals("Your Key to Brilliant Writing", driver.findElement(By.tagName("h2")).getText());
+        assertEquals("Our AI-backed writing tool helps writers of all kinds produce high-quality, " +
+                        "error-free work. From grammar corrections to Thesaurus.com-powered synonym suggestions, " +
+                        "Grammar Coach™ ensures every essay, email, and application letter is perfectly written.",
+                driver.findElement(By.cssSelector("[data-hero-paragraph]")).getText());
+        element = driver.findElement(By.cssSelector("[data-signed-out-grammar-coach]"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+
+        By countLocator = By.cssSelector("[data-notification-count]");
+        By textLocator = By.cssSelector("[data-gramm]");
+        By buttonLocator = By.cssSelector("[data-edit-button]");
+
+        element.findElement(By.cssSelector("[role='textbox']")).sendKeys("he go home");
+        wait.until(ExpectedConditions.textToBe(
+                By.cssSelector("[data-check-grammar-message] span:not([data-grammar-corrections-count])"),
+                "Please check the highlighted grammar fixes."));
+        assertEquals("2", element.findElement(countLocator).getText());
+        element.findElement(buttonLocator).click();
+        wait.until(ExpectedConditions.textToBe(textLocator, "He go home"));
+        element.findElement(buttonLocator).click();
+        wait.until(ExpectedConditions.textToBe(textLocator, "He went home"));
+        wait.until(ExpectedConditions.textToBe(By.cssSelector("[data-check-grammar-message]"), "No grammar mistakes!"));
+        assertEquals("0", element.findElement(countLocator).getText());
+    }
+
+    /**
+     * SK_73
+     * Tamar
+     * HTML Refers to SK_1, SK_71
+     */
+    @Test
+    public void SK_73_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        driver.findElement(By.cssSelector("[data-grammar-coach-promo] button")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Grammar Coach™"));
+        assertEquals("Your Key to Brilliant Writing", driver.findElement(By.tagName("h2")).getText());
+        assertEquals("Our AI-backed writing tool helps writers of all kinds produce high-quality, " +
+                        "error-free work. From grammar corrections to Thesaurus.com-powered synonym suggestions, " +
+                        "Grammar Coach™ ensures every essay, email, and application letter is perfectly written.",
+                driver.findElement(By.cssSelector("[data-hero-paragraph]")).getText());
+        element = driver.findElement(By.cssSelector("[data-faq-section]"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+
+        element.findElements(By.cssSelector("button[data-faq-dropdown]")).get(1).click();
+        assertNotEquals("none", element.findElements(By.cssSelector("[data-faq-answer]")).get(1).getCssValue("display"));
+    }
+
+
+    /**
+     * SK_74
+     * Tamar
+     * HTML Refers to SK_1, SK_71, SK_74
+     */
+    @Test
+    public void SK_74_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        driver.findElement(By.cssSelector("[data-grammar-coach-promo] button")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Grammar Coach™"));
+        assertEquals("Your Key to Brilliant Writing", driver.findElement(By.tagName("h2")).getText());
+        assertEquals("Our AI-backed writing tool helps writers of all kinds produce high-quality, " +
+                        "error-free work. From grammar corrections to Thesaurus.com-powered synonym suggestions, " +
+                        "Grammar Coach™ ensures every essay, email, and application letter is perfectly written.",
+                driver.findElement(By.cssSelector("[data-hero-paragraph]")).getText());
+        driver.findElement(By.cssSelector("[data-upgrade-button]")).click();
+
+        wait.until(ExpectedConditions.textToBe(By.cssSelector(".section-grammar-coach-content-block h1"),
+                "Grammar Coach™ Premium. Elevate Your Writing."));
+        List<WebElement> options = driver.findElements(By.cssSelector(".section__pricing-item  h2"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Monthly", "Yearly", "Quarterly"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : options) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        driver.findElement(By.cssSelector(".section__pricing-item-button")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("form")));
+        assertTrue(driver.findElement(By.cssSelector("[aria-label='sign up']")).isDisplayed());
+    }
+
+    /**
+     * SK_75
+     * Tamar
+     * HTML Refers to SK_1, SK_75
+     */
+    @Test
+    public void SK_75_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//button[text()='WRITING']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList(
+                "Grammar Coach", "Writing Prompts", "Grammar 101", "Writing Tips", "Ways To Say It Better"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(1).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.cssSelector("section h2"),
+                "How To Use Writing Prompts To Kickstart And Improve Writing"));
+        assertTrue(driver.findElement(By.xpath("//a[contains(text(), 'PROMPT')]")).isDisplayed());
+        driver.findElement(By.xpath("//a[text()='LOOK FOR A WRITING PROMPT FOR YOUR KID HERE']")).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Writing Prompts For Young Kids"));
+    }
+
+    /**
+     * SK_76
+     * Tamar
+     * HTML Refers to SK_1, SK_75
+     */
+    @Test
+    public void SK_76_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//button[text()='WRITING']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList(
+                "Grammar Coach", "Writing Prompts", "Grammar 101", "Writing Tips", "Ways To Say It Better"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(1).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.cssSelector("section h2"),
+                "How To Use Writing Prompts To Kickstart And Improve Writing"));
+        expectedTitles.clear();
+        actualTitles.clear();
+        List<WebElement> categoryElements = driver.findElements(By.xpath("//*[text()='Categories']/following-sibling::*/a"));
+        expectedTitles = new ArrayList<>(Arrays.asList(
+                "LOVE", "KIDS", "HOLIDAY", "FUNNY", "JOURNAL", "MYSTERY", "NOVELS", "DIALOGUES"));
+        for (WebElement element : categoryElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        categoryElements.get(1).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Writing Prompts For Young Kids"));
+    }
+
+    /**
+     * SK_77
+     * Tamar
+     * HTML Refers to SK_1, SK_77
+     */
+    @Test
+    public void SK_77_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//button[text()='LEARN']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Word Lists", "Online Tutors", "New Words",
+                "Trending Words", "All About English", "Science And Technology", "Literature And Arts"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(4).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.attributeToBe(By.cssSelector(".header__logo img"), "alt", "Dictionary.com"));
+        assertTrue(driver.findElement(By.className("articles")).isDisplayed());
+        element = driver.findElement(By.cssSelector(".articles .article__title a"));
+        String name = element.getText();
+        element.click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), name));
+        assertTrue(driver.findElement(By.tagName("article")).isDisplayed());
+    }
+
+    /**
+     * SK_78
+     * Tamar
+     * HTML Refers to SK_1, SK_78
+     */
+    @Test
+    public void SK_78_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//*[text()='WORD OF THE DAY']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList
+                ("Word Of The Day", "Synonym Of The Day", "Word Of The Year"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(2).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "The Dictionary.com Word Of The Year For 2020 Is …"));
+        assertEquals("pandemic:", driver.findElement(By.cssSelector("h3 strong")).getText().split(" ")[0]);
+    }
+
+    /**
+     * SK_79
+     * Tamar
+     * HTML Refers to SK_1, SK_79
+     */
+    @Test
+    public void SK_79_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.xpath("//h4[text()='CHECK OUT OUR OTHER PRODUCTS']"))));
+
+        driver.findElement(By.id("alexaskill")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[aria-label='Amazon']")));
+        assertEquals("Dictionary.com Word of the Day", driver.findElement(By.tagName("h1")).getText());
+    }
+
+    /**
+     * SK_80
+     * Tamar
+     * HTML Refers to SK_1, SK_80
+     */
+    @Test
+    public void SK_80_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.xpath("//h4[text()='CHECK OUT OUR OTHER PRODUCTS']"))));
+
+        driver.findElement(By.id("lexico-es")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[alt='Lexico logo']")));
+        assertEquals("SPANISH", driver.findElement(By.className("sbSelector")).getText());
+    }
+
+    /**
+     * SK_81
+     * Tamar
+     * HTML Refers to SK_1, SK_80
+     */
+    @Test
+    public void SK_81_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.xpath("//h4[text()='CHECK OUT OUR OTHER PRODUCTS']"))));
+
+        driver.findElement(By.id("lexico-en")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[alt='Lexico logo']")));
+        assertEquals("UK DICTIONARY", driver.findElement(By.className("sbSelector")).getText());
+    }
+
+    /**
+     * SK_82
+     * Tamar
+     * HTML Refers to SK_1, SK_61
+     */
+    @Test
+    public void SK_82_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.xpath("//h4[text()='CHECK OUT OUR OTHER PRODUCTS']"))));
+
+        driver.findElement(By.id("dcom")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.cssSelector(".header-tab-active"), "DICTIONARY.COM"));
+        assertTrue(driver.findElement(By.cssSelector(".trending-words-word-block")).isDisplayed());
+    }
+
+    /**
+     * SK_83
+     * Tamar
+     * HTML Refers to SK_1, SK_17, SK_83
+     */
+    @Test
+    public void SK_83_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        driver.findElement(By.id("dictionary-nav-tab")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.cssSelector(".header-tab-active"), "DICTIONARY.COM"));
+        assertTrue(driver.findElement(By.cssSelector(".trending-words-word-block")).isDisplayed());
+
+        element = driver.findElement(By.xpath("//*[text()='ONLINE TUTORING HELP! ']/ancestor::section"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        List<WebElement> stepElements = element.findElements(By.tagName("h3"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("English Tutors", "Math Tutors", "Test Prep"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : stepElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        stepElements.get(0).click();
+
+        wait.until(ExpectedConditions.titleIs("Appointy"));
+        wait.until(ExpectedConditions.textToBe(By.cssSelector(".info p"),
+                "Welcome to Dictionary Academy Tutors, where our teacher-trained certified tutors are " +
+                        "waiting to engage your learner! Click the subject and grade level of your learner. Next, you’ll " +
+                        "select the time that works for you and choose from our list of expert tutors. It's that easy!"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".page-services")));
+    }
+
+    /**
+     * SK_84
+     * Tamar
+     * HTML Refers to SK_1, SK_17, SK_63, SK_84
+     */
+    @Test
+    public void SK_84_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        driver.findElement(By.id("dictionary-nav-tab")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.cssSelector(".header-tab-active"), "DICTIONARY.COM"));
+        assertTrue(driver.findElement(By.cssSelector(".trending-words-word-block")).isDisplayed());
+
+        Actions actions = new Actions(driver);
+        element = driver.findElement(By.cssSelector("[data-browse-az]"));
+        actions.moveToElement(element).perform();
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , element.findElement(By.xpath("//*[text()='BROWSE DICTIONARY.COM']"))));
+        List<WebElement> buttons = driver.findElements(By.cssSelector("[data-browse-az] div:nth-of-type(2) a"));
+        assertEquals("#", buttons.get(0).getText());
+        for (int i = 1; i < buttons.size(); i++) {
+            assertEquals((char) (i + 64) + "" + (char) (i + 96), buttons.get(i).getText());
+        }
+        buttons.get(3).click();
+
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "BROWSE DICTIONARY: LETTER \"C\""));
+        List<WebElement> words = driver.findElements(By.cssSelector("[data-testid='list-az-results'] li > a:first-child"));
+        for (WebElement word : words) {
+            assertTrue(word.getText().toLowerCase(Locale.ROOT).startsWith("c"));
+        }
+    }
+
+    /**
+     * SK_85
+     * Tamar
+     * HTML Refers to SK_1, SK_17
+     */
+    @Test
+    public void SK_85_Tamar() throws InterruptedException {
+        driver.get("https://www.thesaurus.com/");
+        driver.findElement(By.id("dictionary-nav-tab")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.cssSelector(".header-tab-active"), "DICTIONARY.COM"));
+        assertTrue(driver.findElement(By.cssSelector(".trending-words")).isDisplayed());
+        By locator = By.cssSelector("[alt*='ticker']");
+        driver.findElement(locator).click();
+        assertEquals("play ticker", driver.findElement(locator).getAttribute("alt"));
+
+        List<WebElement> originalBlocks = driver.findElements(By.cssSelector(".trending-words-word-block"));
+        List<Integer> originalPositions = new ArrayList<>();
+        for (WebElement element : originalBlocks) {
+            originalPositions.add(element.getLocation().x);
+        }
+        Thread.sleep(3000);
+        List<WebElement> newBlocks = driver.findElements(By.cssSelector(".trending-words-word-block"));
+        List<Integer> newPositions = new ArrayList<>();
+        for (WebElement element : newBlocks) {
+            newPositions.add(element.getLocation().x);
+        }
+        assertEquals(originalPositions, newPositions);
+    }
+
+    /**
+     * SK_86
+     * Tamar
+     * HTML Refers to SK_1, SK_86
+     */
+    @Test
+    public void SK_86_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//button[text()='MEANINGS']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList(
+                "Emoji", "Slang", "Acronyms", "Pop Culture", "Memes", "Gender And Sexuality", "Mixed-Up Meanings"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(2).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "ACRONYMS DICTIONARY"));
+        assertEquals("FEATURED TERMS", driver.findElement(By.tagName("h2")).getText());
+        element = driver.findElement(By.cssSelector(".slick-track .word-item h2 a"));
+        String title = element.getText();
+        element.click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), title));
+    }
+
+    /**
+     * SK_87
+     * Tamar
+     * HTML Refers to SK_1, SK_86
+     */
+    @Test
+    public void SK_87_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//button[text()='MEANINGS']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList(
+                "Emoji", "Slang", "Acronyms", "Pop Culture", "Memes", "Gender And Sexuality", "Mixed-Up Meanings"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(2).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "ACRONYMS DICTIONARY"));
+        assertEquals("Home / Acronyms", driver.findElement(By.className("breadcrumbs")).getText());
+        element = driver.findElement(By.cssSelector(".slick-track .word-item h2 a"));
+        String title = element.getText();
+        element.click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("article-word")));
+        assertTrue(driver.findElement(By.className("breadcrumbs")).getText().endsWith(title));
+    }
+
+    /**
+     * SK_88
+     * Tamar
+     * HTML Refers to SK_1, SK_86
+     */
+    @Test
+    public void SK_88_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//button[text()='MEANINGS']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList(
+                "Emoji", "Slang", "Acronyms", "Pop Culture", "Memes", "Gender And Sexuality", "Mixed-Up Meanings"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(2).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "ACRONYMS DICTIONARY"));
+        assertEquals("MORE FROM ACRONYMS", driver.findElement(By.cssSelector("#just-added h2")).getText());
+        assertEquals(60, driver.findElements(By.cssSelector("#just-added .list a")).size());
+        assertEquals("1", driver.findElement(By.cssSelector("#just-added ol")).getAttribute("start"));
+
+        driver.findElement(By.className("paging-next")).click();
+        assertEquals(60, driver.findElements(By.cssSelector("#just-added .list a")).size());
+        assertEquals("61", driver.findElement(By.cssSelector("#just-added ol")).getAttribute("start"));
+    }
+
+    /**
+     * SK_89
+     * Tamar
+     * HTML Refers to SK_1, SK_86
+     */
+    @Test
+    public void SK_89_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//button[text()='MEANINGS']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList(
+                "Emoji", "Slang", "Acronyms", "Pop Culture", "Memes", "Gender And Sexuality", "Mixed-Up Meanings"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(2).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "ACRONYMS DICTIONARY"));
+        assertEquals("MORE FROM ACRONYMS", driver.findElement(By.cssSelector("#just-added h2")).getText());
+        List<WebElement> links = driver.findElements(By.cssSelector("#just-added .list a"));
+        assertEquals(60, links.size());
+        String title = links.get(0).getText();
+        links.get(0).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), title));
+    }
+
+    /**
+     * SK_90
+     * Tamar
+     * HTML Refers to SK_1, SK_53, SK_86
+     */
+    @Test
+    public void SK_90_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//button[text()='MEANINGS']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList(
+                "Emoji", "Slang", "Acronyms", "Pop Culture", "Memes", "Gender And Sexuality", "Mixed-Up Meanings"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(2).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "ACRONYMS DICTIONARY"));
+
+        expectedTitles.clear();
+        actualTitles.clear();
+        List<WebElement> categories = driver.findElements(By.cssSelector(".section-atw-categories a"));
+        expectedTitles = new ArrayList<>(Arrays.asList("ACRONYMS", "EMOJI", "FAMOUS PEOPLE", "FASHION",
+                "FICTIONAL CHARACTERS", "GENDER & SEXUALITY", "HISTORICAL & CURRENT EVENTS", "MEMES", "POLITICS",
+                "POP CULTURE", "RELIGION", "SLANG", "TECH & SCIENCE", "TRANSLATIONS"));
+        for (WebElement element : categories) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        categories.get(1).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "EMOJI DICTIONARY"));
+    }
+
+    /**
+     * SK_91
+     * Tamar
+     * HTML Refers to SK_1, SK_14
+     */
+    @Test
+    public void SK_91_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.id("searchbar_input"));
+        element.sendKeys("happy");
+        element.submit();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "happy"));
+        assertTrue(driver.findElement(By.id("meanings")).isDisplayed());
+
+        driver.findElement(By.xpath("//*[text()='Compare Synonyms']/..")).click();
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[aria-label='Compare similar synonym words']")));
+        assertTrue(element.findElement(By.xpath("//h3[text()='Select up to 3 synonyms to compare']")).isDisplayed());
+        List<String> chosenSynonyms = new ArrayList<>(Arrays.asList("lively", "blessed", "exultant"));
+        for (String synonym : chosenSynonyms) {
+            wait.until(ExpectedConditions.elementToBeClickable(element.findElement(By.xpath(".//button[text()='" + synonym + "']")))).click();
+        }
+        element.findElement(By.xpath(".//a[text()='Compare Synonyms']")).click();
+
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "Compare Synonyms of happy"));
+        List<WebElement> cards = driver.findElements(By.xpath("//h2/../.."));
+        for (int i = 0; i < cards.size(); i++) {
+            String synonym = chosenSynonyms.get(i);
+            assertEquals(synonym, cards.get(i).findElement(By.tagName("h2")).getText());
+            List<WebElement> subtitles = cards.get(i).findElements(By.tagName("h3"));
+            List<String> expectedTitles = new ArrayList<>(
+                    Arrays.asList("Definitions(s)", "Shared synonyms between " + synonym + " and happy",
+                            "Shared antonyms between " + synonym + " and happy"));
+            List<String> actualTitles = new ArrayList<>();
+            for (WebElement element : subtitles) {
+                actualTitles.add(element.getText());
+            }
+            assertEquals(expectedTitles, actualTitles);
+        }
+    }
+
+    /**
+     * SK_92
+     * Tamar
+     * HTML Refers to SK_1, SK_14, SK_41
+     */
+    @Test
+    public void SK_92_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.id("searchbar_input"));
+        element.sendKeys("happy");
+        element.submit();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "happy"));
+        assertTrue(driver.findElement(By.id("meanings")).isDisplayed());
+
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        element = driver.findElement(By.cssSelector("[data-testid='wotd']"));
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , element));
+        String name = element.findElement(By.cssSelector(".wotd-word")).getText();
+        element.click();
+        wait.until(ExpectedConditions.textToBe(By.className("otd-item-wrapper__label"), "WORD OF THE DAY"));
+        wait.until(ExpectedConditions.textToBe(By.className("otd-item-headword__word"), name));
+    }
+
+    /**
+     * SK_93
+     * Tamar
+     * HTML Refers to SK_1, SK_41, SK_93
+     */
+    @Test
+    public void SK_93_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//*[text()='WORD OF THE DAY']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList
+                ("Word Of The Day", "Synonym Of The Day", "Word Of The Year"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(0).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.className("otd-item-wrapper__label"), "WORD OF THE DAY"));
+
+
+        element = driver.findElement(By.cssSelector("[title='Search for:']"));
+        element.sendKeys("micro");
+        element.submit();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h2"), "Search Results for: micro"));
+        List<WebElement> articles = driver.findElements(By.className("article__content"));
+        for (int i = 0; i < 6; i++) {
+            assertTrue(articles.get(i).getText().toLowerCase(Locale.ROOT).contains("micro"));
+        }
+    }
+
+    /**
+     * SK_94
+     * Tamar
+     * HTML Refers to SK_1, SK_17, SK_41
+     */
+    @Test
+    public void SK_94_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//*[text()='WORD OF THE DAY']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList
+                ("Word Of The Day", "Synonym Of The Day", "Word Of The Year"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(0).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.className("otd-item-wrapper__label"), "WORD OF THE DAY"));
+
+        String word = driver.findElement(By.className("otd-item-headword__word")).getText();
+        driver.findElement(By.xpath("//a[contains(text(), 'Look it up')]")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("top-definitions-section")));
+        assertEquals(word, driver.findElement(By.tagName("h1")).getText());
+    }
+
+    /**
+     * SK_95
+     * Tamar
+     * HTML Refers to SK_1, SK_41
+     */
+    @Test
+    public void SK_95_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//*[text()='WORD OF THE DAY']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList
+                ("Word Of The Day", "Synonym Of The Day", "Word Of The Year"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(0).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.className("otd-item-wrapper__label"), "WORD OF THE DAY"));
+
+        driver.findElement(By.cssSelector("[data-cy='otd-podcast-play']")).click();
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(By.className("current-time"), "00:00")));
+    }
+
+    /**
+     * SK_96
+     * Tamar
+     * HTML Refers to SK_1, SK_14, SK_36
+     */
+    @Test
+    public void SK_96_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//*[text()='WORD OF THE DAY']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList
+                ("Word Of The Day", "Synonym Of The Day", "Word Of The Year"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(1).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.className("otd-item-wrapper__label"), "SYNONYM OF THE DAY"));
+
+        String word = driver.findElement(By.tagName("h2")).getText();
+        word = word.substring(word.lastIndexOf(' ') + 1);
+        driver.findElement(By.xpath("//a[contains(text(), 'See all synonyms for')]")).click();
+
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), word));
+        assertTrue(driver.findElement(By.id("meanings")).isDisplayed());
+    }
+
+    /**
+     * SK_97
+     * Tamar
+     * HTML Refers to SK_1, SK_36
+     */
+    @Test
+    public void SK_97_Tamar() throws InterruptedException {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.xpath("//*[text()='WORD OF THE DAY']"));
+        element.click();
+        assertNotEquals("none", element.findElement(By.xpath(".//following-sibling::*[2]")).getCssValue("display"));
+        List<WebElement> titleElements = element.findElements(By.xpath(".//following-sibling::*//ul//a"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList
+                ("Word Of The Day", "Synonym Of The Day", "Word Of The Year"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : titleElements) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        titleElements.get(1).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.className("otd-item-wrapper__label"), "SYNONYM OF THE DAY"));
+
+        element = driver.findElement(By.cssSelector(".otd-widget__nav--sotd a"));
+        String dateNumber = element.findElement(By.tagName("span")).getText().split(" ")[1];
+        element.click();
+        Thread.sleep(1000);
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.xpath("//*[@class='otd-item-headword__date']/*[contains(text(), '" + dateNumber + "')]"))));
+    }
+
+    /**
+     * SK_98
+     * Tamar
+     * HTML Refers to SK_1, SK_104
+     */
+    @Test
+    public void SK_98_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.id("searchbar_input"));
+        element.sendKeys("100");
+        element.submit();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "0 results for 100"));
+    }
+
+    /**
+     * SK_99
+     * Tamar
+     * HTML Refers to SK_1, SK_14, SK_63
+     */
+    @Test
+    public void SK_99_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.id("searchbar_input"));
+        element.sendKeys("happy");
+        element.submit();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "happy"));
+        assertTrue(driver.findElement(By.id("meanings")).isDisplayed());
+
+        Actions actions = new Actions(driver);
+        actions.moveToElement(driver.findElement(By.tagName("footer"))).perform();
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.xpath("//*[contains(text(), 'Browse the')]"))));
+        List<WebElement> letters = driver.findElements(By.cssSelector("[id^='azFooter']"));
+        assertEquals("#", letters.get(0).getText());
+        for (int i = 1; i < letters.size(); i++) {
+            assertEquals(String.valueOf((char) (i + 64)), letters.get(i).getText());
+        }
+
+        letters.get(3).click();
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "BROWSE THESAURUS: LETTER \"C\""));
+    }
+
+    /**
+     * SK_100
+     * Tamar
+     * HTML Refers to SK_1, SK_14, SK_100
+     */
+    @Test
+    public void SK_100_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.id("searchbar_input"));
+        element.sendKeys("happy");
+        element.submit();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "happy"));
+        assertTrue(driver.findElement(By.id("meanings")).isDisplayed());
+
+        Actions actions = new Actions(driver);
+        actions.moveToElement(driver.findElement(By.tagName("footer"))).perform();
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.xpath("//*[contains(text(), 'Browse by')]"))));
+        List<WebElement> categories = driver.findElements(By.cssSelector("[id^='atwFooter']"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Slang", "Emoji", "Acronyms", "Pop Culture", "More"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : categories) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        categories.get(1).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("sitemap")));
+        assertEquals("EMOJI", driver.findElement(By.tagName("h1")).getText());
+    }
+
+    /**
+     * SK_101
+     * Tamar
+     * HTML Refers to SK_1, SK_14, SK_77, SK_101
+     */
+    @Test
+    public void SK_101_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.id("searchbar_input"));
+        element.sendKeys("happy");
+        element.submit();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "happy"));
+        assertTrue(driver.findElement(By.id("meanings")).isDisplayed());
+
+        Actions actions = new Actions(driver);
+        actions.moveToElement(driver.findElement(By.tagName("footer"))).perform();
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.xpath("//*[contains(text(), 'Browse by')]"))));
+        List<WebElement> categories = driver.findElements(By.cssSelector("[id^='atwFooter']"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Slang", "Emoji", "Acronyms", "Pop Culture", "More"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : categories) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        categories.get(4).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("sitemap")));
+        assertEquals("WORD FACTS", driver.findElement(By.tagName("h1")).getText());
+
+        element = driver.findElement(By.cssSelector(".sitemap-listing a"));
+        String title = element.getText();
+        element.click();
+        wait.until(ExpectedConditions.textToBe(By.className("article__title"), title));
+    }
+
+    /**
+     * SK_102
+     * Tamar
+     * HTML Refers to SK_1, SK_14, SK_55, SK_101, SK_102
+     */
+    @Test
+    public void SK_102_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.id("searchbar_input"));
+        element.sendKeys("happy");
+        element.submit();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "happy"));
+        assertTrue(driver.findElement(By.id("meanings")).isDisplayed());
+
+        Actions actions = new Actions(driver);
+        actions.moveToElement(driver.findElement(By.tagName("footer"))).perform();
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.xpath("//*[contains(text(), 'Browse by')]"))));
+        List<WebElement> categories = driver.findElements(By.cssSelector("[id^='atwFooter']"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Slang", "Emoji", "Acronyms", "Pop Culture", "More"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : categories) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        categories.get(4).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("sitemap")));
+        assertEquals("WORD FACTS", driver.findElement(By.tagName("h1")).getText());
+
+        expectedTitles.clear();
+        actualTitles.clear();
+        List<WebElement> subcategories = driver.findElements(By.cssSelector(".sitemap-header__listing a"));
+        expectedTitles = new ArrayList<>(Arrays.asList(
+                "EDUCATION", "FUN", "POP CULTURE", "TRENDING WORDS", "UNCATEGORIZED", "WORD FACTS"));
+        for (WebElement element : subcategories) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        subcategories.get(1).click();
+
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), expectedTitles.get(1)));
+        element = driver.findElement(By.cssSelector(".sitemap-listing a"));
+        String title = element.getText();
+        assertEquals("Dictionary.com’s Ideas For Olympic Events", title);
+        element.click();
+        wait.until(ExpectedConditions.textToBe(By.className("article__title"), title));
+    }
+
+    /**
+     * SK_103
+     * Tamar
+     * HTML Refers to SK_1, SK_14, SK_101, SK_103
+     */
+    @Test
+    public void SK_103_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.id("searchbar_input"));
+        element.sendKeys("happy");
+        element.submit();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "happy"));
+        assertTrue(driver.findElement(By.id("meanings")).isDisplayed());
+
+        Actions actions = new Actions(driver);
+        actions.moveToElement(driver.findElement(By.tagName("footer"))).perform();
+        assertTrue((Boolean) ((JavascriptExecutor) driver).executeScript(
+                "var elem = arguments[0],                 " +
+                        "  box = elem.getBoundingClientRect(),    " +
+                        "  cx = box.left + box.width / 2,         " +
+                        "  cy = box.top + box.height / 2,         " +
+                        "  e = document.elementFromPoint(cx, cy); " +
+                        "for (; e; e = e.parentElement) {         " +
+                        "  if (e === elem)                        " +
+                        "    return true;                         " +
+                        "}                                        " +
+                        "return false;                            "
+                , driver.findElement(By.xpath("//*[contains(text(), 'Browse by')]"))));
+        List<WebElement> categories = driver.findElements(By.cssSelector("[id^='atwFooter']"));
+        List<String> expectedTitles = new ArrayList<>(Arrays.asList("Slang", "Emoji", "Acronyms", "Pop Culture", "More"));
+        List<String> actualTitles = new ArrayList<>();
+        for (WebElement element : categories) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        categories.get(4).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("sitemap")));
+        assertEquals("WORD FACTS", driver.findElement(By.tagName("h1")).getText());
+
+        expectedTitles.clear();
+        actualTitles.clear();
+        List<WebElement> subcategories = driver.findElements(By.cssSelector(".sitemap-header__dropdown option"));
+        expectedTitles = new ArrayList<>(Arrays.asList(
+                "Official Dictionary Site Map", "Everything After Z Site Map", "About This Word Sitemap"));
+        for (WebElement element : subcategories) {
+            actualTitles.add(element.getText());
+        }
+        assertEquals(expectedTitles, actualTitles);
+        driver.findElement(By.className("sitemap-header__dropdown")).click();
+        subcategories.get(2).click();
+
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "SLANG"));
+        assertEquals(expectedTitles.get(2), driver.findElement(By.cssSelector("option[selected]")).getText());
+    }
+
+    /**
+     * SK_104
+     * Tamar
+     * HTML Refers to SK_1, SK_14, SK_104
+     */
+    @Test
+    public void SK_104_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.id("searchbar_input"));
+        element.sendKeys("heppy");
+        element.submit();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "0 results for heppy"));
+        element = driver.findElement(By.xpath("//a[text()='happy']"));
+        assertTrue(element.isDisplayed());
+        element.click();
+
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "happy"));
+        assertTrue(driver.findElement(By.id("meanings")).isDisplayed());
+    }
+
+    /**
+     * SK_105
+     * Tamar
+     * HTML Refers to SK_1, SK_14
+     */
+    @Test
+    public void SK_105_Tamar() {
+        driver.get("https://www.thesaurus.com/");
+        element = driver.findElement(By.id("searchbar_input"));
+        element.sendKeys("10");
+        element.submit();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.textToBe(By.tagName("h1"), "10"));
+        assertTrue(driver.findElement(By.id("meanings")).isDisplayed());
+    }
 
     /**
      * SK_1
