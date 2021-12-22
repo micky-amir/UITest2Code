@@ -21,8 +21,7 @@ import java.util.Locale;
 
 import static org.junit.Assert.*;
 
-public class Bing2
-{
+public class Bing2 {
     ChromeDriver driver;
     WebElement element;
 
@@ -45,11 +44,10 @@ public class Bing2
      * HTML refer to BING27
      */
     @Test
-    public void BING27_Mika()
-    {
+    public void BING27_Mika() {
         String textToShop = "Jacket";
-        String[] sectionsToCheck = new String[] { "Shopping_Home_key", "Departments_Key", "Stores_key",
-                "editors_picks_key", "dealstab_key", "trending_products_key", "price_drops_key", "my_collections_key" };
+        String[] sectionsToCheck = new String[]{"Shopping_Home_key", "Departments_Key", "Stores_key",
+                "editors_picks_key", "dealstab_key", "trending_products_key", "price_drops_key", "my_collections_key"};
         String sectionToChoose = "price_drops_key";
         String titleToCheck = "Recent Price Drops";
 
@@ -98,9 +96,8 @@ public class Bing2
      * settings_page.html, BING28
      */
     @Test
-    public void BING28_Mika() throws InterruptedException
-    {
-        String[] optionsToCheck = new String[] { "images", "video", "shopping" };
+    public void BING28_Mika() throws InterruptedException {
+        String[] optionsToCheck = new String[]{"images", "video", "shopping"};
 
         driver.get("https://www.bing.com");
 
@@ -137,8 +134,7 @@ public class Bing2
         element = wait.until(ExpectedConditions.presenceOfElementLocated
                 (By.xpath("//*[contains(text(), 'India')]")));
         action.moveToElement(element).click().perform();
-        for (String option : optionsToCheck)
-        {
+        for (String option : optionsToCheck) {
             if (!option.equals("shopping"))
                 wait.until(ExpectedConditions.presenceOfElementLocated
                         (By.xpath("//*[contains(@class, 'scope') and @id='" + option + "']")));
@@ -156,8 +152,7 @@ public class Bing2
         element = wait.until(ExpectedConditions.presenceOfElementLocated
                 (By.xpath("//*[contains(text(), 'Israel')]")));
         action.moveToElement(element).click().perform();
-        for (String option : optionsToCheck)
-        {
+        for (String option : optionsToCheck) {
             if (!option.equals("shopping"))
                 wait.until(ExpectedConditions.presenceOfElementLocated
                         (By.xpath("//*[contains(@class, 'scope') and @id='" + option + "']")));
@@ -168,7 +163,7 @@ public class Bing2
         driver.findElement(By.xpath("//*[contains(@class, 'idp_ham')]")).click();
         Thread.sleep(3000);
         assertEquals(0, driver.findElements
-                (By.xpath("//*[text()='Show news and interests']/following-sibling::*[contains(@class, 'toggle_ctrl')]"))
+                        (By.xpath("//*[text()='Show news and interests']/following-sibling::*[contains(@class, 'toggle_ctrl')]"))
                 .size());
     }
 
@@ -178,8 +173,7 @@ public class Bing2
      * HTML refer to BING27 - home_page_Israel_Hebrew.html, settings_page.html, BING28 - home_page_Israel_English.html
      */
     @Test
-    public void BING29_Mika()
-    {
+    public void BING29_Mika() {
         String countryToChoose = "China";
 
         driver.get("https://www.bing.com");
@@ -218,8 +212,7 @@ public class Bing2
      * HTML refer to BING27 - home_page_Israel_Hebrew.html, settings_page.html, BING28 - home_page_Israel_English.html
      */
     @Test
-    public void BING30_Mika() throws InterruptedException
-    {
+    public void BING30_Mika() throws InterruptedException {
         String textToSearch = "Jacket";
 
         driver.get("https://www.bing.com");
@@ -237,8 +230,7 @@ public class Bing2
                 (By.xpath("//a[text()='אנגלית']")));
         action.moveToElement(element).click().perform();
 
-        for (int i = 0; i < 2; i++)
-        {
+        for (int i = 0; i < 2; i++) {
             wait.until(ExpectedConditions.elementToBeClickable
                     (By.xpath("//*[contains(@class, 'idp_ham')]"))).click();
             wait.until(ExpectedConditions.elementToBeClickable(By.id("hbsettings"))).click();
@@ -274,8 +266,7 @@ public class Bing2
      * BING28 - home_page_Israel_English.html, BING31
      */
     @Test
-    public void BING31_Mika() throws InterruptedException
-    {
+    public void BING31_Mika() throws InterruptedException {
         String textToSearch = "Jacket";
         String newTab;
 
@@ -350,8 +341,7 @@ public class Bing2
      * HTML refer to
      */
     @Test
-    public void BING32_Mika()
-    {
+    public void BING32_Mika() {
         String textToSearch = "Jacket";
 
         driver.get("https://www.bing.com");
@@ -426,8 +416,7 @@ public class Bing2
      * HTML refer to
      */
     @Test
-    public void BING33_Mika() throws InterruptedException
-    {
+    public void BING33_Mika() throws InterruptedException {
         String textToSearch = "House";
         String resultsNumString;
 
@@ -492,8 +481,7 @@ public class Bing2
      * HTML refer to
      */
     @Test
-    public void BING34_Mika() throws InterruptedException
-    {
+    public void BING34_Mika() throws InterruptedException {
         String textToSearch = "House";
         String menuCategory = "Search history";
 
@@ -554,8 +542,7 @@ public class Bing2
      * HTML refer to
      */
     @Test
-    public void BING35_Mika() throws InterruptedException
-    {
+    public void BING35_Mika() throws InterruptedException {
         String textToSearch = "House";
         String menuCategory = "Search history";
         int searchedContentsNum;

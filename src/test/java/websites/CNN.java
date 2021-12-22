@@ -963,8 +963,7 @@ public class CNN {
      * HTML refer to CNN25
      */
     @Test
-    public void CNN25_Mika()
-    {
+    public void CNN25_Mika() {
         driver.get("https://edition.cnn.com/");
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -984,8 +983,7 @@ public class CNN {
      * HTML refer to CNN25 and CNN26
      */
     @Test
-    public void CNN26_Mika()
-    {
+    public void CNN26_Mika() {
         driver.get("https://edition.cnn.com/");
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -1028,8 +1026,7 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html, log_in_page.html
      */
     @Test
-    public void CNN27_Mika()
-    {
+    public void CNN27_Mika() {
         driver.get("https://edition.cnn.com/");
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -1051,8 +1048,7 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html, log_in_page.html, CNN26, CNN28
      */
     @Test
-    public void CNN28_Mika()
-    {
+    public void CNN28_Mika() {
         driver.get("https://edition.cnn.com/");
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -1088,8 +1084,7 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html, log_in_page.html, CNN26, CNN28 - settings_page.html
      */
     @Test
-    public void CNN29_Mika()
-    {
+    public void CNN29_Mika() {
         driver.get("https://edition.cnn.com/");
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -1124,8 +1119,7 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html, log_in_page.html, CNN26, CNN28 - settings_page.html, CNN30
      */
     @Test
-    public void CNN30_Mika()
-    {
+    public void CNN30_Mika() {
         driver.get("https://edition.cnn.com/");
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -1155,8 +1149,7 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html, log_in_page.html, CNN26, CNN28 - settings_page.html, CNN30
      */
     @Test
-    public void CNN31_Mika()
-    {
+    public void CNN31_Mika() {
         driver.get("https://edition.cnn.com/");
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -1189,8 +1182,7 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html, log_in_page.html, CNN26, CNN28 - settings_page.html, CNN30
      */
     @Test
-    public void CNN32_Mika()
-    {
+    public void CNN32_Mika() {
         String emailAddress = "qa.tries.123@gmail.com";
         String password = "qa@123456789";
 
@@ -1237,8 +1229,7 @@ public class CNN {
      * HTML refer to CNN25, CNN26, CNN28 - settings_page.html, CNN30
      */
     @Test
-    public void CNN33_Mika()
-    {
+    public void CNN33_Mika() {
         String emailAddress = "qa.tries.123@gmail.com";
         String password = "qa@123456789";
 
@@ -1291,8 +1282,7 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html, log_in_page.html, CNN26
      */
     @Test
-    public void CNN34_Mika()
-    {
+    public void CNN34_Mika() {
         String emailAddress = "qa.tries.123@gmail.com";
         String password = "qa@123456789";
 
@@ -1323,8 +1313,7 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html, CNN35
      */
     @Test
-    public void CNN35_Mika()
-    {
+    public void CNN35_Mika() {
         String[] countries = new String[]
                 {"Africa", "Americas", "Asia", "Australia", "China", "Europe", "India", "Middle East", "United Kingdom"};
         String countryXPath;
@@ -1333,8 +1322,7 @@ public class CNN {
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
 
-        for (String country : countries)
-        {
+        for (String country : countries) {
             wait.until(ExpectedConditions.presenceOfElementLocated(By.className("menu-icon"))).click();
             countryXPath = "//*[text()='" + country +
                     "' and @data-analytics='header_expanded-nav' and @type='expanded']";
@@ -1351,8 +1339,7 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html, CNN35, CNN36
      */
     @Test
-    public void CNN36_Mika()
-    {
+    public void CNN36_Mika() {
         String[] countries = new String[]
                 {"Africa", "Americas", "Asia", "Australia", "China", "Europe", "India", "Middle East", "United Kingdom"};
         String countryXPath;
@@ -1363,8 +1350,7 @@ public class CNN {
 
         driver.findElement(By.xpath("//*[@name='world' and @data-analytics='header_top-nav']")).click();
 
-        for (String country : countries)
-        {
+        for (String country : countries) {
             countryXPath = "//a[text()='" + country + "' and @data-analytics='header_top-nav']";
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath(countryXPath))).click();
             countryXPath = "//h1[text()='" + country + "']";
@@ -1378,8 +1364,7 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html, CNN35 - hamburger_menu.html, CNN36
      */
     @Test
-    public void CNN37_Mika()
-    {
+    public void CNN37_Mika() {
         driver.get("https://edition.cnn.com/");
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -1405,8 +1390,7 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html, CNN38
      */
     @Test
-    public void CNN38_Mika() throws InterruptedException
-    {
+    public void CNN38_Mika() throws InterruptedException {
         String textToSearch = "Flood";
         String resultsNumText = "";
         List<WebElement> articles;
@@ -1438,8 +1422,7 @@ public class CNN {
         articles = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy
                 (By.className("cnn-search__result-contents")));
 
-        for (WebElement article : articles)
-        {
+        for (WebElement article : articles) {
             headline = article.findElement(By.className("cnn-search__result-headline"));
             body = article.findElement(By.className("cnn-search__result-body"));
             assertTrue(headline.findElement(By.tagName("a")).getText().toLowerCase(Locale.ROOT).contains(textToSearch.toLowerCase(Locale.ROOT))
@@ -1453,8 +1436,7 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html, CNN38 - search_menu.html, Flood_search_results_by_date.html
      */
     @Test
-    public void CNN39_Mika()
-    {
+    public void CNN39_Mika() {
         String textToSearch = "Flood";
 
         driver.get("https://edition.cnn.com/");
@@ -1476,8 +1458,7 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html, CNN38 - search_menu.html, CNN40
      */
     @Test
-    public void CNN40_Mika()
-    {
+    public void CNN40_Mika() {
         String textToSearch = "xyzaaaa";
 
         driver.get("https://edition.cnn.com/");
@@ -1497,8 +1478,7 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html, CNN35 - hamburger_menu.html, CNN41
      */
     @Test
-    public void CNN41_Mika()
-    {
+    public void CNN41_Mika() {
         String sportToSelect = "Football";
 
         driver.get("https://edition.cnn.com/");
@@ -1520,8 +1500,7 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html, CNN35 - hamburger_menu.html, CNN41, CNN42
      */
     @Test
-    public void CNN42_Mika()
-    {
+    public void CNN42_Mika() {
         String sportToSelect = "Football";
         String articleTitle = "";
 
@@ -1556,8 +1535,7 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html, CNN35 - hamburger_menu.html, CNN43
      */
     @Test
-    public void CNN43_Mika() throws InterruptedException
-    {
+    public void CNN43_Mika() throws InterruptedException {
         String periodName = "";
         String region = "Asia";
         String day = "Monday, October 25, 2021";
@@ -1594,8 +1572,7 @@ public class CNN {
 
         js.executeScript("window.scrollTo(0, -document.body.scrollHeight)");
 
-        for (WebElement period : dayPeriods)
-        {
+        for (WebElement period : dayPeriods) {
             periodName = period.getText();
             action.moveToElement(period).click().perform();
             Thread.sleep(2000);
@@ -1622,8 +1599,7 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html, CNN35 - hamburger_menu.html, CNN44
      */
     @Test
-    public void CNN44_Mika()
-    {
+    public void CNN44_Mika() {
         String location = "United States";
 
         driver.get("https://edition.cnn.com/");
@@ -1653,8 +1629,7 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html, CNN35 - hamburger_menu.html, CNN45
      */
     @Test
-    public void CNN45_Mika()
-    {
+    public void CNN45_Mika() {
         String location = "United States";
 
         driver.get("https://edition.cnn.com/");
@@ -1684,9 +1659,8 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html
      */
     @Test
-    public void CNN46_Mika()
-    {
-        String[] socialNetworks = new String[] {"facebook", "instagram", "twitter"};
+    public void CNN46_Mika() {
+        String[] socialNetworks = new String[]{"facebook", "instagram", "twitter"};
         String currentNetwork = "facebook";
         String expectedUrl = "https://www.facebook.com/cnninternational";
         String newTab;
@@ -1698,8 +1672,7 @@ public class CNN {
 
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 
-        for (String socialNetwork : socialNetworks)
-        {
+        for (String socialNetwork : socialNetworks) {
             assertTrue(driver.findElement(By.xpath("//*[@id='footer-wrap']//*[@data-icon='" + socialNetwork + "']"))
                     .isDisplayed());
         }
@@ -1717,9 +1690,8 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html
      */
     @Test
-    public void CNN47_Mika()
-    {
-        String[] socialNetworks = new String[] {"facebook", "instagram", "twitter"};
+    public void CNN47_Mika() {
+        String[] socialNetworks = new String[]{"facebook", "instagram", "twitter"};
         String currentNetwork = "twitter";
         String expectedUrl = "https://twitter.com/cnni";
         String newTab;
@@ -1731,8 +1703,7 @@ public class CNN {
 
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 
-        for (String socialNetwork : socialNetworks)
-        {
+        for (String socialNetwork : socialNetworks) {
             assertTrue(driver.findElement(By.xpath("//*[@id='footer-wrap']//*[@data-icon='" + socialNetwork + "']"))
                     .isDisplayed());
         }
@@ -1750,9 +1721,8 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html
      */
     @Test
-    public void CNN48_Mika()
-    {
-        String[] socialNetworks = new String[] {"facebook", "instagram", "twitter"};
+    public void CNN48_Mika() {
+        String[] socialNetworks = new String[]{"facebook", "instagram", "twitter"};
         String currentNetwork = "instagram";
         String expectedUrl = "https://www.instagram.com/cnn/";
         String newTab;
@@ -1764,8 +1734,7 @@ public class CNN {
 
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 
-        for (String socialNetwork : socialNetworks)
-        {
+        for (String socialNetwork : socialNetworks) {
             assertTrue(driver.findElement(By.xpath("//*[@id='footer-wrap']//*[@data-icon='" + socialNetwork + "']"))
                     .isDisplayed());
         }
@@ -1783,19 +1752,18 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html, CNN28 - CNN_Newsletters_page.html, CNN49
      */
     @Test
-    public void CNN49_Mika()
-    {
-        String[] optionsList = new String[] { "Terms of Use", "Privacy Policy", "Accessibility & CC", "AdChoices",
+    public void CNN49_Mika() {
+        String[] optionsList = new String[]{"Terms of Use", "Privacy Policy", "Accessibility & CC", "AdChoices",
                 "About Us", "Modern Slavery Act Statement", "Advertise with us", "CNN Store", "Newsletters",
-                "Transcripts", "License Footage", "CNN Newsource", "Sitemap" };
+                "Transcripts", "License Footage", "CNN Newsource", "Sitemap"};
         String[] xpathToCheck = new String[]
-                { "//h1[text()='CNN Terms of Use']", "//h1[contains(text(), 'Privacy Policy')]",
+                {"//h1[text()='CNN Terms of Use']", "//h1[contains(text(), 'Privacy Policy')]",
                         "//h1[contains(text(), 'Accessibility')]", "//h1[contains(text(), 'Advertising Choices')]",
                         "//h1[text()='ABOUT CNN DIGITAL']", "//h1[contains(text(), 'Modern Slavery Act Statement')]",
                         "//h2[contains(text(), 'Welcome to CNNIC')]", "//h1[contains(text(), 'CNN Store')]",
                         "//h1[text()='CNN Newsletters']", "//img[@alt='TRANSCRIPTS']",
                         "//h4[contains(text(), 'FOOTAGE')]", "//h1[text()='WE’RE AT THE HEART OF IT']",
-                        "//h1[contains(text(), 'CNN Site Map')]" };
+                        "//h1[contains(text(), 'CNN Site Map')]"};
         List<String> goBack = Arrays.asList("Advertise with us", "CNN Store", "Newsletters",
                 "Transcripts", "License Footage", "CNN Newsource");
         String hasPopUp = "AdChoices";
@@ -1810,20 +1778,16 @@ public class CNN {
         for (String option : optionsList)
             assertTrue(driver.findElement(By.linkText(option)).isDisplayed());
 
-        for (int i = 0; i < optionsList.length; i++)
-        {
+        for (int i = 0; i < optionsList.length; i++) {
             wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText(optionsList[i]))).click();
 
-            if (optionsList[i].equals(hasPopUp))
-            {
+            if (optionsList[i].equals(hasPopUp)) {
                 wait.until(ExpectedConditions.elementToBeClickable
                         (By.xpath("//*[contains(@id, 'closeBtn')]"))).click();
-            }
-            else
+            } else
                 wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpathToCheck[i])));
 
-            if (goBack.contains(optionsList[i]))
-            {
+            if (goBack.contains(optionsList[i])) {
                 driver.navigate().back();
                 wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(optionsList[i + 1])));
             }
@@ -1838,15 +1802,14 @@ public class CNN {
      * HTML refer to CNN25 - home_page.html, CNN49 - About_Us_page, CNN50
      */
     @Test
-    public void CNN50_Mika()
-    {
-        String[] optionsList = new String[] { "Terms of Use", "Privacy Policy", "Accessibility & CC", "AdChoices",
+    public void CNN50_Mika() {
+        String[] optionsList = new String[]{"Terms of Use", "Privacy Policy", "Accessibility & CC", "AdChoices",
                 "About Us", "Modern Slavery Act Statement", "Advertise with us", "CNN Store", "Newsletters",
-                "Transcripts", "License Footage", "CNN Newsource", "Sitemap" };
+                "Transcripts", "License Footage", "CNN Newsource", "Sitemap"};
         String newTab;
         String textToType = "try";
         String emailAddress = "qa.tries.123@gmail.com";
-        String[] feedbackFields = new String[] {"Name", "Email", "Thoughts", "Comments"};
+        String[] feedbackFields = new String[]{"Name", "Email", "Thoughts", "Comments"};
 
         driver.get("https://edition.cnn.com/");
 
@@ -1870,8 +1833,7 @@ public class CNN {
         driver.switchTo().window(newTab);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[text()='CNN Feedback']")));
 
-        for (String field : feedbackFields)
-        {
+        for (String field : feedbackFields) {
             if (field.equals("Email"))
                 driver.findElement(By.xpath("//*[@name='feedback" + field + "']")).sendKeys(emailAddress);
             else
