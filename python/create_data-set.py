@@ -1,8 +1,15 @@
 import json
+import os
 
 
-def tokenize_tests():
-    filepath = "C:/Users/Public/project/UITest2Code/src/test/java/websites/FoxNews.java"
+def tokenize_tests_from_single_website(file_name):
+    """Tokenizes tests from a single class and writes them into a json file
+    Parameters
+        ----------
+        file_name : string
+            tests from a single website file name
+    """
+    filepath = "C:/Users/Public/project/UITest2Code/src/test/java/websites/" + file_name
     with open(filepath, "r", encoding="utf-8") as file:
         line = file.readline()
         all_tests = []
@@ -27,7 +34,8 @@ def tokenize_tests():
             line = file.readline()
 
     # opening json file and writing into it
-    json_result_file = open("C:/Users/Public/project/UITest2Code/python/tokenized-class.json", "w+")
+    json_result_file = open(
+        "C:/Users/Public/project/UITest2Code/json-files/tokenized-class-" + file_name.split('.')[0] + ".json", "w+")
     write_tests_from_single_website_to_json(json_result_file, filepath, all_tests, all_tests_names)
 
 
@@ -46,15 +54,21 @@ def write_tests_from_single_website_to_json(json_result_file, path, all_tests, a
     """
     json_result_file.write("[")
     for test, test_name in zip(all_tests, all_tests_names):
-        instance = {}
-        instance['repo_name'] = test_name
-        instance['ref'] = "refs/heads/master"
-        instance['path'] = path.split("project/")[1]
-        instance['content'] = test
+        instance = {'repo_name': test_name,
+                    'ref': "refs/heads/master",
+                    'path': path.split("project/")[1],
+                    'content': test}
         json_result_file.write(json.dumps(instance))
         json_result_file.write(',\n')
 
     json_result_file.write("]")
+
+
+def tokenize_tests():
+    """Tokenizes all the tests from all the websites and writes them into json files"""
+    list_of_flies = os.listdir('C:/Users/Public/project/UITest2Code/src/test/java/websites')
+    for fileName in list_of_flies:
+        tokenize_tests_from_single_website(fileName)
 
 
 if __name__ == "__main__":

@@ -133,6 +133,7 @@ public class Wikipedia {
         driver.findElement(By.xpath("//span[text()='Apple App Store']"));
         driver.findElement(By.xpath("//span[text()='Google Play Store']"));
     }
+
     /**
      * SK_7
      * Amir
@@ -157,10 +158,10 @@ public class Wikipedia {
 
         WebElement otherProjects = driver.findElementByClassName("other-projects");
         List<String> otherProjectDescriptions = otherProjects.findElements(By.className("other-project-text")).stream().map(project ->
-                ((RemoteWebElement) project).findElementsByXPath(".//*")
-                        .stream()
-                        .map(WebElement::getText)
-                        .collect(Collectors.joining(" - ")))
+                        ((RemoteWebElement) project).findElementsByXPath(".//*")
+                                .stream()
+                                .map(WebElement::getText)
+                                .collect(Collectors.joining(" - ")))
                 .map(projectDescription -> "- " + projectDescription)
                 .collect(Collectors.toList());
         assertTrue(otherProjectDescriptions.containsAll(projectNamesList));
@@ -171,7 +172,7 @@ public class Wikipedia {
      * Amir
      */
     @Test
-    public void SK_9_Amir() throws InterruptedException {
+    public void SK_10_Amir() throws InterruptedException {
         String path = "https://www.wikipedia.org/";
         driver.get(path);
         List<WebElement> languages = driver.findElements(By.className("central-featured-lang"));
@@ -197,7 +198,7 @@ public class Wikipedia {
             driver.get(path);
             lang = languages.stream().filter(language -> language.getAttribute("lang").equals(langEntry.getKey())).findFirst().get();
             assertEquals(lang.getAttribute("title"), langEntry.getValue().get(0));
-            driver.findElement(By.xpath("//a[text()='{" + langEntry.getValue().get(1) + "']"));
+            driver.findElement(By.xpath("//a[text()='" + langEntry.getValue().get(1) + "']"));
         }
     }
 
