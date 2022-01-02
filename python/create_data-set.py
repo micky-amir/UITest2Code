@@ -1,6 +1,6 @@
 import json
 import os
-from collections import deque
+
 
 def tokenize_tests_from_single_website(file_name):
     """Tokenizes tests from a single class and writes them into a json file
