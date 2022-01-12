@@ -1,8 +1,8 @@
 import re
 import json
-from code_tokenizer import tokenize_java
-from javalang_tokenizer import tokenize
-import pandas as pd
+# from code_tokenizer import tokenize_java
+# from javalang_tokenizer import tokenize
+# import pandas as pd
 
 def read_excels():
     file_name = "/Users/amirbenami/UniProjects/BI university/thesis/UITest2Code/src/test/resources/test_descriptions/Amazon_TestCases.xls"
@@ -92,7 +92,7 @@ def replace_method_names():
 
 
 def tokenize_tests():
-    with open('/Users/amirbenami/UniProjects/BI university/thesis/UITest2Code/src/test/java/websites/Amazon.java') as f:
+    with open('C:/Users/Public/project/UITest2Code/src/test/java/websites/Amazon.java') as f:
         line = f.readline()
         reading_a_test = False
         all_tests = []
@@ -146,6 +146,6 @@ def tokenize_tests():
 
 if __name__ == '__main__':
     tokenize_tests()
-    replace_method_names()
-    read_excels()
+    # replace_method_names()
+    # read_excels()
 

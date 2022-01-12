@@ -1,5 +1,6 @@
 import json
 import os
+import gzip
 
 
 def tokenize_tests_from_single_website(file_name):
@@ -34,17 +35,20 @@ def tokenize_tests_from_single_website(file_name):
             line = file.readline()
 
     # opening json file and writing into it
-    json_result_file = open(
-        "C:/Users/Public/project/UITest2Code/json-files/tokenized-class-" + file_name.split('.')[0] + ".json", "w+")
-    write_tests_from_single_website_to_json(json_result_file, filepath, all_tests, all_tests_names)
+    json_file_path = "C:/Users/Public/project/UITest2Code/json-files/tokenized-class-" + file_name.split('.')[
+        0] + ".json"
+    # json_result_file = open(json_file_path, "w+")
+    write_tests_from_single_website_to_json(json_file_path, filepath, all_tests, all_tests_names)
+    json_to_gzip(json_file_path)
 
 
-def write_tests_from_single_website_to_json(json_result_file, path, all_tests, all_tests_names):
-    """Writes tests to a json file
+def write_tests_from_single_website_to_json(json_file_path, path, all_tests, all_tests_names):
+    """
+    Writes tests to a json file
     Parameters
         ----------
-        json_result_file : TextIO
-            json file to write into
+        json_file_path : str
+            json file path to write into
         path : str
             the file path of the original tests
         all_tests :  list[list[str]]
@@ -52,16 +56,30 @@ def write_tests_from_single_website_to_json(json_result_file, path, all_tests, a
         all_tests_names : list[str]
             the tests' names
     """
-    json_result_file.write("[")
-    for test, test_name in zip(all_tests, all_tests_names):
-        instance = {'repo_name': test_name,
-                    'ref': "refs/heads/master",
-                    'path': path.split("project/")[1],
-                    'content': test}
-        json_result_file.write(json.dumps(instance))
-        json_result_file.write(',\n')
 
-    json_result_file.write("]")
+    with open(json_file_path, "w+") as json_result_file:
+        # json_result_file.write("[")
+        for test, test_name in zip(all_tests, all_tests_names):
+            instance = {'repo_name': test_name,
+                        'ref': "refs/heads/master",
+                        'path': path.split("project/")[1],
+                        'content': ' '.join(test)}
+            json_result_file.write(json.dumps(instance))
+            json_result_file.write('\n')
+            # json_result_file.write(',\n')
+
+        # json_result_file.write("]")
+
+
+def json_to_gzip(json_file_path):
+    """
+    Formats a json file to a gzip file
+    :param json_file_path: the json file's path
+    """
+    with open(json_file_path, 'rb') as json_file, gzip.open(
+            'C:/Users/Public/project/UITest2Code/gzip-files/' + os.path.basename(json_file.name) + '.gz', 'wb') \
+            as gz_file:
+        gz_file.writelines(json_file)
 
 
 def tokenize_tests():
