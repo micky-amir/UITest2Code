@@ -5,8 +5,8 @@
 # LICENSE file in the root directory of this source tree.
 #
 
-import argparse
-import subprocess
+# import argparse
+# import subprocess
 import typing as tp
 import tqdm
 import json
@@ -15,7 +15,8 @@ import os
 
 from pathlib import Path
 from multiprocessing import Pool, cpu_count
-import code_tokenizer as code_tokenizer
+import plbart_relevant_code.code_tokenizer as code_tokenizer
+
 # from data.github.preprocessing.src.timeout import timeout, TimeoutError
 
 FAST = str(Path(__file__).parents[2].joinpath("XLM/tools/fastBPE/fast"))
@@ -23,18 +24,6 @@ XLM_PP = str(Path(__file__).parents[2].joinpath("XLM/preprocess.py"))
 
 FALSY_STRINGS = {'off', 'false', '0'}
 TRUTHY_STRINGS = {'on', 'true', '1'}
-
-
-def bool_flag(s):
-    """
-    Parse boolean arguments from the command line.
-    """
-    if s.lower() in FALSY_STRINGS:
-        return False
-    elif s.lower() in TRUTHY_STRINGS:
-        return True
-    else:
-        raise argparse.ArgumentTypeError("Invalid value for a boolean flag!")
 
 
 def tokenize_json_helper(inpt):
@@ -67,13 +56,13 @@ def output_all_tokenized_results(docs, f_tok):
 def process_and_tokenize_json_file(input_path, language, keep_comments):
     suffix = '.with_comments' if keep_comments else ''
     output_path = str(input_path).replace('.json.gz', suffix + '.tok')
-    print('input: ' + str(input_path) + ', output: ' + str(output_path))
+    # print('input: ' + str(input_path) + ', output: ' + str(output_path))
     tokenizer = getattr(code_tokenizer, f"tokenize_{language}")
     docs = []
     paths = []
     for line in fileinput.input(str(input_path), openhook=fileinput.hook_compressed):
         x = json.loads(line)
-        print(x)
+        # print(x)
         if 'content' not in x:
             continue
         content = x['content']

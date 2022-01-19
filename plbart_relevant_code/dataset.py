@@ -6,11 +6,11 @@
 #
 
 import itertools
-import os
-import subprocess
+# import os
+# import subprocess
 from pathlib import Path
 
-from utils import LocalExecutor, process_and_tokenize_json_file
+from plbart_relevant_code.utils import LocalExecutor, process_and_tokenize_json_file
 
 
 class Language:
@@ -54,10 +54,10 @@ class Dataset:
 
         langs = [lang1]
 
-        if lang2 is not None:
-            langs.append(lang2)
-        if lang3 is not None:
-            langs.append(lang3)
+        # if lang2 is not None:
+        #     langs.append(lang2)
+        # if lang3 is not None:
+        #     langs.append(lang3)
 
         langs = sorted(langs)
         self.langs = []

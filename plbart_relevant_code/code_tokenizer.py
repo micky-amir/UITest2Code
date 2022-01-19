@@ -5,17 +5,17 @@
 # LICENSE file in the root directory of this source tree.
 #
 
-import argparse
+# import argparse
 import logging
-import os
-import random
+# import os
+# import random
 import re
-import sys
-import io
-import tokenize
-import javalang_tokenizer as javalang_tok
+# import sys
+# import io
+# import tokenize
+import plbart_relevant_code.javalang_tokenizer as javalang_tok
 
-from io import BytesIO
+# from io import BytesIO
 # from sacrebleu import tokenize_v14_international
 
 TOK_NO_SPACE_BEFORE = {',', ';'}
@@ -83,6 +83,7 @@ def process_string(tok, char2tok, tok2char, is_comment):
 
 
 def tokenize_java(s, keep_comments=False):
+    # print('in tokenize_java code_tokenizer')
     try:
         tokens = []
         assert isinstance(s, str)
@@ -286,23 +287,23 @@ def extract_arguments_java_using_parentheses(f):
     return types, names
 
 
-if __name__ == '__main__':
-    # parser
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--input_file', default='',
-                        help='The file to strip comments from.')
-    parser.add_argument('--l', default='python',
-                        choices=['python', 'java'], help='language of input code')
-    args = parser.parse_args()
-    assert args.input_file == '' or os.path.isfile(args.input_file)
-
-    # read from standard input, or from input file
-    if args.input_file == '':
-        source = sys.stdin.read()
-    else:
-        with io.open(args.input_file, encoding='utf-8') as f:
-            source = f.read()
-
-    tokenize = globals()[f"tokenize_{args.l}"]
-    # tokenize
-    print(tokenize(source), end='')
+# if __name__ == '__main__':
+#     # parser
+#     parser = argparse.ArgumentParser()
+#     parser.add_argument('--input_file', default='',
+#                         help='The file to strip comments from.')
+#     parser.add_argument('--l', default='python',
+#                         choices=['python', 'java'], help='language of input code')
+#     args = parser.parse_args()
+#     assert args.input_file == '' or os.path.isfile(args.input_file)
+#
+#     # read from standard input, or from input file
+#     if args.input_file == '':
+#         source = sys.stdin.read()
+#     else:
+#         with io.open(args.input_file, encoding='utf-8') as f:
+#             source = f.read()
+#
+#     tokenize = globals()[f"tokenize_{args.l}"]
+#     # tokenize
+#     print(tokenize(source), end='')
