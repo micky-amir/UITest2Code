@@ -41,8 +41,8 @@ def tokenize_tests_from_single_website(file_name):
 
     # opening json file and writing into it
     json_file_path = project_path + 'json_files/tokenized-class-' + file_name.split('.')[0] + ".json"
-    # json_result_file = open(json_file_path, "w+")
     write_tests_from_single_website_to_json(json_file_path, filepath, all_tests, all_tests_names)
+    rename_functions_in_single_file(json_file_path)
     json_to_gzip(json_file_path)
 
 
@@ -80,6 +80,21 @@ def json_to_gzip(json_file_path):
     with open(json_file_path, 'rb') as json_file, gzip.open(
             project_path + 'gzip_files/java/' + os.path.basename(json_file.name) + '.gz', 'wb') as gz_file:
         gz_file.writelines(json_file)
+
+
+def rename_functions_in_single_file(json_file_path):
+    """
+    Renames functions in a json file to 'function'
+    :param json_file_path: the json file's path
+    """
+    with open(json_file_path, "r", encoding="utf-8") as file:
+        line = file.readline()
+        new_lines = []
+        while line:
+            new_lines.append(re.sub(r'public void [A-Za-z_0-9]*\(\)', 'public void function()', line))
+            line = file.readline()
+    with open(json_file_path, "w", encoding="utf-8") as file:
+        file.writelines(new_lines)
 
 
 def tokenize_tests():
