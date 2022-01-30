@@ -5,8 +5,6 @@
 # LICENSE file in the root directory of this source tree.
 #
 
-# import argparse
-# import subprocess
 import typing as tp
 import tqdm
 import json
@@ -16,8 +14,6 @@ import os
 from pathlib import Path
 from multiprocessing import Pool, cpu_count
 import plbart_relevant_code.code_tokenizer as code_tokenizer
-
-# from data.github.preprocessing.src.timeout import timeout, TimeoutError
 
 FAST = str(Path(__file__).parents[2].joinpath("XLM/tools/fastBPE/fast"))
 XLM_PP = str(Path(__file__).parents[2].joinpath("XLM/preprocess.py"))

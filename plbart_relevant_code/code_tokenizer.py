@@ -5,18 +5,9 @@
 # LICENSE file in the root directory of this source tree.
 #
 
-# import argparse
 import logging
-# import os
-# import random
 import re
-# import sys
-# import io
-# import tokenize
 import plbart_relevant_code.javalang_tokenizer as javalang_tok
-
-# from io import BytesIO
-# from sacrebleu import tokenize_v14_international
 
 TOK_NO_SPACE_BEFORE = {',', ';'}
 
@@ -40,6 +31,7 @@ JAVA_CHAR2TOKEN = {
     '"""': ' STOKEN5 ',
     '\\n': ' STOKEN6 '
 }
+
 
 class ind_iter(object):
     def __init__(self, len):
@@ -285,7 +277,6 @@ def extract_arguments_java_using_parentheses(f):
         types.append(t)
         names.append(n)
     return types, names
-
 
 # if __name__ == '__main__':
 #     # parser

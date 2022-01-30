@@ -6,8 +6,6 @@
 #
 
 import itertools
-# import os
-# import subprocess
 from pathlib import Path
 
 from plbart_relevant_code.utils import LocalExecutor, process_and_tokenize_json_file

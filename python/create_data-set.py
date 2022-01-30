@@ -7,7 +7,10 @@ from plbart_relevant_code import preprocess
 from bs4 import BeautifulSoup
 import shutil
 
+# the path to the UITest2Code directory
 project_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/") + '/'
+
+# identifier for the tokenized tests
 id_counter = 0
 
 
@@ -85,40 +88,37 @@ def json_to_gzip(json_file_path):
         gz_file.writelines(json_file)
 
 
-def rename_functions_in_single_file(json_file_path):
-    """
-    Renames functions in a json file to 'function'
-    :param json_file_path: the json file's path
-    """
-    with open(json_file_path, "r", encoding="utf-8") as file:
-        line = file.readline()
-        new_lines = []
-        while line:
-            new_lines.append(re.sub(r'public void [A-Za-z_0-9]*\(\)', 'public void function()', line))
-            line = file.readline()
-    with open(json_file_path, "w", encoding="utf-8") as file:
-        file.writelines(new_lines)
-
-
 def create_single_final_json(file_name, website_name, testcases_dictionary):
+    """
+    Creates the final tokenized json file for a single website
+    :param file_name: string that contains the tok file name
+    :param website_name: string that contains the current website name
+    :param testcases_dictionary: a dictionary that contains the tests from the website
+    """
     global id_counter
     with open(project_path + 'gzip_files/java/' + file_name, 'r', encoding="utf-8") as tok_file, open(
             project_path + 'json_files/finished-tokenized-class-' + file_name.split('.')[0] + '.json',
             'w', encoding="utf-8") as json_file:
         line = tok_file.readline()
         while line:
+            # gets original test id
             content = BeautifulSoup(line, features="html.parser")
             tag_name = content.findAll()[0].name
             test_id = tag_name.split('document_id="')[1].rsplit('_', 1)[0].upper()
+
+            # gets the current teat from the dictionary
             current_test = testcases_dictionary[test_id]
             current_test_simplified = excels_reader.simplify_single_test(current_test)
 
+            # creates a dictionary instance, and writes it to the new json file
             instance = {'id': id_counter,
                         'website': website_name,
                         'code': content.find(text=True)}
             instance.update(current_test_simplified)
             json_file.write(json.dumps(instance, ensure_ascii=False))
             json_file.write('\n')
+
+            # updates variables
             id_counter += 1
             line = tok_file.readline()
 
@@ -131,6 +131,9 @@ def tokenize_tests():
 
 
 def tok_to_json():
+    """
+    Goes through all the tok files, creates test cases dictionary for each and final tokenized json file
+    """
     list_of_flies = os.listdir(project_path + 'gzip_files/java/')
     for file_name in list_of_flies:
         if file_name.endswith(".tok"):
@@ -149,9 +152,6 @@ def create_directories():
             new_dir_path = project_path + new_dir
             if not os.path.isdir(new_dir_path):
                 os.mkdir(new_dir_path)
-        # os.mkdir(project_path + 'json_files/')
-        # os.mkdir(project_path + 'gzip_files/')
-        # os.mkdir(project_path + 'gzip_files/java/')
     except OSError as error:
         print(error)
 
