@@ -2,10 +2,13 @@ import json
 import os
 import gzip
 import re
-
+import excels_reader
 from plbart_relevant_code import preprocess
+from bs4 import BeautifulSoup
+import shutil
 
-project_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + '/'
+project_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/") + '/'
+id_counter = 0
 
 
 def tokenize_tests_from_single_website(file_name):
@@ -30,6 +33,7 @@ def tokenize_tests_from_single_website(file_name):
                 line = file.readline()
                 name = line.split("void ")[1].split("()")[0]
                 all_tests_names.append(name)
+                line = re.sub(r'public void [A-Za-z_0-9]*\(\)', 'void function()', line)
             if in_test:
                 current_test_code_lines.append(line)
                 brackets_counter += (line.count("{") - line.count("}"))
@@ -39,10 +43,9 @@ def tokenize_tests_from_single_website(file_name):
                     all_tests.append(current_test_code_lines)
             line = file.readline()
 
-    # opening json file and writing into it
+    # opening json file, writing into it, than gzip the file
     json_file_path = project_path + 'json_files/tokenized-class-' + file_name.split('.')[0] + ".json"
     write_tests_from_single_website_to_json(json_file_path, filepath, all_tests, all_tests_names)
-    rename_functions_in_single_file(json_file_path)
     json_to_gzip(json_file_path)
 
 
@@ -97,13 +100,79 @@ def rename_functions_in_single_file(json_file_path):
         file.writelines(new_lines)
 
 
+def create_single_final_json(file_name, website_name, testcases_dictionary):
+    global id_counter
+    with open(project_path + 'gzip_files/java/' + file_name, 'r', encoding="utf-8") as tok_file, open(
+            project_path + 'json_files/finished-tokenized-class-' + file_name.split('.')[0] + '.json',
+            'w', encoding="utf-8") as json_file:
+        line = tok_file.readline()
+        while line:
+            content = BeautifulSoup(line, features="html.parser")
+            tag_name = content.findAll()[0].name
+            test_id = tag_name.split('document_id="')[1].rsplit('_', 1)[0].upper()
+            current_test = testcases_dictionary[test_id]
+            current_test_simplified = excels_reader.simplify_single_test(current_test)
+
+            instance = {'id': id_counter,
+                        'website': website_name,
+                        'code': content.find(text=True)}
+            instance.update(current_test_simplified)
+            json_file.write(json.dumps(instance, ensure_ascii=False))
+            json_file.write('\n')
+            id_counter += 1
+            line = tok_file.readline()
+
+
 def tokenize_tests():
     """Tokenizes all the tests from all the websites and writes them into json files"""
     list_of_flies = os.listdir(project_path + 'src/test/java/websites')
-    for fileName in list_of_flies:
-        tokenize_tests_from_single_website(fileName)
+    for file_name in list_of_flies:
+        tokenize_tests_from_single_website(file_name)
+
+
+def tok_to_json():
+    list_of_flies = os.listdir(project_path + 'gzip_files/java/')
+    for file_name in list_of_flies:
+        if file_name.endswith(".tok"):
+            website_name = file_name.split('.')[0].split('-')[2]
+            testcases_dictionary = excels_reader.read_single_excel(project_path, website_name)
+            create_single_final_json(file_name, website_name, testcases_dictionary)
+
+
+def create_directories():
+    """
+    creates the json_files/ and gzip_files/java/ directories
+    """
+    try:
+        new_directories = ['json_files/', 'gzip_files/', 'gzip_files/java/']
+        for new_dir in new_directories:
+            new_dir_path = project_path + new_dir
+            if not os.path.isdir(new_dir_path):
+                os.mkdir(new_dir_path)
+        # os.mkdir(project_path + 'json_files/')
+        # os.mkdir(project_path + 'gzip_files/')
+        # os.mkdir(project_path + 'gzip_files/java/')
+    except OSError as error:
+        print(error)
+
+
+def delete_unnecessary_dirs_and_files():
+    """
+    deletes the draft files and directories
+    """
+    try:
+        shutil.rmtree(project_path + 'gzip_files/')
+        list_of_flies = os.listdir(project_path + 'json_files/')
+        for file_name in list_of_flies:
+            if not file_name.startswith("finished"):
+                os.remove(project_path + 'json_files/' + file_name)
+    except OSError as e:
+        print("Error: %s - %s." % (e.filename, e.strerror))
 
 
 if __name__ == "__main__":
+    create_directories()
     tokenize_tests()
     preprocess.preprocess_v2(project_path + 'gzip_files/', 'java', False, 110)
+    tok_to_json()
+    delete_unnecessary_dirs_and_files()

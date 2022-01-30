@@ -72,6 +72,7 @@ def process_and_tokenize_json_file(input_path, language, keep_comments):
     f_tok = open(output_path, 'w', encoding='utf-8')
     try:
         output_all_tokenized_results(docs, f_tok)
+        # f_tok.close()
     except TimeoutError:
         # The tokenization process is sometimes killed and it makes the multiprocessing hang forever
         f_tok.close()
