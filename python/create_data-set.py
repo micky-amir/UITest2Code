@@ -97,7 +97,7 @@ def create_single_final_json(file_name, website_name, testcases_dictionary):
     """
     global id_counter
     with open(project_path + 'gzip_files/java/' + file_name, 'r', encoding="utf-8") as tok_file, open(
-            project_path + 'json_files/finished-tokenized-class-' + file_name.split('.')[0] + '.json',
+            project_path + 'json_files/finished-tokenized-class-' + website_name + '.json',
             'w', encoding="utf-8") as json_file:
         line = tok_file.readline()
         while line:
