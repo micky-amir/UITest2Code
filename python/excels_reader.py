@@ -54,5 +54,8 @@ def simplify_single_test(test):
     """
     simplified_test = {}
     for key, value in test.items():
-        simplified_test[key] = ', '.join(value)
+        if key == 'Preconditions' or key == 'Steps':
+            simplified_test[key] = value
+        else:
+            simplified_test[key] = ', '.join(value)
     return simplified_test
