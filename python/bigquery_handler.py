@@ -140,9 +140,12 @@ def update_outside_method_comments(line, comments):
 
 
 if __name__ == "__main__":
+    utils.create_directories(True)
     utils.gzip_to_json(project_path + 'bigquery_files/bq-results-20220207-151512-biubj4ywzbd1.json.gz')
     tokenize_bigquery_json()
     utils.json_to_gzip('bigquery_files/tokenized-bigquery.json', 'bigquery_files/java/')
     preprocess.preprocess_v2(project_path + 'bigquery_files/', 'java', False, 2000)
     utils.create_single_final_json('bigquery_files/java/tokenized-bigquery.tok', 'bigquery_files/', 'bigquery',
                                    all_methods_dictionary)
+    utils.delete_unnecessary_dirs_and_files('bigquery_files/java/', 'bigquery_files/',
+                                            'bq-results-20220207-151512-biubj4ywzbd1.json.gz')

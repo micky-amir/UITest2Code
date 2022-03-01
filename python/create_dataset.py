@@ -94,4 +94,4 @@ if __name__ == "__main__":
     tokenize_tests()
     preprocess.preprocess_v2(project_path + 'gzip_files/', 'java', False, 110)
     tok_to_final_json()
-    utils.delete_unnecessary_dirs_and_files()
+    utils.delete_unnecessary_dirs_and_files('gzip_files/', 'json_files/')

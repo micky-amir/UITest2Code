@@ -9,10 +9,15 @@ project_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__))).repla
 """the path to the UITest2Code directory"""
 
 
-def create_directories():
-    """Creates the json_files/ and gzip_files/java/ directories"""
+def create_directories(is_bigquery=False):
+    """
+    Creates the json_files/ and gzip_files/java/ directories
+
+    :param is_bigquery: optional boolean that indicates whether the required directories are for bigquery data
+    """
     try:
-        new_directories = ['json_files/', 'gzip_files/', 'gzip_files/java/']
+        new_directories = ['bigquery_files/java/'] if is_bigquery else ['json_files/', 'gzip_files/',
+                                                                        'gzip_files/java/']
         for new_dir in new_directories:
             new_dir_path = project_path + new_dir
             if not os.path.isdir(new_dir_path):
@@ -21,16 +26,32 @@ def create_directories():
         print(error)
 
 
-def delete_unnecessary_dirs_and_files():
-    """Deletes the draft files and directories"""
+def delete_unnecessary_dirs_and_files(dir_name_to_delete_entirely, selective_dir_name, original_file=''):
+    """
+    Deletes the draft files and directories
+
+    :param dir_name_to_delete_entirely: string with the path in the project to a directory that will be deleted entirely
+    :param selective_dir_name: string with the path in the project to the directory to remove drafts from
+    :param original_file: optional string with the name of the original file that was tokenized, who won't be deleted
+    """
     try:
-        shutil.rmtree(project_path + 'gzip_files/')
-        list_of_flies = os.listdir(project_path + 'json_files/')
-        for file_name in list_of_flies:
-            if not file_name.startswith("finished"):
-                os.remove(project_path + 'json_files/' + file_name)
+        shutil.rmtree(project_path + dir_name_to_delete_entirely)
+        delete_not_finished_files_from_dir_except_original(selective_dir_name, original_file)
     except OSError as e:
         print("Error: %s - %s." % (e.filename, e.strerror))
+
+
+def delete_not_finished_files_from_dir_except_original(dir_name, original_file_name=''):
+    """
+    Removes draft files from a directory
+
+    :param dir_name: a string with the path in the project to the directory to remove drafts from
+    :param original_file_name: a string with the name of the original file that was tokenized, who won't be deleted
+    """
+    list_of_flies = os.listdir(project_path + dir_name)
+    for file_name in list_of_flies:
+        if (not file_name.startswith("finished")) and (file_name != original_file_name):
+            os.remove(project_path + dir_name + file_name)
 
 
 def gzip_to_json(gzip_file_path):
