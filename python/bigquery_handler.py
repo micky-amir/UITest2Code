@@ -3,6 +3,7 @@ import os
 import re
 from code_tokenizer_processor import preprocess
 import utils
+from google.cloud import bigquery
 
 project_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/") + '/'
 """the path to the UITest2Code directory"""
@@ -12,6 +13,33 @@ methods_counter = 0
 
 all_methods_dictionary = {}
 """a dictionary that contains the info of all the filtered methods"""
+
+
+def query_github_java():
+    """
+    Query the required BigQuery table and creates a json file with the results,
+    *Wasn't tested*
+
+    :return: json object with the queried data
+    """
+    client = bigquery.Client()
+    query_job = client.query(
+        """
+        SELECT *
+        FROM `fh-bigquery.github_extracts.contents_java`
+        WHERE content LIKE '%import %.selenium.%'
+        """
+    )
+
+    results = query_job.result()  # Waits for job to complete.
+
+    # handles the data and writes it to a json
+    records = [dict(row) for row in query_job]
+    json_obj = json.dumps(str(records))
+    filepath = project_path + 'bigquery_files/bq-results-20220207-151512-biubj4ywzbd1.json'
+    with open(filepath, "w+", encoding='utf-8') as file:
+        file.write(json_obj)
+    return json_obj
 
 
 def tokenize_bigquery_json():
