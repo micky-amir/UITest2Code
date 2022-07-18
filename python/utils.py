@@ -5,7 +5,7 @@ import json
 from bs4 import BeautifulSoup
 from python import excels_reader
 
-project_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/") + '/'
+project_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 """the path to the UITest2Code directory"""
 
 
@@ -16,10 +16,10 @@ def create_directories(is_bigquery=False):
     :param is_bigquery: optional boolean that indicates whether the required directories are for bigquery data
     """
     try:
-        new_directories = ['bigquery_files/java/'] if is_bigquery else ['json_files/', 'gzip_files/',
-                                                                        'gzip_files/java/']
+        new_directories = [os.path.join('bigquery_files', 'java')] if is_bigquery else ['json_files', 'gzip_files',
+                                                                                       os.path.join('gzip_files', 'java')]
         for new_dir in new_directories:
-            new_dir_path = project_path + new_dir
+            new_dir_path = os.path.join(project_path, new_dir)
             if not os.path.isdir(new_dir_path):
                 os.mkdir(new_dir_path)
     except OSError as error:
@@ -35,7 +35,7 @@ def delete_unnecessary_dirs_and_files(dir_name_to_delete_entirely, selective_dir
     :param original_file: optional string with the name of the original file that was tokenized, who won't be deleted
     """
     try:
-        shutil.rmtree(project_path + dir_name_to_delete_entirely)
+        shutil.rmtree(os.path.join(project_path, dir_name_to_delete_entirely))
         delete_not_finished_files_from_dir_except_original(selective_dir_name, original_file)
     except OSError as e:
         print("Error: %s - %s." % (e.filename, e.strerror))
@@ -48,10 +48,10 @@ def delete_not_finished_files_from_dir_except_original(dir_name, original_file_n
     :param dir_name: a string with the path in the project to the directory to remove drafts from
     :param original_file_name: a string with the name of the original file that was tokenized, who won't be deleted
     """
-    list_of_flies = os.listdir(project_path + dir_name)
+    list_of_flies = os.listdir(os.path.join(project_path, dir_name))
     for file_name in list_of_flies:
-        if (not file_name.startswith("finished")) and (file_name != original_file_name):
-            os.remove(project_path + dir_name + file_name)
+        if (not file_name.startswith("tokenized")) and (file_name != original_file_name):
+            os.remove(os.path.join(project_path, dir_name, file_name))
 
 
 def gzip_to_json(gzip_file_path):
@@ -72,8 +72,8 @@ def json_to_gzip(json_file_path, gzip_dir):
     :param gzip_dir: the directory in the project in which the gzip file should be created
     :param json_file_path: the json file's path
     """
-    with open(project_path + json_file_path, 'rb') as json_file, gzip.open(
-            project_path + gzip_dir + os.path.basename(json_file.name) + '.gz', 'wb') as gz_file:
+    with open(os.path.join(project_path, json_file_path), 'rb') as json_file, gzip.open(
+            os.path.join(project_path, gzip_dir, os.path.basename(json_file.name) + '.gz'), 'wb') as gz_file:
         gz_file.writelines(json_file)
 
 
@@ -87,8 +87,8 @@ def create_single_final_json(tok_file_path, json_dir_name, website_name, tests_d
     :param tests_dictionary: a dictionary that contains the tests from the website
     :param id_counter: counter that is responsible for the id of each tokenized method
     """
-    with open(project_path + tok_file_path, 'r', encoding="utf-8") as tok_file, open(
-            project_path + json_dir_name + 'tokenized-class-' + website_name + '.json', 'w',
+    with open(os.path.join(project_path, tok_file_path), 'r', encoding="utf-8") as tok_file, open(
+            os.path.join(project_path, json_dir_name, 'tokenized-class-' + website_name + '.json'), 'w',
             encoding="utf-8") as json_file:
         line = tok_file.readline()
         while line:

@@ -5,7 +5,7 @@ import excels_reader
 from code_tokenizer_processor import preprocess
 import utils
 
-project_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/") + '/'
+project_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 """the path to the UITest2Code directory"""
 
 id_counter = 0
@@ -18,7 +18,7 @@ def tokenize_tests_from_single_website(file_name):
 
     :param file_name: string that contains the file name of tests from a single website
     """
-    filepath = project_path + 'src/test/java/websites/' + file_name
+    filepath = os.path.join(project_path, 'src', 'test', 'java', 'websites', file_name)
     with open(filepath, "r", encoding="utf-8") as file:
         line = file.readline()
         all_tests = []
@@ -58,9 +58,9 @@ def write_tests_from_single_website_to_json(json_file_path, path, all_tests, all
     :param all_tests: a list[list[str]] of the tests from the original file
     :param all_tests_names: a list[str] of the tests' names
     """
-
+    # todo might not work as expected for windows
     original_website_path_in_project = ''.join(re.split(r'(UITest2Code/)', path)[1:])
-    with open(project_path + json_file_path, "w+") as json_result_file:
+    with open(os.path.join(project_path, json_file_path), "w+") as json_result_file:
         for test, test_name in zip(all_tests, all_tests_names):
             instance = {'repo_name': test_name,
                         'ref': "refs/heads/master",
@@ -72,7 +72,7 @@ def write_tests_from_single_website_to_json(json_file_path, path, all_tests, all
 
 def tokenize_tests():
     """Tokenizes all the tests from all the websites and writes them into json files"""
-    list_of_flies = os.listdir(project_path + 'src/test/java/websites')
+    list_of_flies = os.listdir(os.path.join(project_path, 'src', 'test', 'java', 'websites'))
     for file_name in list_of_flies:
         tokenize_tests_from_single_website(file_name)
 
@@ -80,7 +80,7 @@ def tokenize_tests():
 def tok_to_final_json():
     """Goes through all the tok files, creates test cases dictionary for each and final tokenized json file"""
     global id_counter
-    list_of_flies = os.listdir(project_path + 'gzip_files/java/')
+    list_of_flies = os.listdir(os.path.join(project_path, 'gzip_files', 'java'))
     for file_name in list_of_flies:
         if file_name.endswith(".tok"):
             website_name = file_name.split('.')[0].split('-')[2]
@@ -92,6 +92,6 @@ def tok_to_final_json():
 if __name__ == "__main__":
     utils.create_directories()
     tokenize_tests()
-    preprocess.preprocess_v2(project_path + 'gzip_files/', 'java', False, 110)
+    preprocess.preprocess_v2(os.path.join(project_path, 'gzip_files'), 'java', False, 110)
     tok_to_final_json()
-    utils.delete_unnecessary_dirs_and_files('gzip_files/', 'json_files/')
+    utils.delete_unnecessary_dirs_and_files('gzip_files', 'json_files')
