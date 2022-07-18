@@ -88,7 +88,7 @@ def create_single_final_json(tok_file_path, json_dir_name, website_name, tests_d
     :param id_counter: counter that is responsible for the id of each tokenized method
     """
     with open(project_path + tok_file_path, 'r', encoding="utf-8") as tok_file, open(
-            project_path + json_dir_name + 'finished-tokenized-class-' + website_name + '.json', 'w',
+            project_path + json_dir_name + 'tokenized-class-' + website_name + '.json', 'w',
             encoding="utf-8") as json_file:
         line = tok_file.readline()
         while line:
