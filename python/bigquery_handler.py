@@ -4,7 +4,7 @@ import re
 from code_tokenizer_processor import preprocess
 import utils
 
-project_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__))).replace("\\", "/") + '/'
+project_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 """the path to the UITest2Code directory"""
 
 methods_counter = 0
@@ -17,7 +17,7 @@ all_methods_dictionary = {}
 def tokenize_bigquery_json():
     """Tokenizes functions from the bigquery json file and writes them into a new json file"""
     global all_methods_dictionary
-    filepath = project_path + 'bigquery_files/bq-results-20220207-151512-biubj4ywzbd1.json'
+    filepath = os.path.join(project_path, 'bigquery_files', 'bq-results-20220207-151512-biubj4ywzbd1.json')
     data = []
     with open(filepath, "r+", encoding='utf-8') as file:
         line = file.readline()
@@ -85,7 +85,7 @@ def extract_methods_from_single_class(content):
 
 def write_all_methods_in_dictionary_to_json():
     """Writes all the methods from the global dictionary to a json file"""
-    json_file_path = project_path + '/bigquery_files/tokenized-bigquery.json'
+    json_file_path = os.path.join(project_path, 'bigquery_files', 'tokenized-bigquery.json')
     with open(json_file_path, "w+", encoding='utf-8') as json_result_file:
         for method_info in all_methods_dictionary.values():
             json_result_file.write(json.dumps(method_info, ensure_ascii=False))
@@ -141,11 +141,11 @@ def update_outside_method_comments(line, comments):
 
 if __name__ == "__main__":
     utils.create_directories(True)
-    utils.gzip_to_json(project_path + 'bigquery_files/bq-results-20220207-151512-biubj4ywzbd1.json.gz')
+    utils.gzip_to_json(os.path.join(project_path, 'bigquery_files', 'bq-results-20220207-151512-biubj4ywzbd1.json.gz'))
     tokenize_bigquery_json()
-    utils.json_to_gzip('bigquery_files/tokenized-bigquery.json', 'bigquery_files/java/')
-    preprocess.preprocess_v2(project_path + 'bigquery_files/', 'java', False, 2000)
-    utils.create_single_final_json('bigquery_files/java/tokenized-bigquery.tok', 'bigquery_files/', 'bigquery',
+    utils.json_to_gzip(os.path.join('bigquery_files', 'tokenized-bigquery.json'), os.path.join('bigquery_files', 'java'))
+    preprocess.preprocess_v2(os.path.join(project_path, 'bigquery_files'), 'java', False, 2000)
+    utils.create_single_final_json(os.path.join('bigquery_files', 'java', 'tokenized-bigquery.tok'), 'bigquery_files', 'bigquery',
                                    all_methods_dictionary)
-    utils.delete_unnecessary_dirs_and_files('bigquery_files/java/', 'bigquery_files/',
+    utils.delete_unnecessary_dirs_and_files(os.path.join('bigquery_files', 'java'), 'bigquery_files',
                                             'bq-results-20220207-151512-biubj4ywzbd1.json.gz')

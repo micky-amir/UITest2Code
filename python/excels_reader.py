@@ -1,4 +1,6 @@
 import math
+import os
+
 import pandas
 
 
@@ -12,7 +14,7 @@ def read_single_excel(project_path, website_name):
 
     # creates a data frame
     df = pandas.read_excel(
-        project_path + r'src/test/resources/test_descriptions/' + website_name + '_TestCases.xlsx')
+        os.path.join(project_path, 'src', 'test', 'resources', 'test_descriptions', website_name + '_TestCases.xlsx'))
     df = df.rename(columns={'Expected Results': 'Steps'})
 
     # initializes variables
